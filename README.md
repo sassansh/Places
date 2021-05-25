@@ -26,7 +26,7 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<h2 style="display: inline-block">Table of Contents</h2>
 <ol>
   <li>
     <a href="#project-description">Project Description</a>
