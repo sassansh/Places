@@ -26,25 +26,24 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
-    <li>
-      <a href="#project-description">Project Description</a>
-    </li>
-    <li>
-      <a href="#project-task-requirements">Project Task Requirements</a>
-    </li>
-    <li>
-      <a href="#task-breakdown">Task Breakdown</a>
-    </li>
-    <li>
-      <a href="#prototypes">Prototypes</a>
-    </li>
-    <li><a href="#the-team">The Team</a></li>
-    <li><a href="#license">License</a></li>
-  </ol>
-</details>
+<summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<ol>
+  <li>
+    <a href="#project-description">Project Description</a>
+  </li>
+  <li>
+    <a href="#project-task-requirements">Project Task Requirements</a>
+  </li>
+  <li>
+    <a href="#task-breakdown">Task Breakdown</a>
+  </li>
+  <li>
+    <a href="#prototypes">Prototypes</a>
+  </li>
+  <li><a href="#the-team">The Team</a></li>
+  <li><a href="#license">License</a></li>
+</ol>
+
 
 
 
