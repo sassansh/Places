@@ -4,6 +4,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
 
 <!-- PROJECT LOGO -->
@@ -41,6 +42,7 @@
       <a href="#prototypes">Prototypes</a>
     </li>
     <li><a href="#the-team">The Team</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -87,6 +89,12 @@ Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www
 Project Link: [https://github.com/sassansh/Places](https://github.com/sassansh/Places)
 
 
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+
 
 
 
@@ -100,6 +108,8 @@ Project Link: [https://github.com/sassansh/Places](https://github.com/sassansh/P
 [stars-url]: https://github.com/sassansh/Places/stargazers
 [issues-shield]: https://img.shields.io/github/issues/sassansh/Places.svg?style=for-the-badge
 [issues-url]: https://github.com/sassansh/Places/issues
+[license-shield]: https://img.shields.io/github/license/sassansh/Places.svg?style=for-the-badge
+[license-url]: https://github.com/sassansh/Places/blob/main/LICENSE.txt
 [prototype1]: images/prototype1.png
 [prototype2]: images/prototype2.png
 
