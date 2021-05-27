@@ -14,7 +14,9 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Places</h3>
+  <h3 align="center">Places ✨</h3>
+  
+  <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">
     Find the best places recommended by only your trusted friends
@@ -140,7 +142,7 @@
 <!-- THE TEAM -->
 ## The Team
 
-Team Name: Green 🍃
+Team Name: Green 🌱
 
 Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/)
 
