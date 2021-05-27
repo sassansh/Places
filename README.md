@@ -83,7 +83,7 @@
 ## Project Task Requirements 
 
 **Minimal Requirements**
-- [ ]  Register new account or log in to existing account
+- Register new account or log in to existing account
 - Create a group
 - Request and join an existing group / accept or reject requests to join
 - Each user can rate (scale 1-5)  a place, rating is attached to their group
