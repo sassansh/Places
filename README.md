@@ -50,26 +50,91 @@
 <!-- PROJECT DESCRIPTION -->
 ## Project Description 
 
-Project description will go here...
+**Who is it for?**
+- People in cities (mostly) with lots of choices of (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
+
+**What will it do?**
+- Allow people to enter rankings/reviews for places
+- Help people find the best place out of many options through reliable, trusted recommendations
+- Help people recommend the places they like to their friends, and keep this knowledge without forgetting
+
+**What type of data will it store?**
+- Members of a group
+- List of places 
+- Set of criteria a group considers important
+- Individuals’ rankings of individual places in specific categories
+
+**What will users be able to do with this data?**
+- Joining an existing group or creating a new one. 
+- Add a rating for a place
+- Look at ranked lists of places in given categories
+- Search for a place based on needed requirements (park in Vancouver with playground, bar in Burnaby open at 11pm)
+- Decide where to go 
+
+**What is some additional functionality you can add/remove based on time constraints?**
+- Ability to publish a group’s ranking to the public
+  - Option to publish only aggregate data or rankings
+- Create custom ranking criteria/templates for each category of place
+- Allow users to add profile pictures and images of the places
+- Users can add categories for places-
 
 
 <!-- PROJECT TASK REQUIREMENTS -->
 ## Project Task Requirements 
 
-Project task requirements will go here...
+**Minimal Requirements**
+- Register new account or log in to existing account
+- Create a group
+- Request and join an existing group / accept or reject requests to join
+- Each user can rate (scale 1-5)  a place, rating is attached to their group
+- View places by category and order by average ranking
+
+**Standard Requirements**
+- Modify an existing rating
+- Create new categories 
+- Add custom criteria for each category.
+  - Creator of custom criteria can describe each criterion/categories
+- Display ranked list of places based on selected criteria
+  - Multiple search criteria including location tags
+- Allow users to upload photos for their profile picture or of places
+- Profile for each place containing images, address, hours, details, reviews.
+- User profiles displaying:
+  - Name, picture, list of reviewed places, name of group they are in
+- Moderator ability for group creator:
+  - Add members
+  - Delete members
+  - Create templates
+
+**Stretch Requirements**
+- User should be able to save favorite places
+- Engaging dashboard with newly reviewed places, highest ranking places, and new members that have joined the group
+- Users can be members of multiple groups and post different information to different groups
 
 
 <!-- TASK BREAKDOWN -->
 ## Task Breakdown 
 
-Task breakdown will go here...
+- Register new account or log in to existing account
+  - Login UI with email and password inputs and login button
+  - Button to Register and form for creating new account
+    - Full Name, Email, Password
+  - Database structure for storing email and password for each user
+  - Simple authentication backend & remember user on the same device
+
+- User should be able to leave ratings
+  - Display list of existing places to choose from 
+    - Or option to create new place with name and address
+  - User can choose a numerical rating (1-5)
+  - Submit button adds rating of place, for user’s group, attributed to user
+  - Database structure to associate rating of place to a group and user.
+
 
 
 <!-- PROTOTYPES -->
 ## Prototypes 
 
 ![Prototype Sketch #1][prototype1]
-
+![Prototype Sketch #2][prototype2]
 ![Prototype Sketch #2][prototype2]
 
 <!-- THE TEAM -->
