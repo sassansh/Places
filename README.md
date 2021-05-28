@@ -182,7 +182,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/sassansh/Places/issues
 [license-shield]: https://img.shields.io/github/license/sassansh/Places.svg?style=for-the-badge
 [license-url]: https://github.com/sassansh/Places/blob/main/LICENSE.txt
-[groups]: images/groups.png
-[add_review]: images/add_review.png
-[reviews]: images/reviews.png
+[groups]: images/groups_sketch.png
+[add_review]: images/add_review_sketch.png
+[reviews]: images/reviews_sketch.png
 
