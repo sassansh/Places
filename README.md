@@ -14,7 +14,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Places ✨</h3>
+  <h3 align="center">Places</h3>
   
   <h4 align="center">Team Name: Green 🌱</h4>
 
