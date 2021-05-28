@@ -156,7 +156,7 @@ Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.link
 
 Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 
-Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/)
+Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
 Project Link: [https://github.com/sassansh/Places](https://github.com/sassansh/Places)
 
