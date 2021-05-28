@@ -19,7 +19,7 @@
   <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">
-    Find the best places recommended by only your trusted friends
+    Find the best places recommended by only your trusted friends. Group project for <a href="https://blogs.ubc.ca/cpsc436i2021s/"> CPSC 455</a> (Applied Industry Practices)
     <br />
     <br />
   </p>
