@@ -134,10 +134,16 @@
 
 <!-- PROTOTYPES -->
 ## Prototypes 
+Groups Screen (after login)
 
-![Prototype Sketch #1][prototype1]
-![Prototype Sketch #2][prototype2]
-![Prototype Sketch #2][prototype2]
+![Groups Sketch][groups]
+
+Reviews in a group (after clicking a joined group)
+
+![Reviews][reviews]
+
+Adding a review to a place (after clicking add review on a place)
+![Add Review][add_review]
 
 <!-- THE TEAM -->
 ## The Team
@@ -176,6 +182,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/sassansh/Places/issues
 [license-shield]: https://img.shields.io/github/license/sassansh/Places.svg?style=for-the-badge
 [license-url]: https://github.com/sassansh/Places/blob/main/LICENSE.txt
-[prototype1]: images/prototype1.png
-[prototype2]: images/prototype2.png
+[groups]: images/groups.png
+[add_review]: images/add_review.png
+[reviews]: images/reviews.png
 
