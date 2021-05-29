@@ -58,7 +58,7 @@
 - People in cities (mostly) with lots of choices of amenities (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
 
 **What will it do?**
-- Allow people to enter rankings/reviews for places
+- Allow people to enter ratings/reviews for places
 - Help people find the best place out of many options through reliable, trusted recommendations
 - Help people recommend the places they like to their friends, and keep this knowledge without forgetting
 
