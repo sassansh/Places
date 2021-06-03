@@ -1,0 +1,9 @@
+.reviewName {
+    text-align: left;
+    padding: 30px 30px 30px 30px;
+}
+
+.reviewRating {
+    text-align: right;
+    padding: 30px 30px 30px 30px;
+}
