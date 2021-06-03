@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Places App",
+  "name": "Find the best places recommended by only your trusted friends.",
   "icons": [
     {
       "src": "favicon.ico",
