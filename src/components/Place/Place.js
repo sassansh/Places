@@ -1,8 +1,6 @@
 import "./Place.css";
 import { Card, Avatar, Rate } from "antd";
 
-const { Meta } = Card;
-
 function Place() {
   return (
     <Card style={{ margin: 16 }}>
