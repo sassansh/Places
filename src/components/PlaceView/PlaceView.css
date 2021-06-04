@@ -1,11 +1,3 @@
-/* icon style={{
-    fontSize: "18px",
-    color: "black",
-    strokeWidth: "100",
-    stroke: "black",
-  }} */
-
-  /* button style={{
-    backgroundColor: "white",
-    borderColor: "white"
-  }} */
+.container {
+    margin: 25px;
+}
