@@ -1,5 +1,5 @@
 import './Review.css'
-import { Card, Rate, Col, Row, Divider } from 'antd';
+import { Card, Rate, Col, Row } from 'antd';
 
 function Review(props) {
     let reviewItems = props.reviews.map((review) => 

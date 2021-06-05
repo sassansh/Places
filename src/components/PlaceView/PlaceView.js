@@ -1,7 +1,6 @@
 import "./PlaceView.css";
 import ReviewList from "../ReviewList/ReviewList";
-import { Row, Col, Typography, Button, Image, Divider } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Row, Col, Typography, Image, Divider } from "antd";
 
 function PlaceView() {
   const { Title } = Typography;
