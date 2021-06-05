@@ -4,9 +4,8 @@ import { Card, Rate, Col, Row, Divider } from 'antd';
 function Review(props) {
     let reviewItems = props.reviews.map((review) => 
         <div>
-            <br />
             <li>
-                <Card className="review" style={{borderRadius: '10px'}} >
+                <Card className="review" size="small" style={{borderRadius: "10px"}}>
                     <Row>
                         <Col span={12} className="reviewer"><h2>{review.reviewer}</h2></Col>
                         <Col span={12} className="rating"><Rate allowHalf defaultValue={review.rating} /></Col>

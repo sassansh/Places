@@ -1,21 +1,25 @@
+li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
 .reviewer {
-    padding: 0px 30px 0px 30px;
+    font-size: 12px;
+    margin: 5px 0px 0px 0px;
+    padding-left: 12px;
 }
 
 .rating {
+    padding-right: 10px;
     text-align: right;
-    padding: 0px 30px 0px 30px;
-}
-
-li {
-    list-style-type:none;
-}
-
-.review {
-    width:750px;
 }
 
 h1 {
     padding: 0px 0px 0px 40px;
     border-bottom: 0px;
+    font-size: 20px;
+}
+
+.review{
+    border-radius: 100px;
 }
