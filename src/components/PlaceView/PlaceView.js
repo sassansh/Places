@@ -11,26 +11,6 @@ function PlaceView() {
             marginLeft: "20px"
             
           }}>
-        {/* <Button
-          type="primary"
-          shape="circle"
-          icon={
-            <PlusOutlined
-              style={{
-                verticalAlign:"middle",
-                fontSize: "25px",
-                color: "black",
-                strokeWidth: "100",
-                stroke: "black",
-              }}
-            />
-          }
-          size="large"
-          style={{
-            backgroundColor: "white",
-            borderColor: "white",
-          }}
-        /> */}
         <Col span={8}><Title level={2}>Earls Yaletown</Title></Col>
         <Col span={12}></Col>
         <Col span={4}><Title
@@ -45,16 +25,21 @@ function PlaceView() {
           borderWidth: 5,
         }}
       />
-      <Row>
-      <Col span={10}>
+      <Row style={{
+            marginRight: "0px"
+            
+          }}>
+      <Col span={10} style={{
+            marginTop: "20px" }}>
         <Image
           width={500}
           src="https://i.ibb.co/kg11VY4/Screen-Shot-2021-06-04-at-8-54-26-AM.png"
-          style={{ borderRadius: "15px" }}
+          style={{
+            borderRadius: "15px" }}
         />
       </Col>
-      <Col span={14}>
-        <ReviewList />
+      <Col span={10}>
+        <ReviewList/>
       </Col>
       </Row>
     </div>
