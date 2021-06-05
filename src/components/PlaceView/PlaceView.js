@@ -11,13 +11,14 @@ function PlaceView() {
             marginLeft: "20px"
             
           }}>
-        <Button
+        {/* <Button
           type="primary"
           shape="circle"
           icon={
             <PlusOutlined
               style={{
-                fontSize: "18px",
+                verticalAlign:"middle",
+                fontSize: "25px",
                 color: "black",
                 strokeWidth: "100",
                 stroke: "black",
@@ -26,11 +27,17 @@ function PlaceView() {
           }
           size="large"
           style={{
-            backgroundColor: "lightgrey",
+            backgroundColor: "white",
             borderColor: "white",
           }}
-        />
-        <Title level={2}>Earls Yaletown</Title>
+        /> */}
+        <Col span={8}><Title level={2}>Earls Yaletown</Title></Col>
+        <Col span={12}></Col>
+        <Col span={4}><Title
+          level={2}
+        >
+          🍔 Restaurant
+        </Title></Col>
       </Row>
       <Divider
         style={{
@@ -38,25 +45,18 @@ function PlaceView() {
           borderWidth: 5,
         }}
       />
+      <Row>
       <Col span={10}>
         <Image
           width={500}
           src="https://i.ibb.co/kg11VY4/Screen-Shot-2021-06-04-at-8-54-26-AM.png"
           style={{ borderRadius: "15px" }}
         />
-        <Title
-          level={2}
-          style={{
-            margin: "20px"
-            
-          }}
-        >
-          🍔 Restaurant
-        </Title>
       </Col>
       <Col span={14}>
         <ReviewList />
       </Col>
+      </Row>
     </div>
   );
 }
