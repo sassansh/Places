@@ -2,7 +2,6 @@ import app from "./server.js";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import logger from "./tools/logger.js"
-// import place from "./models/place.js";
 
 dotenv.config();
 
