@@ -2,11 +2,11 @@
   "name": "places-backend",
   "version": "1.0.0",
   "description": "Express backend server for places app.",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
