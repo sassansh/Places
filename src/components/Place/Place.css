@@ -1,0 +1,12 @@
+.num-of-reviews {
+    margin: 10px;
+}
+
+.place-rating {
+    float: right;
+}
+
+.place-name {
+    margin: 10px;
+    font-size: large;
+}
