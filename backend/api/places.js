@@ -6,7 +6,10 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   Place.find()
-    .then((places) => res.json(places))
+    .then((places) => {
+      res.json(places);
+      logger.info("Retrieved all " + places.length + " places");
+    })
     .catch((err) => logger.error(err));
 });
 
@@ -19,11 +22,12 @@ router.post("/", (req, res) => {
   });
   newPlace
     .save()
-    .then(() =>
+    .then(() => {
       res.json({
         message: "Created place successfully",
-      })
-    )
+      });
+      logger.info("Created new place: " + newPlace);
+    })
     .catch((err) => {
       res.status(400).json({
         error: err,
