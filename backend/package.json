@@ -1,14 +1,11 @@
 {
-  "name": "backend",
+  "name": "places-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Express backend server for places app.",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -16,5 +13,11 @@
     "mongoose": "^5.12.13",
     "pino": "^6.11.3",
     "pino-pretty": "^5.0.2"
-  }
+  },
+  "contributors": [
+    "Sassan Shokoohi <sassansh@student.ubc.ca> (https://github.com/sassansh)",
+    "Johnny Li <johnny@ualberta.ca> (https://github.com/johnnybcs)",
+    "Amir Jafarvand <amir.jafarvand@gmail.com> (https://github.com/amirjfr)",
+    "Laura Rodgers <laurarodgers@gmail.com> (https://github.com/laurarodgers)"
+  ]
 }

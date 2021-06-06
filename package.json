@@ -2,6 +2,7 @@
   "name": "places",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@testing-library/jest-dom": "^5.11.4",
@@ -36,5 +37,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "contributors": [
+    "Sassan Shokoohi <sassansh@student.ubc.ca> (https://github.com/sassansh)",
+    "Johnny Li <johnny@ualberta.ca> (https://github.com/johnnybcs)",
+    "Amir Jafarvand <amir.jafarvand@gmail.com> (https://github.com/amirjfr)",
+    "Laura Rodgers <laurarodgers@gmail.com> (https://github.com/laurarodgers)"
+  ]
 }
