@@ -10,9 +10,9 @@ function PlaceView() {
             marginLeft: "20px"
             
           }}>
-        <Col span={8}><Title level={2}>Earls Yaletown</Title></Col>
-        <Col span={12}></Col>
-        <Col span={4}><Title
+        <Col lg={10}><Title level={2}>Earls Yaletown</Title></Col>
+        <Col lg={4}></Col>
+        <Col lg={10}><Title
           level={2}
         >
           🍔 Restaurant
@@ -28,7 +28,7 @@ function PlaceView() {
             marginRight: "0px"
             
           }}>
-      <Col span={10} style={{
+      <Col lg={10} style={{
             marginTop: "20px" }}>
         <Image
           width={500}
@@ -37,7 +37,8 @@ function PlaceView() {
             borderRadius: "15px" }}
         />
       </Col>
-      <Col span={10}>
+      <Col lg={4}></Col>
+      <Col lg={10}>
         <ReviewList/>
       </Col>
       </Row>

@@ -7,8 +7,8 @@ function Review(props) {
             <li>
                 <Card className="review" size="small" style={{borderRadius: "10px"}}>
                     <Row>
-                        <Col span={12} className="reviewer"><h2>{review.reviewer}</h2></Col>
-                        <Col span={12} className="rating"><Rate allowHalf defaultValue={review.rating} /></Col>
+                        <Col lg={12} className="reviewer"><h2>{review.reviewer}</h2></Col>
+                        <Col lg={12} className="rating"><Rate allowHalf defaultValue={review.rating} /></Col>
                     </Row>
                 </Card>  
             </li>   
