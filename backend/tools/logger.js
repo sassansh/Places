@@ -1,4 +1,4 @@
-const pino = require('pino');
+import pino from "pino"
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'debug',
@@ -9,7 +9,7 @@ const logger = pino({
   },
 });
 
-logger.info(`Logging started using pino & pino-pretty`)
-logger.info(`Timestamps are in local system's time zone`)
+logger.info(`Logging started using pino & pino-pretty`);
+logger.info(`Timestamps are in local system's time zone`);
 
-module.exports = logger;
+export default logger;
