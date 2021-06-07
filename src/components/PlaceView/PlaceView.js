@@ -1,16 +1,24 @@
 import "./PlaceView.css";
 import ReviewList from "../ReviewList/ReviewList";
-import { Row, Col, Typography, Image, Divider } from "antd";
+import { Avatar, Row, Col, Typography, Image, Divider } from "antd";
 
 function PlaceView() {
   const { Title } = Typography;
+  let reviewsData = [
+      { reviewer: "Johnny Li", rating: 3.5},
+      { reviewer: "Sassan Shokoohi", rating: 2.5},
+      { reviewer: "Laura Rodgers", rating: 4},
+      { reviewer: "Amir Jafarvand", rating: 5}
+  ];
+  let averageScore = reviewsData.map((reviewData) => reviewData.rating).reduce((p, c) => p + c, 0)/reviewsData.length;
   return (
     <div className="container">
       <Row style={{
             marginLeft: "20px"
-            
+
           }}>
-        <Col lg={10}><Title level={2}>Earls Yaletown</Title></Col>
+        <Col lg={10}><Title level={2}>Earls Yaletown <Avatar style={{ color: "#ffffff", backgroundColor: "#512da8"}}  shape="square" size={64}>{averageScore}</Avatar></Title>
+        </Col>
         <Col lg={4}></Col>
         <Col lg={10}><Title
           level={2}
@@ -26,7 +34,7 @@ function PlaceView() {
       />
       <Row style={{
             marginRight: "0px"
-            
+
           }}>
       <Col lg={10} style={{
             marginTop: "20px" }}>
@@ -39,7 +47,7 @@ function PlaceView() {
       </Col>
       <Col lg={4}></Col>
       <Col lg={10}>
-        <ReviewList/>
+        <ReviewList reviewsData={reviewsData} />
       </Col>
       </Row>
     </div>

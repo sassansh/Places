@@ -1,22 +1,19 @@
-import './ReviewList.css'
+import styles from './ReviewList.css'
 import Review from '../Review/Review'
+import {Avatar} from 'antd';
 
-function ReviewList() {
-    let reviewsData = [
-        { reviewer: "Johnny Li", rating: 3.5},
-        { reviewer: "Sassan Shokoohi", rating: 2.5},
-        { reviewer: "Laura Rodgers", rating: 1},
-        { reviewer: "Amir Jafarvand", rating: 5}
-    ];
+function ReviewList(props) {
+    let reviewsData = props.reviewsData;
 
     let reviews = reviewsData.map((reviewData) =>
       <Review review={reviewData} />
     );
-
     return (
       <div>
-        <h1>{reviewsData.length + " Reviews"}</h1>
-        <ul>{reviews}</ul>
+       <h1>{reviewsData.length + " Reviews"}</h1>
+        <ul>
+        {reviews}
+        </ul>
       </div>
     );
 }
