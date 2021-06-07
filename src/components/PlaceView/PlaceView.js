@@ -8,14 +8,14 @@ function PlaceView() {
     <div className="container">
       <Row style={{
             marginLeft: "20px"
-            
+
           }}>
         <Col lg={10}><Title level={2}>Earls Yaletown</Title></Col>
         <Col lg={4}></Col>
         <Col lg={10}><Title
           level={2}
         >
-          🍔 Restaurant
+          Restaurant 🍝
         </Title></Col>
       </Row>
       <Divider
@@ -26,7 +26,7 @@ function PlaceView() {
       />
       <Row style={{
             marginRight: "0px"
-            
+
           }}>
       <Col lg={10} style={{
             marginTop: "20px" }}>
