@@ -1,18 +1,16 @@
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
-const passport = require("passport");
+import express from "express"
+import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken"
+import dotenv from "dotenv";
+import User from "../models/User.js"
+import validateRegisterInput from "../validation/register.js"
+import validateLoginInput from "../validation/login.js"
+
+dotenv.config();
 
 // MERN Authentication inspired by: https://github.com/rishipr/mern-auth
 
-// Load input validation
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
-
-// Load User model
-const User = require("../../models/User");
+const router = express.Router();
 
 // @route POST api/users/register
 // @desc Register user
@@ -88,7 +86,7 @@ router.post("/login", (req, res) => {
         // Sign token
         jwt.sign(
           payload,
-          keys.secretOrKey,
+          process.env.SECRETORKEY,
           {
             expiresIn: 31556926, // 1 year in seconds
           },
@@ -108,4 +106,4 @@ router.post("/login", (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;

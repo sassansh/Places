@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
+// MERN Authentication inspired by: https://github.com/rishipr/mern-auth
+
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -21,4 +23,4 @@ const UserSchema = new Schema({
   },
 });
 
-export default mongoose.model("users", UserSchema);
+export default mongoose.model("User", UserSchema, "users");
