@@ -1,11 +1,11 @@
-import pino from "pino"
+import pino from "pino";
 
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'debug',
+  level: process.env.LOG_LEVEL || "debug",
   prettyPrint: {
     colorize: true,
-    ignore: 'pid,hostname',
-    translateTime: 'SYS:mmmm d yyyy, h:MM:ss.l TT',
+    ignore: "pid,hostname",
+    translateTime: "SYS:mmmm d yyyy, h:MM:ss.l TT",
   },
 });
 

@@ -1,5 +1,7 @@
-import Validator from "validator"
-import isEmpty from "is-empty"
+import Validator from "validator";
+import isEmpty from "is-empty";
+
+// MERN Authentication inspired by: https://github.com/rishipr/mern-auth
 
 export default function validateRegisterInput(data) {
   let errors = {};
@@ -41,6 +43,6 @@ export default function validateRegisterInput(data) {
 
   return {
     errors,
-    isValid: isEmpty(errors)
+    isValid: isEmpty(errors),
   };
-};
+}

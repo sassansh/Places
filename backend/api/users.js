@@ -1,10 +1,10 @@
-import express from "express"
-import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
+import express from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import User from "../models/User.js"
-import validateRegisterInput from "../validation/register.js"
-import validateLoginInput from "../validation/login.js"
+import User from "../models/User.js";
+import validateRegisterInput from "../validation/register.js";
+import validateLoginInput from "../validation/login.js";
 
 dotenv.config();
 
