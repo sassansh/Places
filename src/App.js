@@ -6,13 +6,10 @@ import "antd/dist/antd.css";
 
 const { TabPane } = Tabs;
 
-function callback(key) {
-  console.log(key);
-}
-
 function App() {
   return (
-    <Tabs className="App" defaultActiveKey="1" onChange={callback}>
+    <div className="App">
+    <Tabs defaultActiveKey="1">
       <TabPane tab="Category View" key="1">
         <CategoryView />
       </TabPane>
@@ -20,6 +17,7 @@ function App() {
         <PlaceView />
       </TabPane>
     </Tabs>
+    </div>
   );
 }
 
