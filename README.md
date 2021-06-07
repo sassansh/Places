@@ -160,8 +160,6 @@ Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://w
 
 Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
-Project Link: [https://github.com/sassansh/Places](https://github.com/sassansh/Places)
-
 
 <!-- LICENSE -->
 ## License
