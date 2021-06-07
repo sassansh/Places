@@ -148,7 +148,9 @@ Adding a review to a place (after clicking add review on a place)
 ![Add Review][add_review]
 
 <!-- THE TEAM -->
-## The Team - Green 🌱
+## The Team
+
+Team Name: Green 🌱
 
 Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/)
 
