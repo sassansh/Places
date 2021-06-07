@@ -1,5 +1,5 @@
 import passportjwt from "passport-jwt";
-import mongoose from "mongoose";
+import logger from "../tools/logger.js";
 import User from "../models/User.js";
 import dotenv from "dotenv";
 
@@ -24,7 +24,7 @@ export default (passport) => {
           }
           return done(null, false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => logger.error(err));
     })
   );
 };
