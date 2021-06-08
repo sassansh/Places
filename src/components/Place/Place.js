@@ -1,19 +1,20 @@
 import "./Place.css";
 import { Card, Avatar, Rate } from "antd";
 
-function Place() {
+function Place(props) {
+  let placeData = props.placeData;
   return (
     <Card style={{ margin: 16 }}>
       <span className="place">
         <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
-          1
+          {placeData.rank}
         </Avatar>
-        <span className="place-name">Earls Ambleside</span>
+        <span className="place-name">{placeData.name}</span>
       </span>
 
       <span className="place-rating">
-        <Rate disabled allowHalf defaultValue={4.5} />
-        <span className="num-of-reviews">451 Reviews</span>
+        <Rate disabled allowHalf defaultValue={placeData.rating} />
+        <span className="num-of-reviews">{placeData.numRaters}</span>
       </span>
     </Card>
   );
