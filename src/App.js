@@ -9,14 +9,14 @@ const { TabPane } = Tabs;
 function App() {
   return (
     <div className="App">
-    <Tabs defaultActiveKey="1">
-      <TabPane tab="Category View" key="1">
-        <CategoryView />
-      </TabPane>
-      <TabPane tab="Place View" key="2">
-        <PlaceView />
-      </TabPane>
-    </Tabs>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Category View" key="1">
+          <CategoryView />
+        </TabPane>
+        <TabPane tab="Place View" key="2">
+          <PlaceView />
+        </TabPane>
+      </Tabs>
     </div>
   );
 }

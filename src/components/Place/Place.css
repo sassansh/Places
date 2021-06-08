@@ -1,12 +1,12 @@
 .num-of-reviews {
-    margin: 10px;
+  margin: 10px;
 }
 
 .place-rating {
-    float: right;
+  float: right;
 }
 
 .place-name {
-    margin: 10px;
-    font-size: large;
+  margin: 10px;
+  font-size: large;
 }
