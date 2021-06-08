@@ -23,7 +23,7 @@ function PlaceView() {
         <Col lg={10}><Title
           level={2}
         >
-          🍔 Restaurant
+          Restaurant 🍝
         </Title></Col>
       </Row>
       <Divider
