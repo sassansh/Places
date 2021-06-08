@@ -1,6 +1,5 @@
-import styles from './ReviewList.css'
+import './ReviewList.css'
 import Review from '../Review/Review'
-import {Avatar} from 'antd';
 
 function ReviewList(props) {
     let reviewsData = props.reviewsData;
