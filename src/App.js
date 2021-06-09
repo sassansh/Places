@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
+import GroupView from "./components/GroupView/GroupView";
 import CategoryView from "./components/CategoryView/CategoryView";
 import PlaceView from "./components/PlaceView/PlaceView";
 import "antd/dist/antd.css";
@@ -34,6 +35,9 @@ function App() {
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
               <Route exact path="/">
+                <GroupView />
+              </Route>
+              <Route exact path="/categoryview">
                 <CategoryView />
               </Route>
               <Route exact path="/placeview">

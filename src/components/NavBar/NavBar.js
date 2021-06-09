@@ -1,6 +1,6 @@
 import "./NavBar.css";
 import { Menu } from "antd";
-import { ShopOutlined, TeamOutlined } from "@ant-design/icons";
+import { ShopOutlined, TeamOutlined, BarsOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -13,6 +13,9 @@ function NavBar(props) {
   }
   useEffect(() => {
     if (path === "/") {
+      setTab("groupView");
+    }
+    if (path === "/categoryview") {
       setTab("categoryView");
     }
     if (path === "/placeview") {
@@ -21,8 +24,11 @@ function NavBar(props) {
   }, [path]);
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
-      <Menu.Item key="categoryView" icon={<TeamOutlined />}>
-        <Link to="/">Category View</Link>
+      <Menu.Item key="groupView" icon={<TeamOutlined />}>
+        <Link to="/">Group View</Link>
+      </Menu.Item>
+      <Menu.Item key="categoryView" icon={<BarsOutlined />}>
+        <Link to="/categoryview">Category View</Link>
       </Menu.Item>
       <Menu.Item key="placeView" icon={<ShopOutlined />}>
         <Link to="/placeview">Place View</Link>
