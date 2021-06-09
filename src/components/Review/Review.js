@@ -4,7 +4,7 @@ import { Card, Rate, Col, Row } from "antd";
 function Review(props) {
   return (
     <li>
-      <Card className="review" size="small" isScore={props.review.isScore}>
+      <Card className="review" size="small">
         <Row>
           <Col lg={12} className="reviewer">
             <h2>{props.review.reviewer}</h2>

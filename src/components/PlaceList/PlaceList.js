@@ -1,10 +1,9 @@
 import "./PlaceList.css";
 import Place from "../Place/Place";
 
-function PlaceList(props) {
-  //let placesData = props.placesData;
+function PlaceList() {
   let placesData = [
-    { rank: 1, name: "Portomano", rating: 4.5, numRaters: 22 },
+    { rank: 1, name: "Earls Yaletown", rating: 4.5, numRaters: 22 },
     { rank: 2, name: "Back Stairs", rating: 4.45, numRaters: 22 },
     { rank: 3, name: "Ultra Spice Noodle", rating: 4.44, numRaters: 22 },
     { rank: 4, name: "Sushi Boat", rating: 4.41, numRaters: 22 },
@@ -16,7 +15,9 @@ function PlaceList(props) {
     { rank: 10, name: "Brownleaf", rating: 2.5, numRaters: 22 },
   ];
 
-  let places = placesData.map((placeData) => <Place placeData={placeData} />);
+  let places = placesData.map((placeData) => (
+    <Place key={placeData.rank} placeData={placeData} />
+  ));
   return (
     <div>
       <ul>{places}</ul>
