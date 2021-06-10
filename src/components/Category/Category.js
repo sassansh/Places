@@ -1,20 +1,23 @@
 import "./Category.css";
-import { Card, Col, Row } from "antd";
+import { Card, Col, Row, Avatar } from "antd";
+import { Link } from "react-router-dom";
 
 function Category(props) {
   return (
-    <li>
-      <Card className="category" size="small">
-        <Row>
-          <Col lg={12} className="categoryName">
-            <h2>{props.category.categoryName}</h2>
-          </Col>
-          <Col lg={12} className="numberOfPlaces">
-            <h2>{props.category.places.length + " Places"}</h2>
-          </Col>
-        </Row>
+    <Link to="/categoryview">
+      <Card style={{ margin: 16 }}>
+        <span className="category">
+          <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+            {props.category.categoryEmoji}
+          </Avatar>
+          <span className="category-name">{props.category.categoryName}</span>
+        </span>
+
+        <span className="num-of-places">
+          {props.category.places.length + " Places"}
+        </span>
       </Card>
-    </li>
+    </Link>
   );
 }
 
