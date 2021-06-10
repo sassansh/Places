@@ -5,9 +5,7 @@ function CategoryList(props) {
   let categoriesData = props.categoriesData;
 
   let categories = categoriesData.map((categoryData) => (
-    <li>
-      <Category key={categoryData.categoryName} category={categoryData} />
-    </li>
+    <Category key={categoryData.categoryName} category={categoryData} />
   ));
   return (
     <div>
