@@ -1,5 +1,5 @@
 import "./Category.css";
-import { Card, Col, Row, Avatar } from "antd";
+import { Card, Avatar } from "antd";
 import { Link } from "react-router-dom";
 
 function Category({ category }) {

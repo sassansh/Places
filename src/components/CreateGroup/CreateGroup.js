@@ -1,5 +1,6 @@
 import "./CreateGroup.css";
 import { Row, Col, Typography, Divider, Button, Form, Input } from "antd";
+import { Link } from "react-router-dom";
 
 function CreateGroup() {
   const { Title } = Typography;
@@ -34,9 +35,11 @@ function CreateGroup() {
       </Row>
       <Row justify="center">
         <Col>
-          <Button className="button" type="primary">
-            Submit
-          </Button>
+          <Link to="/">
+            <Button className="button" type="primary">
+              Submit
+            </Button>
+          </Link>
         </Col>
       </Row>
     </div>

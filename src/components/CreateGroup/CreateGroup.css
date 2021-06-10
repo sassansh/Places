@@ -2,17 +2,3 @@
   margin: 25px;
   align-self: center !important;
 }
-
-.button {
-  border-radius: 10px !important;
-  width: 150px !important;
-}
-
-.form {
-  font-weight: bold !important;
-}
-
-input[type="text"] {
-  border: 2px solid black;
-  border-radius: 4px;
-}
