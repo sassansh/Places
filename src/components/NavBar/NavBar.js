@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 
 function NavBar(props) {
   const path = props.location.pathname;
-  const [tab, setTab] = useState("categoryView");
+  const [tab, setTab] = useState("");
 
   function updateTab(e) {
     setTab(e.key);
@@ -19,6 +19,9 @@ function NavBar(props) {
   useEffect(() => {
     if (path === "/") {
       setTab("groupView");
+    }
+    if (path === "/creategroup") {
+      setTab("createGroup");
     }
     if (path === "/categoryview") {
       setTab("categoryView");
