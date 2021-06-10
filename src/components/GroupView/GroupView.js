@@ -37,7 +37,7 @@ function GroupView() {
           marginLeft: "20px",
         }}
       >
-        <Col lg={10}>
+        <Col lg={12}>
           <Title level={2}>
             <Avatar
               size="large"
@@ -46,8 +46,7 @@ function GroupView() {
             Azure Group
           </Title>
         </Col>
-        <Col lg={4}></Col>
-        <Col lg={10}>
+        <Col lg={12} className="numOfMembers">
           <Title level={2}>👤 13 Members</Title>
         </Col>
       </Row>

@@ -1,3 +1,7 @@
 .container {
   margin: 25px;
 }
+
+.category-of-place {
+  text-align: right;
+}

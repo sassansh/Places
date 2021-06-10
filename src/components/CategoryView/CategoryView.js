@@ -9,11 +9,10 @@ function CategoryView() {
   return (
     <div className="container">
       <Row style={{ marginLeft: "20px" }}>
-        <Col lg={10}>
+        <Col lg={12}>
           <Title level={2}>{categoryType}</Title>
         </Col>
-        <Col lg={4}></Col>
-        <Col lg={10}>
+        <Col lg={12} className="addPlaceButton">
           <Button type="primary" icon={<PlusOutlined />} size="large">
             Add Restaurant
           </Button>

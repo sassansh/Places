@@ -7,7 +7,7 @@ function Review(props) {
       <Card className="review" size="small">
         <Row>
           <Col lg={12} className="reviewer">
-            <h2>{props.review.reviewer}</h2>
+            {props.review.reviewer}
           </Col>
           <Col lg={12} className="rating">
             <Rate

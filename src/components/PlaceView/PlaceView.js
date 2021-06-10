@@ -21,7 +21,7 @@ function PlaceView() {
           marginLeft: "20px",
         }}
       >
-        <Col lg={10}>
+        <Col lg={12}>
           <Title level={2}>
             Earls Yaletown{" "}
             <Avatar
@@ -33,8 +33,7 @@ function PlaceView() {
             </Avatar>
           </Title>
         </Col>
-        <Col lg={4}></Col>
-        <Col lg={10}>
+        <Col lg={12} className="category-of-place">
           <Title level={2}>Restaurant 🍝</Title>
         </Col>
       </Row>
