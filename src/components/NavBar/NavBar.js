@@ -1,6 +1,11 @@
 import "./NavBar.css";
 import { Menu } from "antd";
-import { ShopOutlined, TeamOutlined, BarsOutlined } from "@ant-design/icons";
+import {
+  ShopOutlined,
+  TeamOutlined,
+  BarsOutlined,
+  UsergroupAddOutlined,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -26,6 +31,9 @@ function NavBar(props) {
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
       <Menu.Item key="groupView" icon={<TeamOutlined />}>
         <Link to="/">Group View</Link>
+      </Menu.Item>
+      <Menu.Item key="createGroup" icon={<UsergroupAddOutlined />}>
+        <Link to="/creategroup">Create Group</Link>
       </Menu.Item>
       <Menu.Item key="categoryView" icon={<BarsOutlined />}>
         <Link to="/categoryview">Category View</Link>

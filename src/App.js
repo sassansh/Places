@@ -8,6 +8,7 @@ import {
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
 import GroupView from "./components/GroupView/GroupView";
+import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CategoryView from "./components/CategoryView/CategoryView";
 import PlaceView from "./components/PlaceView/PlaceView";
 import "antd/dist/antd.css";
@@ -36,6 +37,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <GroupView />
+              </Route>
+              <Route exact path="/creategroup">
+                <CreateGroup />
               </Route>
               <Route exact path="/categoryview">
                 <CategoryView />
