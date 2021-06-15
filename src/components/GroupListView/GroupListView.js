@@ -54,13 +54,13 @@ function GroupListView() {
           marginLeft: "20px",
         }}
       >
-        <Col lg={12}>
+        <Col span={12}>
           <Title level={2}>
             <TeamOutlined size="large"/>{" "}
             Groups
           </Title>
         </Col>
-        <Col lg={12} className="joinGroup">
+        <Col span={12} className="joinGroup">
         <Button type="primary" icon={<TeamOutlined />} size="large">
           Create Group
         </Button>

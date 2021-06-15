@@ -1,33 +1,47 @@
 import "./Group.css";
-import { Card, Avatar } from "antd";
+import { Card, Avatar, Row, Col, Button, Tooltip } from "antd";
 import {
   UserOutlined,
-  StarOutlined
+  StarFilled,
+  QuestionCircleFilled
 } from "@ant-design/icons";
-import { Link } from "wouter";
 
 function Group(props) {
   return (
-    <Link to="/GroupView">
       <Card style={{ margin: 16 }}>
-        <span className="group">
-          <Avatar src={props.group.avatarURL} size={64} />
-          <span className="group-name">{props.group.name}</span>
-          <span className="group-descrip">{props.group.description}</span>
-        </span>
-
-        <span className="num-reviews">
-          <StarOutlined size="large"/>
-          &nbsp;
-          {props.group.numReviews}
-        </span>
-        <span className="num-members">
-          <UserOutlined size="large"/>
-          &nbsp;
-          {props.group.numMembers}
-        </span>
+        <Row justify="space-around" align="middle">
+          <Col className="group" flex="100px">
+            <Avatar src={props.group.avatarURL} size={64} />
+          </Col>
+          <Col flex="auto">
+            <div className="group-name">{props.group.name}</div>
+            <div className="group-descrip">{props.group.description}</div>
+          </Col>
+          <Col flex="auto">
+            <Row justify="end" align="middle">
+              <Col className="join-button">
+                <Button type="primary" icon={<QuestionCircleFilled size="large" />} size="medium">
+                  Join Group
+                </Button>
+              </Col>
+              <Col className="reviews-members" flex="100px">
+                <Tooltip title={props.group.numReviews + " reviews"}>
+                  <StarFilled size="large"/>
+                  &nbsp;
+                  {props.group.numReviews}
+                </Tooltip>
+                &nbsp;
+                &nbsp;
+                <Tooltip title={props.group.numMembers + " members"}>
+                  <UserOutlined size="large"/>
+                  &nbsp;
+                  {props.group.numMembers}
+                </Tooltip>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </Card>
-    </Link>
   );
 }
 
