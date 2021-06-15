@@ -34,6 +34,9 @@ function NavBar(props) {
       <Menu.Item key="addReview" icon={<FileAddOutlined />}>
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
+      <Menu.Item key="groupListView" icon={<TeamOutlined />}>
+        <Link to="/grouplistview">Group List</Link>
+      </Menu.Item>
     </Menu>
   );
 }

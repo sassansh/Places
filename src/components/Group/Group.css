@@ -1,0 +1,17 @@
+.num-reviews {
+  margin: 10px;
+  font-size: medium;
+  float: right;
+}
+
+.num-members {
+  margin: 10px;
+  font-size: medium;
+  float: right;
+}
+
+.group-name {
+  margin: 10px;
+  font-size: large;
+  font-weight: bold;
+}

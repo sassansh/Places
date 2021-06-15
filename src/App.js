@@ -7,6 +7,7 @@ import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CategoryView from "./components/CategoryView/CategoryView";
 import PlaceView from "./components/PlaceView/PlaceView";
 import AddReview from "./components/AddReview/AddReview";
+import GroupListView from "./components/GroupListView/GroupListView";
 import "antd/dist/antd.less";
 
 const { Content, Footer, Sider } = Layout;
@@ -37,6 +38,7 @@ function App() {
               <Route exact path="/categoryview" component={CategoryView} />
               <Route exact path="/placeview" component={PlaceView} />
               <Route exact path="/addreview" component={AddReview} />
+              <Route exact path="/grouplistview" component={GroupListView} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
