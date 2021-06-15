@@ -44,7 +44,7 @@ function GroupListView() {
       avatarURL: "https://hookedonhouses.net/wp-content/uploads/2015/09/Full-House-credits-in-front-of-Alamo-Square-Victorians.jpg",
       numReviews: 28,
       numMembers: 47,
-      groupID: 3
+      groupID: 4
     }
     ];
   return (
