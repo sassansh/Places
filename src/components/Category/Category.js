@@ -1,6 +1,6 @@
 import "./Category.css";
 import { Card, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 function Category({ category }) {
   return (

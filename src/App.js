@@ -1,10 +1,5 @@
 import "./App.less";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter,
-} from "react-router-dom";
+import { Router, Route, Switch } from "wouter";
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
 import GroupView from "./components/GroupView/GroupView";
@@ -17,8 +12,6 @@ import "antd/dist/antd.less";
 const { Content, Footer, Sider } = Layout;
 
 function App() {
-  const NavBarWithRouter = withRouter(NavBar);
-
   return (
     <Router basename="/">
       <Layout>
@@ -34,7 +27,7 @@ function App() {
             <img alt="logo" src="logo192.png" width="30px" />
             Places
           </div>
-          <NavBarWithRouter />
+          <NavBar />
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>

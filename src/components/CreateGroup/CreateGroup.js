@@ -1,6 +1,6 @@
 import "./CreateGroup.css";
 import { Row, Col, Typography, Divider, Button, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 
 function CreateGroup() {
   const { Title } = Typography;

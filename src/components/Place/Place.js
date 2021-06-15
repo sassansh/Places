@@ -1,5 +1,5 @@
 import "./Place.css";
-import { Link } from "react-router-dom";
+import { Link } from "wouter";
 import { Card, Avatar, Rate } from "antd";
 
 function Place({ placeData }) {
