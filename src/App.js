@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.less";
 import {
   BrowserRouter as Router,
   Route,
@@ -11,7 +11,8 @@ import GroupView from "./components/GroupView/GroupView";
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CategoryView from "./components/CategoryView/CategoryView";
 import PlaceView from "./components/PlaceView/PlaceView";
-import "antd/dist/antd.css";
+import AddReview from "./components/AddReview/AddReview";
+import "antd/dist/antd.less";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -29,7 +30,10 @@ function App() {
             left: 0,
           }}
         >
-          <div className="logo" />
+          <div className="logo">
+            <img alt="logo" src="logo192.png" width="30px" />
+            Places
+          </div>
           <NavBarWithRouter />
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
@@ -46,6 +50,9 @@ function App() {
               </Route>
               <Route exact path="/placeview">
                 <PlaceView />
+              </Route>
+              <Route exact path="/addreview">
+                <AddReview />
               </Route>
             </Switch>
           </Content>
