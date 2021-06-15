@@ -5,6 +5,7 @@ import {
   TeamOutlined,
   BarsOutlined,
   UsergroupAddOutlined,
+  FileAddOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -29,6 +30,9 @@ function NavBar(props) {
     if (path === "/placeview") {
       setTab("placeView");
     }
+    if (path === "/addreview") {
+      setTab("addReview");
+    }
   }, [path]);
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
@@ -43,6 +47,9 @@ function NavBar(props) {
       </Menu.Item>
       <Menu.Item key="placeView" icon={<ShopOutlined />}>
         <Link to="/placeview">Place View</Link>
+      </Menu.Item>
+      <Menu.Item key="addReview" icon={<FileAddOutlined />}>
+        <Link to="/addreview">Add Review</Link>
       </Menu.Item>
     </Menu>
   );
