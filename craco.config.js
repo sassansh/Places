@@ -10,7 +10,7 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           lessOptions: {
-            modifyVars: { "@rate-star-bg": "grey" },
+            modifyVars: { "@rate-star-bg": "#bfbfbf" },
             javascriptEnabled: true,
           },
         },
