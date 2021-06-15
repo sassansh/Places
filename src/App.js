@@ -39,21 +39,11 @@ function App() {
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
-              <Route exact path="/">
-                <GroupView />
-              </Route>
-              <Route exact path="/creategroup">
-                <CreateGroup />
-              </Route>
-              <Route exact path="/categoryview">
-                <CategoryView />
-              </Route>
-              <Route exact path="/placeview">
-                <PlaceView />
-              </Route>
-              <Route exact path="/addreview">
-                <AddReview />
-              </Route>
+              <Route exact path="/" component={GroupView} />
+              <Route exact path="/creategroup" component={CreateGroup} />
+              <Route exact path="/categoryview" component={CategoryView} />
+              <Route exact path="/placeview" component={PlaceView} />
+              <Route exact path="/addreview" component={AddReview} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
