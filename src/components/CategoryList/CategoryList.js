@@ -4,10 +4,12 @@ import { useContext } from "react";
 import CategoriesContext from "../../context/CategoriesContext";
 
 function CategoryList() {
-  const [categories, setCategories] = useContext(CategoriesContext);
-  let categoryItems = categories.map((categoryData) => (
-    <Category key={categoryData.categoryName} category={categoryData} />
+  const [categories] = useContext(CategoriesContext);
+
+  let categoryItems = categories.map((category) => (
+    <Category key={category.category_id} category={category} />
   ));
+
   return (
     <div>
       <ul>{categoryItems}</ul>
