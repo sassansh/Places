@@ -9,10 +9,17 @@ import PlaceView from "./components/PlaceView/PlaceView";
 import AddReview from "./components/AddReview/AddReview";
 import GroupListView from "./components/GroupListView/GroupListView";
 import "antd/dist/antd.less";
+import CategoriesContext from "./context/CategoriesContext";
+import { useState } from "react";
 
 const { Content, Footer, Sider } = Layout;
 
 function App() {
+  const categories = useState([
+    { category_id: 1, name: "Beaches", emoji: "🏖️" },
+    { category_id: 2, name: "Restaurants", emoji: "🍔" },
+  ]);
+
   return (
     <Router basename="/">
       <Layout>
@@ -33,12 +40,14 @@ function App() {
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
-              <Route exact path="/" component={GroupView} />
-              <Route exact path="/creategroup" component={CreateGroup} />
-              <Route exact path="/categoryview" component={CategoryView} />
-              <Route exact path="/placeview" component={PlaceView} />
-              <Route exact path="/addreview" component={AddReview} />
-              <Route exact path="/grouplistview" component={GroupListView} />
+              <CategoriesContext.Provider value={categories}>
+                <Route exact path="/" component={GroupView} />
+                <Route exact path="/creategroup" component={CreateGroup} />
+                <Route exact path="/categoryview" component={CategoryView} />
+                <Route exact path="/placeview" component={PlaceView} />
+                <Route exact path="/addreview" component={AddReview} />
+                <Route exact path="/grouplistview" component={GroupListView} />
+              </CategoriesContext.Provider>
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>

@@ -1,15 +1,16 @@
 import "./CategoryList.css";
 import Category from "../Category/Category";
+import { useContext } from "react";
+import CategoriesContext from "../../context/CategoriesContext";
 
-function CategoryList(props) {
-  let categoriesData = props.categoriesData;
-
-  let categories = categoriesData.map((categoryData) => (
+function CategoryList() {
+  const [categories, setCategories] = useContext(CategoriesContext);
+  let categoryItems = categories.map((categoryData) => (
     <Category key={categoryData.categoryName} category={categoryData} />
   ));
   return (
     <div>
-      <ul>{categories}</ul>
+      <ul>{categoryItems}</ul>
     </div>
   );
 }
