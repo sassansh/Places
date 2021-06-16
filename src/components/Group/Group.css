@@ -1,0 +1,17 @@
+.reviews-members {
+  margin: 10px;
+  font-size: medium;
+}
+
+.join-button {
+}
+
+.group-name {
+  margin: 2px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.group-link {
+  cursor: pointer;
+}
