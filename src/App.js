@@ -9,7 +9,7 @@ import CategoryView from "./components/CategoryView/CategoryView";
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CurrentCategoryIDContext from "./context/CurrentCategoryIDContext";
 import CurrentGroupIDContext from "./context/CurrentGroupIDContext";
-import CurrentPlaceIDContext from "./context/CurrentCategoryPlaceContext";
+import CurrentPlaceIDContext from "./context/CurrentPlaceIDContext";
 import CurrentUserIDContext from "./context/CurrentUserIDContext";
 import GroupListView from "./components/GroupListView/GroupListView";
 import GroupView from "./components/GroupView/GroupView";
