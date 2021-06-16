@@ -1,6 +1,8 @@
 import "./Place.css";
+
+import { Avatar, Card, Rate } from "antd";
+
 import { Link } from "wouter";
-import { Card, Avatar, Rate } from "antd";
 
 function Place({ placeData }) {
   return (

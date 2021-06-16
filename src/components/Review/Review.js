@@ -1,5 +1,6 @@
 import "./Review.css";
-import { Card, Rate, Col, Row } from "antd";
+
+import { Card, Col, Rate, Row } from "antd";
 
 function Review(props) {
   return (

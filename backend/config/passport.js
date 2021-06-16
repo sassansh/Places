@@ -1,7 +1,7 @@
-import passportjwt from "passport-jwt";
-import logger from "../tools/logger.js";
 import User from "../models/User.js";
 import dotenv from "dotenv";
+import logger from "../tools/logger.js";
+import passportjwt from "passport-jwt";
 
 // MERN Authentication inspired by: https://github.com/rishipr/mern-auth
 

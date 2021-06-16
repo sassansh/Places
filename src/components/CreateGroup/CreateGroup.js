@@ -1,5 +1,7 @@
 import "./CreateGroup.css";
-import { Row, Col, Typography, Divider, Button, Form, Input } from "antd";
+
+import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
+
 import { Link } from "wouter";
 
 function CreateGroup() {

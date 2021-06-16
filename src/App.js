@@ -1,15 +1,17 @@
 import "./App.less";
-import { Router, Route, Switch } from "wouter";
+import "antd/dist/antd.less";
+
+import { Route, Router, Switch } from "wouter";
+
+import AddReview from "./components/AddReview/AddReview";
+import CategoriesContext from "./context/CategoriesContext";
+import CategoryView from "./components/CategoryView/CategoryView";
+import CreateGroup from "./components/CreateGroup/CreateGroup";
+import GroupListView from "./components/GroupListView/GroupListView";
+import GroupView from "./components/GroupView/GroupView";
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
-import GroupView from "./components/GroupView/GroupView";
-import CreateGroup from "./components/CreateGroup/CreateGroup";
-import CategoryView from "./components/CategoryView/CategoryView";
 import PlaceView from "./components/PlaceView/PlaceView";
-import AddReview from "./components/AddReview/AddReview";
-import GroupListView from "./components/GroupListView/GroupListView";
-import "antd/dist/antd.less";
-import CategoriesContext from "./context/CategoriesContext";
 import { useState } from "react";
 
 const { Content, Footer, Sider } = Layout;

@@ -1,4 +1,5 @@
 import "./PlaceList.css";
+
 import Place from "../Place/Place";
 
 function PlaceList() {

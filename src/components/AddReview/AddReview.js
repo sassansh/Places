@@ -1,14 +1,16 @@
 import "./AddReview.css";
+
 import {
-  Row,
-  Col,
-  Typography,
-  Divider,
-  Button,
-  Rate,
-  Image,
   Avatar,
+  Button,
+  Col,
+  Divider,
+  Image,
+  Rate,
+  Row,
+  Typography,
 } from "antd";
+
 import { useState } from "react";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];

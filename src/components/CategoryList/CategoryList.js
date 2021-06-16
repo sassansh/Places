@@ -1,7 +1,8 @@
 import "./CategoryList.css";
+
+import CategoriesContext from "../../context/CategoriesContext";
 import Category from "../Category/Category";
 import { useContext } from "react";
-import CategoriesContext from "../../context/CategoriesContext";
 
 function CategoryList() {
   const [categories] = useContext(CategoriesContext);

@@ -1,5 +1,7 @@
 import "./Category.css";
-import { Card, Avatar } from "antd";
+
+import { Avatar, Card } from "antd";
+
 import { Link } from "wouter";
 
 function Category({ category }) {
