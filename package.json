@@ -22,7 +22,10 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "client": "npm start",
+    "server": "cd backend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +50,8 @@
     "Johnny Li <johnny@ualberta.ca> (https://github.com/johnnybcs)",
     "Amir Jafarvand <amir.jafarvand@gmail.com> (https://github.com/amirjfr)",
     "Laura Rodgers <laurarodgers@gmail.com> (https://github.com/laurarodgers)"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
 }
