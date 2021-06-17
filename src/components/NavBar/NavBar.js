@@ -1,13 +1,15 @@
 import "./NavBar.css";
-import { Menu } from "antd";
+
 import {
+  BarsOutlined,
+  FileAddOutlined,
   ShopOutlined,
   TeamOutlined,
-  BarsOutlined,
   UsergroupAddOutlined,
-  FileAddOutlined,
 } from "@ant-design/icons";
+
 import { Link } from "wouter";
+import { Menu } from "antd";
 import { useState } from "react";
 
 function NavBar(props) {

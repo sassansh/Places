@@ -1,6 +1,8 @@
 import "./GroupView.css";
+
+import { Avatar, Col, Divider, Row, Typography } from "antd";
+
 import CategoryList from "../CategoryList/CategoryList";
-import { Row, Col, Typography, Divider, Avatar } from "antd";
 
 function GroupView() {
   const { Title } = Typography;

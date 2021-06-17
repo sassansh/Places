@@ -1,6 +1,8 @@
 import "./CategoryView.css";
+
+import { Button, Col, Divider, Row, Typography } from "antd";
+
 import PlaceList from "../PlaceList/PlaceList";
-import { Row, Col, Typography, Divider, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 function CategoryView() {

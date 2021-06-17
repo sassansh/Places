@@ -1,6 +1,8 @@
 import "./PlaceView.css";
+
+import { Avatar, Col, Divider, Image, Row, Typography } from "antd";
+
 import ReviewList from "../ReviewList/ReviewList";
-import { Avatar, Row, Col, Typography, Image, Divider } from "antd";
 
 function PlaceView() {
   const { Title } = Typography;

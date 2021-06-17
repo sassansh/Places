@@ -1,5 +1,7 @@
 import "./Category.css";
-import { Card, Avatar } from "antd";
+
+import { Avatar, Card } from "antd";
+
 import { Link } from "wouter";
 
 function Category({ category }) {
@@ -8,14 +10,12 @@ function Category({ category }) {
       <Card style={{ margin: 16 }}>
         <span className="category">
           <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
-            {category.categoryEmoji}
+            {category.emoji}
           </Avatar>
-          <span className="category-name">{category.categoryName}</span>
+          <span className="category-name">{category.name}</span>
         </span>
 
-        <span className="num-of-places">
-          {category.places.length + " Places"}
-        </span>
+        <span className="num-of-places">8 Places</span>
       </Card>
     </Link>
   );

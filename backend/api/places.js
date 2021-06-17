@@ -1,6 +1,6 @@
+import Place from "../models/Place.js";
 import express from "express";
 import logger from "../tools/logger.js";
-import Place from "../models/Place.js";
 
 const router = express.Router();
 
