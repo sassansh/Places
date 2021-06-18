@@ -25,14 +25,11 @@ configPassport(passport);
 
 app.use("/api/places", places);
 app.use("/api/users", users);
-app.use("*", (req, res) =>
-  res.status(404).json({ error: "API endpoint not found" })
-);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "../build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../build"));
+  res.sendFile(path.join(__dirname, "/client/build"));
 });
 
 const port = process.env.PORT || 8000;
