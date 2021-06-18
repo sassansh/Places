@@ -25,9 +25,6 @@ configPassport(passport);
 
 app.use("/api/places", places);
 app.use("/api/users", users);
-app.use("*", (req, res) =>
-  res.status(404).json({ error: "API endpoint not found" })
-);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../client/build")));
