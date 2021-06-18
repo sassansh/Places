@@ -27,9 +27,9 @@ app.use("/api/places", places);
 app.use("/api/users", users);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../../client/build")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build"));
+  res.sendFile(path.join(__dirname, "../../client/build"));
 });
 
 const port = process.env.PORT || 8000;
