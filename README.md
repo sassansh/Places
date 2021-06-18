@@ -14,6 +14,8 @@
   </a>
 
   <h3 align="center">Places</h3>
+  <h4 align="center"><a href="https://places-cpsc455.herokuapp.com/">View Demo</a></h4>
+  
   <h5 align="center"><a href="https://www.mongodb.com/">MongoDB</a> | <a href="https://expressjs.com/">Express</a> | <a href="https://reactjs.org/">React</a> | <a href="https://nodejs.org/en/">Node.js</a></h5>
   
   <h4 align="center">Team Name: Green 🌱</h4>
