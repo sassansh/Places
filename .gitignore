@@ -107,4 +107,4 @@ dist
 .DS_Store
 
 # react build folder
-# client/build/
+client/build/
