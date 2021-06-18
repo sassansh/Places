@@ -1,6 +1,5 @@
 import Place from "../models/Place.js";
 import express from "express";
-import logger from "../tools/logger.js";
 
 const router = express.Router();
 
@@ -8,9 +7,9 @@ router.get("/", (req, res) => {
   Place.find()
     .then((places) => {
       res.json(places);
-      logger.info("Retrieved all " + places.length + " places");
+      console.log("Retrieved all " + places.length + " places");
     })
-    .catch((err) => logger.error(err));
+    .catch((err) => console.log(err));
 });
 
 router.post("/", (req, res) => {
@@ -26,14 +25,14 @@ router.post("/", (req, res) => {
       res.json({
         message: "Created place successfully",
       });
-      logger.info("Created new place: " + newPlace);
+      console.log("Created new place: " + newPlace);
     })
     .catch((err) => {
       res.status(400).json({
         error: err,
         message: "Error creating account",
       });
-      logger.error(err);
+      console.log(err);
     });
 });
 
