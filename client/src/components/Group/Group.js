@@ -9,7 +9,7 @@ import {
 
 function Group(props) {
   return (
-    <Card style={{ margin: 16 }}>
+    <Card style={{ margin: 16 }} onClick={props.onClick}>
       <Row justify="space-around" align="middle">
         <Col className="group" flex="100px">
           <Avatar src={props.group.avatarURL} size={64} />

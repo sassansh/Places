@@ -4,6 +4,7 @@ import { Button, Col, Divider, Row, Typography } from "antd";
 
 import GroupList from "../GroupList/GroupList";
 import { TeamOutlined } from "@ant-design/icons";
+import { Link } from "wouter";
 
 function GroupListView() {
   const { Title } = Typography;
@@ -20,9 +21,11 @@ function GroupListView() {
           </Title>
         </Col>
         <Col span={12} className="joinGroup">
+        <Link to="/creategroup">
           <Button type="primary" icon={<TeamOutlined />} size="large">
             Create Group
           </Button>
+          </Link>
         </Col>
       </Row>
       <Divider
