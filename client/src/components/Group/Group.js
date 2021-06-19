@@ -6,10 +6,32 @@ import {
   StarFilled,
   UserOutlined,
 } from "@ant-design/icons";
+import UsersContext from "../../context/UsersContext";
+import ReviewsContext from "../../context/ReviewsContext";
+import PlacesContext from "../../context/PlacesContext";
+import { useContext } from "react";
 
 function Group(props) {
+  const [users] = useContext(UsersContext);
+  const [reviews] = useContext(ReviewsContext);
+  const [places] = useContext(PlacesContext);
+  let numMembers = 0;
+  users.forEach(user => {
+    if (user.groups.includes(props.group.group_id)) {
+      numMembers++;
+    }
+  });
+  let numReviews = 0;
+  reviews.forEach(review => {
+    let place_id = review.place_id;
+    places.forEach(place => {
+      if (place_id === place.place_id && props.group.group_id === place.group_id) {
+        numReviews++;
+      }
+    });
+  });
   return (
-    <Card style={{ margin: 16 }}>
+    <Card style={{ margin: 16 }} onClick={props.onClick}>
       <Row justify="space-around" align="middle">
         <Col className="group" flex="100px">
           <Avatar src={props.group.avatarURL} size={64} />
@@ -30,16 +52,16 @@ function Group(props) {
               </Button>
             </Col>
             <Col className="reviews-members" flex="100px">
-              <Tooltip title={props.group.numReviews + " reviews"}>
+              <Tooltip title={numReviews + " reviews"}>
                 <StarFilled size="large" />
                 &nbsp;
-                {props.group.numReviews}
+                {numReviews}
               </Tooltip>
               &nbsp; &nbsp;
-              <Tooltip title={props.group.numMembers + " members"}>
+              <Tooltip title={numMembers + " members"}>
                 <UserOutlined size="large" />
                 &nbsp;
-                {props.group.numMembers}
+                {numMembers}
               </Tooltip>
             </Col>
           </Row>

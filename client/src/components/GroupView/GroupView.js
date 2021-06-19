@@ -3,9 +3,25 @@ import "./GroupView.css";
 import { Avatar, Col, Divider, Row, Typography } from "antd";
 
 import CategoryList from "../CategoryList/CategoryList";
+import GroupsContext from "../../context/GroupsContext";
+import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
+import UsersContext from "../../context/UsersContext";
+import { useContext } from "react";
 
 function GroupView() {
   const { Title } = Typography;
+  const [groups] = useContext(GroupsContext);
+  const [users] = useContext(UsersContext);
+  const [currentGroupID] = useContext(CurrentGroupIDContext);
+  let currentGroup = groups.find(group => group.group_id === currentGroupID);
+  let title = currentGroup.name;
+  let avatarURL = currentGroup.avatarURL;
+  let numMembers = 0;
+  users.forEach(user => {
+    if (user.groups.includes(currentGroupID)) {
+      numMembers++;
+    }
+  });
   const categoriesData = [
     {
       categoryEmoji: "🏖️",
@@ -43,13 +59,13 @@ function GroupView() {
           <Title level={2}>
             <Avatar
               size="large"
-              src="https://mspoweruser.com/wp-content/uploads/2017/09/azure-1.png"
+              src={avatarURL}
             />{" "}
-            Azure Group
+            {title}
           </Title>
         </Col>
         <Col lg={12} className="numOfMembers">
-          <Title level={2}>👤 13 Members</Title>
+          <Title level={2}>👤 {numMembers} Members</Title>
         </Col>
       </Row>
       <Divider
