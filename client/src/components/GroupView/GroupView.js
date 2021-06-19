@@ -5,16 +5,23 @@ import { Avatar, Col, Divider, Row, Typography } from "antd";
 import CategoryList from "../CategoryList/CategoryList";
 import GroupsContext from "../../context/GroupsContext";
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
+import UsersContext from "../../context/UsersContext";
 import { useContext } from "react";
 
 function GroupView() {
   const { Title } = Typography;
   const [groups] = useContext(GroupsContext);
+  const [users] = useContext(UsersContext);
   const [currentGroupID] = useContext(CurrentGroupIDContext);
   let currentGroup = groups.find(group => group.group_id === currentGroupID);
   let title = currentGroup.name;
   let avatarURL = currentGroup.avatarURL;
-  let numMembers = currentGroup.numMembers;
+  let numMembers = 0;
+  users.forEach(user => {
+    if (user.groups.includes(currentGroupID)) {
+      numMembers++;
+    }
+  });
   const categoriesData = [
     {
       categoryEmoji: "🏖️",

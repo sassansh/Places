@@ -54,8 +54,6 @@ function App() {
       name: "Some Real Eaters",
       description: "reliable sites for reliable bites",
       avatarURL: "https://media.techeblog.com/images/cooking-food-cpu.jpg",
-      numReviews: 128,
-      numMembers: 13,
     },
     {
       group_id: 2,
@@ -63,8 +61,6 @@ function App() {
       description: "The Real Lives of Alewives",
       avatarURL:
         "https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2015/08/beerAllergy-1165339040-770x553-1-745x490.jpg",
-      numReviews: 557,
-      numMembers: 18,
     },
     {
       group_id: 3,
@@ -72,8 +68,6 @@ function App() {
       description: "go play outside!!!",
       avatarURL:
         "https://t3.ftcdn.net/jpg/01/70/15/08/240_F_170150827_KWCkNDhPVSmCq48BoxuVwvuANWv5JSjT.jpg",
-      numReviews: 83,
-      numMembers: 35,
     },
     {
       group_id: 4,
@@ -81,8 +75,6 @@ function App() {
       description: "Food snob hub for the UBC Fronch Club",
       avatarURL:
         "https://i0.wp.com/www.healthfitnessrevolution.com/wp-content/uploads/2016/09/iStock-119483507.jpg?resize=1024%2C683&ssl=1",
-      numReviews: 28,
-      numMembers: 47,
     },
     {
       group_id: 5,
@@ -90,8 +82,6 @@ function App() {
       description: "picnic basket optional",
       avatarURL:
         "https://hookedonhouses.net/wp-content/uploads/2015/09/Full-House-credits-in-front-of-Alamo-Square-Victorians.jpg",
-      numReviews: 28,
-      numMembers: 47,
     },
   ]);
   const categories = useState([

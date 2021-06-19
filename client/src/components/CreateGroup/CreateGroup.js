@@ -20,7 +20,6 @@ function CreateGroup() {
         name:form.getFieldValue("name"),
         description: form.getFieldValue("description")
       });
-      console.log(fieldInput.name);
   }
   function addGroup() {
     let group_id = groups.length + 1;
@@ -33,10 +32,7 @@ function CreateGroup() {
       name: name,
       description: description,
       avatarURL: avatarURL,
-      numReviews: 0,
-      numMembers: 0,
     };
-    console.log(currentGroupID);
     groups.push(newGroup);
     setCurrentGroupID(group_id);
     form.resetFields();
