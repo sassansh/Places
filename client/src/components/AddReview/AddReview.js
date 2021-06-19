@@ -1,5 +1,10 @@
 import "./AddReview.css";
 
+import ReviewsContext from "../../context/ReviewsContext";
+import CurrentUserIDContext from "../../context/CurrentUserIDContext";
+import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
+import { useContext } from "react";
+
 import {
   Avatar,
   Button,
@@ -16,11 +21,25 @@ import { useState } from "react";
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
+
+  const [reviews] = useContext(ReviewsContext);
+  const [currentUserID] = useContext(CurrentUserIDContext);
+  const [currentPlaceID] = useContext(CurrentPlaceIDContext);
   const [rateValue, setRateValue] = useState(0);
   const { Title } = Typography;
 
   function handleRateChange(value) {
     setRateValue(value);
+  }
+
+  function handleSubmitReview(value) {
+    reviews.push({
+      review_id: reviews.length + 1,
+      user_id: currentUserID,
+      place_id: currentPlaceID,
+      rating: rateValue,
+    });
+    alert(JSON.stringify(reviews));
   }
 
   return (
@@ -77,7 +96,7 @@ function AddReview() {
             value={rateValue}
           />
           <br />
-          <Button className="button" type="primary">
+          <Button className="button" type="primary" onClick={handleSubmitReview}>
             Submit
           </Button>
         </Col>
