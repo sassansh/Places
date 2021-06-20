@@ -3,6 +3,7 @@ import "antd/dist/antd.less";
 
 import { Route, Router, Switch } from "wouter";
 
+import SubmittedReview from "./components/AddReview/SubmittedReview";
 import AddReview from "./components/AddReview/AddReview";
 import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
@@ -176,6 +177,12 @@ function App() {
                                   path="/grouplistview"
                                   component={GroupListView}
                                 />
+                                <Route
+                                  exact
+                                  path="/submittedReview"
+                                  component={SubmittedReview}
+                                />
+
                               </ReviewsContext.Provider>
                             </PlacesContext.Provider>
                           </CategoriesContext.Provider>
