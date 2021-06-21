@@ -52,9 +52,10 @@ function App() {
   const groups = useState([
     {
       group_id: 1,
-      name: "Some Real Eaters",
-      description: "reliable sites for reliable bites",
-      avatarURL: "https://media.techeblog.com/images/cooking-food-cpu.jpg",
+      name: "UBC Real Eaters",
+      description: "Groups of students at UBC that like to eat",
+      avatarURL:
+        "https://live.staticflickr.com/8027/29016431894_2f218cea36_b.jpg",
     },
     {
       group_id: 2,
