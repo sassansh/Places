@@ -1,5 +1,13 @@
 import "./AddReview.css";
 
+import ReviewsContext from "../../context/ReviewsContext";
+import CurrentUserIDContext from "../../context/CurrentUserIDContext";
+import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
+import CategoriesContext from "../../context/CategoriesContext";
+import PlacesContext from "../../context/PlacesContext";
+import { useState, useContext } from "react";
+import { Link } from "wouter";
+
 import {
   Avatar,
   Button,
@@ -11,16 +19,33 @@ import {
   Typography,
 } from "antd";
 
-import { useState } from "react";
-
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
+
+  const [reviews] = useContext(ReviewsContext);
+  const [currentUserID] = useContext(CurrentUserIDContext);
+  const [currentPlaceID] = useContext(CurrentPlaceIDContext);
+  const [places] = useContext(PlacesContext);
+  const [categories] = useContext(CategoriesContext);
+
   const [rateValue, setRateValue] = useState(0);
   const { Title } = Typography;
 
+  let place = places.find((element) => element.place_id === currentPlaceID);
+  let category = categories.find((element) => element.category_id === place.category_id);
+
   function handleRateChange(value) {
     setRateValue(value);
+  }
+
+  function handleSubmitReview(value) {
+    reviews.push({
+      review_id: reviews.length + 1,
+      user_id: currentUserID,
+      place_id: currentPlaceID,
+      rating: rateValue,
+    });
   }
 
   return (
@@ -44,7 +69,7 @@ function AddReview() {
         <Col lg={4} md={5} sm={24}>
           <Image
             preview={false}
-            src="https://i.ibb.co/kg11VY4/Screen-Shot-2021-06-04-at-8-54-26-AM.png"
+            src={place.ImageURL}
             style={{
               borderRadius: "10px",
             }}
@@ -59,12 +84,12 @@ function AddReview() {
           }}
         >
           <div className="restaurantNameRate">
-            <b>Earls Yaletown</b>
+            <b>{place.name}</b>
             <br />
             <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
-              🍔
+              {category.emoji}
             </Avatar>{" "}
-            Restaurant
+            {category.name}
           </div>
         </Col>
         <Col lg={13} md={11} sm={24} xs={24} style={{ textAlign: "center" }}>
@@ -77,9 +102,11 @@ function AddReview() {
             value={rateValue}
           />
           <br />
-          <Button className="button" type="primary">
-            Submit
-          </Button>
+            <Link to="/submittedReview">
+              <Button className="button" type="primary" onClick={handleSubmitReview}>
+                Submit
+              </Button>
+            </Link>
         </Col>
       </Row>
     </div>
