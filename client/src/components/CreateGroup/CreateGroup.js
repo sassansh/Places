@@ -1,25 +1,26 @@
 import "./CreateGroup.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-import GroupsContext from "../../context/GroupsContext";
+import { useContext, useState } from "react";
+
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
-import { useState, useContext } from "react";
+import GroupsContext from "../../context/GroupsContext";
 import { Link } from "wouter";
 
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const [groups] = useContext(GroupsContext);
-  const [currentGroupID, setCurrentGroupID] = useContext(CurrentGroupIDContext);
+  const [groups, setGroups] = useContext(GroupsContext);
+  const [, setCurrentGroupID] = useContext(CurrentGroupIDContext);
   const [fieldInput, setFieldInput] = useState({
-    name:"",
-    description:""
+    name: "",
+    description: "",
   });
   function handleChange() {
-      setFieldInput({
-        name:form.getFieldValue("name"),
-        description: form.getFieldValue("description")
-      });
+    setFieldInput({
+      name: form.getFieldValue("name"),
+      description: form.getFieldValue("description"),
+    });
   }
   function addGroup() {
     let group_id = groups.length + 1;
@@ -33,10 +34,12 @@ function CreateGroup() {
       description: description,
       avatarURL: avatarURL,
     };
-    groups.push(newGroup);
+    const newGroups = [...groups];
+    newGroups.push(newGroup);
+    setGroups(newGroups);
     setCurrentGroupID(group_id);
     form.resetFields();
-  };
+  }
 
   return (
     <div className="container">
@@ -57,7 +60,13 @@ function CreateGroup() {
       />
       <Row justify="center">
         <Col lg={8}>
-          <Form className="form" form={form} layout="vertical" size="large" onChange={handleChange}>
+          <Form
+            className="form"
+            form={form}
+            layout="vertical"
+            size="large"
+            onChange={handleChange}
+          >
             <Form.Item name="name" label="Name">
               <Input placeholder="Name" />
             </Form.Item>
@@ -73,9 +82,13 @@ function CreateGroup() {
       <Row justify="center">
         <Col>
           <Link to="/" onClick={addGroup}>
-          <Button className="button" type="primary" disabled={fieldInput.name === "" || fieldInput.description === ""}>
-            Submit
-          </Button>
+            <Button
+              className="button"
+              type="primary"
+              disabled={fieldInput.name === "" || fieldInput.description === ""}
+            >
+              Submit
+            </Button>
           </Link>
         </Col>
       </Row>

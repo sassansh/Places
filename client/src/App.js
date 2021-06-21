@@ -3,7 +3,7 @@ import "antd/dist/antd.less";
 
 import { Route, Router, Switch } from "wouter";
 
-import SubmittedReview from "./components/AddReview/SubmittedReview";
+import AddPlace from "./components/AddPlace/AddPlace";
 import AddReview from "./components/AddReview/AddReview";
 import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
@@ -20,6 +20,7 @@ import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PlacesContext from "./context/PlacesContext";
 import ReviewsContext from "./context/ReviewsContext";
+import SubmittedReview from "./components/AddReview/SubmittedReview";
 import UsersContext from "./context/UsersContext";
 import { useState } from "react";
 
@@ -52,9 +53,10 @@ function App() {
   const groups = useState([
     {
       group_id: 1,
-      name: "Some Real Eaters",
-      description: "reliable sites for reliable bites",
-      avatarURL: "https://media.techeblog.com/images/cooking-food-cpu.jpg",
+      name: "UBC Real Eaters",
+      description: "Groups of students at UBC that like to eat",
+      avatarURL:
+        "https://live.staticflickr.com/8027/29016431894_2f218cea36_b.jpg",
     },
     {
       group_id: 2,
@@ -164,6 +166,11 @@ function App() {
                                 />
                                 <Route
                                   exact
+                                  path="/addplace"
+                                  component={AddPlace}
+                                />
+                                <Route
+                                  exact
                                   path="/placeview"
                                   component={PlaceView}
                                 />
@@ -182,7 +189,6 @@ function App() {
                                   path="/submittedReview"
                                   component={SubmittedReview}
                                 />
-
                               </ReviewsContext.Provider>
                             </PlacesContext.Provider>
                           </CategoriesContext.Provider>

@@ -3,8 +3,8 @@ import "./GroupListView.css";
 import { Button, Col, Divider, Row, Typography } from "antd";
 
 import GroupList from "../GroupList/GroupList";
-import { TeamOutlined } from "@ant-design/icons";
 import { Link } from "wouter";
+import { TeamOutlined } from "@ant-design/icons";
 
 function GroupListView() {
   const { Title } = Typography;
@@ -21,10 +21,10 @@ function GroupListView() {
           </Title>
         </Col>
         <Col span={12} className="joinGroup">
-        <Link to="/creategroup">
-          <Button type="primary" icon={<TeamOutlined />} size="large">
-            Create Group
-          </Button>
+          <Link to="/creategroup">
+            <Button type="primary" icon={<TeamOutlined />} size="large">
+              Create Group
+            </Button>
           </Link>
         </Col>
       </Row>
@@ -34,7 +34,7 @@ function GroupListView() {
           borderWidth: 5,
         }}
       />
-      <GroupList/>
+      <GroupList />
     </div>
   );
 }

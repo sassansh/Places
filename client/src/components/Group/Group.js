@@ -6,9 +6,10 @@ import {
   StarFilled,
   UserOutlined,
 } from "@ant-design/icons";
-import UsersContext from "../../context/UsersContext";
-import ReviewsContext from "../../context/ReviewsContext";
+
 import PlacesContext from "../../context/PlacesContext";
+import ReviewsContext from "../../context/ReviewsContext";
+import UsersContext from "../../context/UsersContext";
 import { useContext } from "react";
 
 function Group(props) {
@@ -16,16 +17,19 @@ function Group(props) {
   const [reviews] = useContext(ReviewsContext);
   const [places] = useContext(PlacesContext);
   let numMembers = 0;
-  users.forEach(user => {
+  users.forEach((user) => {
     if (user.groups.includes(props.group.group_id)) {
       numMembers++;
     }
   });
   let numReviews = 0;
-  reviews.forEach(review => {
+  reviews.forEach((review) => {
     let place_id = review.place_id;
-    places.forEach(place => {
-      if (place_id === place.place_id && props.group.group_id === place.group_id) {
+    places.forEach((place) => {
+      if (
+        place_id === place.place_id &&
+        props.group.group_id === place.group_id
+      ) {
         numReviews++;
       }
     });

@@ -1,6 +1,7 @@
 import "./NavBar.css";
 
 import {
+  AppstoreAddOutlined,
   BarsOutlined,
   FileAddOutlined,
   ShopOutlined,
@@ -29,6 +30,9 @@ function NavBar(props) {
       </Menu.Item>
       <Menu.Item key="categoryView" icon={<BarsOutlined />}>
         <Link to="/categoryview">Category View</Link>
+      </Menu.Item>
+      <Menu.Item key="addPlace" icon={<AppstoreAddOutlined />}>
+        <Link to="/addplace">Add Place</Link>
       </Menu.Item>
       <Menu.Item key="placeView" icon={<ShopOutlined />}>
         <Link to="/placeview">Place View</Link>
