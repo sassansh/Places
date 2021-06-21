@@ -10,8 +10,8 @@ import { Link } from "wouter";
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const [groups] = useContext(GroupsContext);
-  const [currentGroupID, setCurrentGroupID] = useContext(CurrentGroupIDContext);
+  const [groups, setGroups] = useContext(GroupsContext);
+  const [, setCurrentGroupID] = useContext(CurrentGroupIDContext);
   const [fieldInput, setFieldInput] = useState({
     name: "",
     description: "",
@@ -34,7 +34,9 @@ function CreateGroup() {
       description: description,
       avatarURL: avatarURL,
     };
-    groups.push(newGroup);
+    const newGroups = [...groups];
+    newGroups.push(newGroup);
+    setGroups(newGroups);
     setCurrentGroupID(group_id);
     form.resetFields();
   }
