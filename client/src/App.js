@@ -3,6 +3,7 @@ import "antd/dist/antd.less";
 
 import { Route, Router, Switch } from "wouter";
 
+import AddPlace from "./components/AddPlace/AddPlace";
 import AddReview from "./components/AddReview/AddReview";
 import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
@@ -162,6 +163,11 @@ function App() {
                                   exact
                                   path="/categoryview"
                                   component={CategoryView}
+                                />
+                                <Route
+                                  exact
+                                  path="/addplace"
+                                  component={AddPlace}
                                 />
                                 <Route
                                   exact
