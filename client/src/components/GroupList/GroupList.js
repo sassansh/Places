@@ -8,7 +8,7 @@ import { useContext } from "react";
 
 function GroupList() {
   const [groups] = useContext(GroupsContext);
-  const [currentGroupID, setCurrentGroupID] = useContext(CurrentGroupIDContext);
+  const [, setCurrentGroupID] = useContext(CurrentGroupIDContext);
 
   let groupsData = groups;
   let grouplist = groupsData.map((groupData) => (
