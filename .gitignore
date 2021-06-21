@@ -108,3 +108,6 @@ dist
 
 # react build folder
 client/build/
+
+# ignore packalge-lock, using yarn
+package-lock.json
