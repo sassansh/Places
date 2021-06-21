@@ -1,13 +1,5 @@
 import "./AddReview.css";
 
-import ReviewsContext from "../../context/ReviewsContext";
-import CurrentUserIDContext from "../../context/CurrentUserIDContext";
-import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
-import CategoriesContext from "../../context/CategoriesContext";
-import PlacesContext from "../../context/PlacesContext";
-import { useState, useContext } from "react";
-import { Link } from "wouter";
-
 import {
   Avatar,
   Button,
@@ -18,12 +10,19 @@ import {
   Row,
   Typography,
 } from "antd";
+import { useContext, useState } from "react";
+
+import CategoriesContext from "../../context/CategoriesContext";
+import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
+import CurrentUserIDContext from "../../context/CurrentUserIDContext";
+import { Link } from "wouter";
+import PlacesContext from "../../context/PlacesContext";
+import ReviewsContext from "../../context/ReviewsContext";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
-
-  const [reviews] = useContext(ReviewsContext);
+  const [reviews, setReviews] = useContext(ReviewsContext);
   const [currentUserID] = useContext(CurrentUserIDContext);
   const [currentPlaceID] = useContext(CurrentPlaceIDContext);
   const [places] = useContext(PlacesContext);
@@ -33,19 +32,23 @@ function AddReview() {
   const { Title } = Typography;
 
   let place = places.find((element) => element.place_id === currentPlaceID);
-  let category = categories.find((element) => element.category_id === place.category_id);
+  let category = categories.find(
+    (element) => element.category_id === place.category_id
+  );
 
   function handleRateChange(value) {
     setRateValue(value);
   }
 
   function handleSubmitReview(value) {
-    reviews.push({
+    const newReviews = [...reviews];
+    newReviews.push({
       review_id: reviews.length + 1,
       user_id: currentUserID,
       place_id: currentPlaceID,
       rating: rateValue,
     });
+    setReviews(newReviews);
   }
 
   return (
@@ -102,11 +105,15 @@ function AddReview() {
             value={rateValue}
           />
           <br />
-            <Link to="/submittedReview">
-              <Button className="button" type="primary" onClick={handleSubmitReview}>
-                Submit
-              </Button>
-            </Link>
+          <Link to="/submittedReview">
+            <Button
+              className="button"
+              type="primary"
+              onClick={handleSubmitReview}
+            >
+              Submit
+            </Button>
+          </Link>
         </Col>
       </Row>
     </div>
