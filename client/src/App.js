@@ -3,7 +3,6 @@ import "antd/dist/antd.less";
 
 import { Route, Router, Switch } from "wouter";
 
-import SubmittedReview from "./components/AddReview/SubmittedReview";
 import AddReview from "./components/AddReview/AddReview";
 import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
@@ -20,6 +19,7 @@ import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PlacesContext from "./context/PlacesContext";
 import ReviewsContext from "./context/ReviewsContext";
+import SubmittedReview from "./components/AddReview/SubmittedReview";
 import UsersContext from "./context/UsersContext";
 import { useState } from "react";
 
@@ -182,7 +182,6 @@ function App() {
                                   path="/submittedReview"
                                   component={SubmittedReview}
                                 />
-
                               </ReviewsContext.Provider>
                             </PlacesContext.Provider>
                           </CategoriesContext.Provider>
