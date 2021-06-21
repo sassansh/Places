@@ -3,7 +3,7 @@ import "./GroupList.css";
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
 import Group from "../Group/Group";
 import GroupsContext from "../../context/GroupsContext";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 function GroupList() {

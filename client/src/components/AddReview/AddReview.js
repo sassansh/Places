@@ -15,7 +15,7 @@ import { useContext, useState } from "react";
 import CategoriesContext from "../../context/CategoriesContext";
 import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
 import CurrentUserIDContext from "../../context/CurrentUserIDContext";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import PlacesContext from "../../context/PlacesContext";
 import ReviewsContext from "../../context/ReviewsContext";
 

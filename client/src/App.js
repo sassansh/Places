@@ -1,7 +1,7 @@
 import "./App.less";
 import "antd/dist/antd.less";
 
-import { Route, Router, Switch } from "wouter";
+import { Route, BrowserRouter as Router, Switch, withRouter } from "react-router-dom";
 
 import AddPlace from "./components/AddPlace/AddPlace";
 import AddReview from "./components/AddReview/AddReview";
@@ -124,6 +124,8 @@ function App() {
     },
   ]);
 
+  const NavBarWithRouter = withRouter(NavBar);
+  
   return (
     <Router basename="/">
       <Layout>
@@ -139,7 +141,7 @@ function App() {
             <img alt="logo" src="logo192.png" width="30px" />
             Places
           </div>
-          <NavBar />
+          <NavBarWithRouter />
         </Sider>
         <Layout className="site-layout" style={{ marginLeft: 200 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>

@@ -2,9 +2,9 @@ import "./Place.css";
 
 import { Avatar, Card, Rate } from "antd";
 
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
-function Place({ placeData }) {
+function Place({ placeData }) {  
   return (
     <Link to="/placeview">
       <Card style={{ margin: 16 }}>

@@ -3,7 +3,7 @@ import "./GroupListView.css";
 import { Button, Col, Divider, Row, Typography } from "antd";
 
 import GroupList from "../GroupList/GroupList";
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { TeamOutlined } from "@ant-design/icons";
 
 function GroupListView() {

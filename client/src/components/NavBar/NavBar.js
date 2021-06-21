@@ -8,17 +8,35 @@ import {
   TeamOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
+import { useEffect, useState } from "react";
 
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { useState } from "react";
 
 function NavBar(props) {
-  const [tab, setTab] = useState("groupView");
+  const path = props.location.pathname;
+  const [tab, setTab] = useState("");
 
   function updateTab(e) {
     setTab(e.key);
   }
+  useEffect(() => {
+    if (path === "/") {
+      setTab("groupView");
+    }
+    if (path === "/creategroup") {
+      setTab("createGroup");
+    }
+    if (path === "/categoryview") {
+      setTab("categoryView");
+    }
+    if (path === "/placeview") {
+      setTab("placeView");
+    }
+    if (path === "/addreview") {
+      setTab("addReview");
+    }
+  }, [path]);
 
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
