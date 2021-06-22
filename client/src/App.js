@@ -19,9 +19,11 @@ import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PlacesContext from "./context/PlacesContext";
+import { Provider } from 'react-redux';
 import ReviewsContext from "./context/ReviewsContext";
 import SubmittedReview from "./components/AddReview/SubmittedReview";
 import UsersContext from "./context/UsersContext";
+import store from './redux/store';
 import { useState } from "react";
 
 const { Content, Footer, Sider } = Layout;
@@ -127,6 +129,7 @@ function App() {
   const NavBarWithRouter = withRouter(NavBar);
   
   return (
+    <Provider store={store}>
     <Router basename="/">
       <Layout>
         <Sider
@@ -208,6 +211,7 @@ function App() {
         </Layout>
       </Layout>
     </Router>
+    </Provider>
   );
 }
 
