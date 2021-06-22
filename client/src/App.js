@@ -43,41 +43,13 @@ function App() {
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
               <Route exact path="/" component={GroupView} />
-              <Route
-                exact
-                path="/creategroup"
-                component={CreateGroup}
-              />
-              <Route
-                exact
-                path="/categoryview"
-                component={CategoryView}
-              />
-              <Route
-                exact
-                path="/addplace"
-                component={AddPlace}
-              />
-              <Route
-                exact
-                path="/placeview"
-                component={PlaceView}
-              />
-              <Route
-                exact
-                path="/addreview"
-                component={AddReview}
-              />
-              <Route
-                exact
-                path="/grouplistview"
-                component={GroupListView}
-              />
-              <Route
-                exact
-                path="/submittedReview"
-                component={SubmittedReview}
-              />
+              <Route exact path="/creategroup" component={CreateGroup} />
+              <Route exact path="/categoryview" component={CategoryView} />
+              <Route exact path="/addplace" component={AddPlace} />
+              <Route exact path="/placeview" component={PlaceView} />
+              <Route exact path="/addreview" component={AddReview} />
+              <Route exact path="/grouplistview" component={GroupListView} />
+              <Route exact path="/submittedReview" component={SubmittedReview} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
