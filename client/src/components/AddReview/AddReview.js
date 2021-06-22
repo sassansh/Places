@@ -12,7 +12,6 @@ import {
 } from "antd";
 import { useContext, useState } from "react";
 
-import CurrentUserIDContext from "../../context/CurrentUserIDContext";
 import { Link } from "react-router-dom";
 import ReviewsContext from "../../context/ReviewsContext";
 import { useSelector } from "react-redux";
@@ -21,7 +20,7 @@ const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
   const [reviews, setReviews] = useContext(ReviewsContext);
-  const [currentUserID] = useContext(CurrentUserIDContext);
+  const currentUserID = useSelector(state=>state.users.currentUserID);
   const currentPlaceID = useSelector(state=>state.places.currentPlaceID);
   const places = useSelector(state=>state.places.allPlaces);
   const categories = useSelector(state=>state.categories.allCategories);

@@ -8,12 +8,11 @@ import {
 } from "@ant-design/icons";
 
 import ReviewsContext from "../../context/ReviewsContext";
-import UsersContext from "../../context/UsersContext";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
 
 function Group(props) {
-  const [users] = useContext(UsersContext);
+  const users = useSelector(state=>state.users.allUsers);
   const [reviews] = useContext(ReviewsContext);
   const places = useSelector(state=> state.places.allPlaces);
   let numMembers = 0;

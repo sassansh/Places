@@ -1,7 +1,7 @@
-export const addPlace = addPlace => {
+export const addPlace = newPlace => {
     return {
        type: 'ADD_PLACE',
-       payload: addPlace
+       payload: newPlace
 }; };
 
 export const setPlace = placeID => {

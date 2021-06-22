@@ -3,11 +3,13 @@ import { combineReducers, createStore } from 'redux';
 import categoryReducer from './reducers/categoryReducer';
 import groupReducer from './reducers/groupReducer';
 import placeReducer from './reducers/placeReducer';
+import userReducer from './reducers/userReducer';
 
 const allReducer = combineReducers({
   groups: groupReducer,
   places: placeReducer,
-  categories: categoryReducer
+  categories: categoryReducer,
+  users: userReducer
 });
 
 const store = createStore(
