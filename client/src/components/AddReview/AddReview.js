@@ -12,21 +12,19 @@ import {
 } from "antd";
 import { useContext, useState } from "react";
 
-import CategoriesContext from "../../context/CategoriesContext";
-import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
 import CurrentUserIDContext from "../../context/CurrentUserIDContext";
 import { Link } from "react-router-dom";
-import PlacesContext from "../../context/PlacesContext";
 import ReviewsContext from "../../context/ReviewsContext";
+import { useSelector } from "react-redux";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
   const [reviews, setReviews] = useContext(ReviewsContext);
   const [currentUserID] = useContext(CurrentUserIDContext);
-  const [currentPlaceID] = useContext(CurrentPlaceIDContext);
-  const [places] = useContext(PlacesContext);
-  const [categories] = useContext(CategoriesContext);
+  const currentPlaceID = useSelector(state=>state.places.currentPlaceID);
+  const places = useSelector(state=>state.places.allPlaces);
+  const categories = useSelector(state=>state.categories.allCategories);
 
   const [rateValue, setRateValue] = useState(0);
   const { Title } = Typography;

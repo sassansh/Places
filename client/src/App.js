@@ -5,7 +5,6 @@ import { Route, BrowserRouter as Router, Switch, withRouter } from "react-router
 
 import AddPlace from "./components/AddPlace/AddPlace";
 import AddReview from "./components/AddReview/AddReview";
-import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CurrentCategoryIDContext from "./context/CurrentCategoryIDContext";
@@ -47,11 +46,6 @@ function App() {
       avatarURL: "https://bit.ly/3cL0K8m",
       groups: [1, 2],
     },
-  ]);
-
-  const categories = useState([
-    { category_id: 1, name: "Beaches", emoji: "🏖️" },
-    { category_id: 2, name: "Restaurants", emoji: "🍔" },
   ]);
 
   const reviews = useState([
@@ -96,7 +90,6 @@ function App() {
                   <CurrentCategoryIDContext.Provider value={currentCategoryID}>
                     <CurrentPlaceIDContext.Provider value={currentPlaceID}>
                       <UsersContext.Provider value={users}>
-                          <CategoriesContext.Provider value={categories}>
                               <ReviewsContext.Provider value={reviews}>
                                 <Route exact path="/" component={GroupView} />
                                 <Route
@@ -135,7 +128,6 @@ function App() {
                                   component={SubmittedReview}
                                 />
                               </ReviewsContext.Provider>
-                          </CategoriesContext.Provider>
                       </UsersContext.Provider>
                     </CurrentPlaceIDContext.Provider>
                   </CurrentCategoryIDContext.Provider>
