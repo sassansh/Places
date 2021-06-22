@@ -1,5 +1,5 @@
-export const addGroup = newGroup => {
+export const createGroup = newGroup => {
     return {
-       type: 'ADD_GROUP',
+       type: 'CREATE_GROUP',
        payload: newGroup
 }; };

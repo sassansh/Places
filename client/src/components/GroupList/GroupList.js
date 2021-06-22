@@ -2,12 +2,13 @@ import "./GroupList.css";
 
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
 import Group from "../Group/Group";
-import GroupsContext from "../../context/GroupsContext";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { useSelector } from 'react-redux';
 
 function GroupList() {
-  const [groups] = useContext(GroupsContext);
+  const groups = useSelector(state => state.groups);
+
   const [, setCurrentGroupID] = useContext(CurrentGroupIDContext);
 
   let groupsData = groups;

@@ -4,13 +4,13 @@ import { Avatar, Col, Divider, Row, Typography } from "antd";
 
 import CategoryList from "../CategoryList/CategoryList";
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
-import GroupsContext from "../../context/GroupsContext";
 import UsersContext from "../../context/UsersContext";
 import { useContext } from "react";
+import { useSelector } from 'react-redux';
 
 function GroupView() {
   const { Title } = Typography;
-  const [groups] = useContext(GroupsContext);
+  const groups = useSelector(state => state.groups);
   const [users] = useContext(UsersContext);
   const [currentGroupID] = useContext(CurrentGroupIDContext);
   let currentGroup = groups.find((group) => group.group_id === currentGroupID);

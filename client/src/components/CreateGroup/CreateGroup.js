@@ -2,15 +2,17 @@ import "./CreateGroup.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { useContext, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
-import GroupsContext from "../../context/GroupsContext";
 import { Link } from "react-router-dom";
+import { createGroup } from "../../redux/actions/groupActions";
 
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const [groups, setGroups] = useContext(GroupsContext);
+  const groups = useSelector(state => state.groups);
+  const dispatch = useDispatch();
   const [, setCurrentGroupID] = useContext(CurrentGroupIDContext);
   const [fieldInput, setFieldInput] = useState({
     name: "",
@@ -34,9 +36,7 @@ function CreateGroup() {
       description: description,
       avatarURL: avatarURL,
     };
-    const newGroups = [...groups];
-    newGroups.push(newGroup);
-    setGroups(newGroups);
+    dispatch(createGroup(newGroup));
     setCurrentGroupID(group_id);
     form.resetFields();
   }

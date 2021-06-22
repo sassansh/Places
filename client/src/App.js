@@ -14,7 +14,6 @@ import CurrentPlaceIDContext from "./context/CurrentPlaceIDContext";
 import CurrentUserIDContext from "./context/CurrentUserIDContext";
 import GroupListView from "./components/GroupListView/GroupListView";
 import GroupView from "./components/GroupView/GroupView";
-import GroupsContext from "./context/GroupsContext";
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
@@ -154,7 +153,6 @@ function App() {
                   <CurrentCategoryIDContext.Provider value={currentCategoryID}>
                     <CurrentPlaceIDContext.Provider value={currentPlaceID}>
                       <UsersContext.Provider value={users}>
-                        <GroupsContext.Provider value={groups}>
                           <CategoriesContext.Provider value={categories}>
                             <PlacesContext.Provider value={places}>
                               <ReviewsContext.Provider value={reviews}>
@@ -197,7 +195,6 @@ function App() {
                               </ReviewsContext.Provider>
                             </PlacesContext.Provider>
                           </CategoriesContext.Provider>
-                        </GroupsContext.Provider>
                       </UsersContext.Provider>
                     </CurrentPlaceIDContext.Provider>
                   </CurrentCategoryIDContext.Provider>
