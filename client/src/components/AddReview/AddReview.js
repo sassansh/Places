@@ -10,16 +10,17 @@ import {
   Row,
   Typography,
 } from "antd";
-import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import ReviewsContext from "../../context/ReviewsContext";
-import { useSelector } from "react-redux";
+import { addReview } from "../../redux/actions/reviewActions";
+import { useState } from "react";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
-  const [reviews, setReviews] = useContext(ReviewsContext);
+  const dispatch = useDispatch();
+  const reviews = useSelector(state=>state.reviews.allReviews);
   const currentUserID = useSelector(state=>state.users.currentUserID);
   const currentPlaceID = useSelector(state=>state.places.currentPlaceID);
   const places = useSelector(state=>state.places.allPlaces);
@@ -38,14 +39,13 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    const newReviews = [...reviews];
-    newReviews.push({
+    const newReview = {
       review_id: reviews.length + 1,
       user_id: currentUserID,
       place_id: currentPlaceID,
       rating: rateValue,
-    });
-    setReviews(newReviews);
+    };
+    dispatch(addReview(newReview));
   }
 
   return (
