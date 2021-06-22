@@ -7,15 +7,12 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import PlacesContext from "../../context/PlacesContext";
-import ReviewsContext from "../../context/ReviewsContext";
-import UsersContext from "../../context/UsersContext";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 function Group(props) {
-  const [users] = useContext(UsersContext);
-  const [reviews] = useContext(ReviewsContext);
-  const [places] = useContext(PlacesContext);
+  const users = useSelector(state=>state.users.allUsers);
+  const reviews = useSelector(state=> state.reviews.allReviews);
+  const places = useSelector(state=> state.places.allPlaces);
   let numMembers = 0;
   users.forEach((user) => {
     if (user.groups.includes(props.group.group_id)) {

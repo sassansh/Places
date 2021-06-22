@@ -2,7 +2,7 @@ import "./Category.css";
 
 import { Avatar, Card } from "antd";
 
-import { Link } from "wouter";
+import { Link } from "react-router-dom";
 
 function Category({ category }) {
   return (

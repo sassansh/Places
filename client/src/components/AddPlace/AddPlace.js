@@ -1,22 +1,17 @@
 import "./AddPlace.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-
-import CategoriesContext from "../../context/CategoriesContext";
-import CurrentCategoryIDContext from "../../context/CurrentCategoryIDContext";
-import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
-import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
-import PlacesContext from "../../context/PlacesContext";
-import { useContext } from "react";
+import { addPlace, setPlace } from "../../redux/actions/placeActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function AddPlace() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const [places, setPlaces] = useContext(PlacesContext);
-  const [categories] = useContext(CategoriesContext);
-  const [currentCategoryID] = useContext(CurrentCategoryIDContext);
-  const [currentGroupID] = useContext(CurrentGroupIDContext);
-  const [, setCurrentPlaceID] = useContext(CurrentPlaceIDContext);
+  const dispatch = useDispatch();
+  const places = useSelector(state=>state.places.allPlaces);
+  const categories = useSelector(state=>state.categories.allCategories);
+  const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
+  const currentGroupID = useSelector(state=>state.groups.currentGroupID);
 
   const currentCategory = () => {
     return categories.find(
@@ -38,10 +33,8 @@ function AddPlace() {
       category_id: currentCategoryID,
       ImageURL: imgURL,
     };
-    const newPlaces = [...places];
-    newPlaces.push(newPlace);
-    setPlaces(newPlaces);
-    setCurrentPlaceID(place_id);
+    dispatch(addPlace(newPlace));
+    dispatch(setPlace(place_id));
     form.resetFields();
   }
   return (

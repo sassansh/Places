@@ -10,7 +10,8 @@
     "server": "nodemon backend/server.js",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+    "heroku-postbuild": "cd client && yarn install && yarn build",
+    "first-install": "yarn install && cd client && yarn install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -10,23 +10,21 @@ import {
   Row,
   Typography,
 } from "antd";
-import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import CategoriesContext from "../../context/CategoriesContext";
-import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
-import CurrentUserIDContext from "../../context/CurrentUserIDContext";
-import { Link } from "wouter";
-import PlacesContext from "../../context/PlacesContext";
-import ReviewsContext from "../../context/ReviewsContext";
+import { Link } from "react-router-dom";
+import { addReview } from "../../redux/actions/reviewActions";
+import { useState } from "react";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
-  const [reviews, setReviews] = useContext(ReviewsContext);
-  const [currentUserID] = useContext(CurrentUserIDContext);
-  const [currentPlaceID] = useContext(CurrentPlaceIDContext);
-  const [places] = useContext(PlacesContext);
-  const [categories] = useContext(CategoriesContext);
+  const dispatch = useDispatch();
+  const reviews = useSelector(state=>state.reviews.allReviews);
+  const currentUserID = useSelector(state=>state.users.currentUserID);
+  const currentPlaceID = useSelector(state=>state.places.currentPlaceID);
+  const places = useSelector(state=>state.places.allPlaces);
+  const categories = useSelector(state=>state.categories.allCategories);
 
   const [rateValue, setRateValue] = useState(0);
   const { Title } = Typography;
@@ -41,14 +39,13 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    const newReviews = [...reviews];
-    newReviews.push({
+    const newReview = {
       review_id: reviews.length + 1,
       user_id: currentUserID,
       place_id: currentPlaceID,
       rating: rateValue,
-    });
-    setReviews(newReviews);
+    };
+    dispatch(addReview(newReview));
   }
 
   return (

@@ -1,11 +1,10 @@
 import "./CategoryList.css";
 
-import CategoriesContext from "../../context/CategoriesContext";
 import Category from "../Category/Category";
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 function CategoryList() {
-  const [categories] = useContext(CategoriesContext);
+  const categories = useSelector(state=> state.categories.allCategories);
 
   let categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />
