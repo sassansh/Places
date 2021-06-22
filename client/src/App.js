@@ -16,7 +16,6 @@ import GroupView from "./components/GroupView/GroupView";
 import { Layout } from "antd";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
-import PlacesContext from "./context/PlacesContext";
 import { Provider } from 'react-redux';
 import ReviewsContext from "./context/ReviewsContext";
 import SubmittedReview from "./components/AddReview/SubmittedReview";
@@ -55,25 +54,6 @@ function App() {
     { category_id: 2, name: "Restaurants", emoji: "🍔" },
   ]);
 
-  const places = useState([
-    {
-      place_id: 1,
-      name: "Ambleside Beach",
-      address: "Ambleside Beach, Argyle Ave, West Vancouver, BC V7V 1A4",
-      group_id: 1,
-      category_id: 1,
-      ImageURL: "https://bit.ly/35sQcH1",
-    },
-    {
-      place_id: 2,
-      name: "Earls Kitchen & Bar - Yaletown",
-      address: "1095 Mainland St, Vancouver, BC V6B 5P9",
-      group_id: 2,
-      category_id: 2,
-      ImageURL: "https://bit.ly/2SxGSyU",
-    },
-    
-  ]);
   const reviews = useState([
     {
       review_id: 1,
@@ -117,7 +97,6 @@ function App() {
                     <CurrentPlaceIDContext.Provider value={currentPlaceID}>
                       <UsersContext.Provider value={users}>
                           <CategoriesContext.Provider value={categories}>
-                            <PlacesContext.Provider value={places}>
                               <ReviewsContext.Provider value={reviews}>
                                 <Route exact path="/" component={GroupView} />
                                 <Route
@@ -156,7 +135,6 @@ function App() {
                                   component={SubmittedReview}
                                 />
                               </ReviewsContext.Provider>
-                            </PlacesContext.Provider>
                           </CategoriesContext.Provider>
                       </UsersContext.Provider>
                     </CurrentPlaceIDContext.Provider>
