@@ -3,3 +3,9 @@ export const createGroup = newGroup => {
        type: 'CREATE_GROUP',
        payload: newGroup
 }; };
+
+export const setGroup = groupID => {
+    return {
+       type: 'SET_GROUP',
+       payload: groupID
+}; };

@@ -4,10 +4,10 @@ import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 
 import CategoriesContext from "../../context/CategoriesContext";
 import CurrentCategoryIDContext from "../../context/CurrentCategoryIDContext";
-import CurrentGroupIDContext from "../../context/CurrentGroupIDContext";
 import CurrentPlaceIDContext from "../../context/CurrentPlaceIDContext";
 import PlacesContext from "../../context/PlacesContext";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 function AddPlace() {
   const { Title } = Typography;
@@ -15,7 +15,7 @@ function AddPlace() {
   const [places, setPlaces] = useContext(PlacesContext);
   const [categories] = useContext(CategoriesContext);
   const [currentCategoryID] = useContext(CurrentCategoryIDContext);
-  const [currentGroupID] = useContext(CurrentGroupIDContext);
+  const currentGroupID = useSelector(state=>state.groups.currentGroupID);
   const [, setCurrentPlaceID] = useContext(CurrentPlaceIDContext);
 
   const currentCategory = () => {

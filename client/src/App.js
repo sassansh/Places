@@ -9,7 +9,6 @@ import CategoriesContext from "./context/CategoriesContext";
 import CategoryView from "./components/CategoryView/CategoryView";
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import CurrentCategoryIDContext from "./context/CurrentCategoryIDContext";
-import CurrentGroupIDContext from "./context/CurrentGroupIDContext";
 import CurrentPlaceIDContext from "./context/CurrentPlaceIDContext";
 import CurrentUserIDContext from "./context/CurrentUserIDContext";
 import GroupListView from "./components/GroupListView/GroupListView";
@@ -29,7 +28,6 @@ const { Content, Footer, Sider } = Layout;
 
 function App() {
   const currentUserID = useState(1);
-  const currentGroupID = useState(1);
   const currentCategoryID = useState(1);
   const currentPlaceID = useState(1);
 
@@ -51,47 +49,12 @@ function App() {
       groups: [1, 2],
     },
   ]);
-  const groups = useState([
-    {
-      group_id: 1,
-      name: "UBC Real Eaters",
-      description: "Groups of students at UBC that like to eat",
-      avatarURL:
-        "https://live.staticflickr.com/8027/29016431894_2f218cea36_b.jpg",
-    },
-    {
-      group_id: 2,
-      name: "Brews Sisters",
-      description: "The Real Lives of Alewives",
-      avatarURL:
-        "https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2015/08/beerAllergy-1165339040-770x553-1-745x490.jpg",
-    },
-    {
-      group_id: 3,
-      name: "Nature Fam",
-      description: "go play outside!!!",
-      avatarURL:
-        "https://t3.ftcdn.net/jpg/01/70/15/08/240_F_170150827_KWCkNDhPVSmCq48BoxuVwvuANWv5JSjT.jpg",
-    },
-    {
-      group_id: 4,
-      name: "La Cuisine du Père Noël",
-      description: "Food snob hub for the UBC Fronch Club",
-      avatarURL:
-        "https://i0.wp.com/www.healthfitnessrevolution.com/wp-content/uploads/2016/09/iStock-119483507.jpg?resize=1024%2C683&ssl=1",
-    },
-    {
-      group_id: 5,
-      name: "Park-er Posse",
-      description: "picnic basket optional",
-      avatarURL:
-        "https://hookedonhouses.net/wp-content/uploads/2015/09/Full-House-credits-in-front-of-Alamo-Square-Victorians.jpg",
-    },
-  ]);
+
   const categories = useState([
     { category_id: 1, name: "Beaches", emoji: "🏖️" },
     { category_id: 2, name: "Restaurants", emoji: "🍔" },
   ]);
+
   const places = useState([
     {
       place_id: 1,
@@ -109,6 +72,7 @@ function App() {
       category_id: 2,
       ImageURL: "https://bit.ly/2SxGSyU",
     },
+    
   ]);
   const reviews = useState([
     {
@@ -149,7 +113,6 @@ function App() {
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Switch>
               <CurrentUserIDContext.Provider value={currentUserID}>
-                <CurrentGroupIDContext.Provider value={currentGroupID}>
                   <CurrentCategoryIDContext.Provider value={currentCategoryID}>
                     <CurrentPlaceIDContext.Provider value={currentPlaceID}>
                       <UsersContext.Provider value={users}>
@@ -198,7 +161,6 @@ function App() {
                       </UsersContext.Provider>
                     </CurrentPlaceIDContext.Provider>
                   </CurrentCategoryIDContext.Provider>
-                </CurrentGroupIDContext.Provider>
               </CurrentUserIDContext.Provider>
             </Switch>
           </Content>
