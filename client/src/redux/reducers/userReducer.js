@@ -17,26 +17,38 @@ const initialState = {
       groups: [1, 2],
     },
   ],
-  currentUserID: 1,
+  currentUserID: null,
 };
 
 const userReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case "CREATE_USER":
-        const newUsers = [...state.allUsers]
-        newUsers.push(action.payload)
+  switch (action.type) {
+    case "CREATE_USER":
+      const newUsers = [...state.allUsers];
+      newUsers.push(action.payload);
+      return {
+        ...state,
+        allUsers: newUsers,
+      };
+    case "LOGIN_USER":
+      const email = action.payload.email;
+      const pass = action.payload.password;
+      const user = state.allUsers.find(
+        (user) => user.email === email && user.password === pass
+      );
+      if (user) {
         return {
           ...state,
-          allUsers: newUsers,
-        }
-        case "SET_USER":
-        return {
-          ...state,
-          currentUserID: action.payload,
+          currentUserID: user.user_id,
         };
-      default:
-        return state;
-    }
-  };
+      } else {
+        return {
+          ...state,
+          currentUserID: null,
+        };
+      }
+    default:
+      return state;
+  }
+};
 
 export default userReducer;

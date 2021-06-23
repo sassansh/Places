@@ -4,6 +4,7 @@ import {
   AppstoreAddOutlined,
   BarsOutlined,
   FileAddOutlined,
+  LoginOutlined,
   ShopOutlined,
   TeamOutlined,
   UsergroupAddOutlined,
@@ -21,6 +22,9 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
+    if (path === "/login") {
+      setTab("login");
+    }
     if (path === "/") {
       setTab("groupView");
     }
@@ -30,16 +34,25 @@ function NavBar(props) {
     if (path === "/categoryview") {
       setTab("categoryView");
     }
+    if (path === "/addplace") {
+      setTab("addPlace");
+    }
     if (path === "/placeview") {
       setTab("placeView");
     }
     if (path === "/addreview") {
       setTab("addReview");
     }
+    if (path === "/grouplistview") {
+      setTab("groupListView");
+    }
   }, [path]);
 
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
+      <Menu.Item key="login" icon={<LoginOutlined />}>
+        <Link to="/login">Login</Link>
+      </Menu.Item>
       <Menu.Item key="groupView" icon={<TeamOutlined />}>
         <Link to="/">Group View</Link>
       </Menu.Item>
