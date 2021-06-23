@@ -10,7 +10,7 @@ import { useState } from "react";
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const groups = useSelector(state => state.groups);
+  const groups = useSelector(state => state.groups.allGroups);
   const dispatch = useDispatch();
   const [fieldInput, setFieldInput] = useState({
     name: "",
@@ -25,7 +25,7 @@ function CreateGroup() {
   }
   
   function addGroup() {
-    let group_id = groups.allGroups.length + 1;
+    let group_id = groups.length + 1;
     let name = form.getFieldValue("name");
     let description = form.getFieldValue("description");
     let avatarURL = form.getFieldValue("logo");
