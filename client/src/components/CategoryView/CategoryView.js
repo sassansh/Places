@@ -1,12 +1,14 @@
 import "./CategoryView.css";
 
 import { Button, Col, Divider, Row, Typography } from "antd";
-
+import { Link } from "react-router-dom";
 import PlaceList from "../PlaceList/PlaceList";
 import { PlusOutlined } from "@ant-design/icons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory } from "../../redux/actions/categoryActions";
 
 function CategoryView() {
+  const dispatch = useDispatch();
   const { Title } = Typography;
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
@@ -16,7 +18,7 @@ function CategoryView() {
     (category) => category.category_id === currentCategoryID
   );
   let categoryType = currentCategory.name + " " + currentCategory.emoji;
-  let btnCategory = currentCategoryID === 1 ? "Beach" : "Restaurant";
+  let btnCategory = currentCategory.name_singular;
 
   return (
     <div className="container">
@@ -25,9 +27,11 @@ function CategoryView() {
           <Title level={2}>{categoryType}</Title>
         </Col>
         <Col lg={12} className="addPlaceButton">
-          <Button type="primary" icon={<PlusOutlined />} size="large">
-            Add {btnCategory}
-          </Button>
+          <Link to="/addPlace" onClick={() => {dispatch(setCategory(currentCategoryID))}}>
+            <Button type="primary" icon={<PlusOutlined />} size="large">
+              Add {btnCategory}
+            </Button>
+          </Link>
         </Col>
       </Row>
       <Divider
