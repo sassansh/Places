@@ -1,11 +1,13 @@
-export const createUser =  newUser => {
-    return {
-       type: 'CREATE_USER',
-       payload: newUser
-}; };
+export const createUser = (newUser) => {
+  return {
+    type: "CREATE_USER",
+    payload: newUser,
+  };
+};
 
-export const setUser = userID => {
-    return {
-       type: 'SET_USER',
-       payload: userID
-}; };
+export const loginUser = (email, password) => {
+  return {
+    type: "LOGIN_USER",
+    payload: { email: email, password: password },
+  };
+};
