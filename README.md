@@ -1,12 +1,9 @@
-<!-- Using README template from: https://github.com/othneildrew/Best-README-Template -->
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-<!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/sassansh/Places">
@@ -29,28 +26,19 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<h2 style="display: inline-block">Table of Contents</h2>
-<ol>
-  <li>
-    <a href="#project-description">Project Description</a>
-  </li>
-  <li>
-    <a href="#project-task-requirements">Project Task Requirements</a>
-  </li>
-  <li>
-    <a href="#task-breakdown">Task Breakdown</a>
-  </li>
-  <li>
-    <a href="#prototypes">Prototypes</a>
-  </li>
-  <li><a href="#the-team">The Team</a></li>
-  <li><a href="#license">License</a></li>
-</ol>
+## Table of Contents
 
-<!-- PROJECT DESCRIPTION -->
+- [Project Description 🏝](#project-description-)
+- [Task Requirements 💼](#task-requirements-)
+- [Task Breakdown 📝](#task-breakdown-)
+- [Prototypes 🎨](#prototypes-)
+- [Technology Stack 🛠️](#technology-stack-)
+- [Prerequisites 🍪](#prerequisites-)
+- [Setup And Deployment 🔧](#setup-and-deployment-)
+- [The Team ‎😃](#the-team-)
+- [License 📔](#license-)
 
-## Project Description
+## Project Description 🏝
 
 **Who is it for?**
 
@@ -86,9 +74,7 @@
 - Allow users to add profile pictures and images of the places
 - Allow users to add new categories for places
 
-<!-- PROJECT TASK REQUIREMENTS -->
-
-## Project Task Requirements
+## Task Requirements 💼
 
 **Minimal Requirements**
 
@@ -119,9 +105,7 @@
 - Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 - Allow users to be members of multiple groups and post different information to different groups
 
-<!-- TASK BREAKDOWN -->
-
-## Task Breakdown
+## Task Breakdown 📝
 
 - Register new account or log in to existing account
 
@@ -138,9 +122,7 @@
   - Submit to add rating of place, for user’s group, attributed to user
   - Database structure to associate rating of place to a group and user.
 
-<!-- PROTOTYPES -->
-
-## Prototypes
+## Prototypes 🎨
 
 Groups Screen (after login)
 
@@ -153,9 +135,53 @@ Reviews in a group (after clicking a joined group)
 Adding a review to a place (after clicking add review on a place)
 ![Add Review][add_review]
 
-<!-- THE TEAM -->
+## Technology Stack 🛠️
 
-## The Team
+Dependencies defined in package.json:
+
+[ReactJs](https://reactjs.org/)
+
+[NodeJs](https://nodejs.org/en/)
+
+[ExpressJs](https://expressjs.com/)
+
+## Prerequisites 🍪
+
+You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable) and [Git](https://git-scm.com/) installed on your PC.
+
+## Setup And Deployment 🔧
+
+1. Clone the repo using:
+
+   ```bash
+     git clone https://github.com/sassansh/Places.git
+   ```
+
+2. In the root of the project `/Places/`, create a `.env` file and add these environment variables:
+
+   ```bash
+   PLACES_DB_URI=
+   PLACES_NS=
+   SECRETORKEY=
+   PORT=
+   ```
+
+3. To start frontend & backend in dev mode together, run:
+
+   ```bash
+   yarn first-install
+   yarn dev
+   ```
+
+4. Automatic deployments are setup with Heroku each time a push is made to the `main` branch.
+
+5. Access the current live app at:
+
+   ```https
+     https://places-cpsc455.herokuapp.com/
+   ```
+
+## The Team ‎😃
 
 Team Name: Green 🌱
 
@@ -167,9 +193,7 @@ Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://w
 
 Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
-<!-- LICENSE -->
-
-## License
+## License 📔
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
