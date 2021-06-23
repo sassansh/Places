@@ -25,7 +25,7 @@
   </p>
 </p>
 
-[![Site preview](/images/app-demo.gif)](https://places-cpsc455.herokuapp.com/)
+[![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/)
 
 ## Table of Contents
 
