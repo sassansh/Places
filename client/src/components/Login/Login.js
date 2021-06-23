@@ -32,13 +32,10 @@ function Login() {
     setLoginAttempts(loginAttempts + 1);
   }
 
-  const currentUser = users.find((user) => user.user_id === currentUserID);
-
   return isLoggedIn ? (
     <Redirect to={{ pathname: "/" }} />
   ) : (
     <div className="login-page">
-      Logged in user: {currentUserID ? currentUser.name : "null"}
       <div className="login-container">
         <form className="login-form">
           <input
