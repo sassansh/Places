@@ -16,7 +16,8 @@ function CategoryView() {
     (category) => category.category_id === currentCategoryID
   );
   let categoryType = currentCategory.name + " " + currentCategory.emoji;
-  let btnCategory = currentCategoryID === 1 ? "Beach" : "Restaurant";
+  let btnCategory = currentCategory.name_singular;
+  //let btnCategory = currentCategoryID === 1 ? "Beach" : "Restaurant";
 
   return (
     <div className="container">
@@ -25,7 +26,7 @@ function CategoryView() {
           <Title level={2}>{categoryType}</Title>
         </Col>
         <Col lg={12} className="addPlaceButton">
-          <Button type="primary" icon={<PlusOutlined />} size="large">
+          <Button type="primary" icon={<PlusOutlined />} size="large" onClick={console.log("adding place")}>
             Add {btnCategory}
           </Button>
         </Col>

@@ -1,7 +1,7 @@
 const initialState = {
   allCategories: [
-    { category_id: 1, name: "Beaches", emoji: "🏖️" },
-    { category_id: 2, name: "Restaurants", emoji: "🍔" },
+    { category_id: 1, name: "Beaches", name_singular: "Beach", emoji: "🏖️" },
+    { category_id: 2, name: "Restaurants", name_singular: "Restaurant", emoji: "🍔" },
   ],
   currentCategoryID: 1,
 };
