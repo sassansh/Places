@@ -45,7 +45,7 @@ function AddPlace() {
         }}
       >
         <Col span={12}>
-          <Title level={2}>Add Place</Title>
+          <Title level={2}>Add {currentCategory().name_singular}</Title>
         </Col>
         <Col span={12} className="currentCategory">
           <h2>
