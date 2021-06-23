@@ -32,7 +32,7 @@
 - [Task Requirements 💼](#task-requirements-)
 - [Task Breakdown 📝](#task-breakdown-)
 - [Prototypes 🎨](#prototypes-)
-- [Technology Stack 🛠️](#technology-stack-)
+- [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
 - [The Team ‎😃](#the-team-)
