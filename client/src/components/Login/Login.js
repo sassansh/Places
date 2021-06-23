@@ -12,7 +12,6 @@ function Login() {
   const [loginAttempts, setLoginAttempts] = useState(0);
   const dispatch = useDispatch();
   const currentUserID = useSelector((state) => state.users.currentUserID);
-  const users = useSelector((state) => state.users.allUsers);
 
   const isLoggedIn = currentUserID !== null;
 
