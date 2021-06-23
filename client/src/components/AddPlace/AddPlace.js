@@ -13,7 +13,7 @@ function AddPlace() {
   const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
   const currentGroupID = useSelector(state=>state.groups.currentGroupID);
 
-  let currentCategory = () => {
+  const currentCategory = () => {
     return categories.find(
       (category) => category.category_id === currentCategoryID
     );
