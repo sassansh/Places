@@ -18,7 +18,7 @@ function Category({ category }) {
   });
   return (
     <Link to="/categoryview" onClick={() => {
-      dispatch(setCategory(category.category_id))
+      dispatch(setCategory(category.category_id));
     }}>
       <Card style={{ margin: 16 }}>
         <span className="category">
