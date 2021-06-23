@@ -3,21 +3,32 @@ import "./Place.css";
 import { Avatar, Card, Rate } from "antd";
 
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-function Place({ placeData }) {  
+function Place({ placeData, rank }) {  
+  const reviews = useSelector((state) => state.reviews.allReviews);
+  let numRaters = 0;
+  let allRatings = 0;
+  reviews.forEach(review => {
+    if (review.place_id === placeData.place_id) {
+      numRaters++;
+      allRatings += review.rating;
+    }
+  });
+  let rating = allRatings/numRaters;
   return (
     <Link to="/placeview">
       <Card style={{ margin: 16 }}>
         <span className="place">
           <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
-            {placeData.rank}
+            {rank}
           </Avatar>
           <span className="place-name">{placeData.name}</span>
         </span>
 
         <span className="place-rating">
-          <Rate disabled allowHalf defaultValue={placeData.rating} />
-          <span className="num-of-reviews">{placeData.numRaters}</span>
+          <Rate disabled allowHalf defaultValue={rating} />
+          <span className="num-of-reviews">{numRaters}</span>
         </span>
       </Card>
     </Link>

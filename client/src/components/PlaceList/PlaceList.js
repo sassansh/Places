@@ -1,27 +1,28 @@
 import "./PlaceList.css";
 
 import Place from "../Place/Place";
+import { useSelector } from "react-redux";
 
 function PlaceList() {
-  let placesData = [
-    { rank: 1, name: "Earls Yaletown", rating: 4.5, numRaters: 22 },
-    { rank: 2, name: "Back Stairs", rating: 4.45, numRaters: 22 },
-    { rank: 3, name: "Ultra Spice Noodle", rating: 4.44, numRaters: 22 },
-    { rank: 4, name: "Sushi Boat", rating: 4.41, numRaters: 22 },
-    { rank: 5, name: "Morris Tavern", rating: 4.3, numRaters: 22 },
-    { rank: 6, name: "Chicken Yurt", rating: 4.24, numRaters: 22 },
-    { rank: 7, name: "Mario's Request", rating: 4.22, numRaters: 22 },
-    { rank: 8, name: "Salal Gal", rating: 4.21, numRaters: 22 },
-    { rank: 9, name: "A Table & A Chair", rating: 3.9, numRaters: 22 },
-    { rank: 10, name: "Brownleaf", rating: 2.5, numRaters: 22 },
-  ];
+  const places = useSelector((state) => state.places.allPlaces);
+  const currentCategoryID = useSelector(
+    (state) => state.categories.currentCategoryID
+  );
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+  let currentPlaces = places.filter(
+    (place) =>
+      place.category_id === currentCategoryID &&
+      place.group_id === currentGroupID
+  );
 
-  let places = placesData.map((placeData) => (
-    <Place key={placeData.rank} placeData={placeData} />
-  ));
+  let placeList = currentPlaces.map(
+    (placeData) => (
+      <Place key={placeData.place_id} placeData={placeData} rank = {currentPlaces.indexOf(placeData) + 1} />
+    )
+  );
   return (
     <div>
-      <ul>{places}</ul>
+      <ul>{placeList}</ul>
     </div>
   );
 }
