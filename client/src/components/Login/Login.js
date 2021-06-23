@@ -34,7 +34,7 @@ function Login() {
   return (
     <div className="login-page">
       Logged in user: {currentUserID ? currentUser.name : "null"}
-      <div className="form">
+      <div className="login-container">
         <form className="login-form">
           <input
             type="text"

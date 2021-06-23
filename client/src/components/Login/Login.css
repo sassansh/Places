@@ -3,7 +3,7 @@
   padding: 8% 0 0;
   margin: auto;
 }
-.form {
+.login-container {
   position: relative;
   z-index: 1;
   background: #ffffff;
@@ -13,7 +13,7 @@
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.form input {
+.login-container input {
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -23,7 +23,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+.login-container button {
   text-transform: capitalize;
   outline: 0;
   background: #448ef7;
@@ -36,12 +36,12 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.form button:hover,
-.form button:active,
-.form button:focus {
+.login-container button:hover,
+.login-container button:active,
+.login-container button:focus {
   background: #1376ff;
 }
-.form .message {
+.login-container .message {
   margin: 15px 0 0;
   color: #858585;
   font-size: 12px;

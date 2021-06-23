@@ -18,6 +18,7 @@ import { Layout } from "antd";
 import Login from "./components/Login/Login";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { Provider } from "react-redux";
 import SubmittedReview from "./components/AddReview/SubmittedReview";
 import store from "./redux/store";
@@ -49,14 +50,26 @@ function App() {
             <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
               <Switch>
                 <Route exact path="/login" component={Login} />
-                <Route exact path="/" component={GroupView} />
-                <Route exact path="/creategroup" component={CreateGroup} />
-                <Route exact path="/categoryview" component={CategoryView} />
-                <Route exact path="/addplace" component={AddPlace} />
-                <Route exact path="/placeview" component={PlaceView} />
-                <Route exact path="/addreview" component={AddReview} />
-                <Route exact path="/grouplistview" component={GroupListView} />
-                <Route
+                <PrivateRoute exact path="/" component={GroupView} />
+                <PrivateRoute
+                  exact
+                  path="/creategroup"
+                  component={CreateGroup}
+                />
+                <PrivateRoute
+                  exact
+                  path="/categoryview"
+                  component={CategoryView}
+                />
+                <PrivateRoute exact path="/addplace" component={AddPlace} />
+                <PrivateRoute exact path="/placeview" component={PlaceView} />
+                <PrivateRoute exact path="/addreview" component={AddReview} />
+                <PrivateRoute
+                  exact
+                  path="/grouplistview"
+                  component={GroupListView}
+                />
+                <PrivateRoute
                   exact
                   path="/submittedReview"
                   component={SubmittedReview}
