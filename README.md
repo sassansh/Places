@@ -79,10 +79,10 @@
 **Minimal Requirements**
 
 - [ ] Register new account or log in to existing account
-- [ ] Create a group
+- [x] Create a group
 - [ ] Request and join an existing group / accept or reject requests to join
-- Each user can rate (scale 1-5) a place, rating - [ ] attached to their group
-- [ ] View places by category and order by average rating
+- [x] Each user can rate (scale 1-5) a place, rating attached to their group
+- [x] View places by category and order by average rating
 
 **Standard Requirements**
 
@@ -116,10 +116,10 @@
   - [ ] Simple authentication backend & remember user on the same device
 
 - [ ] User should be able to leave ratings
-  - [ ] Display list of existing places to choose from
-    - [ ] Or option to create new place with name and address
-  - [ ] User can choose a numerical rating (1-5)
-  - [ ] Submit to add rating of place, for user’s group, attributed to user
+  - [x] Display list of existing places to choose from
+    - [x] Or option to create new place with name and address
+  - [x] User can choose a numerical rating (1-5)
+  - [x] Submit to add rating of place, for user’s group, attributed to user
   - [ ] Database structure to associate rating of place to a group and user.
 
 ## Prototypes 🎨
