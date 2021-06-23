@@ -51,7 +51,7 @@ function PlaceView() {
               shape="square"
               size={64}
             >
-              {averageScore}
+              {averageScore? averageScore : "?"}
             </Avatar>
           </Title>
         </Col>
