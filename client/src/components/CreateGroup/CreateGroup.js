@@ -10,7 +10,7 @@ import { useState } from "react";
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const groups = useSelector(state => state.groups);
+  const groups = useSelector(state => state.groups.allGroups);
   const dispatch = useDispatch();
   const [fieldInput, setFieldInput] = useState({
     name: "",
