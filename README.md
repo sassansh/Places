@@ -78,49 +78,49 @@
 
 **Minimal Requirements**
 
-- Register new account or log in to existing account
-- Create a group
-- Request and join an existing group / accept or reject requests to join
-- Each user can rate (scale 1-5) a place, rating is attached to their group
-- View places by category and order by average rating
+- [ ] Register new account or log in to existing account
+- [ ] Create a group
+- [ ] Request and join an existing group / accept or reject requests to join
+- Each user can rate (scale 1-5) a place, rating - [ ] attached to their group
+- [ ] View places by category and order by average rating
 
 **Standard Requirements**
 
-- Modify an existing rating
-- Create new categories
-- Choose custom criteria for a category (by group)
-- Display ranked list of places based on selected criteria
-  - Multiple search criteria including location tags
-- Allow users to upload photos for their profile picture or of places
-- Profile for each place containing images, address, hours, details, reviews.
-- User profiles displaying:
-  - Name, picture, list of reviewed places, name of group they are in
-- Moderator ability for group creator:
-  - Add members
-  - Delete members
+- [ ] Modify an existing rating
+- [ ] Create new categories
+- [ ] Choose custom criteria for a category (by group)
+- [ ] Display ranked list of places based on selected criteria
+  - [ ] Multiple search criteria including location tags
+- [ ] Allow users to upload photos for their profile picture or of places
+- [ ] Profile for each place containing images, address, hours, details, reviews.
+- [ ] User profiles displaying:
+  - [ ] Name, picture, list of reviewed places, name of group they are in
+- [ ] Moderator ability for group creator:
+  - [ ] Add members
+  - [ ] Delete members
 
 **Stretch Requirements**
 
-- Allow user to save favorite places
-- Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
-- Allow users to be members of multiple groups and post different information to different groups
+- [ ] Allow user to save favorite places
+- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
+- [ ] Allow users to be members of multiple groups and post different information to different groups
 
 ## Task Breakdown 📝
 
-- Register new account or log in to existing account
+- [ ] Register new account or log in to existing account
 
-  - Login UI with email/user name and password inputs and login button
-  - Button to Register and form for creating new account
-    - User Name, Email, Password
-  - Database structure for storing email and password for each user
-  - Simple authentication backend & remember user on the same device
+  - [ ] Login UI with email/user name and password inputs and login button
+  - [ ] Button to Register and form for creating new account
+    - [ ] User Name, Email, Password
+  - [ ] Database structure for storing email and password for each user
+  - [ ] Simple authentication backend & remember user on the same device
 
-- User should be able to leave ratings
-  - Display list of existing places to choose from
-    - Or option to create new place with name and address
-  - User can choose a numerical rating (1-5)
-  - Submit to add rating of place, for user’s group, attributed to user
-  - Database structure to associate rating of place to a group and user.
+- [ ] User should be able to leave ratings
+  - [ ] Display list of existing places to choose from
+    - [ ] Or option to create new place with name and address
+  - [ ] User can choose a numerical rating (1-5)
+  - [ ] Submit to add rating of place, for user’s group, attributed to user
+  - [ ] Database structure to associate rating of place to a group and user.
 
 ## Prototypes 🎨
 
