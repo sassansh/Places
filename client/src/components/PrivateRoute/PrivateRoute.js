@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 
 function PrivateRoute({ component: Component, ...rest }) {
   const currentUserID = useSelector((state) => state.users.currentUserID);
-  // Add your own authentication on the below line.
+
+  // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
+
   const isLoggedIn = currentUserID !== null;
 
   return (
