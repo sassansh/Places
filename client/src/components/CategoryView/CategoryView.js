@@ -11,7 +11,7 @@ function CategoryView() {
   const dispatch = useDispatch();
   const { Title } = Typography;
   const categories = useSelector((state) => state.categories.allCategories);
-  let currentCategoryID = useSelector(
+  const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
   );
   let currentCategory = categories.find(
@@ -27,7 +27,7 @@ function CategoryView() {
           <Title level={2}>{categoryType}</Title>
         </Col>
         <Col lg={12} className="addPlaceButton">
-          <Link to="/addPlace" onClick={() => {dispatch(setCategory(currentCategoryID))}}> 
+          <Link to="/addPlace" onClick={() => {dispatch(setCategory(currentCategoryID))}}>
             <Button type="primary" icon={<PlusOutlined />} size="large">
               Add {btnCategory}
             </Button>
