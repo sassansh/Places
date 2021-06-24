@@ -1,7 +1,9 @@
 import "./AddPlace.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
+import { Link } from "react-router-dom";
 import { addPlace, setPlace } from "../../redux/actions/placeActions";
+import { setCategory } from "../../redux/actions/categoryActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function AddPlace() {
@@ -76,9 +78,11 @@ function AddPlace() {
       </Row>
       <Row justify="center">
         <Col>
-          <Button onClick={handleAddPlace} className="button" type="primary">
-            Submit
-          </Button>
+          <Link to="/placeView" onClick={handleAddPlace}>
+            <Button className="button" type="primary">
+              Submit
+            </Button>
+          </Link>
         </Col>
       </Row>
     </div>
