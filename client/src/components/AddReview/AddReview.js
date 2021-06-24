@@ -13,8 +13,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
-import { addReview } from "../../redux/actions/reviewActions";
-import { useState } from "react";
+import { addReview, editReview } from "../../redux/actions/reviewActions";
+import { useState, useEffect } from "react";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
@@ -27,6 +27,27 @@ function AddReview() {
   const categories = useSelector(state=>state.categories.allCategories);
 
   const [rateValue, setRateValue] = useState(0);
+  const [reviewExists, setReviewExists] = useState(false);
+  const [existingReview, setExistingReview] = useState({});
+
+  function checkIfReviewExists() {
+    reviews.forEach (
+      (element) => {
+        if (element.user_id === currentUserID && element.place_id === currentPlaceID) {
+          setReviewExists(true);
+          setExistingReview(element);
+          setRateValue(element.rating);
+          return;
+        }
+      }
+    );
+  }
+
+  useEffect(() => {
+    checkIfReviewExists();
+    // eslint-disable-next-line
+  },[]);
+
   const { Title } = Typography;
 
   let place = places.find((element) => element.place_id === currentPlaceID);
@@ -39,13 +60,26 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    const newReview = {
-      review_id: reviews.length + 1,
-      user_id: currentUserID,
-      place_id: currentPlaceID,
-      rating: rateValue,
-    };
-    dispatch(addReview(newReview));
+    checkIfReviewExists();
+    let index = reviews.findIndex(
+      (element) => element.review_id === existingReview.review_id
+    );
+    let newReview = {};
+    if (reviewExists) {
+        newReview = {
+          ...existingReview,
+          rating: rateValue,
+        };
+        dispatch(editReview(newReview, index));
+    } else {
+      newReview = {
+        review_id: reviews.length + 1,
+        user_id: currentUserID,
+        place_id: currentPlaceID,
+        rating: rateValue,
+      };
+      dispatch(addReview(newReview));
+    }
   }
 
   return (

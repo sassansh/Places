@@ -26,12 +26,7 @@ function PlaceView() {
   );
 
   const { Title } = Typography;
-  // let reviewsData = [
-  //   { reviewer: "Johnny Li", rating: 3.5 },
-  //   { reviewer: "Sassan Shokoohi", rating: 2.5 },
-  //   { reviewer: "Laura Rodgers", rating: 4 },
-  //   { reviewer: "Amir Jafarvand", rating: 5 },
-  // ];
+  
   let averageScore =
     reviewsData
       .map((reviewData) => reviewData.rating)
