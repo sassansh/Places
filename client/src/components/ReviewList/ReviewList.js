@@ -1,4 +1,6 @@
 import "./ReviewList.css";
+import { useSelector } from "react-redux";
+
 
 import Review from "../Review/Review";
 
@@ -6,7 +8,7 @@ function ReviewList(props) {
   let reviewsData = props.reviewsData;
 
   let reviews = reviewsData.map((reviewData) => (
-    <Review key={reviewData.reviewer} review={reviewData} />
+    <Review key={reviewData.review_id} review={reviewData} />
   ));
   return (
     <div>

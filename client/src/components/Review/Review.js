@@ -1,19 +1,22 @@
 import "./Review.css";
-
 import { Card, Col, Rate, Row } from "antd";
+import { useSelector } from "react-redux";
 
 function Review(props) {
+  let review = props.review;
+  let users = useSelector(state=>state.users.allUsers);
+  let reviewer = users.find(element => element.user_id === review.user_id).name;
   return (
     <li>
       <Card className="review" size="small">
         <Row>
           <Col lg={12} className="reviewer">
-            {props.review.reviewer}
+            {reviewer}
           </Col>
           <Col lg={12} className="rating">
             <Rate
               allowHalf
-              defaultValue={props.review.rating}
+              defaultValue={review.rating}
               disabled={true}
             />
           </Col>

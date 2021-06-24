@@ -16,10 +16,18 @@ const initialState = {
 };
 
 const reviewReducer = (state = initialState, action) => {
+    let newReviews = [];
     switch (action.type) {
       case "ADD_REVIEW":
-        const newReviews = [...state.allReviews]
+        newReviews = [...state.allReviews]
         newReviews.push(action.payload)
+        return {
+          ...state,
+          allReviews: newReviews,
+        };
+      case "EDIT_REVIEW":
+        newReviews = [...state.allReviews]
+        newReviews[action.payload.index] = action.payload.newReview;
         return {
           ...state,
           allReviews: newReviews,
