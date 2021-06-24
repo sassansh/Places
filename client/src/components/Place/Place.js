@@ -9,7 +9,7 @@ import { setPlace } from "../../redux/actions/placeActions"
 function Place({ placeData, rank }) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews)
-    .filter((review) => review.place_id == placeData.place_id);
+    .filter((review) => review.place_id === placeData.place_id);
 
   const rating = reviews
         .map((review) => review.rating)
