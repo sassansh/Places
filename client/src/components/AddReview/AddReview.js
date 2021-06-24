@@ -10,43 +10,41 @@ import {
   Row,
   Typography,
 } from "antd";
+import { addReview, editReview } from "../../redux/actions/reviewActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import { addReview, editReview } from "../../redux/actions/reviewActions";
-import { useState, useEffect } from "react";
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 
 function AddReview() {
   const dispatch = useDispatch();
-  const reviews = useSelector(state=>state.reviews.allReviews);
-  const currentUserID = useSelector(state=>state.users.currentUserID);
-  const currentPlaceID = useSelector(state=>state.places.currentPlaceID);
-  const places = useSelector(state=>state.places.allPlaces);
-  const categories = useSelector(state=>state.categories.allCategories);
+  const reviews = useSelector((state) => state.reviews.allReviews);
+  const currentUserID = useSelector((state) => state.users.currentUserID);
+  const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
+  const places = useSelector((state) => state.places.allPlaces);
+  const categories = useSelector((state) => state.categories.allCategories);
 
   const [rateValue, setRateValue] = useState(0);
   const [reviewExists, setReviewExists] = useState(false);
   const [existingReview, setExistingReview] = useState({});
 
   function checkIfReviewExists() {
-    reviews.forEach (
-      (element) => {
-        if (element.user_id === currentUserID && element.place_id === currentPlaceID) {
-          setReviewExists(true);
-          setExistingReview(element);
-          setRateValue(element.rating);
-          return;
-        }
+    reviews.forEach((element) => {
+      if (
+        element.user_id === currentUserID &&
+        element.place_id === currentPlaceID
+      ) {
+        setReviewExists(true);
+        setExistingReview(element);
+        setRateValue(element.rating);
+        return;
       }
-    );
+    });
   }
 
-  useEffect(() => {
-    checkIfReviewExists();
-    // eslint-disable-next-line
-  },[]);
+  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews]);
 
   const { Title } = Typography;
 
@@ -66,11 +64,11 @@ function AddReview() {
     );
     let newReview = {};
     if (reviewExists) {
-        newReview = {
-          ...existingReview,
-          rating: rateValue,
-        };
-        dispatch(editReview(newReview, index));
+      newReview = {
+        ...existingReview,
+        rating: rateValue,
+      };
+      dispatch(editReview(newReview, index));
     } else {
       newReview = {
         review_id: reviews.length + 1,
