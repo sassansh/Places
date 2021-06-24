@@ -1,7 +1,4 @@
 import "./ReviewList.css";
-import { useSelector } from "react-redux";
-
-
 import Review from "../Review/Review";
 
 function ReviewList(props) {

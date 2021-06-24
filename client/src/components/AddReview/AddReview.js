@@ -42,8 +42,10 @@ function AddReview() {
       }
     );
   }
+
   useEffect(() => {
     checkIfReviewExists();
+    // eslint-disable-next-line
   },[]);
 
   const { Title } = Typography;
