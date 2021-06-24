@@ -10,12 +10,11 @@ function Place({ placeData, rank }) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews)
     .filter((review) => review.place_id == placeData.place_id);
-  // let numRaters = 0;
-  // let allRatings = 0;
+
   const rating = reviews
         .map((review) => review.rating)
         .reduce((p, c) => p + c, 0) / reviews.length;
-        
+
   return (
     <Link to="/placeview" onClick={() => dispatch(setPlace(placeData.place_id))} >
       <Card style={{ margin: 16 }}>
