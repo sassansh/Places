@@ -34,7 +34,7 @@ function PlaceList() {
     .map(place => ({ ...place, rank: ratingsSorted.indexOf(place.avgRating) + 1}));
 
   currentPlaces = currentPlaces
-    .map(place => ({...place, rank: place.rank == 0? "?" : place.rank}));
+    .map(place => ({...place, rank: place.rank === 0? "?" : place.rank}));
 
   const placeList = currentPlaces.map(
     (placeData) => (
