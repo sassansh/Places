@@ -1,9 +1,9 @@
 import "./CategoryView.css";
 
 import { Button, Col, Divider, Row, Typography } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import PlaceList from "../PlaceList/PlaceList";
-import { PlusOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { setCategory } from "../../redux/actions/categoryActions";
 
