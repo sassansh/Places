@@ -25,10 +25,16 @@ function Place({ placeData, rank }) {
           <span className="place-name">{placeData.name}</span>
         </span>
 
-        <span className="place-rating">
-          <Rate disabled allowHalf defaultValue={rating} />
-          <span className="num-of-reviews">{reviews.length}</span>
-        </span>
+        {reviews.length > 0?
+          <span className="place-rating">
+            <Rate disabled allowHalf defaultValue={rating} />
+            <span className="num-of-reviews">{reviews.length}</span>
+          </span>
+          :
+          <span className="place-rating">
+            <span className="num-of-reviews">No reviews yet</span>
+          </span>
+        }
       </Card>
     </Link>
   );
