@@ -20,7 +20,6 @@ import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { Provider } from "react-redux";
-import SubmittedReview from "./components/AddReview/SubmittedReview";
 import store from "./redux/store";
 
 const { Content, Footer, Sider } = Layout;
@@ -68,11 +67,6 @@ function App() {
                   exact
                   path="/grouplistview"
                   component={GroupListView}
-                />
-                <PrivateRoute
-                  exact
-                  path="/submittedReview"
-                  component={SubmittedReview}
                 />
               </Switch>
             </Content>

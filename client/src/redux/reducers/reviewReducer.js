@@ -7,6 +7,12 @@ const initialState = {
       rating: 3,
     },
     {
+      review_id: 1,
+      user_id: 2,
+      place_id: 1,
+      rating: 3,
+    },
+    {
       review_id: 2,
       user_id: 2,
       place_id: 2,

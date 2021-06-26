@@ -3,3 +3,7 @@ h1 {
   border-bottom: 0px;
   font-size: 20px;
 }
+
+.add-review-button {
+  margin: 0px 0px 15px 60px;
+}

@@ -88,7 +88,10 @@ function AddReview() {
         }}
       >
         <Col lg={24}>
-          <Title level={2}>Add Review</Title>
+          <Title level={2}>
+            {reviewExists?
+            "Edit Review" :
+            "Add Review"}</Title>
         </Col>
       </Row>
       <Divider
@@ -115,13 +118,13 @@ function AddReview() {
             marginLeft: "20px",
           }}
         >
-          <div className="restaurantNameRate">
+          <div className="placeNameRate">
             <b>{place.name}</b>
             <br />
             <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
               {category.emoji}
             </Avatar>{" "}
-            {category.name}
+            {category.name_singular}
           </div>
         </Col>
         <Col lg={13} md={11} sm={24} xs={24} style={{ textAlign: "center" }}>
@@ -134,7 +137,7 @@ function AddReview() {
             value={rateValue}
           />
           <br />
-          <Link to="/submittedReview">
+          <Link to="/placeView">
             <Button
               className="button"
               type="primary"

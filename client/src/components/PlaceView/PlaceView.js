@@ -26,11 +26,13 @@ function PlaceView() {
   );
 
   const { Title } = Typography;
-  
+
   let averageScore =
     reviewsData
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
+  let averageScoreString = averageScore? Number(averageScore.toFixed(2)).toString() : "?";
+
   return (
     <div className="container">
       <Row
@@ -46,7 +48,7 @@ function PlaceView() {
               shape="square"
               size={64}
             >
-              {averageScore? averageScore : "?"}
+              {averageScoreString}
             </Avatar>
           </Title>
         </Col>
