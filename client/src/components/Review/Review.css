@@ -11,7 +11,7 @@ li {
 
 .rating {
   padding-right: 10px;
-  float: right;
+  text-align: right;
 }
 
 .edit-review {

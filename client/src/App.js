@@ -71,7 +71,6 @@ function App() {
               </Switch>
             </Content>
             <Footer style={{ textAlign: "center" }}>
-            
               Places App ©2021 Created by Team Green 🌱
             </Footer>
           </Layout>

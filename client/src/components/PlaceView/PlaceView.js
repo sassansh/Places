@@ -31,9 +31,7 @@ function PlaceView() {
     reviewsData
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
-
-
-  let averageScoreString = averageScore? Number(averageScore.toFixed(2)) : "?";
+  let averageScoreString = averageScore? Number(averageScore.toFixed(2)).toString() : "?";
 
   return (
     <div className="container">

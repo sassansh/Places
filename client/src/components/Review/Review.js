@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setPlace } from "../../redux/actions/placeActions";
 
-
 function Review(props) {
   let dispatch = useDispatch();
   let review = props.review;
