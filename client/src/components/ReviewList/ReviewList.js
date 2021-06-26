@@ -3,7 +3,7 @@ import { Row, Button } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Review from "../Review/Review";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function ReviewList(props) {
   let reviewsData = props.reviewsData;
