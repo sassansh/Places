@@ -162,8 +162,6 @@ You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpk
 
    ```bash
    PLACES_DB_URI=
-   PLACES_NS=
-   SECRETORKEY=
    PORT=
    ```
 

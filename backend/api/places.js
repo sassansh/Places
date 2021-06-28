@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: "Error creating account",
+        message: "Error creating place",
       })
     );
 });
