@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
-// MERN Authentication inspired by: https://github.com/rishipr/mern-auth
-
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
+  user_id: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -17,9 +19,13 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    default: Date.now,
+  avatarURL: {
+    type: String,
+    required: true,
+  },
+  groups: {
+    type: [String],
+    required: true,
   },
 });
 

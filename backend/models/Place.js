@@ -3,17 +3,30 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const placeSchema = new Schema({
+  place_id: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
   },
-  type: {
+  address: {
     type: String,
     required: true,
   },
-  imgURL: {
+  group_id: {
+    type: String,
+    required: true,
+  },
+  category_id: {
+    type: String,
+    required: true,
+  },
+  ImageURL: {
     type: String,
     required: true,
   },
 });
+
 export default mongoose.model("Place", placeSchema, "places");
