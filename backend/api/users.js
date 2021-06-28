@@ -1,70 +1,11 @@
 import User from "../models/User.js";
-import bcrypt from "bcryptjs";
-import dotenv from "dotenv";
 import express from "express";
-import jwt from "jsonwebtoken";
-import validateLoginInput from "../validation/login.js";
-import validateRegisterInput from "../validation/register.js";
-
-dotenv.config();
-
-// MERN Authentication inspired by: https://github.com/rishipr/mern-auth
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
-// @route POST api/users/register
-// @desc Register user
-// @access Public
-router.post("/register", (req, res) => {
-  // Form validation
-
-  const { errors, isValid } = validateRegisterInput(req.body);
-
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  User.findOne({ email: req.body.email }).then((user) => {
-    if (user) {
-      return res.status(400).json({ email: "Email already exists" });
-    } else {
-      const newUser = new User({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-      });
-
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
-        });
-      });
-    }
-  });
-});
-
-// @route POST api/users/login
-// @desc Login user and return JWT token
-// @access Public
 router.post("/login", (req, res) => {
-  // Form validation
-
-  const { errors, isValid } = validateLoginInput(req.body);
-
-  // Check validation
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
 
   // Find user by email
   User.findOne({ email }).then((user) => {
@@ -72,38 +13,49 @@ router.post("/login", (req, res) => {
     if (!user) {
       return res.status(404).json({ emailnotfound: "Email not found" });
     }
-
     // Check password
-    bcrypt.compare(password, user.password).then((isMatch) => {
-      if (isMatch) {
-        // User matched
-        // Create JWT Payload
-        const payload = {
-          id: user.id,
-          name: user.name,
-        };
+    const isMatch = user.password === password;
 
-        // Sign token
-        jwt.sign(
-          payload,
-          process.env.SECRETORKEY,
-          {
-            expiresIn: 31556926, // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token,
-            });
-          }
-        );
-      } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
-      }
-    });
+    if (isMatch) {
+      res.json({
+        success: true,
+        user: {
+          user_id: user.user_id,
+          name: user.name,
+          email: user.email,
+          avatarURL: user.avatarURL,
+          groups: user.groups,
+        },
+      });
+    } else {
+      return res.status(400).json({ passwordincorrect: "Password incorrect" });
+    }
   });
+});
+
+router.post("/register", (req, res) => {
+  const { name, email, password, avatarURL } = req.body;
+  const newUser = new User({
+    user_id: uuidv4(),
+    name: name,
+    email: email,
+    password: password,
+    avatarURL: avatarURL,
+    groups: ["1", "2"],
+  });
+  newUser
+    .save()
+    .then(() =>
+      res.json({
+        message: "Created user successfully",
+      })
+    )
+    .catch((err) =>
+      res.status(400).json({
+        error: err,
+        message: "Error creating user",
+      })
+    );
 });
 
 export default router;
