@@ -87,13 +87,13 @@
 
 **Standard Requirements**
 
-- [ ] Modify an existing rating
+- [x] Modify an existing rating
 - [ ] Create new categories
-- [ ] Choose custom criteria for a category (by group)
+  - [ ] Choose custom rating criteria for the new category (by group)
 - [ ] Display ranked list of places based on selected criteria
   - [ ] Multiple search criteria including location tags
 - [ ] Allow users to upload photos for their profile picture or of places
-- [ ] Profile for each place containing images, address, hours, details, reviews.
+- [x] Profile for each place containing images, address, details, reviews.
 - [ ] User profiles displaying:
   - [ ] Name, picture, list of reviewed places, name of group they are in
 - [ ] Moderator ability for group creator:
@@ -104,24 +104,24 @@
 
 - [ ] Allow user to save favorite places
 - [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
-- [ ] Allow users to be members of multiple groups and post different information to different groups
+- [x] Allow users to be members of multiple groups and post different information to different groups
 
 ## Task Breakdown 📝
 
 - [ ] Register new account or log in to existing account
 
-  - [ ] Login UI with email/user name and password inputs and login button
+  - [x] Login UI with email/user name and password inputs and login button
   - [ ] Button to Register and form for creating new account
     - [ ] User Name, Email, Password
-  - [ ] Database structure for storing email and password for each user
+  - [x] Database structure for storing email and password for each user
   - [ ] Simple authentication backend & remember user on the same device
 
-- [ ] User should be able to leave ratings
+- [x] User should be able to leave ratings
   - [x] Display list of existing places to choose from
     - [x] Or option to create new place with name and address
   - [x] User can choose a numerical rating (1-5)
   - [x] Submit to add rating of place, for user’s group, attributed to user
-  - [ ] Database structure to associate rating of place to a group and user.
+  - [x] Database structure to associate rating of place to a group and user.
 
 ## Prototypes 🎨
 
