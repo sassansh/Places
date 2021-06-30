@@ -7,6 +7,7 @@ import logger from "morgan";
 import path from "path";
 import places from "./api/places.js";
 import users from "./api/users.js";
+import groups from "./api/groups.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 app.use("/api/places", places);
 app.use("/api/users", users);
+app.use("/api/groups", groups);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/client/build")));
