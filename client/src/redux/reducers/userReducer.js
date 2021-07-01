@@ -6,8 +6,7 @@ const initialState = {
       email: "sassan_shokoohi@me.com",
       password: "1234",
       avatarURL: "https://bit.ly/3q8x5LR",
-      groups: [1, 2],
-      requestgroup: [],
+      groups: [1],
     },
     {
       user_id: 2,
