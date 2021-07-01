@@ -21,11 +21,14 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === "/groupview") {
-      setTab("groupView");
+    if (path === "/grouplistview") {
+      setTab("groupListView");
     }
     if (path === "/creategroup") {
       setTab("createGroup");
+    }
+    if (path === "/groupview") {
+      setTab("groupView");
     }
     if (path === "/categoryview") {
       setTab("categoryView");
@@ -39,9 +42,6 @@ function NavBar(props) {
     if (path === "/addreview") {
       setTab("addReview");
     }
-    if (path === "/grouplistview") {
-      setTab("groupListView");
-    }
   }, [path]);
 
   return (
@@ -49,11 +49,11 @@ function NavBar(props) {
       <Menu.Item key="groupListView" icon={<TeamOutlined />}>
         <Link to="/grouplistview">Group List</Link>
       </Menu.Item>
-      <Menu.Item key="groupView" icon={<TeamOutlined />}>
-        <Link to="/groupview">Group View</Link>
-      </Menu.Item>
       <Menu.Item key="createGroup" icon={<UsergroupAddOutlined />}>
         <Link to="/creategroup">Create Group</Link>
+      </Menu.Item>
+      <Menu.Item key="groupView" icon={<TeamOutlined />}>
+        <Link to="/groupview">Group View</Link>
       </Menu.Item>
       <Menu.Item key="categoryView" icon={<BarsOutlined />}>
         <Link to="/categoryview">Category View</Link>

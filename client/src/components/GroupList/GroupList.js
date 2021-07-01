@@ -1,21 +1,19 @@
 import "./GroupList.css";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 import Group from "../Group/Group";
 import { Link } from "react-router-dom";
 import { setGroup } from "../../redux/actions/groupActions";
 
 function GroupList() {
-  const groups = useSelector(state => state.groups.allGroups);
+  const groups = useSelector((state) => state.groups.allGroups);
   const dispatch = useDispatch();
-
-
 
   let groupsData = groups;
   let grouplist = groupsData.map((groupData) => (
     <Link
-      to="/"
+      to="/groupview"
       onClick={() => {
         dispatch(setGroup(groupData.group_id));
       }}
