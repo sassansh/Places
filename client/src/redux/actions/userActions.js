@@ -11,3 +11,16 @@ export const loginUser = (email, password) => {
     payload: { email: email, password: password },
   };
 };
+
+export const setCurrentUser = (userID) => {
+  return {
+    type: "SET_CURRENT_USER",
+    payload: userID,
+  };
+};
+
+export const logoutUser = () => {
+  return {
+    type: "LOGOUT_USER",
+  };
+};

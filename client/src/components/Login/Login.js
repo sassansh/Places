@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { Redirect } from "react-router";
 import { loginUser } from "../../redux/actions/userActions";
+import logo from "../../assets/logo.png";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -32,22 +33,24 @@ function Login() {
   }
 
   return isLoggedIn ? (
-    <Redirect to={{ pathname: "/" }} />
+    <Redirect to={{ pathname: "/grouplistview" }} />
   ) : (
     <div className="login-page">
+      <img alt="logo" src={logo} width="100px" />
+      <h2>Places</h2>
       <div className="login-container">
         <form className="login-form">
           <input
             type="text"
             value={email}
             onInput={(e) => setEmail(e.target.value)}
-            placeholder="email"
+            placeholder="Email"
           />
           <input
             type="password"
             value={password}
             onInput={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
           />
           <button type="button" onClick={handleLogin}>
             login
