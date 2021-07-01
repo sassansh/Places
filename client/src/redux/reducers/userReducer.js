@@ -53,6 +53,12 @@ const userReducer = (state = initialState, action) => {
         ...state,
         allUsers: newUsers,
       };
+    case "SET_CURRENT_USER":
+      const userID = action.payload;
+      return {
+        ...state,
+        currentUserID: userID,
+      };
     case "LOGIN_USER":
       const email = action.payload.email;
       const pass = action.payload.password;
@@ -60,6 +66,7 @@ const userReducer = (state = initialState, action) => {
         (user) => user.email === email && user.password === pass
       );
       if (user) {
+        localStorage.setItem("currentUserID", user.user_id);
         return {
           ...state,
           currentUserID: user.user_id,
@@ -70,6 +77,12 @@ const userReducer = (state = initialState, action) => {
           currentUserID: null,
         };
       }
+    case "LOGOUT_USER":
+      localStorage.removeItem("currentUserID");
+      return {
+        ...state,
+        currentUserID: null,
+      };
     default:
       return state;
   }

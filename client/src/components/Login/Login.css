@@ -2,6 +2,15 @@
   width: 360px;
   padding: 8% 0 0;
   margin: auto;
+  text-align: center;
+}
+.login-page img {
+  margin-bottom: 1em;
+}
+.login-page h2 {
+  color: #000000;
+  font-size: 25px;
+  font-weight: 200;
 }
 .login-container {
   position: relative;
