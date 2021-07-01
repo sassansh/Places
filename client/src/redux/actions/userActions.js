@@ -11,3 +11,9 @@ export const loginUser = (email, password) => {
     payload: { email: email, password: password },
   };
 };
+
+export const logoutUser = () => {
+  return {
+    type: "LOGOUT_USER",
+  };
+};

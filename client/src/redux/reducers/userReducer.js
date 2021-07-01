@@ -6,7 +6,8 @@ const initialState = {
       email: "sassan_shokoohi@me.com",
       password: "1234",
       avatarURL: "https://bit.ly/3q8x5LR",
-      groups: [1],
+      groups: [1, 2],
+      requestgroup: [],
     },
     {
       user_id: 2,
@@ -70,6 +71,11 @@ const userReducer = (state = initialState, action) => {
           currentUserID: null,
         };
       }
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        currentUserID: null,
+      };
     default:
       return state;
   }
