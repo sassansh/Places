@@ -7,6 +7,7 @@ import {
   Switch,
   withRouter,
 } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import AddPlace from "./components/AddPlace/AddPlace";
 import AddReview from "./components/AddReview/AddReview";
@@ -20,16 +21,21 @@ import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import logo from "./assets/logo.png";
-import { useSelector } from "react-redux";
+import { setCurrentUser } from "./redux/actions/userActions";
 
 const { Content, Footer, Sider } = Layout;
 
 function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const currentUserID = useSelector((state) => state.users.currentUserID);
+  const dispatch = useDispatch();
 
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
+  if (localStorage.currentUserID) {
+    const storedUserID = localStorage.currentUserID;
+    dispatch(setCurrentUser(storedUserID));
+  }
   const isLoggedIn = currentUserID !== null;
 
   return (
