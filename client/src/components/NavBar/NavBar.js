@@ -29,7 +29,7 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === "/grouplistview") {
+    if (path === "/") {
       setTab("groupListView");
     }
     if (path === "/creategroup") {
@@ -55,7 +55,7 @@ function NavBar(props) {
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
       <Menu.Item key="groupListView" icon={<TeamOutlined />}>
-        <Link to="/grouplistview">Group List</Link>
+        <Link to="/">Group List</Link>
       </Menu.Item>
       <Menu.Item key="createGroup" icon={<UsergroupAddOutlined />}>
         <Link to="/creategroup">Create Group</Link>

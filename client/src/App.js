@@ -64,11 +64,7 @@ function App() {
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Route exact path="/login" component={Login} />
             <Switch>
-              <PrivateRoute
-                exact
-                path="/grouplistview"
-                component={GroupListView}
-              />
+              <PrivateRoute exact path="/" component={GroupListView} />
               <PrivateRoute exact path="/groupview" component={GroupView} />
               <PrivateRoute exact path="/creategroup" component={CreateGroup} />
               <PrivateRoute
