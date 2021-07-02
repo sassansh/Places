@@ -22,6 +22,7 @@ import PlaceView from "./components/PlaceView/PlaceView";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import logo from "./assets/logo.png";
 import { setCurrentUser } from "./redux/actions/userActions";
+import { useEffect } from "react";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -32,10 +33,13 @@ function App() {
 
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
-  if (localStorage.currentUserID && currentUserID == null) {
-    const storedUserID = localStorage.currentUserID;
-    dispatch(setCurrentUser(storedUserID));
-  }
+  useEffect(() => {
+    if (localStorage.currentUserID && currentUserID == null) {
+      const storedUserID = localStorage.currentUserID;
+      dispatch(setCurrentUser(storedUserID));
+    }
+  });
+
   const isLoggedIn = currentUserID !== null;
 
   return (
