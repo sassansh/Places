@@ -32,7 +32,7 @@ function App() {
 
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
-  if (localStorage.currentUserID) {
+  if (localStorage.currentUserID && currentUserID == null) {
     const storedUserID = localStorage.currentUserID;
     dispatch(setCurrentUser(storedUserID));
   }

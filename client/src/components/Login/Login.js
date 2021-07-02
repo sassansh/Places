@@ -33,7 +33,7 @@ function Login() {
   }
 
   return isLoggedIn ? (
-    <Redirect to={{ pathname: "/grouplistview" }} />
+    <Redirect to={{ pathname: "/" }} />
   ) : (
     <div className="login-page">
       <img alt="logo" src={logo} width="100px" />
