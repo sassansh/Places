@@ -4,6 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+  // Search the MongoDB
+  User.find({}, "-_id user_id email name avatarURL groups")
+    .then((users) => res.json(users))
+    .catch((err) => console.log(err));
+});
+
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -11,7 +18,7 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(403).send("Email not found");
     }
     // Check password
     const isMatch = user.password === password;
@@ -28,7 +35,7 @@ router.post("/login", (req, res) => {
         },
       });
     } else {
-      return res.status(400).json({ passwordincorrect: "Password incorrect" });
+      return res.status(403).send("Password incorrect");
     }
   });
 });
@@ -41,7 +48,7 @@ router.post("/register", (req, res) => {
     email: email,
     password: password,
     avatarURL: avatarURL,
-    groups: ["1", "2"],
+    groups: [],
   });
   newUser
     .save()

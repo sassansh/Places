@@ -1,3 +1,15 @@
+import axios from "axios";
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    const usersResponse = await axios.get("/api/users");
+    const users = usersResponse.data;
+    dispatch(setUsers(users));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const createUser = (newUser) => {
   return {
     type: "CREATE_USER",
@@ -5,22 +17,32 @@ export const createUser = (newUser) => {
   };
 };
 
-export const loginUser = (email, password) => {
-  return {
-    type: "LOGIN_USER",
-    payload: { email: email, password: password },
-  };
+export const loginUser = (userData) => async (dispatch) => {
+  try {
+    const loginResponse = await axios.post("/api/users/login", userData);
+    const { user } = loginResponse.data;
+    localStorage.setItem("AuthenticatedUser", JSON.stringify(user));
+    dispatch(setCurrentUser(user));
+  } catch (err) {
+    alert(err.response.data);
+  }
 };
 
-export const setCurrentUser = (userID) => {
+export const setCurrentUser = (user) => {
   return {
     type: "SET_CURRENT_USER",
-    payload: userID,
+    payload: user,
   };
 };
 
-export const logoutUser = () => {
+export const setUsers = (users) => {
   return {
-    type: "LOGOUT_USER",
+    type: "SET_USERS",
+    payload: users,
   };
+};
+
+export const logoutUser = () => (dispatch) => {
+  localStorage.removeItem("AuthenticatedUser");
+  dispatch(setCurrentUser({}));
 };

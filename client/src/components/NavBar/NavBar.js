@@ -76,7 +76,7 @@ function NavBar(props) {
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
       <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
-        Logout
+        <Link to="/login">Logout</Link>
       </Menu.Item>
     </Menu>
   );
