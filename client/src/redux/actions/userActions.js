@@ -10,11 +10,14 @@ export const getUsers = () => async (dispatch) => {
   }
 };
 
-export const createUser = (newUser) => {
-  return {
-    type: "CREATE_USER",
-    payload: newUser,
-  };
+export const registerUser = (userData, history) => async (dispatch) => {
+  try {
+    await axios.post("/api/users/register", userData);
+    alert("Registered successfully");
+    history.push("/login");
+  } catch (err) {
+    alert(err.response.data);
+  }
 };
 
 export const loginUser = (userData) => async (dispatch) => {

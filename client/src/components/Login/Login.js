@@ -1,8 +1,8 @@
 import "./Login.css";
 
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Redirect } from "react-router";
 import { loginUser } from "../../redux/actions/userActions";
 import logo from "../../assets/logo.png";
 import { useState } from "react";
@@ -15,10 +15,6 @@ function Login() {
 
   // Login page inspired by: https://codepen.io/colorlib/pen/rxddKy
   function handleLogin() {
-    if (email === "" || password === "") {
-      alert("Please fill out email and password");
-      return;
-    }
     dispatch(loginUser({ email, password }));
   }
 
@@ -45,7 +41,9 @@ function Login() {
           <button type="button" onClick={handleLogin}>
             login
           </button>
-          <p className="message">Not registered? Create an account</p>
+          <p className="message">
+            Not registered? <Link to="/register">Create an account</Link>
+          </p>
         </form>
       </div>
     </div>

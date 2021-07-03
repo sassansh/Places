@@ -14,11 +14,19 @@ router.get("/", (req, res) => {
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
+  if (email === "") {
+    return res.status(400).send("Email field must be filled");
+  }
+
+  if (password === "") {
+    return res.status(400).send("Password field must be filled");
+  }
+
   // Find user by email
   User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(403).send("Email not found");
+      return res.status(400).send("Email not found");
     }
     // Check password
     const isMatch = user.password === password;
@@ -35,34 +43,62 @@ router.post("/login", (req, res) => {
         },
       });
     } else {
-      return res.status(403).send("Password incorrect");
+      return res.status(400).send("Password incorrect");
     }
   });
 });
 
 router.post("/register", (req, res) => {
-  const { name, email, password, avatarURL } = req.body;
-  const newUser = new User({
-    user_id: uuidv4(),
-    name: name,
-    email: email,
-    password: password,
-    avatarURL: avatarURL,
-    groups: [],
+  const { name, email, password, password2, avatarURL } = req.body;
+
+  if (name === "") {
+    return res.status(400).send("Name field must be filled");
+  }
+
+  if (email === "") {
+    return res.status(400).send("Email field must be filled");
+  }
+
+  if (password === "") {
+    return res.status(400).send("Password field must be filled");
+  }
+
+  if (password2 === "") {
+    return res.status(400).send("Please confirm password");
+  }
+
+  if (avatarURL === "") {
+    return res.status(400).send("Avatar URL field must be filled");
+  }
+
+  if (password !== password2) {
+    return res.status(400).send("Password fields do not match");
+  }
+
+  User.findOne({ email: email }).then((user) => {
+    if (user) {
+      return res.status(400).send("Email already exists");
+    } else {
+      const newUser = new User({
+        user_id: uuidv4(),
+        name: name,
+        email: email,
+        password: password,
+        avatarURL: avatarURL,
+        groups: [],
+      });
+
+      newUser
+        .save()
+        .then(() => res.send("User created successfully"))
+        .catch((err) =>
+          res.status(400).json({
+            error: err,
+            message: "Error creating user",
+          })
+        );
+    }
   });
-  newUser
-    .save()
-    .then(() =>
-      res.json({
-        message: "Created user successfully",
-      })
-    )
-    .catch((err) =>
-      res.status(400).json({
-        error: err,
-        message: "Error creating user",
-      })
-    );
 });
 
 export default router;
