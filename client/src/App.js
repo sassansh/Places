@@ -20,6 +20,7 @@ import Login from "./components/Login/Login";
 import NavBar from "./components/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Register from "./components/Register/Register";
 import logo from "./assets/logo.png";
 import { setCurrentUser } from "./redux/actions/userActions";
 import { useEffect } from "react";
@@ -28,24 +29,23 @@ const { Content, Footer, Sider } = Layout;
 
 function App() {
   const NavBarWithRouter = withRouter(NavBar);
-  const currentUserID = useSelector((state) => state.users.currentUserID);
+  const RegisterWithRouter = withRouter(Register);
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
   useEffect(() => {
-    if (localStorage.currentUserID && currentUserID == null) {
-      const storedUserID = localStorage.currentUserID;
+    if (localStorage.AuthenticatedUser) {
+      const storedUserID = localStorage.AuthenticatedUser;
       dispatch(setCurrentUser(storedUserID));
     }
-  });
-
-  const isLoggedIn = currentUserID !== null;
+  }, [dispatch]);
 
   return (
     <Router basename="/">
       <Layout>
-        {isLoggedIn && (
+        {isAuthenticated && (
           <Sider
             style={{
               overflow: "auto",
@@ -63,10 +63,11 @@ function App() {
         )}
         <Layout
           className="site-layout"
-          style={{ marginLeft: isLoggedIn ? 200 : 0 }}
+          style={{ marginLeft: isAuthenticated ? 200 : 0 }}
         >
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={RegisterWithRouter} />
             <Switch>
               <PrivateRoute exact path="/" component={GroupListView} />
               <PrivateRoute exact path="/groupview" component={GroupView} />
