@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 function PlaceList() {
   const places = useSelector((state) => state.places.allPlaces);
-  console.log(places);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
   );
