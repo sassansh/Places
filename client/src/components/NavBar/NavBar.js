@@ -4,7 +4,7 @@ import {
   AppstoreAddOutlined,
   BarsOutlined,
   FileAddOutlined,
-  LoginOutlined,
+  LogoutOutlined,
   ShopOutlined,
   TeamOutlined,
   UsergroupAddOutlined,
@@ -13,23 +13,30 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
+import { logoutUser } from "../../redux/actions/userActions";
+import { useDispatch } from "react-redux";
 
 function NavBar(props) {
   const path = props.location.pathname;
   const [tab, setTab] = useState("");
+  const dispatch = useDispatch();
+
+  function handleLogout() {
+    dispatch(logoutUser());
+  }
 
   function updateTab(e) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === "/login") {
-      setTab("login");
-    }
     if (path === "/") {
-      setTab("groupView");
+      setTab("groupListView");
     }
     if (path === "/creategroup") {
       setTab("createGroup");
+    }
+    if (path === "/groupview") {
+      setTab("groupView");
     }
     if (path === "/categoryview") {
       setTab("categoryView");
@@ -43,21 +50,18 @@ function NavBar(props) {
     if (path === "/addreview") {
       setTab("addReview");
     }
-    if (path === "/grouplistview") {
-      setTab("groupListView");
-    }
   }, [path]);
 
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
-      <Menu.Item key="login" icon={<LoginOutlined />}>
-        <Link to="/login">Login</Link>
-      </Menu.Item>
-      <Menu.Item key="groupView" icon={<TeamOutlined />}>
-        <Link to="/">Group View</Link>
+      <Menu.Item key="groupListView" icon={<TeamOutlined />}>
+        <Link to="/">Group List</Link>
       </Menu.Item>
       <Menu.Item key="createGroup" icon={<UsergroupAddOutlined />}>
         <Link to="/creategroup">Create Group</Link>
+      </Menu.Item>
+      <Menu.Item key="groupView" icon={<TeamOutlined />}>
+        <Link to="/groupview">Group View</Link>
       </Menu.Item>
       <Menu.Item key="categoryView" icon={<BarsOutlined />}>
         <Link to="/categoryview">Category View</Link>
@@ -71,8 +75,8 @@ function NavBar(props) {
       <Menu.Item key="addReview" icon={<FileAddOutlined />}>
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
-      <Menu.Item key="groupListView" icon={<TeamOutlined />}>
-        <Link to="/grouplistview">Group List</Link>
+      <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
+        <Link to="/login">Logout</Link>
       </Menu.Item>
     </Menu>
   );

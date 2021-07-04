@@ -1,58 +1,49 @@
 import "./Login.css";
 
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
-import { Redirect } from "react-router";
 import { loginUser } from "../../redux/actions/userActions";
+import logo from "../../assets/logo.png";
+import { useState } from "react";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginAttempts, setLoginAttempts] = useState(0);
   const dispatch = useDispatch();
-  const currentUserID = useSelector((state) => state.users.currentUserID);
-
-  const isLoggedIn = currentUserID !== null;
-
-  useEffect(() => {
-    if (loginAttempts > 0) {
-      currentUserID === null ? alert("Login failed") : console.log("logged in");
-    }
-  }, [currentUserID, loginAttempts]);
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
   // Login page inspired by: https://codepen.io/colorlib/pen/rxddKy
   function handleLogin() {
-    if (email === "" || password === "") {
-      alert("Please fill out email and password");
-      return;
-    }
-    dispatch(loginUser(email, password));
-    setLoginAttempts(loginAttempts + 1);
+    dispatch(loginUser({ email, password }));
   }
 
-  return isLoggedIn ? (
+  return isAuthenticated ? (
     <Redirect to={{ pathname: "/" }} />
   ) : (
     <div className="login-page">
+      <img alt="logo" src={logo} width="100px" />
+      <h2>Places</h2>
       <div className="login-container">
         <form className="login-form">
           <input
             type="text"
             value={email}
             onInput={(e) => setEmail(e.target.value)}
-            placeholder="email"
+            placeholder="Email"
           />
           <input
             type="password"
             value={password}
             onInput={(e) => setPassword(e.target.value)}
-            placeholder="password"
+            placeholder="Password"
           />
           <button type="button" onClick={handleLogin}>
             login
           </button>
-          <p className="message">Not registered? Create an account</p>
+          <p className="message">
+            Not registered? <Link to="/register">Create an account</Link>
+          </p>
         </form>
       </div>
     </div>
