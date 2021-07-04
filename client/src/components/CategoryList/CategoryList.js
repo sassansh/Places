@@ -1,11 +1,19 @@
 import "./CategoryList.css";
 
 import Category from "../Category/Category";
-//import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import { getCategories } from "../../redux/actions/categoryActions";
 
 function CategoryList() {
-  //const categories = useSelector(state=> state.categories.allCategories);
-  const categories = fetch("http://localhost:5000/api/categories/")
+  const categories = useSelector((state) => state.categories.allCategories);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   let categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />
@@ -13,14 +21,6 @@ function CategoryList() {
 
   return (
     <div>
-      {categories &&
-        <ul>
-          {categories.map((category) => (
-            <Category key={category.category_id} category={category} />
-          ))
-          }
-        </ul>
-      }
       <ul>{categoryItems}</ul>
     </div>
   );

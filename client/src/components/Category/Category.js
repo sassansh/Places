@@ -4,7 +4,7 @@ import { Avatar, Card } from "antd";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategory } from "../../redux/actions/categoryActions";
+import { setCurrentCategory } from "../../redux/actions/categoryActions";
 
 function Category({ category }) {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function Category({ category }) {
   });
   return (
     <Link to="/categoryview" onClick={() => {
-      dispatch(setCategory(category.category_id));
+      dispatch(setCurrentCategory(category.category_id));
     }}>
       <Card style={{ margin: 16 }}>
         <span className="category">
