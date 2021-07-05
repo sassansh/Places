@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { logoutUser } from "../../redux/actions/userActions";
+import { logoutUser } from "../../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 
 function NavBar(props) {
