@@ -33,7 +33,7 @@ function AddPlace(props) {
       ImageURL: imgURL,
     };
     dispatch(addPlace(newPlace));
-    props.history.push("/placeView");
+    //props.history.push("/placeView");
     form.resetFields();
   }
   return (

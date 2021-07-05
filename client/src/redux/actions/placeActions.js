@@ -17,7 +17,7 @@ export const setPlaces = (places) => {
   };
 };
 
-export const addPlace = async (newPlace) => async(dispatch) => {
+export const addPlace = (newPlace) => async(dispatch) => {
   try {
     const newPlaceResponse = await axios.post("/api/places", newPlace);
     const newPlaceID = newPlaceResponse.data.place_id;
