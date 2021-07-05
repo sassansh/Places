@@ -17,58 +17,43 @@ import GroupListView from "./components/GroupListView/GroupListView";
 import GroupView from "./components/GroupView/GroupView";
 import { Layout } from "antd";
 import Login from "./components/Login/Login";
-import NavBar from "./components/NavBar/NavBar";
+import MobileNavBar from "./components/Navigation/MobileNavBar/MobileNavBar";
+import NavBar from "./components/Navigation/NavBar/NavBar";
 import PlaceView from "./components/PlaceView/PlaceView";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
-import logo from "./assets/logo.png";
+import Register from "./components/Register/Register";
+import SideBar from "./components/Navigation/SideBar/SideBar";
 import { setCurrentUser } from "./redux/actions/userActions";
+import { useEffect } from "react";
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Footer } = Layout;
 
 function App() {
   const NavBarWithRouter = withRouter(NavBar);
-  const currentUserID = useSelector((state) => state.users.currentUserID);
+  const RegisterWithRouter = withRouter(Register);
+  const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
-  if (localStorage.currentUserID) {
-    const storedUserID = localStorage.currentUserID;
-    dispatch(setCurrentUser(storedUserID));
-  }
-  const isLoggedIn = currentUserID !== null;
+  useEffect(() => {
+    if (localStorage.AuthenticatedUser) {
+      const storedUserID = localStorage.AuthenticatedUser;
+      dispatch(setCurrentUser(storedUserID));
+    }
+  }, [dispatch]);
 
   return (
     <Router basename="/">
+      {isAuthenticated && <MobileNavBar menu={<NavBarWithRouter />} />}
       <Layout>
-        {isLoggedIn && (
-          <Sider
-            style={{
-              overflow: "auto",
-              height: "100vh",
-              position: "fixed",
-              left: 0,
-            }}
-          >
-            <div className="logo">
-              <img alt="logo" src={logo} width="35px" />
-              Places
-            </div>
-            <NavBarWithRouter />
-          </Sider>
-        )}
-        <Layout
-          className="site-layout"
-          style={{ marginLeft: isLoggedIn ? 200 : 0 }}
-        >
+        {isAuthenticated && <SideBar menu={<NavBarWithRouter />} />}
+        <Layout className="site-layout" style={{ marginLeft: 0 }}>
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={RegisterWithRouter} />
             <Switch>
-              <PrivateRoute
-                exact
-                path="/grouplistview"
-                component={GroupListView}
-              />
+              <PrivateRoute exact path="/" component={GroupListView} />
               <PrivateRoute exact path="/groupview" component={GroupView} />
               <PrivateRoute exact path="/creategroup" component={CreateGroup} />
               <PrivateRoute

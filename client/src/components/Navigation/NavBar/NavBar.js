@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { logoutUser } from "../../redux/actions/userActions";
+import { logoutUser } from "../../../redux/actions/userActions";
 import { useDispatch } from "react-redux";
 
 function NavBar(props) {
@@ -29,7 +29,7 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === "/grouplistview") {
+    if (path === "/") {
       setTab("groupListView");
     }
     if (path === "/creategroup") {
@@ -55,7 +55,7 @@ function NavBar(props) {
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
       <Menu.Item key="groupListView" icon={<TeamOutlined />}>
-        <Link to="/grouplistview">Group List</Link>
+        <Link to="/">Group List</Link>
       </Menu.Item>
       <Menu.Item key="createGroup" icon={<UsergroupAddOutlined />}>
         <Link to="/creategroup">Create Group</Link>
@@ -76,7 +76,7 @@ function NavBar(props) {
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
       <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
-        Logout
+        <Link to="/login">Logout</Link>
       </Menu.Item>
     </Menu>
   );

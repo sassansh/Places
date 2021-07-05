@@ -6,19 +6,34 @@ import {
   StarFilled,
   UserOutlined,
 } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
+import { getUsers } from "../../redux/actions/userActions";
 
 function Group(props) {
-  const users = useSelector(state=>state.users.allUsers);
-  const reviews = useSelector(state=> state.reviews.allReviews);
-  const places = useSelector(state=> state.places.allPlaces);
-  let numMembers = 0;
-  users.forEach((user) => {
-    if (user.groups.includes(props.group.group_id)) {
-      numMembers++;
+  const users = useSelector((state) => state.users.allUsers);
+  const reviews = useSelector((state) => state.reviews.allReviews);
+  const places = useSelector((state) => state.places.allPlaces);
+  const [numMembers, setNumMembers] = useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
+    let memberCount = 0;
+    if (users) {
+      users.forEach((user) => {
+        if (user.groups.includes(props.group.group_id)) {
+          memberCount++;
+        }
+      });
+      setNumMembers(memberCount);
     }
-  });
+  }, [users, props.group.group_id, numMembers]);
+
   let numReviews = 0;
   reviews.forEach((review) => {
     let place_id = review.place_id;

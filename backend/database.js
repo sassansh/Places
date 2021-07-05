@@ -9,6 +9,7 @@ console.log(`Trying to connect to MongoDB Atlas (cloud)`);
 mongoose
   .connect(connection, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
