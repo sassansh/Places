@@ -2,10 +2,10 @@ import "./CategoryView.css";
 
 import { Button, Col, Divider, Row, Typography } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PlaceList from "../PlaceList/PlaceList";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentCategory } from "../../redux/actions/categoryActions";
+import { setCategory } from "../../redux/actions/categoryActions";
 
 function CategoryView() {
   const dispatch = useDispatch();
@@ -17,19 +17,17 @@ function CategoryView() {
   let currentCategory = categories.find(
     (category) => category.category_id === currentCategoryID
   );
-  let categoryType = (currentCategory === undefined)? "" : currentCategory.name + " " + currentCategory.emoji;
-  let btnCategory = (currentCategory === undefined)? "" : currentCategory.name_singular;
+  let categoryType = currentCategory.name + " " + currentCategory.emoji;
+  let btnCategory = currentCategory.name_singular;
 
-  return (currentCategory === undefined)? (
-    <Redirect to="/groupview" />
-  ) : (
+  return (
     <div className="container">
       <Row style={{ marginLeft: "20px" }}>
         <Col lg={12}>
           <Title level={2}>{categoryType}</Title>
         </Col>
         <Col lg={12} className="addPlaceButton">
-          <Link to="/addPlace" onClick={() => {dispatch(setCurrentCategory(currentCategoryID))}}>
+          <Link to="/addPlace" onClick={() => {dispatch(setCategory(currentCategoryID))}}>
             <Button type="primary" icon={<PlusOutlined />} size="large">
               Add {btnCategory}
             </Button>
