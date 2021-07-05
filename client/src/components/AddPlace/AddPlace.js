@@ -2,10 +2,10 @@ import "./AddPlace.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { addPlace, setPlace } from "../../redux/actions/placeActions";
+import { addPlace, setCurrentPlace } from "../../redux/actions/placeActions";
 import { useDispatch, useSelector } from "react-redux";
 
-function AddPlace() {
+function AddPlace(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -21,13 +21,11 @@ function AddPlace() {
   };
 
   function handleAddPlace() {
-    let place_id = places.length + 1;
     let name = form.getFieldValue("name");
     let imgURL = form.getFieldValue("imgURL");
     let address = form.getFieldValue("address");
     if (name === undefined) return;
     let newPlace = {
-      place_id: place_id,
       name: name,
       address: address,
       group_id: currentGroupID,
@@ -35,7 +33,7 @@ function AddPlace() {
       ImageURL: imgURL,
     };
     dispatch(addPlace(newPlace));
-    dispatch(setPlace(place_id));
+    props.history.push("/placeView");
     form.resetFields();
   }
   return (
@@ -82,6 +80,9 @@ function AddPlace() {
               Submit
             </Button>
           </Link>
+          <Button className="button" type="primary" onClick={handleAddPlace}>
+            Better Submit
+          </Button>
         </Col>
       </Row>
     </div>

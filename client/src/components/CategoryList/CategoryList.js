@@ -6,14 +6,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { getCategories } from "../../redux/actions/categoryActions";
+import { getPlaces } from "../../redux/actions/placeActions";
 
 function CategoryList() {
-  const categories = useSelector((state) => state.categories.allCategories);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getPlaces());
   }, [dispatch]);
+  
+  let categories = useSelector((state) => state.categories.allCategories);
+  const places = useSelector((state) => state.places.allPlaces);
+
+  categories = categories
+    .map(category => ({...category,
+      numPlaces: places
+        .filter((place) => place.category_id === category.category_id)
+        .length
+    }));
 
   let categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />

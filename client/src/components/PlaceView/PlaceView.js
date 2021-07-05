@@ -1,25 +1,30 @@
 import "./PlaceView.css";
 
 import { Avatar, Col, Divider, Image, Row, Typography } from "antd";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
 
+import { getPlaces } from "../../redux/actions/placeActions";
+import { getCategories } from "../../redux/actions/categoryActions";
 import ReviewList from "../ReviewList/ReviewList";
 
 function PlaceView() {
-  const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
-  let currentCategory = categories.find(
-    (category) => category.category_id === currentCategoryID
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPlaces());
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const currentPlaceID = useSelector(state => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
-
-  let currentPlace = places.find(
+  const currentPlace = places.find(
     (place) => place.place_id === currentPlaceID
   );
+
+  const currentCategoryID = useSelector(state => state.categories.currentCategoryID);
+  const categories = useSelector((state) => state.categories.allCategories);
+  const currentCategory = categories.find(
+    (category) => category.category_id === currentCategoryID);
 
   let reviewsData = useSelector((state => state.reviews.allReviews)).filter(
     (review) => review.place_id === currentPlaceID
