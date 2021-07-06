@@ -1,15 +1,20 @@
 import "./GroupList.css";
 
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import Group from "../Group/Group";
 import { Link } from "react-router-dom";
-import { setCurrentGroup } from "../../redux/actions/groupActions";
+import { getGroups, setCurrentGroup } from "../../redux/actions/groupActions";
 
 function GroupList() {
-  const groups = useSelector((state) => state.groups.allGroups);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getGroups());
+  }, [dispatch]);
+
+  const groups = useSelector((state) => state.groups.allGroups);
   let groupsData = groups;
   let grouplist = groupsData.map((groupData) => (
     <Link
