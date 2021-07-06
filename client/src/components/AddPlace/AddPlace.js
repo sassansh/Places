@@ -35,8 +35,7 @@ function AddPlace() {
       ImageURL: imgURL,
     };
     dispatch(addPlace(newPlace));
-    //dispatch(setPlace(place_id));
-    //form.resetFields();
+    form.resetFields();
   }
   return (
     <div className="container">

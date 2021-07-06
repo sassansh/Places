@@ -8,14 +8,7 @@ import { setCurrentCategory } from "../../redux/actions/categoryActions";
 
 function Category({ category }) {
   const dispatch = useDispatch();
-  // const currentGroupID = useSelector(state => state.groups.currentGroupID);
-  // const places = useSelector(state => state.places.allPlaces);
-  // let numPlaces = 0;
-  // places.forEach(place => {
-  //   if (place.group_id === currentGroupID && place.category_id === category.category_id) {
-  //     numPlaces++;
-  //   }
-  // });
+
   return (
     <Link to="/categoryview" onClick={() => {
       dispatch(setCurrentCategory(category.category_id));
