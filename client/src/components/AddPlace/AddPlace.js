@@ -9,7 +9,6 @@ function AddPlace() {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const places = useSelector(state=>state.places.allPlaces);
   const categories = useSelector(state=>state.categories.allCategories);
   const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
   const currentGroupID = useSelector(state=>state.groups.currentGroupID);
@@ -21,13 +20,11 @@ function AddPlace() {
   };
 
   function handleAddPlace() {
-    let place_id = places.length + 1;
     let name = form.getFieldValue("name");
     let imgURL = form.getFieldValue("imgURL");
     let address = form.getFieldValue("address");
     if (name === undefined) return;
     let newPlace = {
-      place_id: place_id,
       name: name,
       address: address,
       group_id: currentGroupID,
