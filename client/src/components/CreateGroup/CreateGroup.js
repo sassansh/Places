@@ -1,7 +1,7 @@
 import "./CreateGroup.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-import { createGroup, setGroup } from "../../redux/actions/groupActions";
+import { createGroup, setCurrentGroup } from "../../redux/actions/groupActions";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link } from "react-router-dom";
@@ -37,7 +37,7 @@ function CreateGroup() {
       avatarURL: avatarURL,
     };
     dispatch(createGroup(newGroup));
-    dispatch(setGroup(group_id));
+    dispatch(setCurrentGroup(group_id));
     form.resetFields();
   }
 

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Group from "../Group/Group";
 import { Link } from "react-router-dom";
-import { setGroup } from "../../redux/actions/groupActions";
+import { setCurrentGroup } from "../../redux/actions/groupActions";
 
 function GroupList() {
   const groups = useSelector((state) => state.groups.allGroups);
@@ -15,7 +15,7 @@ function GroupList() {
     <Link
       to="/groupview"
       onClick={() => {
-        dispatch(setGroup(groupData.group_id));
+        dispatch(setCurrentGroup(groupData.group_id));
       }}
       key={groupData.group_id}
     >
