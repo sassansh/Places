@@ -22,10 +22,8 @@ router.post("/", (req, res) => {
   });
   newPlace
     .save()
-    .then(() =>
-      res.json({
-        message: "Created place successfully",
-      })
+    .then((place) =>
+      res.json(place)
     )
     .catch((err) =>
       res.status(400).json({

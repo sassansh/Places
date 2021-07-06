@@ -3,7 +3,7 @@ import { Card, Col, Rate, Row, Button } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setPlace } from "../../redux/actions/placeActions";
+import { setCurrentPlace } from "../../redux/actions/placeActions";
 
 function Review(props) {
   let dispatch = useDispatch();
@@ -30,7 +30,7 @@ function Review(props) {
         </Row>
         {isCurrentUser &&
           <Row justify="end" className="edit-review">
-          <Link to="/addReview" onClick={() => {dispatch(setPlace(currentPlaceID))}}>
+          <Link to="/addReview" onClick={() => {dispatch(setCurrentPlace(currentPlaceID))}}>
             <Button type="primary" icon={<EditOutlined />} size="large">
               Edit Review
             </Button>
