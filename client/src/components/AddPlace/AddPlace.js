@@ -2,7 +2,7 @@ import "./AddPlace.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { addPlace, setCurrentPlace } from "../../redux/actions/placeActions";
+import { addPlace } from "../../redux/actions/placeActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function AddPlace() {

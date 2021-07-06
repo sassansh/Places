@@ -3,7 +3,7 @@ import "./Category.css";
 import { Avatar, Card } from "antd";
 
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentCategory } from "../../redux/actions/categoryActions";
 
 function Category({ category }) {
