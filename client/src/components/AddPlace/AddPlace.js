@@ -9,7 +9,6 @@ function AddPlace() {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const places = useSelector(state=>state.places.allPlaces);
   const categories = useSelector(state=>state.categories.allCategories);
   const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
   const currentGroupID = useSelector(state=>state.groups.currentGroupID);
