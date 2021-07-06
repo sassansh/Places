@@ -2,7 +2,7 @@ import "./AddPlace.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { addPlace, setPlace } from "../../redux/actions/placeActions";
+import { addPlace, setCurrentPlace } from "../../redux/actions/placeActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function AddPlace() {
@@ -35,8 +35,8 @@ function AddPlace() {
       ImageURL: imgURL,
     };
     dispatch(addPlace(newPlace));
-    dispatch(setPlace(place_id));
-    form.resetFields();
+    //dispatch(setPlace(place_id));
+    //form.resetFields();
   }
   return (
     <div className="container">

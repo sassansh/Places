@@ -4,13 +4,13 @@ import { Avatar, Card, Rate } from "antd";
 
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setPlace } from "../../redux/actions/placeActions"
+import { setCurrentPlace } from "../../redux/actions/placeActions"
 
 function Place({ placeData }) {
   const dispatch = useDispatch();
 
   return (
-    <Link to="/placeview" onClick={() => dispatch(setPlace(placeData.place_id))} >
+    <Link to="/placeview" onClick={() => dispatch(setCurrentPlace(placeData.place_id))} >
       <Card style={{ margin: 16 }}>
         <span className="place">
           <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>

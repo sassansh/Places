@@ -1,9 +1,18 @@
 import "./PlaceList.css";
 
 import Place from "../Place/Place";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
+import { getPlaces } from "../../redux/actions/placeActions";
 
 function PlaceList() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPlaces());
+  }, [dispatch]);
+
   const places = useSelector((state) => state.places.allPlaces);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
