@@ -21,13 +21,11 @@ function AddPlace() {
   };
 
   function handleAddPlace() {
-    let place_id = places.length + 1;
     let name = form.getFieldValue("name");
     let imgURL = form.getFieldValue("imgURL");
     let address = form.getFieldValue("address");
     if (name === undefined) return;
     let newPlace = {
-      place_id: place_id,
       name: name,
       address: address,
       group_id: currentGroupID,
