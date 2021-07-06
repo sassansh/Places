@@ -13,11 +13,9 @@ const groupSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   avatarURL: {
     type: String,
-    required: true,
   },
 });
 

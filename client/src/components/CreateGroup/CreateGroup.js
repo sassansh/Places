@@ -1,16 +1,16 @@
 import "./CreateGroup.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-import { createGroup, setCurrentGroup } from "../../redux/actions/groupActions";
-import { useDispatch, useSelector } from 'react-redux';
+import { createGroup } from "../../redux/actions/groupActions";
+import { useDispatch } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
-  const groups = useSelector(state => state.groups.allGroups);
   const dispatch = useDispatch();
   const [fieldInput, setFieldInput] = useState({
     name: "",
@@ -25,19 +25,17 @@ function CreateGroup() {
   }
   
   function addGroup() {
-    let group_id = groups.length + 1;
     let name = form.getFieldValue("name");
     let description = form.getFieldValue("description");
     let avatarURL = form.getFieldValue("logo");
     if (name === undefined) return;
     let newGroup = {
-      group_id: group_id,
+      group_id: uuidv4(),
       name: name,
       description: description,
       avatarURL: avatarURL,
     };
     dispatch(createGroup(newGroup));
-    dispatch(setCurrentGroup(group_id));
     form.resetFields();
   }
 
