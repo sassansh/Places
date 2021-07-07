@@ -1,5 +1,4 @@
 import axios from "axios";
-import { async } from "rxjs";
 
 export const getReviews = () => async(dispatch) => {
     try {
