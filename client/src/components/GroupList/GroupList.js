@@ -6,12 +6,16 @@ import { useEffect } from "react";
 import Group from "../Group/Group";
 import { Link } from "react-router-dom";
 import { getGroups, setCurrentGroup } from "../../redux/actions/groupActions";
+import { getReviews } from "../../redux/actions/reviewActions";
+import { getPlaces } from "../../redux/actions/placeActions";
 
 function GroupList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(getReviews());
     dispatch(getGroups());
+    dispatch(getPlaces());
   }, [dispatch]);
 
   const groups = useSelector((state) => state.groups.allGroups);
