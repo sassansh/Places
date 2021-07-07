@@ -12,7 +12,7 @@ import {
 } from "antd";
 import { addReview, editReview, getReviews } from "../../redux/actions/reviewActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -25,27 +25,40 @@ function AddReview() {
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
   const categories = useSelector((state) => state.categories.allCategories);
+  const reviewLoadedRef = useRef(false);
+
+
+  const existingReview = reviews.find((review) => (review.user_id === currentUserID) && (review.place_id === currentPlaceID));
+
 
   const [rateValue, setRateValue] = useState(0);
-  const [reviewExists, setReviewExists] = useState(false);
-  const [existingReview, setExistingReview] = useState({});
+  //const [reviewExists, setReviewExists] = useState(false);
+  //const [existingReview, setExistingReview] = useState({});
 
-  function checkIfReviewExists() {
-    dispatch(getReviews());
-    reviews.forEach((element) => {
-      if (
-        element.user_id === currentUserID &&
-        element.place_id === currentPlaceID
-      ) {
-        setReviewExists(true);
-        setExistingReview(element);
-        setRateValue(element.rating);
-        return;
-      }
-    });
-  }
+  // function checkIfReviewExists() {
+  //   dispatch(getReviews());
+    // reviews.forEach((element) => {
+    //   if (
+    //     element.user_id === currentUserID &&
+    //     element.place_id === currentPlaceID
+    //   ) {
+    //     setReviewExists(true);
+    //     setExistingReview(element);
+    //     setRateValue(element.rating);
+    //     return;
+    //   }
+    // });
+  // }
 
-  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews, dispatch]);
+  //useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews, dispatch]);
+
+  useEffect(() => {
+    if (!reviewLoadedRef.current) {
+      dispatch(getReviews());
+      setRateValue(existingReview.rating);
+      reviewLoadedRef.current = true;
+    }
+  }, [dispatch, existingReview.rating]);
 
   const { Title } = Typography;
 
@@ -59,12 +72,11 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    checkIfReviewExists();
     let index = reviews.findIndex(
       (element) => element.review_id === existingReview.review_id
     );
     let newReview = {};
-    if (reviewExists) {
+    if (existingReview) {
       newReview = {
         ...existingReview,
         rating: rateValue,
@@ -89,7 +101,7 @@ function AddReview() {
       >
         <Col lg={24}>
           <Title level={2}>
-            {reviewExists?
+            {existingReview ?
             "Edit Review" :
             "Add Review"}</Title>
         </Col>
