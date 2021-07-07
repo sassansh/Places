@@ -15,6 +15,7 @@ import CategoryView from "./components/CategoryView/CategoryView";
 import CreateGroup from "./components/CreateGroup/CreateGroup";
 import GroupListView from "./components/GroupListView/GroupListView";
 import GroupView from "./components/GroupView/GroupView";
+import RequestView from "./components/RequestView/RequestView";
 import { Layout } from "antd";
 import Login from "./components/Login/Login";
 import MobileNavBar from "./components/Navigation/MobileNavBar/MobileNavBar";
@@ -64,6 +65,7 @@ function App() {
               <PrivateRoute exact path="/addplace" component={AddPlace} />
               <PrivateRoute exact path="/placeview" component={PlaceView} />
               <PrivateRoute exact path="/addreview" component={AddReview} />
+              <PrivateRoute exact path="/requestview" component={RequestView} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
