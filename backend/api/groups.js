@@ -1,5 +1,6 @@
 import Group from "../models/Group.js";
 import express from "express";
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
@@ -10,9 +11,9 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { group_id, name, description, avatarURL } = req.body;
+  const { name, description, avatarURL } = req.body;
   const newGroup = new Group({
-    group_id: group_id,
+    group_id: uuidv4(),
     name: name,
     description: description,
     avatarURL: avatarURL,
@@ -21,6 +22,7 @@ router.post("/", (req, res) => {
     .save()
     .then(() =>
       res.json({
+        group: newGroup,
         message: "Added group successfully",
       })
     )

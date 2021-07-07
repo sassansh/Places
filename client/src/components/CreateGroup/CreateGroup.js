@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 function CreateGroup() {
   const { Title } = Typography;
@@ -30,7 +29,6 @@ function CreateGroup() {
     let avatarURL = form.getFieldValue("logo");
     if (name === undefined) return;
     let newGroup = {
-      group_id: uuidv4(),
       name: name,
       description: description,
       avatarURL: avatarURL,
