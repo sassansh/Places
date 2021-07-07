@@ -11,8 +11,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(JSON.stringify(req.body));
-  console.log("HERE!");
   const { user_id, place_id, rating } = req.body;
   const newReview = new Review ({
     review_id: uuidv4(),
