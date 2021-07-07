@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getPlaces } from "../../redux/actions/placeActions";
 import { getCategories } from "../../redux/actions/categoryActions";
 import ReviewList from "../ReviewList/ReviewList";
+import RatingTile from "../RatingTile/RatingTile";
 
 function PlaceView() {
   const dispatch = useDispatch();
@@ -40,29 +41,60 @@ function PlaceView() {
     reviewsData
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
-  let averageScoreString = averageScore? Number(averageScore.toFixed(2)).toString() : "?";
+
+  let criterion1 = "Beauty ";
+  let criterion2 = "Fun ";
+  let criterion3 = "Convenience ";
+  let criterion4 = "Quiet ";
+  let criterion5 = "Sand ";
 
   return (
     <div className="container">
       <Row
         style={{
           marginLeft: "20px",
+          marginBottom: "10px"
         }}
       >
         <Col lg={12}>
-          <Title level={2}>
-            {currentPlace.name}{" "}
-            <Avatar
-              style={{ color: "#ffffff", backgroundColor: "#512da8" }}
-              shape="square"
-              size={64}
-            >
-              {averageScoreString}
-            </Avatar>
-          </Title>
+          <Row>
+            <Title level={2}>
+              {currentPlace.name}{" "}
+              <RatingTile score={32} outOf={50} isMainRating={true} / >
+            </Title>
+          </Row>
         </Col>
         <Col lg={12} className="category-of-place">
           <Title level={2}>{currentCategory.name_singular + " " + currentCategory.emoji}</Title>
+        </Col>
+      </Row>
+      <Row justify="space-between">
+        <Col>
+          <Title level={4}>
+            {criterion1}
+            <RatingTile score={8} outOf={10} / >
+          </Title>
+        </Col>
+        <Col>
+          <Title level={4}>
+            {criterion2}
+            <RatingTile score={8} outOf={10} / >
+          </Title>
+        </Col>
+        <Col>
+          <Title level={4}>
+          {criterion3} <RatingTile score={8} outOf={10} / >
+          </Title>
+        </Col>
+        <Col>
+          <Title level={4}>
+          {criterion4} <RatingTile score={8} outOf={10} / >
+          </Title>
+        </Col>
+        <Col>
+          <Title level={4}>
+          {criterion5} <RatingTile score={0} outOf={10} / >
+          </Title>
         </Col>
       </Row>
       <Divider

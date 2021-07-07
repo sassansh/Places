@@ -19,7 +19,7 @@ function Place({ placeData }) {
           <span className="place-name">{placeData.name}</span>
         </span>
 
-        {placeData.numReviews > 0?
+        {placeData.numReviews > -1? //TODO: CHANGE BACK TO 0, THIS IS JUST FOR TESTING
           <span className="place-rating">
             <Rate disabled allowHalf defaultValue={placeData.avgRating} />
             <span className="num-of-reviews">{placeData.numReviews}</span>
