@@ -10,7 +10,7 @@ import {
   Row,
   Typography,
 } from "antd";
-import { addReview, editReview } from "../../redux/actions/reviewActions";
+import { addReview, editReview, getReviews } from "../../redux/actions/reviewActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 function AddReview() {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews);
-  const currentUserID = useSelector((state) => state.users.currentUserID);
+  const currentUserID = useSelector((state) => state.users.user.user_id);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
   const categories = useSelector((state) => state.categories.allCategories);
@@ -31,6 +31,7 @@ function AddReview() {
   const [existingReview, setExistingReview] = useState({});
 
   function checkIfReviewExists() {
+    dispatch(getReviews());
     reviews.forEach((element) => {
       if (
         element.user_id === currentUserID &&
@@ -44,7 +45,7 @@ function AddReview() {
     });
   }
 
-  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews]);
+  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews, dispatch]);
 
   const { Title } = Typography;
 
@@ -71,7 +72,6 @@ function AddReview() {
       dispatch(editReview(newReview, index));
     } else {
       newReview = {
-        review_id: reviews.length + 1,
         user_id: currentUserID,
         place_id: currentPlaceID,
         rating: rateValue,
