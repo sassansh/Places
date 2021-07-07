@@ -25,45 +25,26 @@ function AddReview() {
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
   const categories = useSelector((state) => state.categories.allCategories);
+
   const reviewLoadedRef = useRef(false);
-
-
   const existingReview = reviews.find((review) => (review.user_id === currentUserID) && (review.place_id === currentPlaceID));
 
-
   const [rateValue, setRateValue] = useState(0);
-  //const [reviewExists, setReviewExists] = useState(false);
-  //const [existingReview, setExistingReview] = useState({});
-
-  // function checkIfReviewExists() {
-  //   dispatch(getReviews());
-    // reviews.forEach((element) => {
-    //   if (
-    //     element.user_id === currentUserID &&
-    //     element.place_id === currentPlaceID
-    //   ) {
-    //     setReviewExists(true);
-    //     setExistingReview(element);
-    //     setRateValue(element.rating);
-    //     return;
-    //   }
-    // });
-  // }
-
-  //useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews, dispatch]);
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
       dispatch(getReviews());
-      setRateValue(existingReview.rating);
+      if (existingReview) {
+        setRateValue(existingReview.rating);
+      }
       reviewLoadedRef.current = true;
     }
-  }, [dispatch, existingReview.rating]);
+  }, [dispatch, existingReview]);
 
   const { Title } = Typography;
 
-  let place = places.find((element) => element.place_id === currentPlaceID);
-  let category = categories.find(
+  const place = places.find((element) => element.place_id === currentPlaceID);
+  const category = categories.find(
     (element) => element.category_id === place.category_id
   );
 
@@ -72,11 +53,11 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    let index = reviews.findIndex(
-      (element) => element.review_id === existingReview.review_id
-    );
     let newReview = {};
     if (existingReview) {
+      let index = reviews.findIndex(
+        (element) => element.review_id === existingReview.review_id
+      );
       newReview = {
         ...existingReview,
         rating: rateValue,
