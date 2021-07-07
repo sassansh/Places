@@ -10,7 +10,7 @@ function Review(props) {
   let review = props.review;
   let users = useSelector(state=>state.users.allUsers);
   let reviewer = users.find(element => element.user_id === review.user_id).name;
-  let isCurrentUser = (review.user_id === useSelector(state => state.users.currentUserID));
+  let isCurrentUser = (review.user_id === useSelector(state => state.users.user.user_id));
   let currentPlaceID = useSelector(state => state.places.currentPlaceID);
 
   return (

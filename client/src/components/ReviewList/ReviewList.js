@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function ReviewList(props) {
   let reviewsData = props.reviewsData;
-  let currentUser = useSelector(state => state.users.currentUserID);
+  let currentUser = useSelector(state => state.users.user.user_id);
 
   reviewsData = reviewsData
     .filter((review) => review.user_id === currentUser)
