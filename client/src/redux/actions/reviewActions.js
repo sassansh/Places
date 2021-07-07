@@ -17,12 +17,18 @@ export const setReviews = (reviews) => {
     };
   };
 
-export const addReview =  newReview => {
-    return {
-       type: 'ADD_REVIEW',
-       payload: newReview
-    }; 
-};
+export const addReview = (newReview) => async(dispatch) => {
+try {
+    const newReviewResponse = await axios.post("/api/reviews", newReview);
+    const newReviewFull = await newReviewResponse.data;
+    return dispatch({
+    type: "ADD_REVIEW",
+    payload: newReviewFull
+    })
+} catch (err) {
+    console.log(err);
+}
+}
 
 export const editReview =  (newReview, index) => {
     return {
