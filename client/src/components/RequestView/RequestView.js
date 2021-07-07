@@ -2,6 +2,7 @@ import "./RequestView.css"
 
 import { Col, Divider, Row, Typography } from "antd";
 import { BellOutlined } from "@ant-design/icons";
+import RequestList from "../RequestList/RequestList";
 
 function RequestView() {
   const { Title } = Typography;
@@ -24,7 +25,7 @@ function RequestView() {
           borderWidth: 5,
         }}
       />
-      Requests go here
+      <RequestList />
     </div>
   );
 }
