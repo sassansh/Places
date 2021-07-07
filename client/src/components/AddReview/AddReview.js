@@ -45,7 +45,7 @@ function AddReview() {
     });
   }
 
-  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews]);
+  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews, dispatch]);
 
   const { Title } = Typography;
 

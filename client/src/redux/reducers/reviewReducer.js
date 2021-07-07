@@ -17,7 +17,7 @@ const reviewReducer = (state = initialState, action) => {
         allReviews: newReviews,
       };
     case "EDIT_REVIEW":
-      newReviews = [...state.allReviews];
+      const newReviews = [...state.allReviews];
       newReviews[action.payload.index] = action.payload.newReview;
       return {
         ...state,
