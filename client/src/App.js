@@ -38,7 +38,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.AuthenticatedUser) {
-      const storedUserID = localStorage.AuthenticatedUser;
+      const storedUserID = JSON.parse(localStorage.AuthenticatedUser);
       dispatch(setCurrentUser(storedUserID));
     }
   }, [dispatch]);
