@@ -10,9 +10,9 @@ import {
   Row,
   Typography,
 } from "antd";
-import { addReview, editReview } from "../../redux/actions/reviewActions";
+import { addReview, editReview, getReviews } from "../../redux/actions/reviewActions";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -21,35 +21,30 @@ const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
 function AddReview() {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews);
-  const currentUserID = useSelector((state) => state.users.currentUserID);
+  const currentUserID = useSelector((state) => state.users.user.user_id);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
   const categories = useSelector((state) => state.categories.allCategories);
 
+  const reviewLoadedRef = useRef(false);
+  const existingReview = reviews.find((review) => (review.user_id === currentUserID) && (review.place_id === currentPlaceID));
+
   const [rateValue, setRateValue] = useState(0);
-  const [reviewExists, setReviewExists] = useState(false);
-  const [existingReview, setExistingReview] = useState({});
 
-  function checkIfReviewExists() {
-    reviews.forEach((element) => {
-      if (
-        element.user_id === currentUserID &&
-        element.place_id === currentPlaceID
-      ) {
-        setReviewExists(true);
-        setExistingReview(element);
-        setRateValue(element.rating);
-        return;
+  useEffect(() => {
+    if (!reviewLoadedRef.current) {
+      dispatch(getReviews());
+      if (existingReview) {
+        setRateValue(existingReview.rating);
       }
-    });
-  }
-
-  useEffect(checkIfReviewExists, [currentUserID, currentPlaceID, reviews]);
+      reviewLoadedRef.current = true;
+    }
+  }, [dispatch, existingReview]);
 
   const { Title } = Typography;
 
-  let place = places.find((element) => element.place_id === currentPlaceID);
-  let category = categories.find(
+  const place = places.find((element) => element.place_id === currentPlaceID);
+  const category = categories.find(
     (element) => element.category_id === place.category_id
   );
 
@@ -58,12 +53,11 @@ function AddReview() {
   }
 
   function handleSubmitReview(value) {
-    checkIfReviewExists();
-    let index = reviews.findIndex(
-      (element) => element.review_id === existingReview.review_id
-    );
     let newReview = {};
-    if (reviewExists) {
+    if (existingReview) {
+      let index = reviews.findIndex(
+        (element) => element.review_id === existingReview.review_id
+      );
       newReview = {
         ...existingReview,
         rating: rateValue,
@@ -71,7 +65,6 @@ function AddReview() {
       dispatch(editReview(newReview, index));
     } else {
       newReview = {
-        review_id: reviews.length + 1,
         user_id: currentUserID,
         place_id: currentPlaceID,
         rating: rateValue,
@@ -89,7 +82,7 @@ function AddReview() {
       >
         <Col lg={24}>
           <Title level={2}>
-            {reviewExists?
+            {existingReview ?
             "Edit Review" :
             "Add Review"}</Title>
         </Col>

@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 import { getPlaces } from "../../redux/actions/placeActions";
 import { getCategories } from "../../redux/actions/categoryActions";
+import { getReviews } from "../../redux/actions/reviewActions";
 import ReviewList from "../ReviewList/ReviewList";
 import RatingTile from "../RatingTile/RatingTile";
 
@@ -15,6 +16,7 @@ function PlaceView() {
   useEffect(() => {
     dispatch(getPlaces());
     dispatch(getCategories());
+    dispatch(getReviews());
   }, [dispatch]);
 
   const categories = useSelector((state) => state.categories.allCategories);

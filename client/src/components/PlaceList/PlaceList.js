@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { getPlaces } from "../../redux/actions/placeActions";
+import { getReviews } from "../../redux/actions/reviewActions";
 
 function PlaceList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPlaces());
+    dispatch(getReviews());
   }, [dispatch]);
 
   const places = useSelector((state) => state.places.allPlaces);

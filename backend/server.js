@@ -9,6 +9,7 @@ import places from "./api/places.js";
 import users from "./api/users.js";
 import groups from "./api/groups.js";
 import categories from "./api/categories.js";
+import reviews from "./api/reviews.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use("/api/places", places);
 app.use("/api/users", users);
 app.use("/api/groups", groups);
 app.use("/api/categories", categories);
+app.use("/api/reviews", reviews);
 
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "/client/build")));

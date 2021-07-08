@@ -17,11 +17,13 @@ function CategoryList() {
 
   let categories = useSelector((state) => state.categories.allCategories);
   const places = useSelector((state) => state.places.allPlaces);
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
 
   categories = categories
     .map(category => ({...category,
       numPlaces: places
-        .filter((place) => place.category_id === category.category_id)
+        .filter((place) => (place.category_id === category.category_id)
+          && (place.group_id === currentGroupID))
         .length
     }));
 
