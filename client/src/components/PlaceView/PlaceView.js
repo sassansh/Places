@@ -8,6 +8,7 @@ import { getPlaces } from "../../redux/actions/placeActions";
 import { getCategories } from "../../redux/actions/categoryActions";
 import { getReviews } from "../../redux/actions/reviewActions";
 import ReviewList from "../ReviewList/ReviewList";
+import RatingDetail from "../RatingDetail/RatingDetail";
 import RatingTile from "../RatingTile/RatingTile";
 
 function PlaceView() {
@@ -44,11 +45,69 @@ function PlaceView() {
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
 
-  let criterion1 = "Beauty ";
-  let criterion2 = "Fun ";
-  let criterion3 = "Convenience ";
-  let criterion4 = "Quiet ";
-  let criterion5 = "Sand ";
+  // let criterion1 = "Beauty ";
+  // let criterion2 = "Fun ";
+  // let criterion3 = "Convenience ";
+  // let criterion4 = "Quiet ";
+  // let criterion5 = "Sand ";
+
+  let ratingCriteria = [
+      {
+        name: "Beauty",
+        outOf: 10,
+        score: 8
+      },
+      {
+        name: "Fun",
+        outOf: 10,
+        score: 8
+      },
+      {
+        name: "Convenience",
+        outOf: 10,
+        score: 8
+      },
+      {
+        name: "Quiet",
+        outOf: 10,
+        score: 8
+      },
+      {
+        name: "Sand",
+        outOf: 10,
+        score: 0
+      }
+  ];
+
+  // <Row justify="space-between">
+  //   <Col>
+  //     <Title level={4}>
+  //       {criterion1}
+  //       <RatingTile score={8} outOf={10} / >
+  //     </Title>
+  //   </Col>
+  //   <Col>
+  //     <Title level={4}>
+  //       {criterion2}
+  //       <RatingTile score={8} outOf={10} / >
+  //     </Title>
+  //   </Col>
+  //   <Col>
+  //     <Title level={4}>
+  //     {criterion3} <RatingTile score={8} outOf={10} / >
+  //     </Title>
+  //   </Col>
+  //   <Col>
+  //     <Title level={4}>
+  //     {criterion4} <RatingTile score={8} outOf={10} / >
+  //     </Title>
+  //   </Col>
+  //   <Col>
+  //     <Title level={4}>
+  //     {criterion5} <RatingTile score={0} outOf={10} / >
+  //     </Title>
+  //   </Col>
+  // </Row>
 
   return (
     <div className="container">
@@ -68,35 +127,6 @@ function PlaceView() {
         </Col>
         <Col lg={12} className="category-of-place">
           <Title level={2}>{currentCategory.name_singular + " " + currentCategory.emoji}</Title>
-        </Col>
-      </Row>
-      <Row justify="space-between">
-        <Col>
-          <Title level={4}>
-            {criterion1}
-            <RatingTile score={8} outOf={10} / >
-          </Title>
-        </Col>
-        <Col>
-          <Title level={4}>
-            {criterion2}
-            <RatingTile score={8} outOf={10} / >
-          </Title>
-        </Col>
-        <Col>
-          <Title level={4}>
-          {criterion3} <RatingTile score={8} outOf={10} / >
-          </Title>
-        </Col>
-        <Col>
-          <Title level={4}>
-          {criterion4} <RatingTile score={8} outOf={10} / >
-          </Title>
-        </Col>
-        <Col>
-          <Title level={4}>
-          {criterion5} <RatingTile score={0} outOf={10} / >
-          </Title>
         </Col>
       </Row>
       <Divider
@@ -126,6 +156,7 @@ function PlaceView() {
         </Col>
         <Col lg={4}></Col>
         <Col lg={10}>
+          <RatingDetail criteria={ratingCriteria} />
           <ReviewList reviewsData={reviewsData} />
         </Col>
       </Row>
