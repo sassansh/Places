@@ -80,10 +80,10 @@ function NavBar(props) {
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
       <Menu.Item key="requestView" icon={<BellOutlined />}>
-        <Link to="/requestview">RequestView</Link>
+        <Link to="/requestview">Request View</Link>
       </Menu.Item>
       <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
-        <Link to="/login">Logout</Link>
+        <Link to="/login">Log Out</Link>
       </Menu.Item>
     </Menu>
   );
