@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
   });
   newGroup
     .save()
-    .then((newGroup) => res.json(newGroup))
+    .then((savedGroup) => res.json(savedGroup))
     .catch((err) =>
       res.status(400).json({
         error: err,
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
       })
     );
   User.updateOne({ user_id: user_id }, { $push: { groups: group_id } })
-    .then((user) => res.json(user))
+    .then((updatedUser) => res.json(updatedUser))
     .catch((err) => console.log(err));
 });
 
