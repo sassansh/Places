@@ -6,21 +6,14 @@ import {
   StarFilled,
   UserOutlined,
 } from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-
-import { getUsers } from "../../redux/actions/userActions";
 
 function Group(props) {
   const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
   const [numMembers, setNumMembers] = useState(0);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
 
   useEffect(() => {
     let memberCount = 0;

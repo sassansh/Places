@@ -2,7 +2,7 @@ import "./CreateGroup.css";
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { createGroup } from "../../redux/actions/groupActions";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -11,6 +11,7 @@ function CreateGroup() {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const currentUserID = useSelector((state) => state.users.user.user_id);
   const [fieldInput, setFieldInput] = useState({
     name: "",
     description: "",
@@ -22,7 +23,7 @@ function CreateGroup() {
       description: form.getFieldValue("description"),
     });
   }
-  
+
   function addGroup() {
     let name = form.getFieldValue("name");
     let description = form.getFieldValue("description");
@@ -32,6 +33,7 @@ function CreateGroup() {
       name: name,
       description: description,
       avatarURL: avatarURL,
+      user_id: currentUserID,
     };
     dispatch(createGroup(newGroup));
     form.resetFields();
