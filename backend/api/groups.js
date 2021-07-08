@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
   });
   newGroup
     .save()
-    .then(() => res.json(newGroup))
+    .then((newGroup) => res.json(newGroup))
     .catch((err) =>
       res.status(400).json({
         error: err,
