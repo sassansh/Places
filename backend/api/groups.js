@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const { name, description, avatarURL, user_id, userGroups } = req.body;
+  const { name, description, avatarURL, user_id } = req.body;
   let group_id = uuidv4();
   const newGroup = new Group({
     group_id: group_id,
@@ -22,24 +22,16 @@ router.post("/", (req, res) => {
   });
   newGroup
     .save()
-    .then(() =>
-      res.json({
-        group_id: group_id,
-        message: "Added group successfully",
-      })
-    )
+    .then(() => res.json(newGroup))
     .catch((err) =>
       res.status(400).json({
         error: err,
         message: "Error adding group",
       })
     );
-  userGroups.push(group_id);
-  User.updateOne({user_id: user_id}, {groups: userGroups})
+  User.updateOne({ user_id: user_id }, { $push: { groups: group_id } })
     .then((user) => res.json(user))
     .catch((err) => console.log(err));
-
-  
 });
 
 export default router;
