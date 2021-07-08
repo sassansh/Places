@@ -18,21 +18,28 @@ export const setReviews = (reviews) => {
   };
 
 export const addReview = (newReview) => async(dispatch) => {
-try {
-    const newReviewResponse = await axios.post("/api/reviews", newReview);
-    const newReviewFull = await newReviewResponse.data;
-    return dispatch({
-    type: "ADD_REVIEW",
-    payload: newReviewFull
-    })
-} catch (err) {
-    console.log(err);
-}
+    try {
+        const newReviewResponse = await axios.post("/api/reviews", newReview);
+        const newReviewFull = await newReviewResponse.data;
+        return dispatch({
+        type: "ADD_REVIEW",
+        payload: newReviewFull
+        })
+    } catch (err) {
+        console.log(err);
+    }
 }
 
-export const editReview =  (newReview, index) => {
-    return {
-       type: 'EDIT_REVIEW',
-       payload: { newReview: newReview, index: index},
-    }; 
+export const editReview =  (newReview, index) => async(dispatch) => {
+    try {
+        const review_id = newReview.review_id;
+        const rating = newReview.rating;
+        axios.put("/api/reviews", {review_id, rating});
+        return dispatch({
+            type: "EDIT_REVIEW",
+            payload: {newReview: newReview, index: index}
+        })
+    } catch (err) {
+        console.log(err);
+    }
 };
