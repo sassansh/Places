@@ -8,6 +8,7 @@ import {
   ShopOutlined,
   TeamOutlined,
   UsergroupAddOutlined,
+  BellOutlined
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
@@ -50,6 +51,9 @@ function NavBar(props) {
     if (path === "/addreview") {
       setTab("addReview");
     }
+    if (path === "/requestview") {
+      setTab("requestView");
+    }
   }, [path]);
 
   return (
@@ -75,8 +79,11 @@ function NavBar(props) {
       <Menu.Item key="addReview" icon={<FileAddOutlined />}>
         <Link to="/addreview">Add Review</Link>
       </Menu.Item>
+      <Menu.Item key="requestView" icon={<BellOutlined />}>
+        <Link to="/requestview">Requests</Link>
+      </Menu.Item>
       <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
-        <Link to="/login">Logout</Link>
+        <Link to="/login">Log Out</Link>
       </Menu.Item>
     </Menu>
   );
