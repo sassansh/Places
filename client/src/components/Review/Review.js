@@ -6,8 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPlace } from "../../redux/actions/placeActions";
 
 function Review(props) {
-  let reviewsData = useSelector((state => state.reviews.allReviews));
-  console.log(reviewsData);
   let dispatch = useDispatch();
   let review = props.review;
   let users = useSelector(state=>state.users.allUsers);

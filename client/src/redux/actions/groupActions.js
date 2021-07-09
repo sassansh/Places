@@ -13,7 +13,7 @@ export const getGroups = () => async (dispatch) => {
 export const createGroup = (newGroup) => async (dispatch) => {
   try {
     const newGroupResponse = await axios.post("/api/groups", newGroup);
-    const group_id = newGroupResponse.data.group.group_id;
+    const group_id = newGroupResponse.data.group_id;
     dispatch(setCurrentGroup(group_id));
   } catch (err) {
     console.log(err);
