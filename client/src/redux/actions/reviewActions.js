@@ -32,12 +32,13 @@ export const addReview = (newReview) => async(dispatch) => {
 
 export const editReview =  (newReview, index) => async(dispatch) => {
     try {
-        const review_id = newReview.review_id;
-        const rating = newReview.rating;
+        let review_id = newReview.review_id;
+        let rating = newReview.rating;
         axios.put("/api/reviews", {review_id, rating});
+        dispatch(setReviews(newReview));
         return dispatch({
             type: "EDIT_REVIEW",
-            payload: {newReview: newReview, index: index}
+            payload: {review_id: review_id, rating: rating}
         })
     } catch (err) {
         console.log(err);

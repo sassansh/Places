@@ -6,7 +6,11 @@ import Review from "../Review/Review";
 import { useSelector } from "react-redux";
 
 function ReviewList(props) {
-  let reviewsData = props.reviewsData;
+  const currentPlaceID = useSelector(state => state.places.currentPlaceID);
+  let reviewsData = useSelector((state => state.reviews.allReviews)).filter(
+    (review) => review.place_id === currentPlaceID
+  );
+  // let reviewsData = props.reviewsData;
   let currentUser = useSelector(state => state.users.user.user_id);
 
   reviewsData = reviewsData

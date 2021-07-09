@@ -19,7 +19,11 @@ const reviewReducer = (state = initialState, action) => {
       };
     case "EDIT_REVIEW":
       newReviews = [...state.allReviews];
-      newReviews[action.payload.index] = action.payload.newReview;
+      for (let i = 0; i < newReviews.length; i++) {
+        if (newReviews[i].review_id === action.payload.review_id) {
+          newReviews[i].rating = action.payload.rating;
+        }
+      };
       return {
         ...state,
         allReviews: newReviews,
