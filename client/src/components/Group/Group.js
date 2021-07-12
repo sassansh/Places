@@ -42,15 +42,17 @@ function Group(props) {
   return (
     <Card style={{ margin: 16 }} onClick={props.onClick}>
       <Row justify="space-around" align="middle">
-        <Col className="group" flex="100px">
-          <Avatar src={props.group.avatarURL} size={64} />
+        <Col lg={4} md={4} sm={24} xs={24} className="group">
+          <Row justify="center">
+          <Avatar src={props.group.avatarURL} size={64}/>
+          </Row>
         </Col>
-        <Col flex="auto">
-          <div className="group-name">{props.group.name}</div>
-          <div className="group-descrip">{props.group.description}</div>
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <Row justify="center" className="group-name">{props.group.name}</Row>
+          <Row justify="center" className="group-descrip">{props.group.description}</Row>
         </Col>
-        <Col flex="auto">
-          <Row justify="end" align="middle">
+        <Col lg={8} md={8} sm={24} xs={24} >
+          <Row justify="center" align="middle">
             <Col className="join-button">
               <Button
                 type="primary"
