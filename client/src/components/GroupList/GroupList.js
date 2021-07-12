@@ -2,6 +2,7 @@ import "./GroupList.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Col, Row } from "antd";
 
 import Group from "../Group/Group";
 import { Link } from "react-router-dom";
@@ -35,9 +36,9 @@ function GroupList() {
   ));
 
   return (
-    <div>
-      <ul>{grouplist}</ul>
-    </div>
+    <Row>
+      <Col span={24}>{grouplist}</Col>
+    </Row>
   );
 }
 

@@ -9,18 +9,14 @@ import { TeamOutlined } from "@ant-design/icons";
 function GroupListView() {
   const { Title } = Typography;
   return (
-    <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col span={12}>
+    <Col className="container">
+      <Row justify="space-around">
+        <Col lg={12} md={12} sm={12} xs={12}>
           <Title level={2}>
             <TeamOutlined size="large" /> Groups
           </Title>
         </Col>
-        <Col span={12} className="joinGroup">
+        <Col lg={12} md={12} sm={12} className="joinGroup">
           <Link to="/creategroup">
             <Button type="primary" icon={<TeamOutlined />} size="large">
               Create Group
@@ -30,12 +26,11 @@ function GroupListView() {
       </Row>
       <Divider
         style={{
-          marginTop: "0",
           borderWidth: 5,
         }}
       />
       <GroupList />
-    </div>
+    </Col>
   );
 }
 
