@@ -55,14 +55,11 @@ function AddReview() {
   function handleSubmitReview(value) {
     let newReview = {};
     if (existingReview) {
-      let index = reviews.findIndex(
-        (element) => element.review_id === existingReview.review_id
-      );
       newReview = {
         ...existingReview,
         rating: rateValue,
       };
-      dispatch(editReview(newReview, index));
+      dispatch(editReview(newReview));
     } else {
       newReview = {
         user_id: currentUserID,
