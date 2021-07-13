@@ -3,6 +3,11 @@
   padding-left: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 @media (min-width: 992px) {
   .menu {
@@ -19,4 +24,13 @@
 
 .logo img {
   margin-right: 5px;
+}
+
+.profilepic {
+  height: 36px;
+  color: #f0f2f5;
+  position: absolute;
+  right: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
 }

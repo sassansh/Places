@@ -29,6 +29,10 @@ const UserSchema = new Schema({
     type: [String],
     required: true,
   },
+  requestGroups: {
+    type: [String],
+    required: true,
+  },
 });
 
 export default mongoose.model("User", UserSchema, "users");
