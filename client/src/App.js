@@ -49,7 +49,10 @@ function App() {
       {isAuthenticated && <MobileNavBar menu={<NavBarWithRouter />} />}
       <Layout style={{ marginTop: "60px" }}>
         {isAuthenticated && <SideBar menu={<NavBarWithRouter />} />}
-        <Layout className="site-layout">
+        <Layout
+          className="site-layout"
+          style={!isAuthenticated ? { marginLeft: "0px" } : {}}
+        >
           <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={RegisterWithRouter} />

@@ -3,28 +3,20 @@ import "./NavBar.css";
 import {
   AppstoreAddOutlined,
   BarsOutlined,
+  BellOutlined,
   FileAddOutlined,
-  LogoutOutlined,
   ShopOutlined,
   TeamOutlined,
   UsergroupAddOutlined,
-  BellOutlined
 } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { logoutUser } from "../../../redux/actions/userActions";
-import { useDispatch } from "react-redux";
 
 function NavBar(props) {
   const path = props.location.pathname;
   const [tab, setTab] = useState("");
-  const dispatch = useDispatch();
-
-  function handleLogout() {
-    dispatch(logoutUser());
-  }
 
   function updateTab(e) {
     setTab(e.key);
@@ -81,9 +73,6 @@ function NavBar(props) {
       </Menu.Item>
       <Menu.Item key="requestView" icon={<BellOutlined />}>
         <Link to="/requestview">Requests</Link>
-      </Menu.Item>
-      <Menu.Item onClick={handleLogout} key="logout" icon={<LogoutOutlined />}>
-        <Link to="/login">Log Out</Link>
       </Menu.Item>
     </Menu>
   );
