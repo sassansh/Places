@@ -3,6 +3,11 @@
   padding-left: 2rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 @media (min-width: 992px) {
   .menu {
