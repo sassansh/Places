@@ -32,6 +32,7 @@ const { Content, Footer } = Layout;
 function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
+  const CreateGroupWithRouter = withRouter(CreateGroup);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
@@ -56,7 +57,7 @@ function App() {
             <Switch>
               <PrivateRoute exact path="/" component={GroupListView} />
               <PrivateRoute exact path="/groupview" component={GroupView} />
-              <PrivateRoute exact path="/creategroup" component={CreateGroup} />
+              <PrivateRoute exact path="/creategroup" component={CreateGroupWithRouter} />
               <PrivateRoute
                 exact
                 path="/categoryview"

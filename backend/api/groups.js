@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { name, description, avatarURL, user_id } = req.body;
   let group_id = uuidv4();
   const newGroup = new Group({
@@ -20,18 +20,16 @@ router.post("/", (req, res) => {
     description: description,
     avatarURL: avatarURL,
   });
-  newGroup
-    .save()
-    .then((savedGroup) => res.json(savedGroup))
-    .catch((err) =>
-      res.status(400).json({
-        error: err,
-        message: "Error adding group",
-      })
-    );
-  User.updateOne({ user_id: user_id }, { $push: { groups: group_id } })
-    .then((updatedUser) => res.json(updatedUser))
-    .catch((err) => console.log(err));
+  await Promise.all([
+    newGroup.save().then(() => Group.find()),
+    User.updateOne({ user_id: user_id }, { $push: { groups: group_id } }, ),
+  ])
+    .then((data) => {
+      res.json(data[0]);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 export default router;

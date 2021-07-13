@@ -10,11 +10,13 @@ export const getGroups = () => async (dispatch) => {
   }
 };
 
-export const createGroup = (newGroup) => async (dispatch) => {
+export const createGroup = (newGroup, history) => async (dispatch) => {
   try {
     const newGroupResponse = await axios.post("/api/groups", newGroup);
-    const group_id = newGroupResponse.data.group_id;
-    dispatch(setCurrentGroup(group_id));
+    const groups = newGroupResponse.data;
+    dispatch(setGroups(groups));
+    dispatch(setCurrentGroup(groups[groups.length - 1].group_id));
+    history.push("/groupview");
   } catch (err) {
     console.log(err);
   }
