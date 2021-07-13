@@ -5,7 +5,12 @@ import { Layout } from "antd";
 const SideBar = ({ menu }) => {
   return (
     <Layout.Sider
-      className="sidebar"
+      style={{
+        overflow: "auto",
+        height: "100vh",
+        position: "fixed",
+        left: 0,
+      }}
       breakpoint={"lg"}
       theme="dark"
       collapsedWidth={0}
