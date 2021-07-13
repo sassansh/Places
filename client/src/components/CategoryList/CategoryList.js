@@ -1,5 +1,7 @@
 import "./CategoryList.css";
 
+import { Col, Row } from "antd";
+
 import Category from "../Category/Category";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -32,9 +34,9 @@ function CategoryList() {
   ));
 
   return (
-    <div>
-      <ul>{categoryItems}</ul>
-    </div>
+    <Row>
+    <Col span={24}>{categoryItems}</Col>
+  </Row>
   );
 }
 
