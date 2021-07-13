@@ -121,12 +121,12 @@ router.post("/group/request", (req, res) => {
       if (user.requestGroups.includes(group_id)) {
         return res.status(400).send("Already requested to join this group");
       }
-    });
 
-    // Add group ID to user's requestGroups
-    User.updateOne({ user_id }, { $push: { requestGroups: group_id } })
-      .then((user) => res.json({ success: true }))
-      .catch((err) => console.log(err));
+      // Add group ID to user's requestGroups
+      User.updateOne({ user_id }, { $push: { requestGroups: group_id } })
+        .then((user) => res.json({ success: true }))
+        .catch((err) => console.log(err));
+    });
   });
 });
 
