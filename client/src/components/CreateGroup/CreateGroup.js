@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function CreateGroup() {
+function CreateGroup(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function CreateGroup() {
       avatarURL: avatarURL,
       user_id: currentUserID,
     };
-    dispatch(createGroup(newGroup));
+    dispatch(createGroup(newGroup, props.history));
     form.resetFields();
   }
 
