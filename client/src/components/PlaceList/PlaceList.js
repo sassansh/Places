@@ -1,5 +1,7 @@
 import "./PlaceList.css";
 
+import { Col, Row } from "antd";
+
 import Place from "../Place/Place";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -53,9 +55,9 @@ function PlaceList() {
     )
   );
   return (
-    <div>
-      <ul>{placeList}</ul>
-    </div>
+    <Row>
+    <Col span={24}>{placeList}</Col>
+  </Row>
   );
 }
 

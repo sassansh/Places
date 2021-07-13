@@ -20,29 +20,25 @@ function GroupView() {
     }
   });
   return (
-    <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col lg={12}>
+    <Col className="container">
+      <Row justify="center">
+        <Col lg={12} md={12} sm={14}>
           <Title level={2}>
             <Avatar size="large" src={avatarURL} /> {title}
           </Title>
         </Col>
-        <Col lg={12} className="numOfMembers">
+        <Col lg={0} md={0} sm={0} xs={24}></Col>
+        <Col lg={12} md={12} sm={10} className="numOfMembers">
           <Title level={2}>👤 {numMembers} Members</Title>
         </Col>
       </Row>
       <Divider
         style={{
-          marginTop: "0",
           borderWidth: 5,
         }}
       />
       <CategoryList/>
-    </div>
+    </Col>
   );
 }
 
