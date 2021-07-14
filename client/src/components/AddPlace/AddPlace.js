@@ -4,6 +4,7 @@ import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { addPlace } from "../../redux/actions/placeActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 function AddPlace() {
   const { Title } = Typography;
@@ -12,12 +13,21 @@ function AddPlace() {
   const categories = useSelector(state=>state.categories.allCategories);
   const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
   const currentGroupID = useSelector(state=>state.groups.currentGroupID);
+  const [fieldInput, setFieldInput] = useState({
+    name: "",
+  });
 
   const currentCategory = () => {
     return categories.find(
       (category) => category.category_id === currentCategoryID
     );
   };
+
+  function handleChange() {
+    setFieldInput({
+      name: form.getFieldValue("name"),
+    });
+  }
 
   function handleAddPlace() {
     let name = form.getFieldValue("name");
@@ -35,16 +45,13 @@ function AddPlace() {
     form.resetFields();
   }
   return (
-    <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col span={12}>
+    <Col className="container">
+      <Row justify="center">
+        <Col lg={12} md={12} sm={12}>
           <Title level={2}>Add {currentCategory().name_singular}</Title>
         </Col>
-        <Col span={12} className="currentCategory">
+        <Col lg={0} md={0} sm={0} xs={24}></Col>
+        <Col lg={12} md={12} sm={12} className="currentCategory">
           <h2>
             {currentCategory().emoji} {currentCategory().name}
           </h2>
@@ -52,13 +59,12 @@ function AddPlace() {
       </Row>
       <Divider
         style={{
-          marginTop: "0",
           borderWidth: 5,
         }}
       />
       <Row justify="center">
-        <Col lg={8}>
-          <Form className="form" form={form} layout="vertical" size="large">
+        <Col lg={8} md={10} sm={10}>
+          <Form className="form" form={form} layout="vertical" size="large" onChange={handleChange}>
             <Form.Item name="name" label="Name">
               <Input placeholder="Name" />
             </Form.Item>
@@ -74,13 +80,13 @@ function AddPlace() {
       <Row justify="center">
         <Col>
           <Link to="/placeView" onClick={handleAddPlace}>
-            <Button className="button" type="primary">
+            <Button className="button" type="primary" size="large" disabled={fieldInput.name === ""}>
               Submit
             </Button>
           </Link>
         </Col>
       </Row>
-    </div>
+    </Col>
   );
 }
 

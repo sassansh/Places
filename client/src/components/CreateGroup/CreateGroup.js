@@ -40,24 +40,19 @@ function CreateGroup(props) {
   }
 
   return (
-    <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col lg={24}>
+    <Col className="container">
+      <Row justify="center">
+        <Col lg={24} md={24}>
           <Title level={2}>Create Group</Title>
         </Col>
       </Row>
       <Divider
         style={{
-          marginTop: "0",
           borderWidth: 5,
         }}
       />
       <Row justify="center">
-        <Col lg={8}>
+        <Col lg={8} md={10} sm={10}>
           <Form
             className="form"
             form={form}
@@ -83,6 +78,7 @@ function CreateGroup(props) {
             <Button
               className="button"
               type="primary"
+              size="large"
               disabled={fieldInput.name === "" || fieldInput.description === ""}
             >
               Submit
@@ -90,7 +86,7 @@ function CreateGroup(props) {
           </Link>
         </Col>
       </Row>
-    </div>
+    </Col>
   );
 }
 
