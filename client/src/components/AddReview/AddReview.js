@@ -72,12 +72,8 @@ function AddReview() {
 
   return (
     <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col lg={24}>
+      <Row justify="center">
+        <Col lg={12} md={12} sm={14}>
           <Title level={2}>
             {existingReview ?
             "Edit Review" :
@@ -90,7 +86,7 @@ function AddReview() {
           borderWidth: 5,
         }}
       />
-      <Row>
+      <Row justify="center">
         <Col lg={4} md={5} sm={24}>
           <Image
             preview={false}
@@ -121,7 +117,7 @@ function AddReview() {
           <span className="ratingText">Select Overall Rating</span>
           <br />
           <Rate
-            style={{ fontSize: "2.5vw" }}
+            style={{ fontSize: "30px + 3.5vw" }}
             tooltips={desc}
             onChange={handleRateChange}
             value={rateValue}
