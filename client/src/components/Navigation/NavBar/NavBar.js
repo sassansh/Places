@@ -43,7 +43,7 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === '/') {
+    if (path === '/' || path === '/creategroup') {
       setTab('groupListView');
       dispatch(setCurrentGroup(''));
       dispatch(setCurrentCategory(''));
@@ -52,10 +52,10 @@ function NavBar(props) {
       setTab('groupView');
       dispatch(setCurrentCategory(''));
       dispatch(setCurrentPlace(''));
-    } else if (path === '/categoryview') {
+    } else if (path === '/categoryview' || path === '/addPlace') {
       setTab('categoryView');
       dispatch(setCurrentPlace(''));
-    } else if (path === '/placeview') {
+    } else if (path === '/placeview' || path === '/addReview') {
       setTab('placeView');
     } else if (path === '/requestview') {
       setTab('requestView');
