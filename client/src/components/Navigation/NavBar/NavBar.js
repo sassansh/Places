@@ -7,15 +7,19 @@ import {
   ShopOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
-import { useSelector } from 'react-redux';
+import { setCurrentCategory } from '../../../redux/actions/categoryActions';
+import { setCurrentGroup } from '../../../redux/actions/groupActions';
+import { setCurrentPlace } from '../../../redux/actions/placeActions';
 
 function NavBar(props) {
   const path = props.location.pathname;
   const [tab, setTab] = useState('');
+  const dispatch = useDispatch();
 
   const groups = useSelector((state) => state.groups.allGroups);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
@@ -41,10 +45,16 @@ function NavBar(props) {
   useEffect(() => {
     if (path === '/') {
       setTab('groupListView');
+      dispatch(setCurrentGroup(''));
+      dispatch(setCurrentCategory(''));
+      dispatch(setCurrentPlace(''));
     } else if (path === '/groupview') {
       setTab('groupView');
+      dispatch(setCurrentCategory(''));
+      dispatch(setCurrentPlace(''));
     } else if (path === '/categoryview') {
       setTab('categoryView');
+      dispatch(setCurrentPlace(''));
     } else if (path === '/placeview') {
       setTab('placeView');
     } else if (path === '/requestview') {
@@ -52,7 +62,7 @@ function NavBar(props) {
     } else {
       setTab('');
     }
-  }, [path]);
+  }, [path, dispatch]);
 
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
