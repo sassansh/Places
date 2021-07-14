@@ -49,43 +49,45 @@ function Group(props) {
     });
   });
 
-  const renderButton = () => {
-    if (currentUser.groups.includes(props.group.group_id)) {
-      return (
-        <Link
-          to="/groupview"
-          onClick={() => {
-            dispatch(setCurrentGroup(props.group.group_id));
-          }}
-        >
+  function renderButton() {
+    if (currentUser) {
+      if (currentUser.groups.includes(props.group.group_id)) {
+        return (
+          <Link
+            to="/groupview"
+            onClick={() => {
+              dispatch(setCurrentGroup(props.group.group_id));
+            }}
+          >
+            <Button
+              type="primary"
+              icon={<ArrowRightOutlined size="large" />}
+              size="medium"
+            >
+              Go to Group
+            </Button>
+          </Link>
+        );
+      } else if (currentUser.requestGroups.includes(props.group.group_id)) {
+        return (
+          <Button type="primary" size="medium" disabled>
+            Requested to Join
+          </Button>
+        );
+      } else {
+        return (
           <Button
             type="primary"
-            icon={<ArrowRightOutlined size="large" />}
+            icon={<QuestionOutlined size="large" />}
             size="medium"
+            style={{ background: 'orange', borderColor: 'orange' }}
           >
-            Go to Group
+            Request to Join
           </Button>
-        </Link>
-      );
-    } else if (currentUser.requestGroups.includes(props.group.group_id)) {
-      return (
-        <Button type="primary" size="medium" disabled>
-          Requested to Join
-        </Button>
-      );
-    } else {
-      return (
-        <Button
-          type="primary"
-          icon={<QuestionOutlined size="large" />}
-          size="medium"
-          style={{ background: 'orange', borderColor: 'orange' }}
-        >
-          Request to Join
-        </Button>
-      );
+        );
+      }
     }
-  };
+  }
 
   return (
     <Card style={{ margin: 16 }} onClick={props.onClick}>
