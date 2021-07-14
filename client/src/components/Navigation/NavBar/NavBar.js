@@ -7,15 +7,19 @@ import {
   ShopOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
-import { useSelector } from 'react-redux';
+import { setCurrentCategory } from '../../../redux/actions/categoryActions';
+import { setCurrentGroup } from '../../../redux/actions/groupActions';
+import { setCurrentPlace } from '../../../redux/actions/placeActions';
 
 function NavBar(props) {
   const path = props.location.pathname;
   const [tab, setTab] = useState('');
+  const dispatch = useDispatch();
 
   const groups = useSelector((state) => state.groups.allGroups);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
@@ -39,20 +43,26 @@ function NavBar(props) {
     setTab(e.key);
   }
   useEffect(() => {
-    if (path === '/') {
+    if (path === '/' || path === '/creategroup') {
       setTab('groupListView');
+      dispatch(setCurrentGroup(''));
+      dispatch(setCurrentCategory(''));
+      dispatch(setCurrentPlace(''));
     } else if (path === '/groupview') {
       setTab('groupView');
-    } else if (path === '/categoryview') {
+      dispatch(setCurrentCategory(''));
+      dispatch(setCurrentPlace(''));
+    } else if (path === '/categoryview' || path === '/addPlace') {
       setTab('categoryView');
-    } else if (path === '/placeview') {
+      dispatch(setCurrentPlace(''));
+    } else if (path === '/placeview' || path === '/addReview') {
       setTab('placeView');
     } else if (path === '/requestview') {
       setTab('requestView');
     } else {
       setTab('');
     }
-  }, [path]);
+  }, [path, dispatch]);
 
   return (
     <Menu onClick={updateTab} theme="dark" mode="inline" selectedKeys={[tab]}>
