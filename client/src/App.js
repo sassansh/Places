@@ -33,6 +33,7 @@ function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
+  const AddPlaceWithRouter = withRouter(AddPlace);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
@@ -70,7 +71,11 @@ function App() {
                 path="/categoryview"
                 component={CategoryView}
               />
-              <PrivateRoute exact path="/addplace" component={AddPlace} />
+              <PrivateRoute
+                exact
+                path="/addplace"
+                component={AddPlaceWithRouter}
+              />
               <PrivateRoute exact path="/placeview" component={PlaceView} />
               <PrivateRoute exact path="/addreview" component={AddReview} />
               <PrivateRoute exact path="/requestview" component={RequestView} />

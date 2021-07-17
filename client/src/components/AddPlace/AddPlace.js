@@ -1,20 +1,22 @@
-import "./AddPlace.css";
+import './AddPlace.css';
 
-import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-import { Link } from "react-router-dom";
-import { addPlace } from "../../redux/actions/placeActions";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-function AddPlace() {
+import { addPlace } from '../../redux/actions/placeActions';
+import { useState } from 'react';
+
+function AddPlace(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const categories = useSelector(state=>state.categories.allCategories);
-  const currentCategoryID = useSelector(state=>state.categories.currentCategoryID);
-  const currentGroupID = useSelector(state=>state.groups.currentGroupID);
+  const categories = useSelector((state) => state.categories.allCategories);
+  const currentCategoryID = useSelector(
+    (state) => state.categories.currentCategoryID
+  );
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const [fieldInput, setFieldInput] = useState({
-    name: "",
+    name: '',
   });
 
   const currentCategory = () => {
@@ -25,14 +27,14 @@ function AddPlace() {
 
   function handleChange() {
     setFieldInput({
-      name: form.getFieldValue("name"),
+      name: form.getFieldValue('name'),
     });
   }
 
   function handleAddPlace() {
-    let name = form.getFieldValue("name");
-    let imgURL = form.getFieldValue("imgURL");
-    let address = form.getFieldValue("address");
+    let name = form.getFieldValue('name');
+    let imgURL = form.getFieldValue('imgURL');
+    let address = form.getFieldValue('address');
     if (name === undefined) return;
     let newPlace = {
       name: name,
@@ -41,7 +43,7 @@ function AddPlace() {
       category_id: currentCategoryID,
       ImageURL: imgURL,
     };
-    dispatch(addPlace(newPlace));
+    dispatch(addPlace(newPlace, props.history));
     form.resetFields();
   }
   return (
@@ -64,7 +66,13 @@ function AddPlace() {
       />
       <Row justify="center">
         <Col lg={8} md={10} sm={10}>
-          <Form className="form" form={form} layout="vertical" size="large" onChange={handleChange}>
+          <Form
+            className="form"
+            form={form}
+            layout="vertical"
+            size="large"
+            onChange={handleChange}
+          >
             <Form.Item name="name" label="Name">
               <Input placeholder="Name" />
             </Form.Item>
@@ -79,11 +87,15 @@ function AddPlace() {
       </Row>
       <Row justify="center">
         <Col>
-          <Link to="/placeView" onClick={handleAddPlace}>
-            <Button className="button" type="primary" size="large" disabled={fieldInput.name === ""}>
-              Submit
-            </Button>
-          </Link>
+          <Button
+            onClick={handleAddPlace}
+            className="button"
+            type="primary"
+            size="large"
+            disabled={fieldInput.name === ''}
+          >
+            Submit
+          </Button>
         </Col>
       </Row>
     </Col>
