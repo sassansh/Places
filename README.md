@@ -108,7 +108,7 @@
 
 ## Task Breakdown 📝
 
-- [ ] Register new account or log in to existing account
+- [x] Register new account or log in to existing account
 
   - [x] Login UI with email/user name and password inputs and login button
   - [x] Button to Register and form for creating new account
