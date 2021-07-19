@@ -1,4 +1,5 @@
 name: Deploy Staging
+# Staging URL: https://places-cpsc455-staging.herokuapp.com/#/login
 
 on:
   pull_request:
