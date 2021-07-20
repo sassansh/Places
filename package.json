@@ -14,9 +14,11 @@
     "first-install": "yarn install && cd client && yarn install"
   },
   "dependencies": {
+    "cloudinary": "^1.26.2",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-form-data": "^2.0.17",
     "mongoose": "^5.12.13",
     "morgan": "^1.10.0",
     "uuid": "^8.3.2"

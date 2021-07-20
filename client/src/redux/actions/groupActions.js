@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const getGroups = () => async (dispatch) => {
   try {
-    const groupsResponse = await axios.get("/api/groups");
+    const groupsResponse = await axios.get('/api/groups');
     const groups = groupsResponse.data;
     dispatch(setGroups(groups));
   } catch (err) {
@@ -12,11 +12,15 @@ export const getGroups = () => async (dispatch) => {
 
 export const createGroup = (newGroup, history) => async (dispatch) => {
   try {
-    const newGroupResponse = await axios.post("/api/groups", newGroup);
+    const newGroupResponse = await axios.post('/api/groups', newGroup, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     const groups = newGroupResponse.data;
     dispatch(setGroups(groups));
     dispatch(setCurrentGroup(groups[groups.length - 1].group_id));
-    history.push("/groupview");
+    history.push('/groupview');
   } catch (err) {
     console.log(err);
   }
@@ -24,14 +28,14 @@ export const createGroup = (newGroup, history) => async (dispatch) => {
 
 export const setCurrentGroup = (groupID) => {
   return {
-    type: "SET_CURRENT_GROUP",
+    type: 'SET_CURRENT_GROUP',
     payload: groupID,
   };
 };
 
 export const setGroups = (groups) => {
   return {
-    type: "SET_GROUPS",
+    type: 'SET_GROUPS',
     payload: groups,
   };
 };
