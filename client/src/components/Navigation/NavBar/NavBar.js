@@ -37,8 +37,6 @@ function NavBar(props) {
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   let currentPlace = places.find((place) => place.place_id === currentPlaceID);
 
-  console.log(currentGroupID);
-
   function updateTab(e) {
     setTab(e.key);
   }
