@@ -13,6 +13,7 @@ import AddPlace from './components/AddPlace/AddPlace';
 import AddReview from './components/AddReview/AddReview';
 import CategoryView from './components/CategoryView/CategoryView';
 import CreateGroup from './components/CreateGroup/CreateGroup';
+import ManageGroup from './components/ManageGroup/ManageGroup';
 import GroupListView from './components/GroupListView/GroupListView';
 import GroupView from './components/GroupView/GroupView';
 import { Layout } from 'antd';
@@ -79,6 +80,7 @@ function App() {
               <PrivateRoute exact path="/placeview" component={PlaceView} />
               <PrivateRoute exact path="/addreview" component={AddReview} />
               <PrivateRoute exact path="/requestview" component={RequestView} />
+              <PrivateRoute exact path="/managegroup" component={ManageGroup} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
