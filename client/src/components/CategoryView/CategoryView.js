@@ -1,14 +1,18 @@
-import "./CategoryView.css";
+import './CategoryView.css';
 
-import { Button, Col, Divider, Row, Typography } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { Link, Redirect } from "react-router-dom";
-import PlaceList from "../PlaceList/PlaceList";
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentCategory } from "../../redux/actions/categoryActions";
+import { Button, Col, Divider, Row, Typography } from 'antd';
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Filters from '../Filters/Filters';
+import PlaceList from '../PlaceList/PlaceList';
+import { PlusOutlined } from '@ant-design/icons';
+import { setCurrentCategory } from '../../redux/actions/categoryActions';
+import { useState } from 'react';
 
 function CategoryView() {
   const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState('');
   const { Title } = Typography;
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
@@ -17,11 +21,15 @@ function CategoryView() {
   let currentCategory = categories.find(
     (category) => category.category_id === currentCategoryID
   );
-  let categoryType = (currentCategory === undefined)? "" : currentCategory.name + " " + currentCategory.emoji;
-  let btnCategory = (currentCategory === undefined)? "" : currentCategory.name_singular;
+  let categoryType =
+    currentCategory === undefined
+      ? ''
+      : currentCategory.name + ' ' + currentCategory.emoji;
+  let btnCategory =
+    currentCategory === undefined ? '' : currentCategory.name_singular;
 
-  return (currentCategory === undefined) ? (
-    <Redirect to="/groupview" /> 
+  return currentCategory === undefined ? (
+    <Redirect to="/groupview" />
   ) : (
     <Col className="container">
       <Row justify="center">
@@ -30,7 +38,12 @@ function CategoryView() {
         </Col>
         <Col lg={0} md={0} sm={0} xs={24}></Col>
         <Col lg={12} md={12} sm={12} className="addPlaceButton">
-          <Link to="/addPlace" onClick={() => {dispatch(setCurrentCategory(currentCategoryID))}}>
+          <Link
+            to="/addPlace"
+            onClick={() => {
+              dispatch(setCurrentCategory(currentCategoryID));
+            }}
+          >
             <Button type="primary" icon={<PlusOutlined />} size="large">
               Add {btnCategory}
             </Button>
@@ -42,7 +55,8 @@ function CategoryView() {
           borderWidth: 5,
         }}
       />
-      <PlaceList />
+      <Filters setSearchQuery={setSearchQuery} />
+      <PlaceList searchQuery={searchQuery} />
     </Col>
   );
 }
