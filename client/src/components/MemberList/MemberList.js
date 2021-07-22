@@ -1,0 +1,23 @@
+import "./MemberList.css";
+
+import Member from "../Member/Member";
+
+import { useSelector } from "react-redux";
+
+function MemberList() {
+  const users = useSelector((state) => state.users.allUsers);
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+  const currentGroupMembers = users.filter((user) => user.groups.includes(currentGroupID));  
+
+  let memberList = currentGroupMembers.map((member) => (
+    <Member key={member.user_id} user={member} group={member.group} />
+  ));
+
+  return (
+    <div>
+      <ul>{memberList}</ul>
+    </div>
+  );
+}
+
+export default MemberList;
