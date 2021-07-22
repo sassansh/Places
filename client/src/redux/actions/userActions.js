@@ -1,8 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
+import { message } from 'antd';
 
 export const getUsers = () => async (dispatch) => {
   try {
-    const usersResponse = await axios.get("/api/users");
+    const usersResponse = await axios.get('/api/users');
     const users = usersResponse.data;
     dispatch(setUsers(users));
   } catch (err) {
@@ -12,40 +13,43 @@ export const getUsers = () => async (dispatch) => {
 
 export const registerUser = (userData, history) => async (dispatch) => {
   try {
-    await axios.post("/api/users/register", userData);
-    alert("Registered successfully");
-    history.push("/login");
+    await axios.post('/api/users/register', userData);
+    alert('Registered successfully');
+    history.push('/login');
+    message.success('Registered successfully!');
   } catch (err) {
-    alert(err.response.data);
+    message.error(err.response.data + '!');
   }
 };
 
 export const loginUser = (userData) => async (dispatch) => {
   try {
-    const loginResponse = await axios.post("/api/users/login", userData);
+    const loginResponse = await axios.post('/api/users/login', userData);
     const { user } = loginResponse.data;
-    localStorage.setItem("AuthenticatedUser", JSON.stringify(user));
+    localStorage.setItem('AuthenticatedUser', JSON.stringify(user));
     dispatch(setCurrentUser(user));
+    message.success('Logged in! Welcome ' + user.name + '!');
   } catch (err) {
-    alert(err.response.data);
+    message.error(err.response.data + '!');
   }
 };
 
 export const setCurrentUser = (user) => {
   return {
-    type: "SET_CURRENT_USER",
+    type: 'SET_CURRENT_USER',
     payload: user,
   };
 };
 
 export const setUsers = (users) => {
   return {
-    type: "SET_USERS",
+    type: 'SET_USERS',
     payload: users,
   };
 };
 
 export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem("AuthenticatedUser");
+  localStorage.removeItem('AuthenticatedUser');
   dispatch(setCurrentUser({}));
+  message.success('Logged out!');
 };

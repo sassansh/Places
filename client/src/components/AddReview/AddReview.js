@@ -1,4 +1,4 @@
-import "./AddReview.css";
+import './AddReview.css';
 
 import {
   Avatar,
@@ -9,14 +9,18 @@ import {
   Rate,
   Row,
   Typography,
-} from "antd";
-import { addReview, editReview, getReviews } from "../../redux/actions/reviewActions";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState, useRef } from "react";
+} from 'antd';
+import {
+  addReview,
+  editReview,
+  getReviews,
+} from '../../redux/actions/reviewActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
+const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 
 function AddReview() {
   const dispatch = useDispatch();
@@ -27,7 +31,10 @@ function AddReview() {
   const categories = useSelector((state) => state.categories.allCategories);
 
   const reviewLoadedRef = useRef(false);
-  const existingReview = reviews.find((review) => (review.user_id === currentUserID) && (review.place_id === currentPlaceID));
+  const existingReview = reviews.find(
+    (review) =>
+      review.user_id === currentUserID && review.place_id === currentPlaceID
+  );
 
   const [rateValue, setRateValue] = useState(0);
 
@@ -75,14 +82,13 @@ function AddReview() {
       <Row justify="center">
         <Col lg={12} md={12} sm={14}>
           <Title level={2}>
-            {existingReview ?
-            "Edit Review" :
-            "Add Review"}</Title>
+            {existingReview ? 'Edit Review' : 'Add Review'}
+          </Title>
         </Col>
       </Row>
       <Divider
         style={{
-          marginTop: "0",
+          marginTop: '0',
           borderWidth: 5,
         }}
       />
@@ -92,7 +98,7 @@ function AddReview() {
             preview={false}
             src={place.ImageURL}
             style={{
-              borderRadius: "10px",
+              borderRadius: '10px',
             }}
           />
         </Col>
@@ -101,29 +107,29 @@ function AddReview() {
           md={7}
           sm={24}
           style={{
-            marginLeft: "20px",
+            marginLeft: '20px',
           }}
         >
           <div className="placeNameRate">
             <b>{place.name}</b>
             <br />
-            <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+            <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
               {category.emoji}
-            </Avatar>{" "}
+            </Avatar>{' '}
             {category.name_singular}
           </div>
         </Col>
-        <Col lg={13} md={11} sm={24} xs={24} style={{ textAlign: "center" }}>
+        <Col lg={13} md={11} sm={24} xs={24} style={{ textAlign: 'center' }}>
           <span className="ratingText">Select Overall Rating</span>
           <br />
           <Rate
-            style={{ fontSize: "30px + 3.5vw" }}
+            style={{ fontSize: '30px + 3.5vw' }}
             tooltips={desc}
             onChange={handleRateChange}
             value={rateValue}
           />
           <br />
-          <Link to="/placeView">
+          <Link to="/placeview">
             <Button
               className="button"
               type="primary"

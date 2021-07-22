@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { message } from 'antd';
 
 export const getPlaces = () => async (dispatch) => {
   try {
@@ -19,11 +20,14 @@ export const setPlaces = (places) => {
 
 export const addPlace = (newPlace, history) => async (dispatch) => {
   try {
+    const loading = message.loading('Creating place..', 0);
     const newPlaceResponse = await axios.post('/api/places', newPlace);
     const newPlaceFull = await newPlaceResponse.data;
+    loading();
     await dispatch(getPlaces());
     await dispatch(setCurrentPlace(newPlaceFull.place_id));
     history.push('/placeview');
+    message.success('New place created!');
   } catch (err) {
     console.log(err);
   }
