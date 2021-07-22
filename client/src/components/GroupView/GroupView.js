@@ -38,7 +38,6 @@ function GroupView() {
         <Col lg={0} md={0} sm={0} xs={24}></Col>
         <Col lg={12} md={12} sm={10} className="numOfMembers">
           <Title level={2}>
-            {" "}
             <UserOutlined size="large" /> {numMembers} Members
           </Title>
         </Col>

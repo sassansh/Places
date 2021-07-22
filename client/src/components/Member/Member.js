@@ -1,6 +1,6 @@
 import "./Member.css";
 
-import { Avatar, Card, Button, Row, Col } from "antd";
+import { Avatar, Card, Button, Row, Col, Popconfirm } from "antd";
 import { UserDeleteOutlined } from "@ant-design/icons";
 
 function Member(props) {
@@ -18,9 +18,14 @@ function Member(props) {
           </Row>
         </Col>
         <Col span={12}>
-          <Row justify="end" gutter={[16,0]}>
+          <Row justify="end" gutter={[16, 0]}>
             <Col>
-              <Button
+              <Popconfirm
+                title={"Do you really want to remove " + props.user.name + " from group?"}
+                okText="Yes"
+                cancelText="No"
+              >
+                <Button
                 type="primary"
                 danger
                 icon={<UserDeleteOutlined size="large" />}
@@ -28,6 +33,7 @@ function Member(props) {
               >
                 Remove From Group
               </Button>
+              </Popconfirm>
             </Col>
           </Row>
         </Col>
