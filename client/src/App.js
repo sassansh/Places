@@ -27,6 +27,7 @@ import RequestView from './components/RequestView/RequestView';
 import SideBar from './components/Navigation/SideBar/SideBar';
 import { setCurrentUser } from './redux/actions/userActions';
 import { useEffect } from 'react';
+import UserProfile from './components/UserProfile/UserProfile';
 
 const { Content, Footer } = Layout;
 
@@ -81,6 +82,7 @@ function App() {
               <PrivateRoute exact path="/addreview" component={AddReview} />
               <PrivateRoute exact path="/requestview" component={RequestView} />
               <PrivateRoute exact path="/managegroup" component={ManageGroup} />
+              <PrivateRoute exact path="/userprofile" component={UserProfile} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

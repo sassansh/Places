@@ -27,7 +27,7 @@ const MobileNavBar = ({ menu }) => {
   const profileMenu = (
     <Menu>
       <Menu.Item key="0" icon={<UserOutlined />}>
-        {userName}
+        <Link to="/userprofile">{userName}</Link>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item onClick={handleLogout} key="1" icon={<LogoutOutlined />}>
