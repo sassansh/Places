@@ -79,7 +79,7 @@ function AddReview() {
 
   return (
     <div className="container">
-      <Row justify="center">
+      <Row justify="left">
         <Col lg={12} md={12} sm={14}>
           <Title level={2}>
             {existingReview ? 'Edit Review' : 'Add Review'}
