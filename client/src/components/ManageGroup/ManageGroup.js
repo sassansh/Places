@@ -4,7 +4,7 @@ import { Col, Divider, Row, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import MemberList from "../MemberList/MemberList";
 
-function ManageGroup() {
+function ManageGroup(props) {
   const { Title } = Typography;
   return (
     <div className="container">
@@ -25,7 +25,7 @@ function ManageGroup() {
           borderWidth: 5,
         }}
       />
-      <MemberList/>
+      <MemberList history = {props.history}/>
     </div>
   );
 }
