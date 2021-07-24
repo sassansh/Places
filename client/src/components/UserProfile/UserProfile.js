@@ -20,12 +20,18 @@ function UserProfile() {
     const user = useSelector((state) => state.users.user);
     const groups = useSelector((state) => state.groups.allGroups);
     const reviews = useSelector((state) => state.reviews.allReviews);
+    const places = useSelector((state) => state.places.allPlaces);
+
+    function getPlace(place_id) {
+        let placeName = places.find(place => place.place_id === place_id).name;
+        return placeName;
+    }
 
     const [myGroups, setMyGroups] = useState(groups.filter((group) => user.groups.includes(group.group_id)));
     const myGroupsItems = myGroups.map((group) => <li>{group.name}</li>);
 
     const [myReviews, setMyReviews] = useState(reviews.filter((review) => review.user_id === user.user_id));
-    const myReviewsItems = myReviews.map((review) => <li>{review.place_id + ": " + review.rating}</li>);
+    const myReviewsItems = myReviews.map((review) => <li>{getPlace(review.place_id) + ": " + review.rating}</li>);
 
     return (
         <div className="container">
