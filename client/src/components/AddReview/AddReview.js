@@ -18,11 +18,9 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
 const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 
-function AddReview() {
+function AddReview(props) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews);
   const currentUserID = useSelector((state) => state.users.user.user_id);
@@ -66,14 +64,14 @@ function AddReview() {
         ...existingReview,
         rating: rateValue,
       };
-      dispatch(editReview(newReview));
+      dispatch(editReview(newReview, props.history));
     } else {
       newReview = {
         user_id: currentUserID,
         place_id: currentPlaceID,
         rating: rateValue,
       };
-      dispatch(addReview(newReview));
+      dispatch(addReview(newReview, props.history));
     }
   }
 
@@ -129,15 +127,13 @@ function AddReview() {
             value={rateValue}
           />
           <br />
-          <Link to="/placeview">
-            <Button
-              className="button"
-              type="primary"
-              onClick={handleSubmitReview}
-            >
-              Submit
-            </Button>
-          </Link>
+          <Button
+            className="button"
+            type="primary"
+            onClick={handleSubmitReview}
+          >
+            Submit
+          </Button>
         </Col>
       </Row>
     </div>

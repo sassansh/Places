@@ -13,11 +13,11 @@ import AddPlace from './components/AddPlace/AddPlace';
 import AddReview from './components/AddReview/AddReview';
 import CategoryView from './components/CategoryView/CategoryView';
 import CreateGroup from './components/CreateGroup/CreateGroup';
-import ManageGroup from './components/ManageGroup/ManageGroup';
 import GroupListView from './components/GroupListView/GroupListView';
 import GroupView from './components/GroupView/GroupView';
 import { Layout } from 'antd';
 import Login from './components/Login/Login';
+import ManageGroup from './components/ManageGroup/ManageGroup';
 import MobileNavBar from './components/Navigation/MobileNavBar/MobileNavBar';
 import NavBar from './components/Navigation/NavBar/NavBar';
 import PlaceView from './components/PlaceView/PlaceView';
@@ -36,6 +36,7 @@ function App() {
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
   const AddPlaceWithRouter = withRouter(AddPlace);
+  const AddReviewWithRouter = withRouter(AddReview);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
@@ -79,7 +80,11 @@ function App() {
                 component={AddPlaceWithRouter}
               />
               <PrivateRoute exact path="/placeview" component={PlaceView} />
-              <PrivateRoute exact path="/addreview" component={AddReview} />
+              <PrivateRoute
+                exact
+                path="/addreview"
+                component={AddReviewWithRouter}
+              />
               <PrivateRoute exact path="/requestview" component={RequestView} />
               <PrivateRoute exact path="/managegroup" component={ManageGroup} />
               <PrivateRoute exact path="/userprofile" component={UserProfile} />
