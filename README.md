@@ -91,14 +91,14 @@
 - [ ] Create new categories
   - [ ] Choose custom rating criteria for the new category (by group)
 - [ ] Display ranked list of places based on selected criteria
-  - [ ] Multiple search criteria including location tags
-- [ ] Allow users to upload photos for their profile picture or of places
+  - [x] Search bar & other filters to narrow down list of places
+- [x] Allow users to upload photos for their profile picture or of places
 - [x] Profile for each place containing images, address, details, reviews.
-- [ ] User profiles displaying:
-  - [ ] Name, picture, list of reviewed places, name of group they are in
-- [ ] Moderator ability for group creator:
-  - [ ] Add members
-  - [ ] Delete members
+- [x] User profiles displaying:
+  - [x] Name, picture, list of reviewed places, name of group they are in
+- [x] Moderator ability for group members:
+  - [x] Accept other member requests into group
+  - [x] Delete members from group
 
 **Stretch Requirements**
 
@@ -163,6 +163,10 @@ You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpk
    ```bash
    PLACES_DB_URI=
    PORT=
+   JWT_SECRET=
+   CLOUDINARY_CLOUD_NAME=
+   CLOUDINARY_API_KEY=
+   CLOUDINARY_API_SECRET=
    ```
 
 3. To start frontend & backend in dev mode together, run:
