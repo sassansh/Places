@@ -37,6 +37,7 @@ function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
+  const ManageGroupWithRouter = withRouter(ManageGroup);
   const AddPlaceWithRouter = withRouter(AddPlace);
   const AddReviewWithRouter = withRouter(AddReview);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
@@ -99,7 +100,7 @@ function App() {
                 component={AddReviewWithRouter}
               />
               <PrivateRoute exact path="/requestview" component={RequestView} />
-              <PrivateRoute exact path="/managegroup" component={ManageGroup} />
+              <PrivateRoute exact path="/managegroup" component={ManageGroupWithRouter} />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

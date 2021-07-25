@@ -63,3 +63,25 @@ export const logoutUser = () => (dispatch) => {
   dispatch(setCurrentUser({}));
   message.success('Logged out!');
 };
+
+export const removeUser = (userData, history) => async (dispatch) => {
+  try {
+    const loading = message.loading('Removing user..', 0);
+    const deleteGroupResponse = await axios.delete('/api/users/group', {
+      data: userData,
+    });
+    loading();
+    const success = deleteGroupResponse.data.success;
+    if (success) {
+      dispatch(getUsers());
+      if (userData.user_id === userData.currentUserID) {
+        history.push('/');
+      }
+      message.success('User removed!');
+    } else {
+      message.error('User could not be removed!');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
