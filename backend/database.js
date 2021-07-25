@@ -1,5 +1,5 @@
-import dotenv from "dotenv";
-import mongoose from "mongoose";
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -13,5 +13,5 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false,
   })
-  .then(() => console.log("Database Connected Successfully"))
+  .then(() => console.log('Database Connected Successfully'))
   .catch((err) => console.log(err));

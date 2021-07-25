@@ -1,5 +1,6 @@
 import Group from '../models/Group.js';
 import User from '../models/User.js';
+import authenticateToken from '../util/AuthToken.js';
 import cloudinary from 'cloudinary';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -15,14 +16,15 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
   Group.find()
     .then((groups) => res.json(groups))
     .catch((err) => console.log(err));
 });
 
-router.post('/', async (req, res) => {
-  const { name, description, user_id } = req.body;
+router.post('/', authenticateToken, async (req, res) => {
+  const { name, description } = req.body;
+  const user_id = req.user.user_id;
   let group_id = uuidv4();
   const path = Object.values(req.files)[0].path;
 

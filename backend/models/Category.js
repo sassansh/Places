@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -18,7 +18,7 @@ const categorySchema = new Schema({
   emoji: {
     type: String,
     required: true,
-  }
+  },
 });
 
-export default mongoose.model("Category", categorySchema, "categories");
+export default mongoose.model('Category', categorySchema, 'categories');

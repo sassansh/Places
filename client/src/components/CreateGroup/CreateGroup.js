@@ -1,16 +1,15 @@
 import './CreateGroup.css';
 
 import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { createGroup } from '../../redux/actions/groupActions';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 function CreateGroup(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
-  const currentUserID = useSelector((state) => state.users.user.user_id);
   const [logoData, setLogoData] = useState('');
   const [fieldInput, setFieldInput] = useState({
     name: '',
@@ -35,7 +34,6 @@ function CreateGroup(props) {
     newGroup.append('name', name);
     newGroup.append('description', description);
     newGroup.append('logo', logoData);
-    newGroup.append('user_id', currentUserID);
     if (name === undefined) return;
     dispatch(createGroup(newGroup, props.history));
     form.resetFields();
@@ -84,7 +82,11 @@ function CreateGroup(props) {
             className="button"
             type="primary"
             size="large"
-            disabled={fieldInput.name === '' || fieldInput.description === ''}
+            disabled={
+              fieldInput.name === '' ||
+              fieldInput.description === '' ||
+              logoData === ''
+            }
           >
             Submit
           </Button>

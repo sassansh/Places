@@ -2,11 +2,13 @@ import './App.less';
 import 'antd/dist/antd.less';
 
 import {
+  Redirect,
   Route,
   HashRouter as Router,
   Switch,
   withRouter,
 } from 'react-router-dom';
+import { logoutUser, setCurrentUser } from './redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AddPlace from './components/AddPlace/AddPlace';
@@ -25,7 +27,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Register from './components/Register/Register';
 import RequestView from './components/RequestView/RequestView';
 import SideBar from './components/Navigation/SideBar/SideBar';
-import { setCurrentUser } from './redux/actions/userActions';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
 import { useEffect } from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
 
@@ -35,6 +38,7 @@ function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
+  const ManageGroupWithRouter = withRouter(ManageGroup);
   const AddPlaceWithRouter = withRouter(AddPlace);
   const AddReviewWithRouter = withRouter(AddReview);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
@@ -43,9 +47,20 @@ function App() {
   // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
 
   useEffect(() => {
-    if (localStorage.AuthenticatedUser) {
-      const storedUserID = JSON.parse(localStorage.AuthenticatedUser);
-      dispatch(setCurrentUser(storedUserID));
+    if (localStorage.jwtToken) {
+      // Set auth token header auth
+      const token = localStorage.jwtToken;
+      setAuthToken(token);
+      const user = jwt_decode(token);
+      // Set user
+      dispatch(setCurrentUser(user));
+      const currentTime = Date.now() / 1000; // to get in milliseconds
+      if (user.exp < currentTime) {
+        // Logout user
+        dispatch(logoutUser());
+        // Redirect to login
+        <Redirect to={{ pathname: '/login' }} />;
+      }
     }
   }, [dispatch]);
 
@@ -86,8 +101,12 @@ function App() {
                 component={AddReviewWithRouter}
               />
               <PrivateRoute exact path="/requestview" component={RequestView} />
-              <PrivateRoute exact path="/managegroup" component={ManageGroup} />
               <PrivateRoute exact path="/userprofile" component={UserProfile} />
+              <PrivateRoute
+                exact
+                path="/managegroup"
+                component={ManageGroupWithRouter}
+              />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

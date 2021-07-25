@@ -60,7 +60,6 @@ function PlaceList({ searchQuery }) {
     ...place,
     rank: place.rank === 0 ? '?' : place.rank,
   }));
-  console.log(currentPlaces);
   if (searchQuery) {
     // Search algorithim inspired by: https://bit.ly/3q4q7aN
     let searchArray = searchQuery.trim().split(' ');

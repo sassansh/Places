@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getUsers } from './userActions';
 import { message } from 'antd';
 
 export const getGroups = () => async (dispatch) => {
@@ -23,6 +24,7 @@ export const createGroup = (newGroup, history) => async (dispatch) => {
     const groups = newGroupResponse.data;
     dispatch(setGroups(groups));
     dispatch(setCurrentGroup(groups[groups.length - 1].group_id));
+    await dispatch(getUsers());
     history.push('/groupview');
     message.success('New group created!');
   } catch (err) {

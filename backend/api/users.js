@@ -1,11 +1,16 @@
 import Group from '../models/Group.js';
 import User from '../models/User.js';
+import authenticateToken from '../util/AuthToken.js';
+import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
+dotenv.config();
 
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
   // Search the MongoDB
   User.find({}, '-_id user_id name avatarURL groups requestGroups')
     .then((users) => res.json(users))
@@ -30,20 +35,32 @@ router.post('/login', (req, res) => {
       return res.status(400).send('Email not found');
     }
     // Check password
-    const isMatch = user.password === password;
-
-    if (isMatch) {
-      res.json({
-        success: true,
-        user: {
+    bcrypt.compare(password, user.password, function (err, result) {
+      if (result) {
+        // Create JWT Payload
+        const payload = {
           user_id: user.user_id,
           name: user.name,
           email: user.email,
-        },
-      });
-    } else {
-      return res.status(400).send('Password incorrect');
-    }
+        };
+        // Sign token
+        jwt.sign(
+          payload,
+          process.env.JWT_SECRET,
+          {
+            expiresIn: 31556926, // 1 year in seconds
+          },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token,
+            });
+          }
+        );
+      } else {
+        return res.status(400).send('Password incorrect');
+      }
+    });
   });
 });
 
@@ -78,31 +95,35 @@ router.post('/register', (req, res) => {
     if (user) {
       return res.status(400).send('Email already exists');
     } else {
-      const newUser = new User({
-        user_id: uuidv4(),
-        name: name,
-        email: email,
-        password: password,
-        avatarURL: avatarURL,
-        groups: [],
-        requestGroups: [],
-      });
+      const saltRounds = 10;
+      bcrypt.hash(password, saltRounds, function (err, hash) {
+        const newUser = new User({
+          user_id: uuidv4(),
+          name: name,
+          email: email,
+          password: hash,
+          avatarURL: avatarURL,
+          groups: [],
+          requestGroups: [],
+        });
 
-      newUser
-        .save()
-        .then(() => res.send('User created successfully'))
-        .catch((err) =>
-          res.status(400).json({
-            error: err,
-            message: 'Error creating user',
-          })
-        );
+        newUser
+          .save()
+          .then(() => res.send('User created successfully'))
+          .catch((err) =>
+            res.status(400).json({
+              error: err,
+              message: 'Error creating user',
+            })
+          );
+      });
     }
   });
 });
 
-router.post('/group/request', (req, res) => {
-  const { user_id, group_id } = req.body;
+router.post('/group/request', authenticateToken, (req, res) => {
+  const { group_id } = req.body;
+  const user_id = req.user.user_id;
   // Find group to join
   Group.findOne({ group_id }).then((group) => {
     // Check if group exists
@@ -128,8 +149,9 @@ router.post('/group/request', (req, res) => {
   });
 });
 
-router.post('/group/accept', (req, res) => {
-  const { my_user_id, other_user_id, group_id } = req.body;
+router.post('/group/accept', authenticateToken, (req, res) => {
+  const { other_user_id, group_id } = req.body;
+  const my_user_id = req.user.user_id;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
@@ -189,8 +211,9 @@ router.post('/group/accept', (req, res) => {
   });
 });
 
-router.post('/group/decline', (req, res) => {
-  const { my_user_id, other_user_id, group_id } = req.body;
+router.post('/group/decline', authenticateToken, (req, res) => {
+  const { other_user_id, group_id } = req.body;
+  const my_user_id = req.user.user_id;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
@@ -240,6 +263,26 @@ router.post('/group/decline', (req, res) => {
         .send('Other user has not requested to join this group');
     }
   });
+});
+
+router.delete('/group', authenticateToken, (req, res) => {
+  const { user_id, currentGroupID } = req.body;
+
+  User.updateOne(
+    { user_id: user_id },
+    { $pullAll: { groups: [currentGroupID] } }
+  )
+    .then(() => {
+      User.find({ groups: currentGroupID }).then((data) => {
+        if (data.length === 0) {
+          Group.deleteOne({ group_id: currentGroupID }).catch((err) => {
+            console.log(err);
+          });
+        }
+      });
+    })
+    .then(() => res.json({ success: true }))
+    .catch((err) => console.log(err));
 });
 
 export default router;

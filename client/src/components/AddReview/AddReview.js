@@ -67,7 +67,6 @@ function AddReview(props) {
       dispatch(editReview(newReview, props.history));
     } else {
       newReview = {
-        user_id: currentUserID,
         place_id: currentPlaceID,
         rating: rateValue,
       };

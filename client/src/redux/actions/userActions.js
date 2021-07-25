@@ -1,5 +1,7 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import { message } from 'antd';
+import setAuthToken from '../../utils/setAuthToken';
 
 export const getUsers = () => async (dispatch) => {
   try {
@@ -14,7 +16,6 @@ export const getUsers = () => async (dispatch) => {
 export const registerUser = (userData, history) => async (dispatch) => {
   try {
     await axios.post('/api/users/register', userData);
-    alert('Registered successfully');
     history.push('/login');
     message.success('Registered successfully!');
   } catch (err) {
@@ -25,8 +26,13 @@ export const registerUser = (userData, history) => async (dispatch) => {
 export const loginUser = (userData) => async (dispatch) => {
   try {
     const loginResponse = await axios.post('/api/users/login', userData);
-    const { user } = loginResponse.data;
-    localStorage.setItem('AuthenticatedUser', JSON.stringify(user));
+    const { token } = loginResponse.data;
+    localStorage.setItem('jwtToken', token);
+    // Set token to Auth header
+    setAuthToken(token);
+    // Decode token to get user data
+    const user = jwt_decode(token);
+    // Set current user
     dispatch(setCurrentUser(user));
     message.success('Logged in! Welcome ' + user.name + '!');
   } catch (err) {
@@ -49,7 +55,33 @@ export const setUsers = (users) => {
 };
 
 export const logoutUser = () => (dispatch) => {
-  localStorage.removeItem('AuthenticatedUser');
+  // Remove token from local storage
+  localStorage.removeItem('jwtToken');
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
   message.success('Logged out!');
+};
+
+export const removeUser = (userData, history) => async (dispatch) => {
+  try {
+    const loading = message.loading('Removing user..', 0);
+    const deleteGroupResponse = await axios.delete('/api/users/group', {
+      data: userData,
+    });
+    loading();
+    const success = deleteGroupResponse.data.success;
+    if (success) {
+      dispatch(getUsers());
+      if (userData.user_id === userData.currentUserID) {
+        history.push('/');
+      }
+      message.success('User removed!');
+    } else {
+      message.error('User could not be removed!');
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };
