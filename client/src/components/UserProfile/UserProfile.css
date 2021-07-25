@@ -1,21 +1,26 @@
 .column1 {
     text-align: center;
-    padding: 20px 60px 0px 60px;
+    padding: 20px 70px 0px 70px;
 }
 
 .column2 {
     text-align: left;
-    padding: 20px 60px 0px 60px;
+    padding: 20px 70px 0px 70px;
+}
+
+.column3 {
+    text-align: left;
+    padding: 20px 70px 0px 57px;
 }
 
 .heading {
-    font-size: 20px;
+    font-size: calc(16px + 1vw);
     font-weight: bold;
     padding: 0px 0px 10px 40px;
 }
 
 .label {
-    font-size: 25px;
+    font-size: 40px;
     padding-top: 15px;
 }
 
@@ -26,5 +31,8 @@
 .place {
     text-align: right;
     padding-right: 20px;
-    font-size: 15px;
+    font-size: calc(12px + 0.8vw);}
+
+.group {
+    font-size: calc(12px + 0.8vw);
 }

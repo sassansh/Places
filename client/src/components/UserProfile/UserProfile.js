@@ -26,7 +26,6 @@ function UserProfile() {
     function getRating(rating) {
         return (
             <Rate
-            style={{ fontSize: '15px' }}
             value={rating}
             disabled={true}
           />
@@ -40,10 +39,10 @@ function UserProfile() {
     }
 
     const myGroups = userData.groups;
-    const myGroupsItems = myGroups.map((group_id) => <li>{getGroup(group_id)}</li>);
+    const myGroupsItems = myGroups.map((group_id) => <li className="group">{getGroup(group_id)}</li>);
 
     const myReviews = reviews.filter((review) => review.user_id === user.user_id);
-    const myReviewsItems = myReviews.map((review) => <li><Row justify="end"><Col className="place">{getPlace(review.place_id)}</Col><Col>{getRating(review.rating)}</Col></Row></li>);
+    const myReviewsItems = myReviews.map((review) => <li className="review"><Row justify="end"><Col className="place">{getPlace(review.place_id)}</Col><Col className="rating">{getRating(review.rating)}</Col></Row></li>);
     
     return (
         <div className="container">
@@ -62,9 +61,9 @@ function UserProfile() {
             />
             <Row justify="center">
                 <div className="column1">
-                    <Col flex={1}>
+                    <Col>
                         <Avatar
-                            size={200}
+                            size={300}
                             src={userData.avatarURL}
                         />
                         <div className="label">
@@ -73,12 +72,15 @@ function UserProfile() {
                     </Col>                 
                 </div>
                 <div className="column2">
-                    <Col flex={4}>
+                    <Col>
                         <div className="heading">
                             My Groups
                         </div>
-                        <ul className="groups">{myGroupsItems}</ul>
-                        <br />
+                        <ul className="group">{myGroupsItems}</ul>
+                    </Col>
+                </div>
+                <div className="column3">
+                    <Col>
                         <div className="heading">
                             My Reviews
                         </div>
