@@ -84,7 +84,11 @@ function CreateGroup(props) {
             className="button"
             type="primary"
             size="large"
-            disabled={fieldInput.name === '' || fieldInput.description === '' || logoData === ''}
+            disabled={
+              fieldInput.name === '' ||
+              fieldInput.description === '' ||
+              logoData === ''
+            }
           >
             Submit
           </Button>

@@ -1,21 +1,24 @@
-import "./Category.css";
+import './Category.css';
 
-import { Avatar, Card } from "antd";
+import { Avatar, Card } from 'antd';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { setCurrentCategory } from '../../redux/actions/categoryActions';
 import { useDispatch } from 'react-redux';
-import { setCurrentCategory } from "../../redux/actions/categoryActions";
 
 function Category({ category }) {
   const dispatch = useDispatch();
 
   return (
-    <Link to="/categoryview" onClick={() => {
-      dispatch(setCurrentCategory(category.category_id));
-    }}>
+    <Link
+      to="/categoryview"
+      onClick={() => {
+        dispatch(setCurrentCategory(category.category_id));
+      }}
+    >
       <Card style={{ margin: 16 }}>
         <span className="category">
-          <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
+          <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
             {category.emoji}
           </Avatar>
           <span className="category-name">{category.name}</span>

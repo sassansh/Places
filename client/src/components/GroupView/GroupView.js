@@ -1,12 +1,11 @@
-import "./GroupView.css";
+import './GroupView.css';
 
-import { Avatar, Col, Divider, Row, Typography, Button } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Avatar, Button, Col, Divider, Row, Typography } from 'antd';
 
-import CategoryList from "../CategoryList/CategoryList";
-import { useSelector } from "react-redux";
-
-import { Link } from "react-router-dom";
+import CategoryList from '../CategoryList/CategoryList';
+import { Link } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
 function GroupView() {
   const { Title } = Typography;

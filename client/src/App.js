@@ -100,7 +100,11 @@ function App() {
                 component={AddReviewWithRouter}
               />
               <PrivateRoute exact path="/requestview" component={RequestView} />
-              <PrivateRoute exact path="/managegroup" component={ManageGroupWithRouter} />
+              <PrivateRoute
+                exact
+                path="/managegroup"
+                component={ManageGroupWithRouter}
+              />
             </Switch>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

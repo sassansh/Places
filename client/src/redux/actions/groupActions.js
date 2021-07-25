@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { message } from 'antd';
 import { getUsers } from './userActions';
+import { message } from 'antd';
 
 export const getGroups = () => async (dispatch) => {
   try {

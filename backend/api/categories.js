@@ -1,18 +1,18 @@
-import Category from "../models/Category.js";
-import express from "express";
-import { v4 as uuidv4 } from "uuid";
+import Category from '../models/Category.js';
+import express from 'express';
+import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   Category.find()
     .then((categories) => res.json(categories))
     .catch((err) => console.log(err));
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   const { name, name_singular, emoji } = req.body;
-  const newCategory = new Category ({
+  const newCategory = new Category({
     category_id: uuidv4(),
     name: name,
     name_singular: name_singular,
@@ -22,13 +22,13 @@ router.post("/", (req, res) => {
     .save()
     .then(() =>
       res.json({
-        message: "Created category successfully",
+        message: 'Created category successfully',
       })
     )
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: "Error creating category"
+        message: 'Error creating category',
       })
     );
 });

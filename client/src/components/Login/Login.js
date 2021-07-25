@@ -1,15 +1,15 @@
-import "./Login.css";
+import './Login.css';
 
-import { Link, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { loginUser } from "../../redux/actions/userActions";
-import logo from "../../assets/logo.png";
-import { useState } from "react";
+import { loginUser } from '../../redux/actions/userActions';
+import logo from '../../assets/logo.png';
+import { useState } from 'react';
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
@@ -19,7 +19,7 @@ function Login() {
   }
 
   return isAuthenticated ? (
-    <Redirect to={{ pathname: "/" }} />
+    <Redirect to={{ pathname: '/' }} />
   ) : (
     <div className="login-page">
       <img alt="logo" src={logo} width="100px" />

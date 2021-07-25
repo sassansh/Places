@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const getCategories = () => async(dispatch)  => {
+export const getCategories = () => async (dispatch) => {
   try {
-    const categoriesResponse = await axios.get("/api/categories");
+    const categoriesResponse = await axios.get('/api/categories');
     const categories = categoriesResponse.data;
     dispatch(setCategories(categories));
   } catch (err) {
@@ -12,13 +12,14 @@ export const getCategories = () => async(dispatch)  => {
 
 export const setCategories = (categories) => {
   return {
-    type: "SET_CATEGORIES",
+    type: 'SET_CATEGORIES',
     payload: categories,
   };
 };
 
-export const setCurrentCategory = categoryID => {
-    return {
-       type: 'SET_CURRENT_CATEGORY',
-       payload: categoryID
-}; };
+export const setCurrentCategory = (categoryID) => {
+  return {
+    type: 'SET_CURRENT_CATEGORY',
+    payload: categoryID,
+  };
+};
