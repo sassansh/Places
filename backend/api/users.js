@@ -1,10 +1,13 @@
 import Group from '../models/Group.js';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
+dotenv.config();
 
 router.get('/', (req, res) => {
   // Search the MongoDB
@@ -33,14 +36,26 @@ router.post('/login', (req, res) => {
     // Check password
     bcrypt.compare(password, user.password, function (err, result) {
       if (result) {
-        res.json({
-          success: true,
-          user: {
-            user_id: user.user_id,
-            name: user.name,
-            email: user.email,
+        // Create JWT Payload
+        const payload = {
+          user_id: user.user_id,
+          name: user.name,
+          email: user.email,
+        };
+        // Sign token
+        jwt.sign(
+          payload,
+          process.env.JWT_SECRET,
+          {
+            expiresIn: 31556926, // 1 year in seconds
           },
-        });
+          (err, token) => {
+            res.json({
+              success: true,
+              token: 'Bearer ' + token,
+            });
+          }
+        );
       } else {
         return res.status(400).send('Password incorrect');
       }
