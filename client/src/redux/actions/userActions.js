@@ -14,7 +14,6 @@ export const getUsers = () => async (dispatch) => {
 export const registerUser = (userData, history) => async (dispatch) => {
   try {
     await axios.post('/api/users/register', userData);
-    alert('Registered successfully');
     history.push('/login');
     message.success('Registered successfully!');
   } catch (err) {

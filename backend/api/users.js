@@ -1,5 +1,6 @@
 import Group from '../models/Group.js';
 import User from '../models/User.js';
+import bcrypt from 'bcrypt';
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,20 +31,20 @@ router.post('/login', (req, res) => {
       return res.status(400).send('Email not found');
     }
     // Check password
-    const isMatch = user.password === password;
-
-    if (isMatch) {
-      res.json({
-        success: true,
-        user: {
-          user_id: user.user_id,
-          name: user.name,
-          email: user.email,
-        },
-      });
-    } else {
-      return res.status(400).send('Password incorrect');
-    }
+    bcrypt.compare(password, user.password, function (err, result) {
+      if (result) {
+        res.json({
+          success: true,
+          user: {
+            user_id: user.user_id,
+            name: user.name,
+            email: user.email,
+          },
+        });
+      } else {
+        return res.status(400).send('Password incorrect');
+      }
+    });
   });
 });
 
@@ -78,25 +79,28 @@ router.post('/register', (req, res) => {
     if (user) {
       return res.status(400).send('Email already exists');
     } else {
-      const newUser = new User({
-        user_id: uuidv4(),
-        name: name,
-        email: email,
-        password: password,
-        avatarURL: avatarURL,
-        groups: [],
-        requestGroups: [],
-      });
+      const saltRounds = 10;
+      bcrypt.hash(password, saltRounds, function (err, hash) {
+        const newUser = new User({
+          user_id: uuidv4(),
+          name: name,
+          email: email,
+          password: hash,
+          avatarURL: avatarURL,
+          groups: [],
+          requestGroups: [],
+        });
 
-      newUser
-        .save()
-        .then(() => res.send('User created successfully'))
-        .catch((err) =>
-          res.status(400).json({
-            error: err,
-            message: 'Error creating user',
-          })
-        );
+        newUser
+          .save()
+          .then(() => res.send('User created successfully'))
+          .catch((err) =>
+            res.status(400).json({
+              error: err,
+              message: 'Error creating user',
+            })
+          );
+      });
     }
   });
 });
