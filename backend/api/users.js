@@ -1,3 +1,4 @@
+
 import Group from '../models/Group.js';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
@@ -6,29 +7,29 @@ import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   // Search the MongoDB
-  User.find({}, '-_id user_id name avatarURL groups requestGroups')
+  User.find({}, "-_id user_id name avatarURL groups requestGroups")
     .then((users) => res.json(users))
     .catch((err) => console.log(err));
 });
 
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  if (email === '') {
-    return res.status(400).send('Email field must be filled');
+  if (email === "") {
+    return res.status(400).send("Email field must be filled");
   }
 
-  if (password === '') {
-    return res.status(400).send('Password field must be filled');
+  if (password === "") {
+    return res.status(400).send("Password field must be filled");
   }
 
   // Find user by email
   User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(400).send('Email not found');
+      return res.status(400).send("Email not found");
     }
     // Check password
     bcrypt.compare(password, user.password, function (err, result) {
@@ -48,36 +49,36 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
   const { name, email, password, password2, avatarURL } = req.body;
 
-  if (name === '') {
-    return res.status(400).send('Name field must be filled');
+  if (name === "") {
+    return res.status(400).send("Name field must be filled");
   }
 
-  if (email === '') {
-    return res.status(400).send('Email field must be filled');
+  if (email === "") {
+    return res.status(400).send("Email field must be filled");
   }
 
-  if (password === '') {
-    return res.status(400).send('Password field must be filled');
+  if (password === "") {
+    return res.status(400).send("Password field must be filled");
   }
 
-  if (password2 === '') {
-    return res.status(400).send('Please confirm password');
+  if (password2 === "") {
+    return res.status(400).send("Please confirm password");
   }
 
-  if (avatarURL === '') {
-    return res.status(400).send('Avatar URL field must be filled');
+  if (avatarURL === "") {
+    return res.status(400).send("Avatar URL field must be filled");
   }
 
   if (password !== password2) {
-    return res.status(400).send('Password fields do not match');
+    return res.status(400).send("Password fields do not match");
   }
 
   User.findOne({ email: email }).then((user) => {
     if (user) {
-      return res.status(400).send('Email already exists');
+      return res.status(400).send("Email already exists");
     } else {
       const saltRounds = 10;
       bcrypt.hash(password, saltRounds, function (err, hash) {
@@ -105,23 +106,23 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.post('/group/request', (req, res) => {
+router.post("/group/request", (req, res) => {
   const { user_id, group_id } = req.body;
   // Find group to join
   Group.findOne({ group_id }).then((group) => {
     // Check if group exists
     if (!group) {
-      return res.status(400).send('Group requested to join not found');
+      return res.status(400).send("Group requested to join not found");
     }
 
     // Check if user is not already in the group or request to join before
     User.findOne({ user_id }).then((user) => {
       if (user.groups.includes(group_id)) {
-        return res.status(400).send('Already a member of this group');
+        return res.status(400).send("Already a member of this group");
       }
 
       if (user.requestGroups.includes(group_id)) {
-        return res.status(400).send('Already requested to join this group');
+        return res.status(400).send("Already requested to join this group");
       }
 
       // Add group ID to user's requestGroups
@@ -132,28 +133,28 @@ router.post('/group/request', (req, res) => {
   });
 });
 
-router.post('/group/accept', (req, res) => {
+router.post("/group/accept", (req, res) => {
   const { my_user_id, other_user_id, group_id } = req.body;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
     // Check if group exists
     if (!group) {
-      return res.status(400).send('Group does not exist');
+      return res.status(400).send("Group does not exist");
     }
   });
 
   // Check if current user is part of group
   User.findOne({ user_id: my_user_id }).then((user) => {
     if (!user) {
-      return res.status(400).send('Cannot verify current user');
+      return res.status(400).send("Cannot verify current user");
     }
 
     if (!user.groups.includes(group_id)) {
       return res
         .status(400)
         .send(
-          'Not authorized to accept users into a group you are not a member of'
+          "Not authorized to accept users into a group you are not a member of"
         );
     }
   });
@@ -161,12 +162,12 @@ router.post('/group/accept', (req, res) => {
   // Check if other user exists and has requested to join group
   User.findOne({ user_id: other_user_id }).then((user) => {
     if (!user) {
-      return res.status(400).send('Cannot find other user');
+      return res.status(400).send("Cannot find other user");
     }
 
     // Check if other user is already a member of this group
     if (user.groups.includes(group_id)) {
-      return res.status(400).send('Other user is already part of this group');
+      return res.status(400).send("Other user is already part of this group");
     }
 
     if (user.requestGroups.includes(group_id)) {
@@ -188,33 +189,33 @@ router.post('/group/accept', (req, res) => {
     } else {
       return res
         .status(400)
-        .send('Other user has not requested to join this group');
+        .send("Other user has not requested to join this group");
     }
   });
 });
 
-router.post('/group/decline', (req, res) => {
+router.post("/group/decline", (req, res) => {
   const { my_user_id, other_user_id, group_id } = req.body;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
     // Check if group exists
     if (!group) {
-      return res.status(400).send('Group does not exist');
+      return res.status(400).send("Group does not exist");
     }
   });
 
   // Check if current user is part of group
   User.findOne({ user_id: my_user_id }).then((user) => {
     if (!user) {
-      return res.status(400).send('Cannot verify current user');
+      return res.status(400).send("Cannot verify current user");
     }
 
     if (!user.groups.includes(group_id)) {
       return res
         .status(400)
         .send(
-          'Not authorized to accept users into a group you are not a member of'
+          "Not authorized to accept users into a group you are not a member of"
         );
     }
   });
@@ -222,12 +223,12 @@ router.post('/group/decline', (req, res) => {
   // Check if other user exists and has requested to join group
   User.findOne({ user_id: other_user_id }).then((user) => {
     if (!user) {
-      return res.status(400).send('Cannot find other user');
+      return res.status(400).send("Cannot find other user");
     }
 
     // Check if other user is already a member of this group
     if (user.groups.includes(group_id)) {
-      return res.status(400).send('Other user is already part of this group');
+      return res.status(400).send("Other user is already part of this group");
     }
 
     if (user.requestGroups.includes(group_id)) {
@@ -241,9 +242,29 @@ router.post('/group/decline', (req, res) => {
     } else {
       return res
         .status(400)
-        .send('Other user has not requested to join this group');
+        .send("Other user has not requested to join this group");
     }
   });
+});
+
+router.delete("/group", (req, res) => {
+  const { user_id, currentGroupID } = req.body;
+
+  User.updateOne(
+    { user_id: user_id },
+    { $pullAll: { groups: [currentGroupID] } }
+  )
+    .then(() => {
+      User.find({ groups: currentGroupID }).then((data) => {
+        if (data.length === 0) {
+          Group.deleteOne({ group_id: currentGroupID }).catch((err) => {
+            console.log(err);
+          });
+        }
+      });
+    })
+    .then(() => res.json({ success: true }))
+    .catch((err) => console.log(err));
 });
 
 export default router;
