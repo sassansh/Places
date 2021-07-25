@@ -1,17 +1,19 @@
 import Review from '../models/Review.js';
+import authenticateToken from '../util/AuthToken.js';
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
   Review.find()
     .then((reviews) => res.json(reviews))
     .catch((err) => console.log(err));
 });
 
-router.post('/', (req, res) => {
-  const { user_id, place_id, rating } = req.body;
+router.post('/', authenticateToken, (req, res) => {
+  const { place_id, rating } = req.body;
+  const user_id = req.user.user_id;
   const newReview = new Review({
     review_id: uuidv4(),
     user_id: user_id,
@@ -33,7 +35,7 @@ router.post('/', (req, res) => {
     );
 });
 
-router.put('/', (req, res) => {
+router.put('/', authenticateToken, (req, res) => {
   const { review_id, rating } = req.body;
   Review.updateOne({ review_id: review_id }, { rating: rating })
     .then(() =>

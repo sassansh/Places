@@ -1,16 +1,17 @@
 import Category from '../models/Category.js';
+import authenticateToken from '../util/AuthToken.js';
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
   Category.find()
     .then((categories) => res.json(categories))
     .catch((err) => console.log(err));
 });
 
-router.post('/', (req, res) => {
+router.post('/', authenticateToken, (req, res) => {
   const { name, name_singular, emoji } = req.body;
   const newCategory = new Category({
     category_id: uuidv4(),

@@ -1,5 +1,6 @@
 import Group from '../models/Group.js';
 import User from '../models/User.js';
+import authenticateToken from '../util/AuthToken.js';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -9,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 dotenv.config();
 
-router.get('/', (req, res) => {
+router.get('/', authenticateToken, (req, res) => {
   // Search the MongoDB
   User.find({}, '-_id user_id name avatarURL groups requestGroups')
     .then((users) => res.json(users))
@@ -120,8 +121,9 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.post('/group/request', (req, res) => {
-  const { user_id, group_id } = req.body;
+router.post('/group/request', authenticateToken, (req, res) => {
+  const { group_id } = req.body;
+  const user_id = req.user.user_id;
   // Find group to join
   Group.findOne({ group_id }).then((group) => {
     // Check if group exists
@@ -147,8 +149,9 @@ router.post('/group/request', (req, res) => {
   });
 });
 
-router.post('/group/accept', (req, res) => {
-  const { my_user_id, other_user_id, group_id } = req.body;
+router.post('/group/accept', authenticateToken, (req, res) => {
+  const { other_user_id, group_id } = req.body;
+  const my_user_id = req.user.user_id;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
@@ -208,8 +211,9 @@ router.post('/group/accept', (req, res) => {
   });
 });
 
-router.post('/group/decline', (req, res) => {
-  const { my_user_id, other_user_id, group_id } = req.body;
+router.post('/group/decline', authenticateToken, (req, res) => {
+  const { other_user_id, group_id } = req.body;
+  const my_user_id = req.user.user_id;
 
   // Find group
   Group.findOne({ group_id }).then((group) => {
@@ -261,7 +265,7 @@ router.post('/group/decline', (req, res) => {
   });
 });
 
-router.delete('/group', (req, res) => {
+router.delete('/group', authenticateToken, (req, res) => {
   const { user_id, currentGroupID } = req.body;
 
   User.updateOne(
