@@ -1,8 +1,9 @@
-import "./ManageGroup.css"
+import './ManageGroup.css';
 
-import { Col, Divider, Row, Typography } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import MemberList from "../MemberList/MemberList";
+import { Col, Divider, Row, Typography } from 'antd';
+
+import MemberList from '../MemberList/MemberList';
+import { UserOutlined } from '@ant-design/icons';
 
 function ManageGroup(props) {
   const { Title } = Typography;
@@ -10,7 +11,7 @@ function ManageGroup(props) {
     <div className="container">
       <Row
         style={{
-          marginLeft: "20px",
+          marginLeft: '20px',
         }}
       >
         <Col span={24}>
@@ -21,11 +22,11 @@ function ManageGroup(props) {
       </Row>
       <Divider
         style={{
-          marginTop: "0",
+          marginTop: '0',
           borderWidth: 5,
         }}
       />
-      <MemberList history = {props.history}/>
+      <MemberList history={props.history} />
     </div>
   );
 }

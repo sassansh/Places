@@ -1,7 +1,7 @@
-import "./Request.css";
+import './Request.css';
 
-import { Avatar, Card, Button, Row, Col } from "antd";
-import { CheckOutlined, StopOutlined } from "@ant-design/icons";
+import { Avatar, Button, Card, Col, Row } from 'antd';
+import { CheckOutlined, StopOutlined } from '@ant-design/icons';
 
 function Request(props) {
   return (
@@ -14,7 +14,7 @@ function Request(props) {
             </Col>
             <Col flex="auto">
               <div className="user-name">{props.user.name}</div>
-              <div className="wants-to-join">{" wants to join "}</div>
+              <div className="wants-to-join">{' wants to join '}</div>
             </Col>
           </Row>
         </Col>
@@ -29,7 +29,7 @@ function Request(props) {
           </Row>
         </Col>
         <Col span={8}>
-          <Row justify="end" gutter={[16,0]}>
+          <Row justify="end" gutter={[16, 0]}>
             <Col>
               <Button
                 type="primary"
@@ -38,8 +38,8 @@ function Request(props) {
               >
                 Accept
               </Button>
-              </Col>
-              <Col>
+            </Col>
+            <Col>
               <Button
                 type="primary"
                 danger

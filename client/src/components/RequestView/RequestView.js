@@ -1,8 +1,9 @@
-import "./RequestView.css"
+import './RequestView.css';
 
-import { Col, Divider, Row, Typography } from "antd";
-import { BellOutlined } from "@ant-design/icons";
-import RequestList from "../RequestList/RequestList";
+import { Col, Divider, Row, Typography } from 'antd';
+
+import { BellOutlined } from '@ant-design/icons';
+import RequestList from '../RequestList/RequestList';
 
 function RequestView() {
   const { Title } = Typography;
@@ -10,7 +11,7 @@ function RequestView() {
     <div className="container">
       <Row
         style={{
-          marginLeft: "20px",
+          marginLeft: '20px',
         }}
       >
         <Col span={24}>
@@ -21,7 +22,7 @@ function RequestView() {
       </Row>
       <Divider
         style={{
-          marginTop: "0",
+          marginTop: '0',
           borderWidth: 5,
         }}
       />
