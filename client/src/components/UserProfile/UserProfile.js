@@ -80,6 +80,7 @@ function UserProfile() {
                         <img
                             className="profilePic"
                             src={userData.avatarURL}
+                            alt="profileImg"
                         />
                         <div>Details</div>
                         <div>Member of {numGroups} Groups</div>
