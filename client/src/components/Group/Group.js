@@ -15,9 +15,9 @@ import { setCurrentGroup } from '../../redux/actions/groupActions';
 import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
 function Group(props) {
+  const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
-  const users = useSelector((state) => state.users.allUsers);
   const [numMembers, setNumMembers] = useState(0);
 
   const currentUserID = useSelector((state) => state.users.user.user_id);
