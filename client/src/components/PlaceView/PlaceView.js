@@ -1,15 +1,15 @@
-import "./PlaceView.css";
+import './PlaceView.css';
 
-import { Avatar, Col, Divider, Image, Row, Typography } from "antd";
+import { Avatar, Col, Divider, Image, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
 
-import { getPlaces } from "../../redux/actions/placeActions";
-import { getCategories } from "../../redux/actions/categoryActions";
-import { getReviews } from "../../redux/actions/reviewActions";
-import ReviewList from "../ReviewList/ReviewList";
+import ReviewList from '../ReviewList/ReviewList';
 import RatingDetail from "../RatingDetail/RatingDetail";
-import RatingTile from "../RatingTile/RatingTile";
+import { getCategories } from '../../redux/actions/categoryActions';
+import { getPlaces } from '../../redux/actions/placeActions';
+import { getReviews } from '../../redux/actions/reviewActions';
+import { useEffect } from 'react';
+// >>>>>>> main
 
 function PlaceView() {
   const dispatch = useDispatch();
@@ -29,12 +29,12 @@ function PlaceView() {
   );
 
   const places = useSelector((state) => state.places.allPlaces);
-  const currentPlaceID = useSelector(state => state.places.currentPlaceID);
+  const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const currentPlace = places.find(
     (place) => place.place_id === currentPlaceID
   );
 
-  let reviewsData = useSelector((state => state.reviews.allReviews)).filter(
+  let reviewsData = useSelector((state) => state.reviews.allReviews).filter(
     (review) => review.place_id === currentPlaceID
   );
 
@@ -54,28 +54,28 @@ function PlaceView() {
   let ratingCriteria = [
       {
         name: "Beauty",
-        outOf: 10,
-        score: 8
+        outOf: 5,
+        score: 1
       },
       {
         name: "Fun",
-        outOf: 10,
-        score: 8
+        outOf: 5,
+        score: 2
       },
       {
         name: "Convenience",
-        outOf: 10,
-        score: 8
+        outOf: 5,
+        score: 3
       },
       {
         name: "Quiet",
-        outOf: 10,
-        score: 8
+        outOf: 5,
+        score: 4
       },
       {
         name: "Sand",
-        outOf: 10,
-        score: 0
+        outOf: 5,
+        score: 5
       }
   ];
 
@@ -110,55 +110,47 @@ function PlaceView() {
   // </Row>
 
   return (
-    <div className="container">
+    <div>
       <Row
         style={{
           marginLeft: "20px",
           marginBottom: "10px"
         }}
       >
-        <Col lg={12}>
+        <Col span={24}>
           <Row>
             <Title level={2}>
               {currentPlace.name}{" "}
-              <RatingTile score={32} outOf={50} isMainRating={true} / >
             </Title>
           </Row>
-        </Col>
-        <Col lg={12} className="category-of-place">
-          <Title level={2}>{currentCategory.name_singular + " " + currentCategory.emoji}</Title>
+          <Row>
+            <Title level={4}>
+              {currentCategory.name_singular + ' ' + currentCategory.emoji}
+            </Title>
+          </Row>
         </Col>
       </Row>
       <Divider
         style={{
-          marginTop: "0",
+          marginTop: '0',
           borderWidth: 5,
         }}
       />
-      <Row
-        style={{
-          marginRight: "0px",
-        }}
-      >
+      <Row gutter={[16,16]} align="middle">
         <Col
-          lg={10}
-          style={{
-            marginTop: "20px",
-          }}
+          lg={12}
         >
           <Image
-            width={500}
+            className="image"
             src={currentPlace.ImageURL}
-            style={{
-              borderRadius: "15px",
-            }}
           />
         </Col>
-        <Col lg={4}></Col>
-        <Col lg={10}>
-          <RatingDetail criteria={ratingCriteria} />
-          <ReviewList reviewsData={reviewsData} />
+        <Col lg={12}>
+          <RatingDetail criteria={ratingCriteria} score={15} outOf={25} />
         </Col>
+      </Row>
+      <Row justify="center">
+        <ReviewList reviewsData={reviewsData} />
       </Row>
     </div>
   );

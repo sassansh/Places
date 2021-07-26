@@ -1,26 +1,28 @@
-import "./Group.css";
+import './Group.css';
 
-import { Avatar, Button, Card, Col, Row, Tooltip } from "antd";
 import {
-  QuestionCircleFilled,
+  ArrowRightOutlined,
+  QuestionOutlined,
   StarFilled,
   UserOutlined,
-} from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+} from '@ant-design/icons';
+import { Avatar, Button, Card, Col, Row, Tooltip } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-import { getUsers } from "../../redux/actions/userActions";
+import { Link } from 'react-router-dom';
+import { setCurrentGroup } from '../../redux/actions/groupActions';
 
 function Group(props) {
   const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
   const [numMembers, setNumMembers] = useState(0);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
+  const currentUserID = useSelector((state) => state.users.user.user_id);
+  const currentUser = users.find((user) => user.user_id === currentUserID);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let memberCount = 0;
@@ -46,35 +48,74 @@ function Group(props) {
       }
     });
   });
+
+  function renderButton() {
+    if (currentUser) {
+      if (currentUser.groups.includes(props.group.group_id)) {
+        return (
+          <Link
+            to="/groupview"
+            onClick={() => {
+              dispatch(setCurrentGroup(props.group.group_id));
+            }}
+          >
+            <Button
+              type="primary"
+              icon={<ArrowRightOutlined size="large" />}
+              size="medium"
+            >
+              Go to Group
+            </Button>
+          </Link>
+        );
+      } else if (currentUser.requestGroups.includes(props.group.group_id)) {
+        return (
+          <Button type="primary" size="medium" disabled>
+            Requested to Join
+          </Button>
+        );
+      } else {
+        return (
+          <Button
+            type="primary"
+            icon={<QuestionOutlined size="large" />}
+            size="medium"
+            style={{ background: 'orange', borderColor: 'orange' }}
+          >
+            Request to Join
+          </Button>
+        );
+      }
+    }
+  }
+
   return (
     <Card style={{ margin: 16 }} onClick={props.onClick}>
       <Row justify="space-around" align="middle">
-        <Col className="group" flex="100px">
-          <Avatar src={props.group.avatarURL} size={64} />
+        <Col lg={4} md={4} sm={24} xs={24} className="group">
+          <Row justify="center">
+            <Avatar src={props.group.avatarURL} size={64} />
+          </Row>
         </Col>
-        <Col flex="auto">
-          <div className="group-name">{props.group.name}</div>
-          <div className="group-descrip">{props.group.description}</div>
+        <Col lg={12} md={12} sm={24} xs={24}>
+          <Row justify="center" className="group-name">
+            {props.group.name}
+          </Row>
+          <Row justify="center" className="group-descrip">
+            {props.group.description}
+          </Row>
         </Col>
-        <Col flex="auto">
-          <Row justify="end" align="middle">
-            <Col className="join-button">
-              <Button
-                type="primary"
-                icon={<QuestionCircleFilled size="large" />}
-                size="medium"
-              >
-                Join Group
-              </Button>
-            </Col>
+        <Col lg={8} md={8} sm={24} xs={24}>
+          <Row justify="center" align="middle">
+            <Col className="join-button">{renderButton()}</Col>
             <Col className="reviews-members" flex="100px">
-              <Tooltip title={numReviews + " reviews"}>
+              <Tooltip title={numReviews + ' reviews'}>
                 <StarFilled size="large" />
                 &nbsp;
                 {numReviews}
               </Tooltip>
               &nbsp; &nbsp;
-              <Tooltip title={numMembers + " members"}>
+              <Tooltip title={numMembers + ' members'}>
                 <UserOutlined size="large" />
                 &nbsp;
                 {numMembers}

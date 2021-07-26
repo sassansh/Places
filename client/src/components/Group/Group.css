@@ -10,6 +10,12 @@
   margin: 2px;
   font-size: large;
   font-weight: bold;
+  text-align: center;
+}
+
+.group-descrip {
+  margin: 2px;
+  text-align: center;
 }
 
 .group-link {

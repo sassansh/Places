@@ -1,41 +1,44 @@
-import "./ReviewList.css";
-import { Row, Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import Review from "../Review/Review";
-import { useSelector } from "react-redux";
+import './ReviewList.css';
+
+import { Button, Row } from 'antd';
+
+import { Link } from 'react-router-dom';
+import { PlusOutlined } from '@ant-design/icons';
+import Review from '../Review/Review';
+import { useSelector } from 'react-redux';
 
 function ReviewList(props) {
   let reviewsData = props.reviewsData;
-  let currentUser = useSelector(state => state.users.user.user_id);
+  reviewsData = reviewsData.map((review) => ({
+    ...review,
+    rating: [5,2,4,3,1]
+  }));
+  let currentUser = useSelector((state) => state.users.user.user_id);
 
   reviewsData = reviewsData
     .filter((review) => review.user_id === currentUser)
-    .concat(
-      reviewsData
-        .filter((review) => review.user_id !== currentUser)
-    );
+    .concat(reviewsData.filter((review) => review.user_id !== currentUser));
 
-  let currentUserHasReview = !(reviewsData.find((review) => review.user_id === currentUser));
+  let currentUserHasReview = !reviewsData.find(
+    (review) => review.user_id === currentUser
+  );
 
   let reviews = reviewsData.map((reviewData) => (
     <Review key={reviewData.review_id} review={reviewData} />
   ));
 
-  let reviewTitleText = reviewsData.length === 1? " Review" : " Reviews";
+  let reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews';
   return (
     <div>
-      <Row>
+      <Row style={{marginTop: 25, marginBottom: 12}}>
         <h1>{reviewsData.length + reviewTitleText}</h1>
-      </Row>
-      <Row>
-        {currentUserHasReview &&
+        {currentUserHasReview && (
           <Link to="/addReview" className="add-review-button">
             <Button type="primary" icon={<PlusOutlined />} size="large">
               Add Review
             </Button>
           </Link>
-        }
+        )}
       </Row>
       <ul>{reviews}</ul>
     </div>

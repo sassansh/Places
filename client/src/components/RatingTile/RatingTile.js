@@ -1,26 +1,16 @@
 import "./RatingTile.css";
-import { Avatar, Typography } from "antd";
+import { Typography, Row, Col } from "antd";
 
 function RatingTile(props) {
   const ratingString = props.score !== undefined ? Number(props.score.toFixed(2)).toString() + "/" + props.outOf : "?";
-  return props.isMainRating? (
-    <Avatar
-      style={{ color: "#ffffff", backgroundColor: "#512da8"}}
-      shape="square"
-      size={64}
-    >
-      {ratingString}
-    </Avatar>
-  ) : (
-      <Avatar
-        style={{
-        backgroundColor: '#87d068',
-        }}
-        size={48}
-        shape="square"
-      >
-        {ratingString}
-      </Avatar>
+  const { Title } = Typography;
+
+  return (
+      <Row gutter={[35,35]}>
+        <Col>
+          <Title level={3} italic type="success">Total score: {ratingString}</Title>
+        </Col>
+      </Row>
   );
 }
 

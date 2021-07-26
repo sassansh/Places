@@ -1,4 +1,4 @@
-name: CI Frontend Build
+name: Test Frontend Build
 
 on:
   push:

@@ -4,22 +4,18 @@ import { Rate, Row, Col } from "antd";
 
 function RatingCriterion(props) {
   return(
-    <div>
-      <Row justify="space-between" style={{background: "blue"}}>
-        <Col>
+      <Row>
+        <Col lg={12} className="crit-name">
           {props.name + ": "}
         </Col>
-        <Col>
-          <Rate
-            character="█"
-            value={props.score}
-            count={props.outOf}
-            disabled={true}
-          />
+        <Col lg={12} className="crit-rating">
+        <Rate
+          value={props.score}
+          count={props.outOf}
+          disabled={true}
+        />
         </Col>
       </Row>
-
-    </div>
   );
 }
 

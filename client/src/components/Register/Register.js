@@ -1,18 +1,18 @@
-import "./Register.css";
+import './Register.css';
 
-import { Link, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import logo from "../../assets/logo.png";
-import { registerUser } from "../../redux/actions/userActions";
-import { useState } from "react";
+import logo from '../../assets/logo.png';
+import { registerUser } from '../../redux/actions/userActions';
+import { useState } from 'react';
 
 function Register(props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-  const [avatarURL, setAvatarURL] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const [avatarURL, setAvatarURL] = useState('');
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
@@ -26,7 +26,7 @@ function Register(props) {
   }
 
   return isAuthenticated ? (
-    <Redirect to={{ pathname: "/" }} />
+    <Redirect to={{ pathname: '/' }} />
   ) : (
     <div className="register-page">
       <img alt="logo" src={logo} width="100px" />

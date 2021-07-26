@@ -1,61 +1,58 @@
-import "./CreateGroup.css";
+import './CreateGroup.css';
 
-import { Button, Col, Divider, Form, Input, Row, Typography } from "antd";
-import { createGroup } from "../../redux/actions/groupActions";
+import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
+
+import { createGroup } from '../../redux/actions/groupActions';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
-function CreateGroup() {
+function CreateGroup(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const [logoData, setLogoData] = useState('');
   const [fieldInput, setFieldInput] = useState({
-    name: "",
-    description: "",
+    name: '',
+    description: '',
   });
 
   function handleChange() {
     setFieldInput({
-      name: form.getFieldValue("name"),
-      description: form.getFieldValue("description"),
+      name: form.getFieldValue('name'),
+      description: form.getFieldValue('description'),
     });
   }
-  
+
+  const logoHandler = (e) => {
+    setLogoData(e.target.files[0]);
+  };
+
   function addGroup() {
-    let name = form.getFieldValue("name");
-    let description = form.getFieldValue("description");
-    let avatarURL = form.getFieldValue("logo");
+    let name = form.getFieldValue('name');
+    let description = form.getFieldValue('description');
+    const newGroup = new FormData();
+    newGroup.append('name', name);
+    newGroup.append('description', description);
+    newGroup.append('logo', logoData);
     if (name === undefined) return;
-    let newGroup = {
-      name: name,
-      description: description,
-      avatarURL: avatarURL,
-    };
-    dispatch(createGroup(newGroup));
+    dispatch(createGroup(newGroup, props.history));
     form.resetFields();
   }
 
   return (
-    <div className="container">
-      <Row
-        style={{
-          marginLeft: "20px",
-        }}
-      >
-        <Col lg={24}>
+    <Col className="container">
+      <Row justify="center">
+        <Col lg={24} md={24}>
           <Title level={2}>Create Group</Title>
         </Col>
       </Row>
       <Divider
         style={{
-          marginTop: "0",
           borderWidth: 5,
         }}
       />
       <Row justify="center">
-        <Col lg={8}>
+        <Col lg={8} md={10} sm={10}>
           <Form
             className="form"
             form={form}
@@ -69,26 +66,33 @@ function CreateGroup() {
             <Form.Item name="description" label="Description">
               <Input placeholder="Description" />
             </Form.Item>
-            <Form.Item name="logo" label="Logo">
-              <Input placeholder="http://" />
-            </Form.Item>
           </Form>
+          Logo
+          <br />
+          <br />
+          <input type="file" id="logoupload" onChange={logoHandler} />
+          <br />
+          <br />
         </Col>
       </Row>
       <Row justify="center">
         <Col>
-          <Link to="/" onClick={addGroup}>
-            <Button
-              className="button"
-              type="primary"
-              disabled={fieldInput.name === "" || fieldInput.description === ""}
-            >
-              Submit
-            </Button>
-          </Link>
+          <Button
+            onClick={addGroup}
+            className="button"
+            type="primary"
+            size="large"
+            disabled={
+              fieldInput.name === '' ||
+              fieldInput.description === '' ||
+              logoData === ''
+            }
+          >
+            Submit
+          </Button>
         </Col>
       </Row>
-    </div>
+    </Col>
   );
 }
 

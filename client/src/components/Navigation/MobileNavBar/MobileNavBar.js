@@ -1,13 +1,41 @@
-import "./MobileNavBar.css";
+import './MobileNavBar.css';
 
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Dropdown, Menu } from 'antd';
+import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { MenuOutlined } from "@ant-design/icons";
-import logo from "../../../assets/logo.png";
-import { useState } from "react";
+import { Link } from 'react-router-dom';
+import { MenuOutlined } from '@ant-design/icons';
+import logo from '../../../assets/logo.png';
+import { logoutUser } from '../../../redux/actions/userActions';
+import { useState } from 'react';
 
 const MobileNavBar = ({ menu }) => {
   const [visible, setVisible] = useState(false);
+  const allUsers = useSelector((state) => state.users.allUsers);
+
+  const currentUserID = useSelector((state) => state.users.user.user_id);
+  const userName = useSelector((state) => state.users.user.name);
+  const currentUser = allUsers.find((user) => user.user_id === currentUserID);
+
+  const dispatch = useDispatch();
+
+  function handleLogout() {
+    dispatch(logoutUser());
+  }
+
+  const profileMenu = (
+    <Menu>
+      <Menu.Item key="0" icon={<UserOutlined />}>
+        {userName}
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item onClick={handleLogout} key="1" icon={<LogoutOutlined />}>
+        <Link to="/login">Log Out</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
     <nav className="navbar">
       <Button
@@ -23,7 +51,7 @@ const MobileNavBar = ({ menu }) => {
         onClose={() => setVisible(false)}
         visible={visible}
         drawerStyle={{
-          backgroundColor: "#041527",
+          backgroundColor: '#041527',
         }}
       >
         {menu}
@@ -34,6 +62,17 @@ const MobileNavBar = ({ menu }) => {
         </a>
         Places
       </span>
+      <Dropdown overlay={profileMenu} trigger={['click']}>
+        <span className="profilepic">
+          {currentUser && (
+            <img
+              src={currentUser.avatarURL}
+              className="profilepic"
+              alt="profile pic"
+            />
+          )}
+        </span>
+      </Dropdown>
     </nav>
   );
 };

@@ -1,11 +1,12 @@
-import "./CategoryList.css";
+import './CategoryList.css';
 
-import Category from "../Category/Category";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Col, Row } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getCategories } from "../../redux/actions/categoryActions";
-import { getPlaces } from "../../redux/actions/placeActions";
+import Category from '../Category/Category';
+import { getCategories } from '../../redux/actions/categoryActions';
+import { getPlaces } from '../../redux/actions/placeActions';
+import { useEffect } from 'react';
 
 function CategoryList() {
   const dispatch = useDispatch();
@@ -19,22 +20,23 @@ function CategoryList() {
   const places = useSelector((state) => state.places.allPlaces);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
 
-  categories = categories
-    .map(category => ({...category,
-      numPlaces: places
-        .filter((place) => (place.category_id === category.category_id)
-          && (place.group_id === currentGroupID))
-        .length
-    }));
+  categories = categories.map((category) => ({
+    ...category,
+    numPlaces: places.filter(
+      (place) =>
+        place.category_id === category.category_id &&
+        place.group_id === currentGroupID
+    ).length,
+  }));
 
   let categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />
   ));
 
   return (
-    <div>
-      <ul>{categoryItems}</ul>
-    </div>
+    <Row>
+      <Col span={24}>{categoryItems}</Col>
+    </Row>
   );
 }
 

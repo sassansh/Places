@@ -79,9 +79,9 @@
 
 **Minimal Requirements**
 
-- [ ] Register new account or log in to existing account
+- [x] Register new account or log in to existing account
 - [x] Create a group
-- [ ] Request and join an existing group / accept or reject requests to join
+- [x] Request and join an existing group / accept or reject requests to join
 - [x] Each user can rate (scale 1-5) a place, rating attached to their group
 - [x] View places by category and order by average rating
 
@@ -91,14 +91,14 @@
 - [ ] Create new categories
   - [ ] Choose custom rating criteria for the new category (by group)
 - [ ] Display ranked list of places based on selected criteria
-  - [ ] Multiple search criteria including location tags
-- [ ] Allow users to upload photos for their profile picture or of places
+  - [x] Search bar & other filters to narrow down list of places
+- [x] Allow users to upload photos for their profile picture or of places
 - [x] Profile for each place containing images, address, details, reviews.
-- [ ] User profiles displaying:
-  - [ ] Name, picture, list of reviewed places, name of group they are in
-- [ ] Moderator ability for group creator:
-  - [ ] Add members
-  - [ ] Delete members
+- [x] User profiles displaying:
+  - [x] Name, picture, list of reviewed places, name of group they are in
+- [x] Moderator ability for group members:
+  - [x] Accept other member requests into group
+  - [x] Delete members from group
 
 **Stretch Requirements**
 
@@ -108,13 +108,13 @@
 
 ## Task Breakdown 📝
 
-- [ ] Register new account or log in to existing account
+- [x] Register new account or log in to existing account
 
   - [x] Login UI with email/user name and password inputs and login button
-  - [ ] Button to Register and form for creating new account
-    - [ ] User Name, Email, Password
+  - [x] Button to Register and form for creating new account
+    - [x] User Name, Email, Password
   - [x] Database structure for storing email and password for each user
-  - [ ] Simple authentication backend & remember user on the same device
+  - [x] Simple authentication backend & remember user on the same device
 
 - [x] User should be able to leave ratings
   - [x] Display list of existing places to choose from
@@ -163,6 +163,10 @@ You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpk
    ```bash
    PLACES_DB_URI=
    PORT=
+   JWT_SECRET=
+   CLOUDINARY_CLOUD_NAME=
+   CLOUDINARY_API_KEY=
+   CLOUDINARY_API_SECRET=
    ```
 
 3. To start frontend & backend in dev mode together, run:
@@ -186,7 +190,7 @@ Team Name: Green 🌱
 
 Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
 
-Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/)
+Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/)  - [Personal Website](https://johnnyli.herokuapp.com/about)
 
 Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 
