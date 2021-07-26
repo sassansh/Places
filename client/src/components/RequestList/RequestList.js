@@ -1,41 +1,45 @@
 import './RequestList.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Request from '../Request/Request';
+import { getUsers } from '../../redux/actions/userActions';
+import { getGroups } from '../../redux/actions/groupActions';
 
 function RequestList() {
-  const processedRequestData = [
-    {
-      user: {
-        user_id: '1-2-3-4',
-        avatarURL:
-          'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80',
-        name: 'Sally McGee',
-      },
-      group: {
-        group_id: '4-5-6-7',
-        avatarURL:
-          'https://i0.wp.com/www.healthfitnessrevolution.com/wp-content/uploads/2016/09/iStock-119483507.jpg?resize=1024%2C683&ssl=1',
-        name: 'People Who Eat Food',
-      },
-    },
-    {
-      user: {
-        user_id: '2-4-6-8',
-        avatarURL:
-          'https://i2.wp.com/decider.com/wp-content/uploads/2020/06/adventure-time-distant-lands-bmo.jpg?quality=80&strip=all&ssl=1',
-        name: 'Bea Mo',
-      },
-      group: {
-        group_id: '4-5-6-7',
-        avatarURL:
-          'https://i0.wp.com/www.healthfitnessrevolution.com/wp-content/uploads/2016/09/iStock-119483507.jpg?resize=1024%2C683&ssl=1',
-        name: 'People Who Eat Food',
-      },
-    },
-  ];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+    dispatch(getGroups());
+  }, [dispatch]);
+
+  const users = useSelector((state) => state.users.allUsers);
+  const groups = useSelector((state) => state.groups.allGroups);
+  const currentUserID = useSelector((state) => state.users.user.user_id);
+  const currentUser = users.find((user) => user.user_id === currentUserID);
+
+  let processedRequestData = [];
+  groups.forEach((group) => {
+    if (currentUser.groups.includes(group.group_id)) {
+      users.forEach((user) => {
+        user.requestGroups.forEach((requestGroup) => {
+          if (group.group_id === requestGroup) {
+            processedRequestData = processedRequestData.concat(
+              {
+                user: user,
+                group: group,
+                key: user.user_id + group.group_id
+              }
+            );
+          }
+        });
+      });
+    }
+  });
 
   let requestList = processedRequestData.map((request) => (
-    <Request user={request.user} group={request.group} />
+    <Request user={request.user} group={request.group} key={request.key}/>
   ));
 
   return (

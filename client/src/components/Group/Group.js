@@ -12,11 +12,12 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { setCurrentGroup } from '../../redux/actions/groupActions';
+import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
 function Group(props) {
-  const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
+  const users = useSelector((state) => state.users.allUsers);
   const [numMembers, setNumMembers] = useState(0);
 
   const currentUserID = useSelector((state) => state.users.user.user_id);
@@ -48,6 +49,10 @@ function Group(props) {
       }
     });
   });
+
+  function handleRequestToJoin() {
+    dispatch(userRequestToJoinGroup(props.group.group_id));
+  }
 
   function renderButton() {
     if (currentUser) {
@@ -81,6 +86,7 @@ function Group(props) {
             icon={<QuestionOutlined size="large" />}
             size="medium"
             style={{ background: 'orange', borderColor: 'orange' }}
+            onClick={handleRequestToJoin}
           >
             Request to Join
           </Button>
