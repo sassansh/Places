@@ -1,6 +1,6 @@
 .column1 {
-    text-align: center;
-    padding: 20px 70px 0px 70px;
+    text-align: left;
+    padding: 20px 70px 0px 0px;
 }
 
 .column2 {
@@ -35,4 +35,8 @@
 
 .group {
     font-size: calc(12px + 0.8vw);
+}
+
+.profilePic {
+    width: calc(70px + 15vw);
 }

@@ -17,10 +17,18 @@ function UserProfile() {
     const reviews = useSelector((state) => state.reviews.allReviews);
     const places = useSelector((state) => state.places.allPlaces);
     const groups = useSelector((state => state.groups.allGroups));
+    let numGroups = 0;
+    let numPlaces = 0;
 
     function getPlace(place_id) {
-        let placeName = places.find(place => place.place_id === place_id).name;
-        return placeName;
+        try {
+            numPlaces++;
+            let placeName = places.find(place => place.place_id === place_id).name;
+            return placeName;
+        } catch (e) {
+            numPlaces--;
+            console.error(e);
+        }
     }
 
     function getRating(rating) {
@@ -33,9 +41,16 @@ function UserProfile() {
     }
 
     function getGroup(group_id) {
-        return (
-            groups.find(group => group.group_id === group_id).name
-        );
+        try {
+            numGroups++;
+            return (
+                groups.find(group => group.group_id === group_id).name
+            );
+        } catch (e) {
+            numGroups--;
+            console.error(e);
+        }
+
     }
 
     const myGroups = userData.groups;
@@ -55,24 +70,27 @@ function UserProfile() {
             </Row>
             <Divider
                 style={{
-                marginTop: '0',
-                borderWidth: 5,
+                    marginTop: '0',
+                    borderWidth: 5,
                 }}
             />
-            <Row justify="center">
+            <Row justify="left">
                 <div className="column1">
                     <Col>
-                        <Avatar
-                            size={300}
+                        <img
+                            className="profilePic"
                             src={userData.avatarURL}
                         />
-                        <div className="label">
-                            {userData.name}
-                        </div>
+                        <div>Details</div>
+                        <div>Member of {numGroups} Groups</div>
+                        <div>Reviewed {numPlaces} Places</div>
                     </Col>                 
                 </div>
                 <div className="column2">
                     <Col>
+                        <div className="label">
+                            {userData.name}
+                        </div>
                         <div className="heading">
                             My Groups
                         </div>
