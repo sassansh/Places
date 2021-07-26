@@ -12,12 +12,15 @@ router.get('/', authenticateToken, (req, res) => {
 });
 
 router.post('/', authenticateToken, (req, res) => {
-  const { name, name_singular, emoji } = req.body;
+  const { name, name_singular, emoji, criteria_weights, criteria_names } = req.body;
   const newCategory = new Category({
     category_id: uuidv4(),
     name: name,
     name_singular: name_singular,
     emoji: emoji,
+    group_id: group_id,
+    criteria_weights: criteria_outOf,
+    criteria_names: criteria_names,
   });
   newCategory
     .save()

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddPlace from './components/AddPlace/AddPlace';
 import AddReview from './components/AddReview/AddReview';
 import CategoryView from './components/CategoryView/CategoryView';
+import AddCategory from './components/AddCategory/AddCategory';
 import CreateGroup from './components/CreateGroup/CreateGroup';
 import GroupListView from './components/GroupListView/GroupListView';
 import GroupView from './components/GroupView/GroupView';
