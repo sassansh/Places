@@ -6,6 +6,7 @@ import {
     Row,
     Typography,
   } from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
 import { useSelector } from 'react-redux';
 import './UserProfile.css';
 
@@ -17,6 +18,7 @@ function UserProfile() {
     const reviews = useSelector((state) => state.reviews.allReviews);
     const places = useSelector((state) => state.places.allPlaces);
     const groups = useSelector((state => state.groups.allGroups));
+
     let numGroups = 0;
     let numPlaces = 0;
 
@@ -34,17 +36,18 @@ function UserProfile() {
     function getRating(rating) {
         return (
             <Rate
-            value={rating}
-            disabled={true}
-          />
+                value={rating}
+                disabled={true}
+            />
         );
     }
 
     function getGroup(group_id) {
+        let targetGroup = groups.find(group => group.group_id === group_id);
         try {
             numGroups++;
             return (
-                <Card size="small"><span className="group">{groups.find(group => group.group_id === group_id).name}</span></Card>
+                <Card size="small"><span className="group"><Avatar size={64} src={targetGroup.avatarURL} />&emsp;{targetGroup.name}</span></Card>
             );
         } catch (e) {
             numGroups--;
@@ -74,19 +77,28 @@ function UserProfile() {
                     borderWidth: 5,
                 }}
             />
-            <Row justify="left">
+            <Row justify="center">
                 <Col span={6} className="column1">
-                    <img
-                        className="profilePic"
-                        src={userData.avatarURL}
-                        alt="profileImg"
-                    />
-                    <div className="label">
-                        {userData.name}
+                    <div className="profile">
+                        <img
+                            className="profilePic"
+                            src={userData.avatarURL}
+                            alt="profileImg"
+                        />
+                        <div className="name">
+                            {userData.name}
+                        </div>
                     </div>
-                    <div>Details</div>
-                    <div>Member of {numGroups} Groups</div>
-                    <div>Reviewed {numPlaces} Places</div>
+                    <br />
+                    <div className="detailsHeading">Details</div>
+                    <Divider 
+                        style={{
+                            marginTop: '0',
+                            borderWidth: 4,
+                        }}
+                    />
+                    <div className="details">Member of {numGroups} Groups</div>
+                    <div className="details">Reviewed {numPlaces} Places</div>
                 </Col>                 
                 <Col span={9} className="column2">
                     <div className="heading">
