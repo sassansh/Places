@@ -1,42 +1,48 @@
 .column1 {
     text-align: left;
-    padding: 20px 70px 0px 0px;
+    padding: 20px 20px 20px 0px;
 }
 
 .column2 {
     text-align: left;
-    padding: 20px 70px 0px 70px;
+    padding: 20px 20px 20px 0px;
 }
 
 .column3 {
     text-align: left;
-    padding: 20px 70px 0px 57px;
+    padding: 20px 20px 20px 0px;
 }
 
 .heading {
-    font-size: calc(16px + 1vw);
+    font-size: calc(14px + 0.7vw);
     font-weight: bold;
-    padding: 0px 0px 10px 40px;
+    padding: 0px 0px 20px 40px;
 }
 
 .label {
-    font-size: 40px;
+    font-size: 20px;
     padding-top: 15px;
 }
 
 .groups {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .place {
     text-align: right;
     padding-right: 20px;
-    font-size: calc(12px + 0.8vw);}
+    font-size: calc(12px + 0.4vw);
+}
 
 .group {
-    font-size: calc(12px + 0.8vw);
+    font-size: calc(12px + 0.4vw);
 }
 
 .profilePic {
-    width: calc(70px + 15vw);
+    width: calc(60px + 15vw);
 }
+
+.rating {
+    text-align: right;
+}
+

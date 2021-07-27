@@ -1,5 +1,5 @@
 import {
-    Avatar,
+    Card,
     Col,
     Divider,
     Rate,
@@ -44,7 +44,7 @@ function UserProfile() {
         try {
             numGroups++;
             return (
-                groups.find(group => group.group_id === group_id).name
+                <Card size="small"><span className="group">{groups.find(group => group.group_id === group_id).name}</span></Card>
             );
         } catch (e) {
             numGroups--;
@@ -57,8 +57,8 @@ function UserProfile() {
     const myGroupsItems = myGroups.map((group_id) => <li className="group">{getGroup(group_id)}</li>);
 
     const myReviews = reviews.filter((review) => review.user_id === user.user_id);
-    const myReviewsItems = myReviews.map((review) => <li className="review"><Row justify="end"><Col className="place">{getPlace(review.place_id)}</Col><Col className="rating">{getRating(review.rating)}</Col></Row></li>);
-    
+    const myReviewsItems = myReviews.map((review) => <li className="review"><Card size="small"><Row><Col span={12}><span className="place">{getPlace(review.place_id)}</span></Col><Col className="rating" span={12}>{getRating(review.rating)}</Col></Row></Card></li>);    
+
     return (
         <div className="container">
             <Row justify="left">
@@ -75,37 +75,31 @@ function UserProfile() {
                 }}
             />
             <Row justify="left">
-                <div className="column1">
-                    <Col>
-                        <img
-                            className="profilePic"
-                            src={userData.avatarURL}
-                            alt="profileImg"
-                        />
-                        <div>Details</div>
-                        <div>Member of {numGroups} Groups</div>
-                        <div>Reviewed {numPlaces} Places</div>
-                    </Col>                 
-                </div>
-                <div className="column2">
-                    <Col>
-                        <div className="label">
-                            {userData.name}
-                        </div>
-                        <div className="heading">
-                            My Groups
-                        </div>
-                        <ul className="group">{myGroupsItems}</ul>
-                    </Col>
-                </div>
-                <div className="column3">
-                    <Col>
-                        <div className="heading">
-                            My Reviews
-                        </div>
-                        <ul>{myReviewsItems}</ul>
-                    </Col>
-                </div>
+                <Col span={6} className="column1">
+                    <img
+                        className="profilePic"
+                        src={userData.avatarURL}
+                        alt="profileImg"
+                    />
+                    <div className="label">
+                        {userData.name}
+                    </div>
+                    <div>Details</div>
+                    <div>Member of {numGroups} Groups</div>
+                    <div>Reviewed {numPlaces} Places</div>
+                </Col>                 
+                <Col span={9} className="column2">
+                    <div className="heading">
+                        My Groups
+                    </div>
+                    <ul className="group">{myGroupsItems}</ul>
+                </Col>
+                <Col span={9} className="column3">
+                    <div className="heading">
+                        My Reviews
+                    </div>
+                    <ul>{myReviewsItems}</ul>
+                </Col>
             </Row>
         </div>
     );
