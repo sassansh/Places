@@ -11,10 +11,10 @@ import {
 import { logoutUser, setCurrentUser } from './redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
+import AddCategory from './components/AddCategory/AddCategory';
 import AddPlace from './components/AddPlace/AddPlace';
 import AddReview from './components/AddReview/AddReview';
-import CategoryView from './components/CategoryView/CategoryView';
-import AddCategory from './components/AddCategory/AddCategory';
+import CategoryView from './components/CategoryView/CategoryView'
 import CreateGroup from './components/CreateGroup/CreateGroup';
 import GroupListView from './components/GroupListView/GroupListView';
 import GroupView from './components/GroupView/GroupView';
@@ -39,6 +39,7 @@ function App() {
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
   const ManageGroupWithRouter = withRouter(ManageGroup);
+  const AddCategoryWithRouter = withRouter(AddCategory);
   const AddPlaceWithRouter = withRouter(AddPlace);
   const AddReviewWithRouter = withRouter(AddReview);
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
@@ -88,6 +89,11 @@ function App() {
                 exact
                 path="/categoryview"
                 component={CategoryView}
+              />
+              <PrivateRoute
+                exact
+                path="/addcategory"
+                component={AddCategoryWithRouter}
               />
               <PrivateRoute
                 exact

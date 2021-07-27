@@ -9,10 +9,6 @@ import { useSelector } from 'react-redux';
 
 function ReviewList(props) {
   let reviewsData = props.reviewsData;
-  reviewsData = reviewsData.map((review) => ({
-    ...review,
-    rating: [5,2,4,3,1]
-  }));
   let currentUser = useSelector((state) => state.users.user.user_id);
 
   reviewsData = reviewsData
@@ -30,8 +26,10 @@ function ReviewList(props) {
   let reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews';
   return (
     <div>
-      <Row style={{marginTop: 25, marginBottom: 12}}>
+      <Row>
         <h1>{reviewsData.length + reviewTitleText}</h1>
+      </Row>
+      <Row>
         {currentUserHasReview && (
           <Link to="/addReview" className="add-review-button">
             <Button type="primary" icon={<PlusOutlined />} size="large">

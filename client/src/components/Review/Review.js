@@ -1,6 +1,6 @@
 import './Review.css';
 
-import { Button, Card, Col, Rate, Row, Avatar} from 'antd';
+import { Button, Card, Col, Rate, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { EditOutlined } from '@ant-design/icons';
@@ -18,28 +18,19 @@ function Review(props) {
     review.user_id === useSelector((state) => state.users.user.user_id);
   let currentPlaceID = useSelector((state) => state.places.currentPlaceID);
 
-  let criteria = ["Beauty", "Fun", "Convenience", "Quiet", "Sand"];
-
-  let scoreBlocks = review.rating.map((critRating) =>
-    <Col>
-      <Avatar
-        style={{ color: '#ffffff', backgroundColor: '#512da8' }}
-        shape="square"
-        size={64}
-      >
-        {critRating}
-      </Avatar>
-    </Col>
-  );
   return (
-    <Card>
-    <Row>
-      <Col md={7} sm={24} className="reviewer">
+    <li>
+      <Card className="review" size="small">
         <Row>
-          {reviewer}
+          <Col lg={12} className="reviewer">
+            {reviewer}
+          </Col>
+          <Col lg={12} className="rating">
+            <Rate allowHalf defaultValue={review.rating[0]} disabled={true} />
+          </Col>
         </Row>
         {isCurrentUser && (
-          <Row className="edit-review">
+          <Row justify="end" className="edit-review">
             <Link
               to="/addReview"
               onClick={() => {
@@ -52,17 +43,9 @@ function Review(props) {
             </Link>
           </Row>
         )}
-      </Col>
-      <Col md={15} sm={24} className="rating">
-        <Row wrap={false} gutter={[16,16]}>
-          {scoreBlocks}
-        </Row>
-      </Col>
-      </Row>
-    </Card>
+      </Card>
+    </li>
   );
 }
-
-//<Rate allowHalf defaultValue={review.rating} disabled={true} />
 
 export default Review;
