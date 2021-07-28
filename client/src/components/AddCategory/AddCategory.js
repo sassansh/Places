@@ -20,6 +20,7 @@ function AddCategory(props) {
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
   const defaultCriteria = ["Coolness", "Flavour", "Space", "Quality", "Trendiness"];
+  const useWeights = false;
 
   function handleChange() {
     console.log("changed");
@@ -109,7 +110,7 @@ function AddCategory(props) {
              {(fields, { add, remove }) => (
                <>
                  {fields.map(({ key, name, fieldKey, ...restField }) => (
-                   <Row gutter={[7,7]} align="middle" key={key} >
+                   useWeights ? <Row gutter={[7,7]} align="middle" key={key} >
                      <Col span={2}>
                       {(name > 0) && <MinusCircleOutlined
                         onClick={() => {
@@ -143,6 +144,31 @@ function AddCategory(props) {
                        </Form.Item>
                       </Col>
                     </Row>
+                    :
+                    <Row gutter={[7,7]} align="middle" key={key} >
+                      <Col span={2}>
+                       {(name > 0) && <MinusCircleOutlined
+                         onClick={() => {
+                           setNumberOfCriteria(numberOfCriteria - 1);
+                           remove(name);
+                         }}
+                         style={{paddingTop:"18px"}}
+                       />}
+                       {console.log("name: " + name)}
+                       {console.log("fieldKey: " + fieldKey)}
+                       {console.log("key: "+ key)}
+                      </Col>
+                      <Col span={22}>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'criterion']}
+                          label="Criterion"
+                          fieldKey={[fieldKey, 'criterion']}
+                        >
+                          <Input placeholder="Coolness" />
+                        </Form.Item>
+                       </Col>
+                     </Row>
                  ))}
                  {(numberOfCriteria < 5) && <Form.Item>
                     <Button
