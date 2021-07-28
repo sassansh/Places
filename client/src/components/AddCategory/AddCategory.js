@@ -1,6 +1,3 @@
-// TODO: this is extremely not done. please don't mistake it for a done thing.
-
-
 import './AddCategory.css';
 
 import { Button, Col, Divider, Form, Input, Row, Typography, Switch, InputNumber, Modal } from 'antd';
@@ -19,10 +16,11 @@ function AddCategory(props) {
   const splitter = new GraphemeSplitter();
   const currentGroup = useSelector((state) => state.groups.currentGroupID);
   const [isCustomCriteria, setIsCustomCriteria] = useState(false);
-  const [numberOfCriteria, setNumberOfCriteria] = useState(1);
+  const [numberOfCriteria, setNumberOfCriteria] = useState(2);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
-  const defaultCriteria = ["Coolness", "Flavour", "Space", "Quality", "Trendiness"];
+  const defaultCriteria = ["Coolness", "Quality", "Flavour", "Comfort", "Size"];
+  const useWeights = true;
 
   function handleChange() {
     console.log("changed");
@@ -44,11 +42,13 @@ function AddCategory(props) {
     let name_singular = form.getFieldValue('name_singular');
     let emoji = form.getFieldValue('emoji');
     let criteria= form.getFieldValue('criteria');
+    let use_custom_criteria = form.getFieldValue('use_custom_criteria');
+
     let newCategory = {
       name: name,
       name_singluar: name_singular,
       emoji: emoji,
-      criteria: criteria
+      criteria: use_custom_criteria? criteria : [],
     };
     console.log(newCategory);
     if (false) {
@@ -82,7 +82,7 @@ function AddCategory(props) {
             layout="vertical"
             size="large"
             onChange={handleChange}
-            initialValues={{ criteria: [{criterion: defaultCriteria[0], weight: 5}] }}
+            initialValues={{ criteria: [{criterion: defaultCriteria[0], weight: 5}, {criterion: defaultCriteria[1], weight: 7}] }}
           >
             <Form.Item name="name_singular" label="Name for one place">
               <Input placeholder="Beach" />
@@ -104,7 +104,7 @@ function AddCategory(props) {
                 }} />
               </Modal>
             </Form.Item>
-            <Form.Item label="Use custom criteria?" name="customCriteriaSwitch" valuePropName="checked">
+            <Form.Item label="Use custom criteria?" name="use_custom_criteria" valuePropName="checked">
               <Switch defaultChecked={false} onChange={(value) => {setIsCustomCriteria(value)}} />
             </Form.Item>
             {isCustomCriteria &&
@@ -112,7 +112,7 @@ function AddCategory(props) {
              {(fields, { add, remove }) => (
                <>
                  {fields.map(({ key, name, fieldKey, ...restField }) => (
-                   <Row gutter={[7,7]} align="middle" key={key} >
+                   useWeights ? <Row gutter={[7,7]} align="middle" key={key} >
                      <Col span={2}>
                       {(name > 0) && <MinusCircleOutlined
                         onClick={() => {
@@ -121,9 +121,6 @@ function AddCategory(props) {
                         }}
                         style={{paddingTop:"18px"}}
                       />}
-                      {console.log("name: " + name)}
-                      {console.log("fieldKey: " + fieldKey)}
-                      {console.log("key: "+ key)}
                      </Col>
                      <Col span={11}>
                        <Form.Item
@@ -132,7 +129,7 @@ function AddCategory(props) {
                          label="Criterion"
                          fieldKey={[fieldKey, 'criterion']}
                        >
-                         <Input placeholder="Coolness" />
+                         <Input/>
                        </Form.Item>
                       </Col>
                       <Col span={11}>
@@ -146,6 +143,28 @@ function AddCategory(props) {
                        </Form.Item>
                       </Col>
                     </Row>
+                    :
+                    <Row gutter={[7,7]} align="middle" key={key} >
+                      <Col span={2}>
+                       {(name > 1) && <MinusCircleOutlined
+                         onClick={() => {
+                           setNumberOfCriteria(numberOfCriteria - 1);
+                           remove(name);
+                         }}
+                         style={{paddingTop:"18px"}}
+                       />}
+                      </Col>
+                      <Col span={22}>
+                        <Form.Item
+                          {...restField}
+                          name={[name, 'criterion']}
+                          label="Criterion"
+                          fieldKey={[fieldKey, 'criterion']}
+                        >
+                          <Input placeholder={defaultCriteria[name%6]} />
+                        </Form.Item>
+                       </Col>
+                     </Row>
                  ))}
                  {(numberOfCriteria < 5) && <Form.Item>
                     <Button

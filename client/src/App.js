@@ -31,6 +31,7 @@ import SideBar from './components/Navigation/SideBar/SideBar';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { useEffect } from 'react';
+import UserProfile from './components/UserProfile/UserProfile';
 
 const { Content, Footer } = Layout;
 
@@ -87,6 +88,11 @@ function App() {
               />
               <PrivateRoute
                 exact
+                path="/addcategory"
+                component={AddCategoryWithRouter}
+              />
+              <PrivateRoute
+                exact
                 path="/categoryview"
                 component={CategoryView}
               />
@@ -107,6 +113,7 @@ function App() {
                 component={AddReviewWithRouter}
               />
               <PrivateRoute exact path="/requestview" component={RequestView} />
+              <PrivateRoute exact path="/userprofile" component={UserProfile} />
               <PrivateRoute
                 exact
                 path="/managegroup"
