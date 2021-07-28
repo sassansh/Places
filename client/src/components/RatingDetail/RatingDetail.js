@@ -9,7 +9,7 @@ function RatingDetail(props) {
 
   const criteria = props.criteria.map(
     (criterion, index) => (
-      <div>
+      <div key={criterion.name}>
         <RatingCriterion name={criterion.name}
           numeric={props.numeric}
           outOf={criterion.outOf}
