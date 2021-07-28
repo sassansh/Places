@@ -10,16 +10,13 @@ import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
-
 function PlaceView() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getPlaces());
     dispatch(getCategories());
     dispatch(getReviews());
   }, [dispatch]);
-
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
@@ -27,25 +24,21 @@ function PlaceView() {
   const currentCategory = categories.find(
     (category) => category.category_id === currentCategoryID
   );
-
   const places = useSelector((state) => state.places.allPlaces);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const currentPlace = places.find(
     (place) => place.place_id === currentPlaceID
   );
-
   let reviewsData = useSelector((state) => state.reviews.allReviews).filter(
     (review) => review.place_id === currentPlaceID
   );
-
   const { Title } = Typography;
-
   let averageScore =
     reviewsData
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
 
-  const ratingString = averageScore !== undefined ? Number(averageScore.toFixed(2)).toString() : "?";
+  const averageScoreString = averageScore !== undefined ? Number(averageScore.toFixed(2)).toString() : "?";
 
 
   let isCustom = true;
@@ -77,16 +70,6 @@ function PlaceView() {
         score: 5
       }
   ];
-
-  //let ratingCriteriaNames=["Beauty, Fun, Convenience, Quiet, Sand"];
-
-  // const columns = ratingCriteriaNames.map((criterion) => ({
-  //   title: criterion,
-  //   dataIndex: criterion,
-  //   key: criterion
-  // }));
-
-
 
   const columns = [
   {
@@ -214,7 +197,7 @@ const data = [
     <div>
       <Row
         style={{
-          marginLeft: "20px",
+          marginLeft: '20px',
           marginBottom: "10px"
         }}
       >
@@ -228,9 +211,8 @@ const data = [
                   shape="square"
                   size={64}
                 >
-                  {ratingString}
+                  {averageScoreString}
                 </Avatar>
-              }
             </Title>
           </Row>
           <Row>
@@ -241,10 +223,10 @@ const data = [
         </Col>
       </Row>
       <Divider
-        style={{
-          marginTop: '0',
-          borderWidth: 5,
-        }}
+      style={{
+               marginTop: '0',
+               borderWidth: 5,
+             }}
       />
       <Row type="flex" justify="center" gutter={[36,36]} align="middle">
         <Col
@@ -258,7 +240,7 @@ const data = [
             height: "300px",
             width: "100%",
           }}
-          alt=""
+          alt={currentPlace.name}
           />
         </Col>
         <Col lg={11} sm={22} xs={22}>

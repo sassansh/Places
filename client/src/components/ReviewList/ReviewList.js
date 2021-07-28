@@ -1,6 +1,6 @@
 import './ReviewList.css';
 
-import { Button, Row } from 'antd';
+import { Button, Row, Col } from 'antd';
 
 import { Link } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
@@ -25,7 +25,7 @@ function ReviewList(props) {
 
   let reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews';
   return (
-    <div>
+    <Col span={24}>
       <Row>
         <h1>{reviewsData.length + reviewTitleText}</h1>
       </Row>
@@ -38,8 +38,8 @@ function ReviewList(props) {
           </Link>
         )}
       </Row>
-      <ul>{reviews}</ul>
-    </div>
+      <ul style={{padding: "0px"}}>{reviews}</ul>
+    </Col>
   );
 }
 

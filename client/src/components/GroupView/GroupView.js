@@ -1,11 +1,10 @@
 import "./GroupView.css";
 
 import { Avatar, Button, Col, Divider, Row, Typography } from "antd";
-
-import CategoryList from '../CategoryList/CategoryList';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { UserOutlined, PlusOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
+import CategoryList from "../CategoryList/CategoryList";
 
 function GroupView() {
   const { Title } = Typography;
@@ -53,6 +52,7 @@ function GroupView() {
       />
       <Link
         to="/addCategory"
+        className="addCategoryLink"
       >
         <Button type="primary" icon={<PlusOutlined />} size="large">
           Add Category

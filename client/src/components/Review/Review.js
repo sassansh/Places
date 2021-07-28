@@ -22,11 +22,11 @@ function Review(props) {
     <li>
       <Card className="review" size="small">
         <Row>
-          <Col lg={12} className="reviewer">
+          <Col span={12}  className="reviewer">
             {reviewer}
           </Col>
-          <Col lg={12} className="rating">
-            <Rate allowHalf defaultValue={review.rating[0]} disabled={true} />
+          <Col span={12} className="rating">
+            <Rate allowHalf defaultValue={review.rating} disabled={true} />
           </Col>
         </Row>
         {isCurrentUser && (
