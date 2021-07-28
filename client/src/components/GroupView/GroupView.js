@@ -52,7 +52,7 @@ function GroupView() {
       />
       <Link
         to="/addCategory"
-        class="addCategoryLink"
+        className="addCategoryLink"
       >
         <Button type="primary" icon={<PlusOutlined />} size="large">
           Add Category
