@@ -94,7 +94,6 @@ function PlaceView() {
     dataIndex: 'name',
     key: 'name',
     render: (text, record) => {
-      console.log(record);
       if (record.key === "1") {
         return (
         <div>
@@ -141,35 +140,35 @@ function PlaceView() {
     sorter: (a, b) => a.total - b.total,
   },
   {
-    title: 'Beauty',
+    title: 'Beauty (6)',
     dataIndex: 'Beauty',
     key: 'Beauty',
     sorter: (a, b) => a.Beauty - b.Beauty,
     responsive: ["md"]
   },
   {
-    title: 'Fun',
+    title: 'Fun (3)',
     dataIndex: 'Fun',
     key: 'Fun',
     sorter: (a, b) => a.Fun - b.Fun,
     responsive: ["md"]
   },
   {
-    title: 'Convenience',
+    title: 'Convenience (7)',
     dataIndex: 'Convenience',
     key: 'Convenience',
     sorter: (a, b) => a.Convenience - b.Convenience,
     responsive: ["md"]
   },
   {
-    title: 'Quiet',
+    title: 'Quiet (5)',
     key: 'Quiet',
     dataIndex: 'Quiet',
     sorter: (a, b) => a.Quiet - b.Quiet,
     responsive: ["md"]
   },
   {
-    title: 'Sand',
+    title: 'Sand (5)',
     key: 'Sand',
     dataIndex: 'Sand',
     sorter: (a, b) => a.Sand - b.Sand,
@@ -181,32 +180,32 @@ const data = [
   {
     key: '1',
     name: 'Amelia Duckworth',
-    total: 14,
-    Beauty: 2,
+    total: 19,
+    Beauty: 6,
     Fun: 3,
-    Convenience: 4,
-    Quiet: 1,
-    Sand: 4
+    Convenience: 5,
+    Quiet: 2,
+    Sand: 3
   },
   {
     key: '2',
     name: 'Sam Coolrater',
-    total: 14,
+    total: 17,
     Beauty: 2,
     Fun: 3,
-    Convenience: 4,
+    Convenience: 7,
     Quiet: 1,
     Sand: 4
   },
   {
     key: '3',
     name: 'Flora McBag',
-    total: 14,
-    Beauty: 2,
-    Fun: 3,
+    total: 18,
+    Beauty: 5,
+    Fun: 2,
     Convenience: 4,
-    Quiet: 1,
-    Sand: 4
+    Quiet: 4,
+    Sand: 3
   },
 ];
 
