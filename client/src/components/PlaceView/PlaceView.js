@@ -73,23 +73,20 @@ function PlaceView() {
                borderWidth: 5,
              }}
       />
-           <Row type="flex" justify="center" gutter={[36,36]} align="middle">
-             <Col
-               lg={11}
-               sm={22}
-               xs={22}
-             >
+           <Row type="flex" justify="center" gutter={[24,24]} align="middle">
+             <Col xxl={8} lg={12} md={24} xs={24}>
                <img src={currentPlace.ImageURL}
                style={{
                  marginTop: '20px',
                  objectFit: "cover",
                  height: "300px",
                  width: "100%",
-                 alt: ""
                }}
+               alt={currentPlace.name}
                />
              </Col>
-             <Col lg={11} sm={22} xs={22}>
+             <Col lg={0} xxl={2}></Col>
+             <Col xxl={8} lg={12} md={24} xs={24}>
                <ReviewList reviewsData={reviewsData} />
              </Col>
            </Row>
