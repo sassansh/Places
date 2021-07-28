@@ -1,9 +1,18 @@
-import './MemberList.css';
+import "./MemberList.css";
 
-import Member from '../Member/Member';
-import { useSelector } from 'react-redux';
+import { Col, Row } from "antd";
+import Member from "../Member/Member";
+import { getUsers } from "../../redux/actions/userActions";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function MemberList(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]);
+
   const users = useSelector((state) => state.users.allUsers);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const currentGroupMembers = users.filter((user) =>
@@ -20,9 +29,9 @@ function MemberList(props) {
   ));
 
   return (
-    <div>
-      <ul>{memberList}</ul>
-    </div>
+    <Row>
+      <Col span={24}>{memberList}</Col>
+    </Row>
   );
 }
 

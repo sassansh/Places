@@ -1,6 +1,6 @@
-import './GroupView.css';
+import "./GroupView.css";
 
-import { Avatar, Button, Col, Divider, Row, Typography } from 'antd';
+import { Avatar, Button, Col, Divider, Row, Typography } from "antd";
 
 import CategoryList from '../CategoryList/CategoryList';
 import { Link } from 'react-router-dom';
@@ -24,18 +24,23 @@ function GroupView() {
   return (
     <Col className="container">
       <Row justify="center">
-        <Col lg={12} md={12} sm={14}>
-          <Title level={2}>
-            <Avatar size="large" src={avatarURL} /> {title}
-            <Link to="/managegroup">
-              <Button type="primary" size="medium" className="button">
-                Manage Group
-              </Button>
-            </Link>
-          </Title>
+        <Col lg={17} md={17} sm={18} xs={24}>
+          <Row>
+            <Title level={2}>
+              <Avatar size="large" src={avatarURL} /> {title}
+            </Title>
+            <Col lg={6} md={6} sm={24} xs={24}>
+              <Row justify="center">
+                <Link to="/managegroup">
+                  <Button type="primary" size="small" className="button">
+                    Manage Group
+                  </Button>
+                </Link>
+              </Row>
+            </Col>
+          </Row>
         </Col>
-        <Col lg={0} md={0} sm={0} xs={24}></Col>
-        <Col lg={12} md={12} sm={10} className="numOfMembers">
+        <Col lg={7} md={7} sm={10} className="numOfMembers">
           <Title level={2}>
             <UserOutlined size="large" /> {numMembers} Members
           </Title>

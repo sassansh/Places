@@ -1,10 +1,14 @@
-.user-name {
-  margin: 2px;
+.request-user-name {
   font-size: large;
   font-weight: bold;
+  text-align: right;
 }
 
-.group-name {
+.wants-to-join {
+  text-align: right;
+}
+
+.request-group-name {
   font-size: large;
   font-weight: bold;
 }

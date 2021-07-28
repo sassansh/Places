@@ -211,7 +211,7 @@ router.post('/group/accept', authenticateToken, (req, res) => {
   });
 });
 
-router.post('/group/decline', authenticateToken, (req, res) => {
+router.post('/group/reject', authenticateToken, (req, res) => {
   const { other_user_id, group_id } = req.body;
   const my_user_id = req.user.user_id;
 
