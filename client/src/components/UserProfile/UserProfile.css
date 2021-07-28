@@ -1,16 +1,19 @@
 .column1 {
     text-align: left;
     padding: 20px 20px 20px 0px;
+    min-width: 300px;
 }
 
 .column2 {
     text-align: left;
     padding: 20px 20px 20px 0px;
+    min-width: 400px;
 }
 
 .column3 {
     text-align: left;
     padding: 20px 20px 20px 0px;
+    min-width: 400px;
 }
 
 .heading {
@@ -34,7 +37,7 @@
 }
 
 .profilePic {
-    width: calc(50px + 15vw);
+    width: 300px;
 }
 
 .rating {
@@ -53,5 +56,9 @@
 
 .details {
     font-size: calc(12px + 0.3vw);
+}
+
+.meta {
+    font-size: calc(10px + 0.3vw);
 }
 
