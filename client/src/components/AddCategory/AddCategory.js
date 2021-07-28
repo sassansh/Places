@@ -16,10 +16,10 @@ function AddCategory(props) {
   const splitter = new GraphemeSplitter();
   const currentGroup = useSelector((state) => state.groups.currentGroupID);
   const [isCustomCriteria, setIsCustomCriteria] = useState(false);
-  const [numberOfCriteria, setNumberOfCriteria] = useState(1);
+  const [numberOfCriteria, setNumberOfCriteria] = useState(2);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
-  const defaultCriteria = ["Coolness", "Flavour", "Space", "Quality", "Trendiness"];
+  const defaultCriteria = ["Coolness", "Quality", "Flavour", "Comfort", "Size"];
   const useWeights = false;
 
   function handleChange() {
@@ -82,7 +82,7 @@ function AddCategory(props) {
             layout="vertical"
             size="large"
             onChange={handleChange}
-            initialValues={{ criteria: [{criterion: defaultCriteria[0], weight: 5}] }}
+            initialValues={{ criteria: [{criterion: defaultCriteria[0]}, {criterion: defaultCriteria[1]}] }}
           >
             <Form.Item name="name_singular" label="Name for one place">
               <Input placeholder="Beach" />
@@ -121,9 +121,6 @@ function AddCategory(props) {
                         }}
                         style={{paddingTop:"18px"}}
                       />}
-                      {console.log("name: " + name)}
-                      {console.log("fieldKey: " + fieldKey)}
-                      {console.log("key: "+ key)}
                      </Col>
                      <Col span={11}>
                        <Form.Item
@@ -132,7 +129,7 @@ function AddCategory(props) {
                          label="Criterion"
                          fieldKey={[fieldKey, 'criterion']}
                        >
-                         <Input placeholder="Coolness" />
+                         <Input/>
                        </Form.Item>
                       </Col>
                       <Col span={11}>
@@ -149,16 +146,13 @@ function AddCategory(props) {
                     :
                     <Row gutter={[7,7]} align="middle" key={key} >
                       <Col span={2}>
-                       {(name > 0) && <MinusCircleOutlined
+                       {(name > 1) && <MinusCircleOutlined
                          onClick={() => {
                            setNumberOfCriteria(numberOfCriteria - 1);
                            remove(name);
                          }}
                          style={{paddingTop:"18px"}}
                        />}
-                       {console.log("name: " + name)}
-                       {console.log("fieldKey: " + fieldKey)}
-                       {console.log("key: "+ key)}
                       </Col>
                       <Col span={22}>
                         <Form.Item
@@ -167,7 +161,7 @@ function AddCategory(props) {
                           label="Criterion"
                           fieldKey={[fieldKey, 'criterion']}
                         >
-                          <Input placeholder="Coolness" />
+                          <Input placeholder={defaultCriteria[name%6]} />
                         </Form.Item>
                        </Col>
                      </Row>
