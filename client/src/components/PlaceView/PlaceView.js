@@ -54,17 +54,17 @@ function PlaceView() {
   let ratingCriteria = [
       {
         name: "Beauty",
-        outOf: 5,
+        outOf: 6,
         score: 1
       },
       {
         name: "Fun",
-        outOf: 5,
+        outOf: 3,
         score: 2
       },
       {
         name: "Convenience",
-        outOf: 5,
+        outOf: 7,
         score: 3
       },
       {
