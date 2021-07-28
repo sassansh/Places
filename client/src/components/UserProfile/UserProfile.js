@@ -19,7 +19,6 @@ function UserProfile() {
       }, [dispatch]);
 
     const { Title } = Typography;
-    const { Meta } = Card;
     const user = useSelector((state) => state.users.user);
     const users = useSelector((state) => state.users.allUsers);
     const userData = users.find(item => item.user_id === user.user_id);
