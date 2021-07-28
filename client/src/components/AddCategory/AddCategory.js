@@ -22,7 +22,7 @@ function AddCategory(props) {
   const [numberOfCriteria, setNumberOfCriteria] = useState(1);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
-  const defaultCriteria = ["Coolness", "Flavour", "Space", "Quality", "Fun"];
+  const defaultCriteria = ["Coolness", "Flavour", "Space", "Quality", "Trendiness"];
 
   function handleChange() {
     console.log("changed");
