@@ -54,13 +54,12 @@ function AddCategory(props) {
     if (false) {
       dispatch(addCategory(newCategory, props.history));
     }
-    form.resetFields();
   }
   return (
     <Col className="container">
       <Row justify="center">
         <Col lg={12} md={12} sm={12}>
-          <Title level={2}>Add Cateogry</Title>
+          <Title level={2}>Add Category</Title>
         </Col>
         <Col lg={0} md={0} sm={0} xs={24}></Col>
         <Col lg={12} md={12} sm={12} className="currentCategory">
@@ -105,7 +104,7 @@ function AddCategory(props) {
               </Modal>
             </Form.Item>
             <Form.Item label="Use custom criteria?" name="use_custom_criteria" valuePropName="checked">
-              <Switch defaultChecked={false} onChange={(value) => {setIsCustomCriteria(value)}} />
+              <Switch value={isCustomCriteria} onChange={(value) => {setIsCustomCriteria(value)}} />
             </Form.Item>
             {isCustomCriteria &&
             <Form.List name="criteria">
@@ -171,7 +170,7 @@ function AddCategory(props) {
                       type="dashed"
                       onClick={() => {
                         setNumberOfCriteria(numberOfCriteria + 1);
-                        add({ criterion: defaultCriteria[numberOfCriteria%5], weight: 5 });
+                        add({ criterion: defaultCriteria[numberOfCriteria%5] });
                       }}
                       block icon={<PlusOutlined />}
                     >
