@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { setCurrentGroup } from '../../redux/actions/groupActions';
+import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
 function Group(props) {
   const users = useSelector((state) => state.users.allUsers);
@@ -49,6 +50,10 @@ function Group(props) {
     });
   });
 
+  function handleRequestToJoin() {
+    dispatch(userRequestToJoinGroup(props.group.group_id));
+  }
+
   function renderButton() {
     if (currentUser) {
       if (currentUser.groups.includes(props.group.group_id)) {
@@ -81,6 +86,7 @@ function Group(props) {
             icon={<QuestionOutlined size="large" />}
             size="medium"
             style={{ background: 'orange', borderColor: 'orange' }}
+            onClick={handleRequestToJoin}
           >
             Request to Join
           </Button>
