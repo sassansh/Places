@@ -42,11 +42,13 @@ function AddCategory(props) {
     let name_singular = form.getFieldValue('name_singular');
     let emoji = form.getFieldValue('emoji');
     let criteria= form.getFieldValue('criteria');
+    let use_custom_criteria = form.getFieldValue('use_custom_criteria');
+
     let newCategory = {
       name: name,
       name_singluar: name_singular,
       emoji: emoji,
-      criteria: criteria
+      criteria: use_custom_criteria? criteria : [],
     };
     console.log(newCategory);
     if (false) {
@@ -102,7 +104,7 @@ function AddCategory(props) {
                 }} />
               </Modal>
             </Form.Item>
-            <Form.Item label="Use custom criteria?" name="customCriteriaSwitch" valuePropName="checked">
+            <Form.Item label="Use custom criteria?" name="use_custom_criteria" valuePropName="checked">
               <Switch defaultChecked={false} onChange={(value) => {setIsCustomCriteria(value)}} />
             </Form.Item>
             {isCustomCriteria &&
