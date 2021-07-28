@@ -12,6 +12,8 @@
     "antd": "^4.16.1",
     "axios": "^0.21.1",
     "craco-less": "^1.17.1",
+    "emoji-mart": "^3.0.1",
+    "grapheme-splitter": "^1.0.4",
     "is-empty": "^1.2.0",
     "jwt-decode": "^3.1.2",
     "react": "^17.0.2",
