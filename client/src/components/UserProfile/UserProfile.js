@@ -19,7 +19,6 @@ function UserProfile() {
       }, [dispatch]);
 
     const { Title } = Typography;
-    const { Meta } = Card;
     const user = useSelector((state) => state.users.user);
     const users = useSelector((state) => state.users.allUsers);
     const userData = users.find(item => item.user_id === user.user_id);
@@ -82,7 +81,7 @@ function UserProfile() {
         try {
             let category_id = places.find(place => place.place_id === place_id).category_id;
             let categoryEmoji = categories.find(category => category.category_id === category_id).emoji;
-            let categoryName = categories.find(category => category.category_id === category_id).name;
+            let categoryName = categories.find(category => category.category_id === category_id).name_singular;
             return " " + categoryEmoji + " " + categoryName + " ";
         } catch (e) {
             console.error(e);
@@ -107,8 +106,7 @@ function UserProfile() {
                         {getRating(review.rating)}
                     </Col>
                 </Row>
-                <Meta className="meta" description={getCategoryName(review.place_id) + getGroupName(review.place_id)}>
-                </Meta>
+                <span className="meta">{getCategoryName(review.place_id) + getGroupName(review.place_id)}</span>
             </Card>
         </li>
     );    
