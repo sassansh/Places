@@ -48,7 +48,7 @@ function PlaceView() {
   const ratingString = averageScore !== undefined ? Number(averageScore.toFixed(2)).toString() : "?";
 
 
-  let isCustom = true;
+  let isCustom = false;
 
   let ratingCriteria = [
       {
