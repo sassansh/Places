@@ -26,7 +26,7 @@ function Review(props) {
             {reviewer}
           </Col>
           <Col lg={12} className="rating">
-            <Rate allowHalf defaultValue={review.rating[0]} disabled={true} />
+            <Rate allowHalf defaultValue={review.rating} disabled={true} />
           </Col>
         </Row>
         {isCurrentUser && (

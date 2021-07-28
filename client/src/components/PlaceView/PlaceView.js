@@ -78,16 +78,6 @@ function PlaceView() {
       }
   ];
 
-  //let ratingCriteriaNames=["Beauty, Fun, Convenience, Quiet, Sand"];
-
-  // const columns = ratingCriteriaNames.map((criterion) => ({
-  //   title: criterion,
-  //   dataIndex: criterion,
-  //   key: criterion
-  // }));
-
-
-
   const columns = [
   {
     title: '',

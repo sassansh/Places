@@ -31,7 +31,7 @@ function Place({ placeData }) {
             </Col>
             <Col lg={6} md={7} sm={9} xs={24}>
               <Row justify="end">
-                {placeData.numReviews > -1 ? ( // CHANGE BACK, FOR TESTING
+                {placeData.numReviews > 0 ? (
                   <span className="place-rating">
                     <Rate
                       disabled
