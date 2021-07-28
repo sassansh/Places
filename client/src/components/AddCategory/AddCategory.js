@@ -3,25 +3,21 @@
 
 import './AddCategory.css';
 
-import { Button, Col, Divider, Form, Input, Row, Typography, Slider, Space, Select, Switch, InputNumber, Modal } from 'antd';
+import { Button, Col, Divider, Form, Input, Row, Typography, Switch, InputNumber, Modal } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, SmileOutlined } from '@ant-design/icons';
 import { Picker } from 'emoji-mart';
-import { GraphemeSplitter } from 'grapheme-splitter';
+import GraphemeSplitter from "grapheme-splitter";
 import 'emoji-mart/css/emoji-mart.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { addCategory } from '../../redux/actions/categoryActions';
 
-
 function AddCategory(props) {
-  const { Option } = Select;
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
+  const splitter = new GraphemeSplitter();
   const currentGroup = useSelector((state) => state.groups.currentGroupID);
-  // const [fieldInput, setFieldInput] = useState({
-  //   name: '',
-  // });
   const [isCustomCriteria, setIsCustomCriteria] = useState(false);
   const [numberOfCriteria, setNumberOfCriteria] = useState(1);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
@@ -32,25 +28,22 @@ function AddCategory(props) {
     console.log("changed");
     let emojiField = form.getFieldValue('emoji');
     if (emojiField) {
-      let emoji = emojiField.match(/\p{Emoji_Presentation}/gu);
-      if (emoji) {
-        form.setFieldsValue({emoji: emoji[0]});
-      } else {
-        form.setFieldsValue({emoji: ""});
-      }
+      let graphemes = splitter.splitGraphemes(emojiField);
+      let lastEmoji = "";
+      graphemes.forEach((item) => {
+        if (item.match(/\p{Emoji_Presentation}/gu)) {
+          lastEmoji = item;
+        }
+      });
+      form.setFieldsValue({emoji: lastEmoji});
     }
-
-    // setFieldInput({
-    //   name: form.getFieldValue('name'),
-    // });
   }
 
   function handleAddCategory() {
-    let name = form.getFieldValue('name');
+    let name = form.getFieldValue('name_plural');
     let name_singular = form.getFieldValue('name_singular');
     let emoji = form.getFieldValue('emoji');
     let criteria= form.getFieldValue('criteria');
-    //if (name === undefined) return;
     let newCategory = {
       name: name,
       name_singluar: name_singular,
@@ -58,7 +51,9 @@ function AddCategory(props) {
       criteria: criteria
     };
     console.log(newCategory);
-    //dispatch(addCategory(newCategory, props.history));
+    if (false) {
+      dispatch(addCategory(newCategory, props.history));
+    }
     form.resetFields();
   }
   return (
@@ -89,11 +84,11 @@ function AddCategory(props) {
             onChange={handleChange}
             initialValues={{ criteria: [{criterion: defaultCriteria[0], weight: 5}] }}
           >
-            <Form.Item name="name" label="Name">
-              <Input placeholder="Name" />
+            <Form.Item name="name_singular" label="Name for one place">
+              <Input placeholder="Beach" />
             </Form.Item>
-            <Form.Item name="name_singular" label="Name (singular)">
-              <Input placeholder="Name (singular)" />
+            <Form.Item name="name_plural" label="Name for multiple places">
+              <Input placeholder="Beaches" />
             </Form.Item>
             <Form.Item label="Emoji">
               <Form.Item name="emoji">
@@ -109,7 +104,7 @@ function AddCategory(props) {
                 }} />
               </Modal>
             </Form.Item>
-            <Form.Item label="Use Custom Criteria?" name="customCriteriaSwitch" valuePropName="checked">
+            <Form.Item label="Use custom criteria?" name="customCriteriaSwitch" valuePropName="checked">
               <Switch defaultChecked={false} onChange={(value) => {setIsCustomCriteria(value)}} />
             </Form.Item>
             {isCustomCriteria &&
@@ -186,7 +181,4 @@ function AddCategory(props) {
   );
 }
 
-//disabled={fieldInput.name === ''} (in button)
-
-<Slider min={1} max={10}/>
 export default AddCategory;

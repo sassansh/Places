@@ -1,15 +1,15 @@
 import './PlaceView.css';
 
-import { Avatar, Col, Divider, Image, Row, Typography } from 'antd';
+import { Avatar, Col, Divider, Row, Typography, Table, Modal } from 'antd';
+import { setCurrentPlace } from '../../redux/actions/placeActions';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
 import ReviewList from '../ReviewList/ReviewList';
 import RatingDetail from "../RatingDetail/RatingDetail";
 import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
-// >>>>>>> main
 
 function PlaceView() {
   const dispatch = useDispatch();
@@ -45,11 +45,10 @@ function PlaceView() {
       .map((reviewData) => reviewData.rating)
       .reduce((p, c) => p + c, 0) / reviewsData.length;
 
-  // let criterion1 = "Beauty ";
-  // let criterion2 = "Fun ";
-  // let criterion3 = "Convenience ";
-  // let criterion4 = "Quiet ";
-  // let criterion5 = "Sand ";
+  const ratingString = averageScore !== undefined ? Number(averageScore.toFixed(2)).toString() : "?";
+
+
+  let isCustom = true;
 
   let ratingCriteria = [
       {
@@ -79,35 +78,138 @@ function PlaceView() {
       }
   ];
 
-  // <Row justify="space-between">
-  //   <Col>
-  //     <Title level={4}>
-  //       {criterion1}
-  //       <RatingTile score={8} outOf={10} / >
-  //     </Title>
-  //   </Col>
-  //   <Col>
-  //     <Title level={4}>
-  //       {criterion2}
-  //       <RatingTile score={8} outOf={10} / >
-  //     </Title>
-  //   </Col>
-  //   <Col>
-  //     <Title level={4}>
-  //     {criterion3} <RatingTile score={8} outOf={10} / >
-  //     </Title>
-  //   </Col>
-  //   <Col>
-  //     <Title level={4}>
-  //     {criterion4} <RatingTile score={8} outOf={10} / >
-  //     </Title>
-  //   </Col>
-  //   <Col>
-  //     <Title level={4}>
-  //     {criterion5} <RatingTile score={0} outOf={10} / >
-  //     </Title>
-  //   </Col>
-  // </Row>
+  //let ratingCriteriaNames=["Beauty, Fun, Convenience, Quiet, Sand"];
+
+  // const columns = ratingCriteriaNames.map((criterion) => ({
+  //   title: criterion,
+  //   dataIndex: criterion,
+  //   key: criterion
+  // }));
+
+
+
+  const columns = [
+  {
+    title: '',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text, record) => {
+      console.log(record);
+      if (record.key === "1") {
+        return (
+        <div>
+          {record.name}
+          <br/>
+          <Link
+            to="/addReview"
+            onClick={() => {
+              dispatch(setCurrentPlace(currentPlaceID));
+            }}
+          >
+            Edit Review
+          </Link>
+        </div>
+      );
+      } else {
+        return (
+        <div onClick={
+          () => {
+            Modal.info({
+            title: '',
+            content: (
+              <RatingDetail name={record.name} numeric={true} criteria={ratingCriteria} score={15} outOf={25} />
+            ),
+            icon: (<div/>),
+            closable: true,
+            okButtonProps: {style: {visibility: "hidden"}},
+            onOk() {},
+            onCancel() {},
+          });
+          }
+        }>
+        {record.name}
+        </div>
+      );
+      }
+    },
+  },
+  {
+    title: 'Total',
+    dataIndex: 'total',
+    key: 'total',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.total - b.total,
+  },
+  {
+    title: 'Beauty',
+    dataIndex: 'Beauty',
+    key: 'Beauty',
+    sorter: (a, b) => a.Beauty - b.Beauty,
+    responsive: ["md"]
+  },
+  {
+    title: 'Fun',
+    dataIndex: 'Fun',
+    key: 'Fun',
+    sorter: (a, b) => a.Fun - b.Fun,
+    responsive: ["md"]
+  },
+  {
+    title: 'Convenience',
+    dataIndex: 'Convenience',
+    key: 'Convenience',
+    sorter: (a, b) => a.Convenience - b.Convenience,
+    responsive: ["md"]
+  },
+  {
+    title: 'Quiet',
+    key: 'Quiet',
+    dataIndex: 'Quiet',
+    sorter: (a, b) => a.Quiet - b.Quiet,
+    responsive: ["md"]
+  },
+  {
+    title: 'Sand',
+    key: 'Sand',
+    dataIndex: 'Sand',
+    sorter: (a, b) => a.Sand - b.Sand,
+    responsive: ["md"]
+  },
+];
+
+const data = [
+  {
+    key: '1',
+    name: 'Amelia Duckworth',
+    total: 14,
+    Beauty: 2,
+    Fun: 3,
+    Convenience: 4,
+    Quiet: 1,
+    Sand: 4
+  },
+  {
+    key: '2',
+    name: 'Sam Coolrater',
+    total: 14,
+    Beauty: 2,
+    Fun: 3,
+    Convenience: 4,
+    Quiet: 1,
+    Sand: 4
+  },
+  {
+    key: '3',
+    name: 'Flora McBag',
+    total: 14,
+    Beauty: 2,
+    Fun: 3,
+    Convenience: 4,
+    Quiet: 1,
+    Sand: 4
+  },
+];
+
 
   return (
     <div>
@@ -121,6 +223,15 @@ function PlaceView() {
           <Row>
             <Title level={2}>
               {currentPlace.name}{" "}
+              {!isCustom &&
+                <Avatar
+                  style={{ color: '#ffffff', backgroundColor: '#512da8' }}
+                  shape="square"
+                  size={64}
+                >
+                  {ratingString}
+                </Avatar>
+              }
             </Title>
           </Row>
           <Row>
@@ -136,22 +247,35 @@ function PlaceView() {
           borderWidth: 5,
         }}
       />
-      <Row gutter={[16,16]} align="middle">
+      <Row type="flex" justify="center" gutter={[36,36]} align="middle">
         <Col
-          lg={12}
+          lg={11}
+          sm={22}
+          xs={22}
         >
-          <Image
-            className="image"
-            src={currentPlace.ImageURL}
+          <img src={currentPlace.ImageURL}
+          style={{
+            objectFit: "cover",
+            height: "300px",
+            width: "100%",
+          }}
+          alt=""
           />
         </Col>
-        <Col lg={12}>
-          <RatingDetail criteria={ratingCriteria} score={15} outOf={25} />
+        <Col lg={11} sm={22} xs={22}>
+          {isCustom?
+          <RatingDetail criteria={ratingCriteria} score={15} outOf={25} /> :
+          <ReviewList reviewsData={reviewsData} />
+          }
         </Col>
       </Row>
-      <Row justify="center">
-        <ReviewList reviewsData={reviewsData} />
-      </Row>
+      {isCustom &&
+        <Row justify="center" style={{ marginTop: 36 }}>
+        <Col span={22}>
+          <Table columns={columns} dataSource={data} pagination={{hideOnSinglePage: true}} />
+        </Col>
+        </Row>
+      }
     </div>
   );
 }

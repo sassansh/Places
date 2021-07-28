@@ -3,18 +3,27 @@ import "./RatingCriterion.css"
 import { Rate, Row, Col } from "antd";
 
 function RatingCriterion(props) {
+
   return(
-      <Row>
-        <Col lg={12} className="crit-name">
+      <Row wrap={false} flex="0 0" className="criterion-row">
+        <Col span={12} className="crit-name">
           {props.name + ": "}
         </Col>
-        <Col lg={12} className="crit-rating">
-        <Rate
-          value={props.score}
-          count={props.outOf}
-          disabled={true}
-        />
-        </Col>
+        {props.numeric?
+          <Col span={12} className="crit-name">
+            {props.score + "/" + props.outOf}
+          </Col>
+        :
+          <Col span={12} className="crit-rating">
+          <Rate
+            value={props.score}
+            count={props.outOf}
+            allowHalf
+            character={"⬤"}
+            disabled={true}
+            style={{ color: '#00c', minWidth: '100%'}}
+          />
+          </Col>}
       </Row>
   );
 }
