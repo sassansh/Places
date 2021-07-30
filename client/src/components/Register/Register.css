@@ -1,6 +1,6 @@
 .register-page {
   width: 360px;
-  padding: 3% 0 0;
+  padding: 0 0 0;
   margin: auto;
   text-align: center;
 }
@@ -54,4 +54,26 @@
   margin: 15px 0 0;
   color: #858585;
   font-size: 12px;
+}
+
+.register-form [type='file'] {
+  position: absolute;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+.register-form label {
+  top: 1em;
+  border-radius: 3px;
+  padding: 13px;
+  position: relative;
+  background: #f2f2f2;
+  color: #858585;
+  border: none;
+  cursor: pointer;
+}
+
+.register-form label:hover {
+  background: #858585;
+  color: #ffffff;
 }
