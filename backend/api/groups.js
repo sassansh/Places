@@ -26,9 +26,9 @@ router.post('/', authenticateToken, async (req, res) => {
   const { name, description } = req.body;
   const user_id = req.user.user_id;
   let group_id = uuidv4();
-  const path = Object.values(req.files)[0].path;
+  const groupLogoPath = Object.values(req.files)[0].path;
 
-  const avatarURL = await cloudinary.uploader.upload(path);
+  const avatarURL = await cloudinary.uploader.upload(groupLogoPath);
   const newGroup = new Group({
     group_id: group_id,
     name: name,

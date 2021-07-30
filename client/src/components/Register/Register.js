@@ -12,18 +12,40 @@ function Register(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [avatarURL, setAvatarURL] = useState('');
+  const [profPicData, setprofPicData] = useState('');
+  const [profPicButtonName, setprofPicButtonName] = useState(
+    '👤 Add Profile Picture (Optional)'
+  );
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
   function handleRegister() {
-    dispatch(
-      registerUser(
-        { name, email, password, password2, avatarURL },
-        props.history
-      )
-    );
+    const newUser = new FormData();
+    newUser.append('name', name);
+    newUser.append('email', email);
+    newUser.append('password', password);
+    newUser.append('password2', password2);
+    newUser.append('profpic', profPicData);
+    dispatch(registerUser(newUser, props.history));
   }
+
+  const profilePicHandler = (e) => {
+    const imageSelected = e.target.files.length > 0;
+    if (imageSelected) {
+      let fileName = e.target.files[0].name;
+      if (fileName.length > 20) {
+        fileName =
+          fileName.substring(0, 10) +
+          '...' +
+          fileName.substring(fileName.length - 10);
+      }
+      setprofPicButtonName('👤 ' + fileName);
+      setprofPicData(e.target.files[0]);
+    } else {
+      setprofPicButtonName('👤 Add Profile Picture (Optional)');
+      setprofPicData('');
+    }
+  };
 
   return isAuthenticated ? (
     <Redirect to={{ pathname: '/' }} />
@@ -57,12 +79,12 @@ function Register(props) {
             onInput={(e) => setPassword2(e.target.value)}
             placeholder="Confirm Password"
           />
-          <input
-            type="url"
-            value={avatarURL}
-            onInput={(e) => setAvatarURL(e.target.value)}
-            placeholder="Avatar URL"
-          />
+          <br />
+          <input type="file" id="profilepic" onChange={profilePicHandler} />
+          <label htmlFor="profilepic">{profPicButtonName}</label>
+          <br />
+          <br />
+          <br />
           <button type="button" onClick={handleRegister}>
             Register
           </button>
