@@ -2,6 +2,7 @@ import Group from '../models/Group.js';
 import User from '../models/User.js';
 import authenticateToken from '../util/AuthToken.js';
 import bcrypt from 'bcrypt';
+import cloudinary from 'cloudinary';
 import dotenv from 'dotenv';
 import express from 'express';
 import jwt from 'jsonwebtoken';
@@ -9,6 +10,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 dotenv.config();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 router.get('/', authenticateToken, (req, res) => {
   // Search the MongoDB
@@ -64,8 +71,8 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/register', (req, res) => {
-  const { name, email, password, password2, avatarURL } = req.body;
+router.post('/register', async (req, res) => {
+  const { name, email, password, password2 } = req.body;
 
   if (name === '') {
     return res.status(400).send('Name field must be filled');
@@ -83,12 +90,19 @@ router.post('/register', (req, res) => {
     return res.status(400).send('Please confirm password');
   }
 
-  if (avatarURL === '') {
-    return res.status(400).send('Avatar URL field must be filled');
-  }
-
   if (password !== password2) {
     return res.status(400).send('Password fields do not match');
+  }
+
+  let avatarURL;
+  const profPicSubmitted = Object.keys(req.files).length > 0;
+
+  if (profPicSubmitted) {
+    const profilePicPath = Object.values(req.files)[0].path;
+    const cloudinaryResponse = await cloudinary.uploader.upload(profilePicPath);
+    avatarURL = cloudinaryResponse.secure_url;
+  } else {
+    avatarURL = 'https://bit.ly/3xjqd0k'; // generic profile picture
   }
 
   User.findOne({ email: email }).then((user) => {

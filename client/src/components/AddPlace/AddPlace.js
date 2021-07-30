@@ -18,6 +18,26 @@ function AddPlace(props) {
   const [fieldInput, setFieldInput] = useState({
     name: '',
   });
+  const [imageData, setimageData] = useState('');
+  const [imageButtonName, setimageButtonName] = useState('🖼️ Select File');
+
+  const imageHandler = (e) => {
+    const imageSelected = e.target.files.length > 0;
+    if (imageSelected) {
+      let fileName = e.target.files[0].name;
+      if (fileName.length > 20) {
+        fileName =
+          fileName.substring(0, 10) +
+          '...' +
+          fileName.substring(fileName.length - 10);
+      }
+      setimageButtonName('🖼️ ' + fileName);
+      setimageData(e.target.files[0]);
+    } else {
+      setimageButtonName('🖼️ Select File');
+      setimageData('');
+    }
+  };
 
   const currentCategory = () => {
     return categories.find(
@@ -33,16 +53,14 @@ function AddPlace(props) {
 
   function handleAddPlace() {
     let name = form.getFieldValue('name');
-    let imgURL = form.getFieldValue('imgURL');
     let address = form.getFieldValue('address');
     if (name === undefined) return;
-    let newPlace = {
-      name: name,
-      address: address,
-      group_id: currentGroupID,
-      category_id: currentCategoryID,
-      ImageURL: imgURL,
-    };
+    const newPlace = new FormData();
+    newPlace.append('name', name);
+    newPlace.append('address', address);
+    newPlace.append('group_id', currentGroupID);
+    newPlace.append('category_id', currentCategoryID);
+    newPlace.append('placeImage', imageData);
     dispatch(addPlace(newPlace, props.history));
     form.resetFields();
   }
@@ -76,12 +94,24 @@ function AddPlace(props) {
             <Form.Item name="name" label="Name">
               <Input placeholder="Name" />
             </Form.Item>
-            <Form.Item name="imgURL" label="Image URL">
-              <Input placeholder="http://" />
-            </Form.Item>
             <Form.Item name="address" label="Address">
               <Input placeholder="Address" />
             </Form.Item>
+            Image
+            <br />
+            <br />
+            <input
+              className="imageuploadinput"
+              type="file"
+              id="profilepic"
+              onChange={imageHandler}
+            />
+            <label className="imageuploadlabel" htmlFor="profilepic">
+              {imageButtonName}
+            </label>
+            <br />
+            <br />
+            <br />
           </Form>
         </Col>
       </Row>
@@ -92,7 +122,11 @@ function AddPlace(props) {
             className="button"
             type="primary"
             size="large"
-            disabled={fieldInput.name === ''}
+            disabled={
+              fieldInput.name === '' ||
+              fieldInput.address === '' ||
+              imageData === ''
+            }
           >
             Submit
           </Button>

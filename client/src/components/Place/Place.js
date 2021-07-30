@@ -26,6 +26,8 @@ function Place({ placeData }) {
                     {placeData.rank}
                   </Avatar>
                   <span className="place-name">{placeData.name}</span>
+                  <br />
+                  <span className="place-address">{placeData.address}</span>
                 </span>
               </Row>
             </Col>
