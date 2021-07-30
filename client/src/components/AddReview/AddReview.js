@@ -52,6 +52,18 @@ function AddReview(props) {
   const category = categories.find(
     (element) => element.category_id === place.category_id
   );
+  // const customCriteria = category.custom_criteria;
+  const customCriteria = ['Fun', 'Softness', 'Noise Level'];
+  let customRatings = [1, 3, 3, 0, 0];
+
+  function handleRateChangeCustom() {
+    let total = 0;
+    for (let i = 0; i < customRatings.length; i++) {
+        total += customRatings[i];
+    }
+    let avg = total / customCriteria.length;
+    setRateValue(avg);
+  }
 
   function handleRateChange(value) {
     setRateValue(value);
@@ -74,10 +86,54 @@ function AddReview(props) {
     }
   }
 
+  function getRate() {
+    if (customCriteria.length === 0) {
+      return (
+        <Rate
+          style={{ fontSize: '15px + 1vw' }}
+          tooltips={desc}
+          onChange={handleRateChange}
+          value={rateValue}
+        />
+      );
+    } else {
+      let customRate = customCriteria.map((criteria) => 
+        <li className="criteriaList">
+          <span className="criteriaName">{criteria + ":"}</span>
+            <span>&ensp;</span>
+            <Rate
+              style={{ fontSize: '25px'}}
+              tooltips={desc}
+              onChange={handleRateChangeCustom}
+              disabled={false}
+            />
+        </li>
+      );
+      return (
+        <div>
+          <Row justify="start">
+              <Col>
+                <span className="overall">
+                  <Rate
+                    style={{ fontSize: '40px' }}
+                    tooltips={desc}
+                    value={rateValue}
+                    disabled={true}
+                  />
+                </span>
+                <ul>{customRate}</ul>
+            </Col>
+          </Row>
+        </div>
+      );
+    }
+  }
+  getRate();
+
   return (
     <div className="container">
       <Row justify="left">
-        <Col lg={12} md={12} sm={14}>
+        <Col>
           <Title level={2}>
             {existingReview ? 'Edit Review' : 'Add Review'}
           </Title>
@@ -90,23 +146,16 @@ function AddReview(props) {
         }}
       />
       <Row justify="center">
-        <Col lg={4} md={5} sm={24}>
-          <Image
-            preview={false}
-            src={place.ImageURL}
-            style={{
-              borderRadius: '10px',
-            }}
-          />
-        </Col>
-        <Col
-          lg={6}
-          md={7}
-          sm={24}
-          style={{
-            marginLeft: '20px',
-          }}
-        >
+        <div className="column1">
+          <Col span={3}>
+            <img
+              src={place.ImageURL}
+              className="placeImg"
+              alt="place image"
+            />
+          </Col>
+        </div>
+        <Col className="column2" span={3}>
           <div className="placeNameRate">
             <b>{place.name}</b>
             <br />
@@ -116,23 +165,24 @@ function AddReview(props) {
             {category.name_singular}
           </div>
         </Col>
-        <Col lg={13} md={11} sm={24} xs={24} style={{ textAlign: 'center' }}>
-          <span className="ratingText">Select Overall Rating</span>
+        <Col span={2}>
+        </Col>
+        <Col className="column3" span={5}>
           <br />
-          <Rate
-            style={{ fontSize: '30px + 3.5vw' }}
-            tooltips={desc}
-            onChange={handleRateChange}
-            value={rateValue}
-          />
+          <span className="ratingText">Overall Rating</span>
           <br />
-          <Button
-            className="button"
-            type="primary"
-            onClick={handleSubmitReview}
-          >
-            Submit
-          </Button>
+          {getRate()}
+          <br />
+          <span className="submit">
+            <Button
+              className="button"
+              type="primary"
+              onClick={handleSubmitReview}
+              size="large"
+            >
+              Submit
+            </Button>
+          </span>
         </Col>
       </Row>
     </div>
