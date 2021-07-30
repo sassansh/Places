@@ -1,6 +1,6 @@
 import './PlaceView.css';
 
-import { Avatar, Col, Divider, Rate, Row, Typography } from 'antd';
+import { Col, Divider, Rate, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ReviewList from '../ReviewList/ReviewList';
@@ -31,7 +31,7 @@ function PlaceView() {
   let reviewsData = useSelector((state) => state.reviews.allReviews).filter(
     (review) => review.place_id === currentPlaceID
   );
-  const { Title, Text } = Typography;
+  const { Title } = Typography;
   let averageScore =
     reviewsData
       .map((reviewData) => reviewData.rating)
@@ -61,7 +61,7 @@ function PlaceView() {
             </Col>
           </Row>
           <Row className="placeviewaddress">
-            <span>{currentPlace.address}</span>
+            <span>📍 {currentPlace.address}</span>
           </Row>
           <Row className="overallRating">
             <span>
