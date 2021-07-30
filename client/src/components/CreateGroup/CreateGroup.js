@@ -15,6 +15,7 @@ function CreateGroup(props) {
     name: '',
     description: '',
   });
+  const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File');
 
   function handleChange() {
     setFieldInput({
@@ -24,7 +25,21 @@ function CreateGroup(props) {
   }
 
   const logoHandler = (e) => {
-    setLogoData(e.target.files[0]);
+    const imageSelected = e.target.files.length > 0;
+    if (imageSelected) {
+      let fileName = e.target.files[0].name;
+      if (fileName.length > 20) {
+        fileName =
+          fileName.substring(0, 10) +
+          '...' +
+          fileName.substring(fileName.length - 10);
+      }
+      setlogoButtonName('🖼️ ' + fileName);
+      setLogoData(e.target.files[0]);
+    } else {
+      setlogoButtonName('🖼️ Select File');
+      setLogoData('');
+    }
   };
 
   function addGroup() {
@@ -70,7 +85,16 @@ function CreateGroup(props) {
           Logo
           <br />
           <br />
-          <input type="file" id="logoupload" onChange={logoHandler} />
+          <input
+            className="logouploadinput"
+            type="file"
+            id="logoupload"
+            onChange={logoHandler}
+          />
+          <label className="logouploadlabel" htmlFor="logoupload">
+            {logoButtonName}
+          </label>
+          <br />
           <br />
           <br />
         </Col>

@@ -2,3 +2,24 @@
   margin: 25px;
   align-self: center !important;
 }
+
+.logouploadinput {
+  position: absolute;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+.logouploadlabel {
+  border-radius: 3px;
+  padding: 13px;
+  position: relative;
+  background: #ffffff;
+  color: #858585;
+  border: none;
+  cursor: pointer;
+}
+
+.logouploadlabel:hover {
+  background: #858585;
+  color: #ffffff;
+}
