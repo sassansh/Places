@@ -16,7 +16,6 @@ import {
 } from '../../redux/actions/reviewActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
-import { set } from 'mongoose';
 
 function AddReview(props) {
   const dispatch = useDispatch();
@@ -39,6 +38,9 @@ function AddReview(props) {
   const [rateValue3, setRateValue3] = useState(0);
   const [rateValue4, setRateValue4] = useState(0);
 
+  // const customCriteria = category.custom_criteria;
+  const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
+
   useEffect(() => {
     if (!reviewLoadedRef.current) {
       dispatch(getReviews());
@@ -46,13 +48,14 @@ function AddReview(props) {
         setRateValue(existingReview.rating);
       }
       reviewLoadedRef.current = true;
-      updateOverall();
     }
   }, [dispatch, existingReview]);
 
   useEffect(() => {
-    updateOverall();
-  }, [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
+    let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
+    let avg = total / customCriteria.length;
+    setRateValue(avg);
+  }, [customCriteria.length, rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
 
   const { Title } = Typography;
 
@@ -60,14 +63,6 @@ function AddReview(props) {
   const category = categories.find(
     (element) => element.category_id === place.category_id
   );
-  // const customCriteria = category.custom_criteria;
-  const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
-
-  function updateOverall() {
-    let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
-    let avg = total / customCriteria.length;
-    setRateValue(avg);
-  }
 
   function handleRateChangeCustom0(value) {
     setRateValue0(value);
@@ -121,7 +116,7 @@ function AddReview(props) {
         />
       );
     } else {
-     if (customCriteria.length == 2) {
+     if (customCriteria.length === 2) {
         customRate = [
         <li className="criteriaList">
           <span className="criteriaName">{customCriteria[0] + ":"}</span>
@@ -142,7 +137,7 @@ function AddReview(props) {
           />
         </li>        
       ];
-    } else if (customCriteria.length == 3) {
+    } else if (customCriteria.length === 3) {
       customRate = [
       <li className="criteriaList">
         <span className="criteriaName">{customCriteria[0] + ":"}</span>
@@ -172,7 +167,7 @@ function AddReview(props) {
               />
       </li>         
     ];
-  } else if (customCriteria.length == 4) {
+  } else if (customCriteria.length === 4) {
     customRate = [
     <li className="criteriaList">
       <span className="criteriaName">{customCriteria[0] + ":"}</span>
@@ -301,7 +296,7 @@ function AddReview(props) {
             <img
               src={place.ImageURL}
               className="placeImg"
-              alt="place image"
+              alt="place"
             />
           </Col>
         </div>
