@@ -5,7 +5,6 @@ import {
   Button,
   Col,
   Divider,
-  Image,
   Rate,
   Row,
   Typography,
@@ -18,8 +17,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { set } from 'mongoose';
-
-const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 
 function AddReview(props) {
   const dispatch = useDispatch();
@@ -59,39 +56,38 @@ function AddReview(props) {
     (element) => element.category_id === place.category_id
   );
   // const customCriteria = category.custom_criteria;
-  const customCriteria = ['Fun', 'Softness', 'Noise Level'];
-  let customRatings = [1, 3, 3, 0, 0];
+  const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
 
-  function handleRateChangeCustom(value) {
-    // eval("setRateValue" + index + "(" + "rate" + ")");
-    setRateValue0(value);
-    alert(rateValue0);
-    // let total = 0;
-    // for (let i = 0; i < customRatings.length; i++) {
-    //     total += customRatings[i];
-    // }
-    // let avg = total / customCriteria.length;
-    // setRateValue(avg);
+  function updateOverall() {
+    let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
+    alert([rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
+    let avg = total / customCriteria.length;
+    setRateValue(avg);
   }
 
   function handleRateChangeCustom0(value) {
     setRateValue0(value);
+    updateOverall();
   }
 
   function handleRateChangeCustom1(value) {
     setRateValue1(value);
+    updateOverall();
   }
 
   function handleRateChangeCustom2(value) {
     setRateValue2(value);
+    updateOverall();
   }
 
   function handleRateChangeCustom3(value) {
     setRateValue3(value);
+    updateOverall();
   }
 
   function handleRateChangeCustom4(value) {
     setRateValue4(value);
+    updateOverall();
   }
 
   function handleRateChange(value) {
@@ -121,7 +117,6 @@ function AddReview(props) {
       return (
         <Rate
           style={{ fontSize: '15px + 1vw' }}
-          tooltips={desc}
           onChange={handleRateChange}
           value={rateValue}
         />
@@ -134,7 +129,6 @@ function AddReview(props) {
             <span>&ensp;</span>
             <Rate
               style={{ fontSize: '25px'}}
-              tooltips={desc}
               onChange={handleRateChangeCustom0}
               value={rateValue0}
             />
@@ -144,7 +138,6 @@ function AddReview(props) {
           <span>&ensp;</span>
           <Rate
             style={{ fontSize: '25px'}}
-            tooltips={desc}
             onChange={handleRateChangeCustom1}
             value={rateValue1}
           />
@@ -157,7 +150,6 @@ function AddReview(props) {
           <span>&ensp;</span>
           <Rate
             style={{ fontSize: '25px'}}
-            tooltips={desc}
             onChange={handleRateChangeCustom0}
             value={rateValue0}
           />
@@ -167,7 +159,6 @@ function AddReview(props) {
         <span>&ensp;</span>
         <Rate
           style={{ fontSize: '25px'}}
-          tooltips={desc}
           onChange={handleRateChangeCustom1}
           value={rateValue1}
         />
@@ -177,7 +168,6 @@ function AddReview(props) {
               <span>&ensp;</span>
               <Rate
                 style={{ fontSize: '25px'}}
-                tooltips={desc}
                 onChange={handleRateChangeCustom2}
                 value={rateValue2}
               />
@@ -190,7 +180,6 @@ function AddReview(props) {
         <span>&ensp;</span>
         <Rate
           style={{ fontSize: '25px'}}
-          tooltips={desc}
           onChange={handleRateChangeCustom0}
           value={rateValue0}
         />
@@ -200,7 +189,6 @@ function AddReview(props) {
       <span>&ensp;</span>
       <Rate
         style={{ fontSize: '25px'}}
-        tooltips={desc}
         onChange={handleRateChangeCustom1}
         value={rateValue1}
       />
@@ -210,7 +198,6 @@ function AddReview(props) {
             <span>&ensp;</span>
             <Rate
               style={{ fontSize: '25px'}}
-              tooltips={desc}
               onChange={handleRateChangeCustom2}
               value={rateValue2}
             />
@@ -220,7 +207,6 @@ function AddReview(props) {
         <span>&ensp;</span>
         <Rate
           style={{ fontSize: '25px'}}
-          tooltips={desc}
           onChange={handleRateChangeCustom3}
           value={rateValue3}
         />
@@ -233,7 +219,6 @@ function AddReview(props) {
           <span>&ensp;</span>
           <Rate
             style={{ fontSize: '25px'}}
-            tooltips={desc}
             onChange={handleRateChangeCustom0}
             value={rateValue0}
           />
@@ -243,7 +228,6 @@ function AddReview(props) {
         <span>&ensp;</span>
         <Rate
           style={{ fontSize: '25px'}}
-          tooltips={desc}
           onChange={handleRateChangeCustom1}
           value={rateValue1}
         />
@@ -253,7 +237,6 @@ function AddReview(props) {
               <span>&ensp;</span>
               <Rate
                 style={{ fontSize: '25px'}}
-                tooltips={desc}
                 onChange={handleRateChangeCustom2}
                 value={rateValue2}
               />
@@ -263,7 +246,6 @@ function AddReview(props) {
           <span>&ensp;</span>
           <Rate
             style={{ fontSize: '25px'}}
-            tooltips={desc}
             onChange={handleRateChangeCustom3}
             value={rateValue3}
           />
@@ -273,7 +255,6 @@ function AddReview(props) {
           <span>&ensp;</span>
           <Rate
             style={{ fontSize: '25px'}}
-            tooltips={desc}
             onChange={handleRateChangeCustom4}
             value={rateValue4}
           />
@@ -287,7 +268,6 @@ function AddReview(props) {
                 <span className="overall">
                   <Rate
                     style={{ fontSize: '40px' }}
-                    tooltips={desc}
                     value={rateValue}
                     disabled={true}
                   />
@@ -318,7 +298,7 @@ function AddReview(props) {
       />
       <Row justify="center">
         <div className="column1">
-          <Col span={3}>
+          <Col span={5}>
             <img
               src={place.ImageURL}
               className="placeImg"
@@ -326,7 +306,7 @@ function AddReview(props) {
             />
           </Col>
         </div>
-        <Col className="column2" span={3}>
+        <Col className="column2" span={5}>
           <div className="placeNameRate">
             <b>{place.name}</b>
             <br />
@@ -336,9 +316,9 @@ function AddReview(props) {
             {category.name_singular}
           </div>
         </Col>
-        <Col span={2}>
+        <Col span={1}>
         </Col>
-        <Col className="column3" span={5}>
+        <Col className="column3" span={8}>
           <br />
           <span className="ratingText">Overall Rating</span>
           <br />
