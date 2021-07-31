@@ -46,8 +46,13 @@ function AddReview(props) {
         setRateValue(existingReview.rating);
       }
       reviewLoadedRef.current = true;
+      updateOverall();
     }
   }, [dispatch, existingReview]);
+
+  useEffect(() => {
+    updateOverall();
+  }, [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
 
   const { Title } = Typography;
 
@@ -60,34 +65,28 @@ function AddReview(props) {
 
   function updateOverall() {
     let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
-    alert([rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
     let avg = total / customCriteria.length;
     setRateValue(avg);
   }
 
   function handleRateChangeCustom0(value) {
     setRateValue0(value);
-    updateOverall();
   }
 
   function handleRateChangeCustom1(value) {
     setRateValue1(value);
-    updateOverall();
   }
 
   function handleRateChangeCustom2(value) {
     setRateValue2(value);
-    updateOverall();
   }
 
   function handleRateChangeCustom3(value) {
     setRateValue3(value);
-    updateOverall();
   }
 
   function handleRateChangeCustom4(value) {
     setRateValue4(value);
-    updateOverall();
   }
 
   function handleRateChange(value) {
