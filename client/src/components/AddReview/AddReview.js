@@ -17,6 +17,7 @@ import {
 } from '../../redux/actions/reviewActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
+import { set } from 'mongoose';
 
 const desc = ['Terrible', 'Bad', 'Normal', 'Good', 'Wonderful'];
 
@@ -35,6 +36,11 @@ function AddReview(props) {
   );
 
   const [rateValue, setRateValue] = useState(0);
+  const [rateValue0, setRateValue0] = useState(0);
+  const [rateValue1, setRateValue1] = useState(0);
+  const [rateValue2, setRateValue2] = useState(0);
+  const [rateValue3, setRateValue3] = useState(0);
+  const [rateValue4, setRateValue4] = useState(0);
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
@@ -56,13 +62,36 @@ function AddReview(props) {
   const customCriteria = ['Fun', 'Softness', 'Noise Level'];
   let customRatings = [1, 3, 3, 0, 0];
 
-  function handleRateChangeCustom() {
-    let total = 0;
-    for (let i = 0; i < customRatings.length; i++) {
-        total += customRatings[i];
-    }
-    let avg = total / customCriteria.length;
-    setRateValue(avg);
+  function handleRateChangeCustom(value) {
+    // eval("setRateValue" + index + "(" + "rate" + ")");
+    setRateValue0(value);
+    alert(rateValue0);
+    // let total = 0;
+    // for (let i = 0; i < customRatings.length; i++) {
+    //     total += customRatings[i];
+    // }
+    // let avg = total / customCriteria.length;
+    // setRateValue(avg);
+  }
+
+  function handleRateChangeCustom0(value) {
+    setRateValue0(value);
+  }
+
+  function handleRateChangeCustom1(value) {
+    setRateValue1(value);
+  }
+
+  function handleRateChangeCustom2(value) {
+    setRateValue2(value);
+  }
+
+  function handleRateChangeCustom3(value) {
+    setRateValue3(value);
+  }
+
+  function handleRateChangeCustom4(value) {
+    setRateValue4(value);
   }
 
   function handleRateChange(value) {
@@ -87,7 +116,8 @@ function AddReview(props) {
   }
 
   function getRate() {
-    if (customCriteria.length === 0) {
+    let customRate;
+    if (customCriteria.length < 2) {
       return (
         <Rate
           style={{ fontSize: '15px + 1vw' }}
@@ -97,18 +127,159 @@ function AddReview(props) {
         />
       );
     } else {
-      let customRate = customCriteria.map((criteria) => 
+     if (customCriteria.length == 2) {
+        customRate = [
         <li className="criteriaList">
-          <span className="criteriaName">{criteria + ":"}</span>
+          <span className="criteriaName">{customCriteria[0] + ":"}</span>
             <span>&ensp;</span>
             <Rate
               style={{ fontSize: '25px'}}
               tooltips={desc}
-              onChange={handleRateChangeCustom}
-              disabled={false}
+              onChange={handleRateChangeCustom0}
+              value={rateValue0}
             />
-        </li>
-      );
+        </li>,
+        <li className="criteriaList">
+        <span className="criteriaName">{customCriteria[1] + ":"}</span>
+          <span>&ensp;</span>
+          <Rate
+            style={{ fontSize: '25px'}}
+            tooltips={desc}
+            onChange={handleRateChangeCustom1}
+            value={rateValue1}
+          />
+        </li>        
+      ];
+    } else if (customCriteria.length == 3) {
+      customRate = [
+      <li className="criteriaList">
+        <span className="criteriaName">{customCriteria[0] + ":"}</span>
+          <span>&ensp;</span>
+          <Rate
+            style={{ fontSize: '25px'}}
+            tooltips={desc}
+            onChange={handleRateChangeCustom0}
+            value={rateValue0}
+          />
+      </li>,
+      <li className="criteriaList">
+      <span className="criteriaName">{customCriteria[1] + ":"}</span>
+        <span>&ensp;</span>
+        <Rate
+          style={{ fontSize: '25px'}}
+          tooltips={desc}
+          onChange={handleRateChangeCustom1}
+          value={rateValue1}
+        />
+      </li>,
+            <li className="criteriaList">
+            <span className="criteriaName">{customCriteria[2] + ":"}</span>
+              <span>&ensp;</span>
+              <Rate
+                style={{ fontSize: '25px'}}
+                tooltips={desc}
+                onChange={handleRateChangeCustom2}
+                value={rateValue2}
+              />
+      </li>         
+    ];
+  } else if (customCriteria.length == 4) {
+    customRate = [
+    <li className="criteriaList">
+      <span className="criteriaName">{customCriteria[0] + ":"}</span>
+        <span>&ensp;</span>
+        <Rate
+          style={{ fontSize: '25px'}}
+          tooltips={desc}
+          onChange={handleRateChangeCustom0}
+          value={rateValue0}
+        />
+    </li>,
+    <li className="criteriaList">
+    <span className="criteriaName">{customCriteria[1] + ":"}</span>
+      <span>&ensp;</span>
+      <Rate
+        style={{ fontSize: '25px'}}
+        tooltips={desc}
+        onChange={handleRateChangeCustom1}
+        value={rateValue1}
+      />
+    </li>,
+          <li className="criteriaList">
+          <span className="criteriaName">{customCriteria[2] + ":"}</span>
+            <span>&ensp;</span>
+            <Rate
+              style={{ fontSize: '25px'}}
+              tooltips={desc}
+              onChange={handleRateChangeCustom2}
+              value={rateValue2}
+            />
+    </li>,
+      <li className="criteriaList">
+      <span className="criteriaName">{customCriteria[3] + ":"}</span>
+        <span>&ensp;</span>
+        <Rate
+          style={{ fontSize: '25px'}}
+          tooltips={desc}
+          onChange={handleRateChangeCustom3}
+          value={rateValue3}
+        />
+    </li>           
+  ];
+  } else {
+    customRate = [
+      <li className="criteriaList">
+        <span className="criteriaName">{customCriteria[0] + ":"}</span>
+          <span>&ensp;</span>
+          <Rate
+            style={{ fontSize: '25px'}}
+            tooltips={desc}
+            onChange={handleRateChangeCustom0}
+            value={rateValue0}
+          />
+      </li>,
+      <li className="criteriaList">
+      <span className="criteriaName">{customCriteria[1] + ":"}</span>
+        <span>&ensp;</span>
+        <Rate
+          style={{ fontSize: '25px'}}
+          tooltips={desc}
+          onChange={handleRateChangeCustom1}
+          value={rateValue1}
+        />
+      </li>,
+            <li className="criteriaList">
+            <span className="criteriaName">{customCriteria[2] + ":"}</span>
+              <span>&ensp;</span>
+              <Rate
+                style={{ fontSize: '25px'}}
+                tooltips={desc}
+                onChange={handleRateChangeCustom2}
+                value={rateValue2}
+              />
+      </li>,
+        <li className="criteriaList">
+        <span className="criteriaName">{customCriteria[3] + ":"}</span>
+          <span>&ensp;</span>
+          <Rate
+            style={{ fontSize: '25px'}}
+            tooltips={desc}
+            onChange={handleRateChangeCustom3}
+            value={rateValue3}
+          />
+      </li>,
+        <li className="criteriaList">
+          <span className="criteriaName">{customCriteria[4] + ":"}</span>
+          <span>&ensp;</span>
+          <Rate
+            style={{ fontSize: '25px'}}
+            tooltips={desc}
+            onChange={handleRateChangeCustom4}
+            value={rateValue4}
+          />
+      </li>        
+      ];
+  }
       return (
         <div>
           <Row justify="start">
