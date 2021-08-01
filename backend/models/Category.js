@@ -7,6 +7,10 @@ const categorySchema = new Schema({
     type: String,
     required: true,
   },
+  group_id: {
+    type: String,
+    required: true,
+  },
   name: {
     type: String,
     required: true,
@@ -17,6 +21,10 @@ const categorySchema = new Schema({
   },
   emoji: {
     type: String,
+    required: true,
+  },
+  custom_criteria: {
+    type: [String],
     required: true,
   },
 });

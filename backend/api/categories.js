@@ -6,18 +6,21 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 router.get('/', authenticateToken, (req, res) => {
-  Category.find()
+  const group_id = req.query.group_id;
+  Category.find({ group_id })
     .then((categories) => res.json(categories))
     .catch((err) => console.log(err));
 });
 
 router.post('/', authenticateToken, (req, res) => {
-  const { name, name_singular, emoji } = req.body;
+  const { name, name_singular, emoji, custom_criteria, group_id } = req.body;
   const newCategory = new Category({
     category_id: uuidv4(),
     name: name,
     name_singular: name_singular,
     emoji: emoji,
+    custom_criteria: custom_criteria,
+    group_id: group_id,
   });
   newCategory
     .save()
