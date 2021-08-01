@@ -14,11 +14,14 @@ export const getUsers = () => async (dispatch) => {
 };
 
 export const registerUser = (userData, history) => async (dispatch) => {
+  const loading = message.loading('Registering user..', 0);
   try {
     await axios.post('/api/users/register', userData);
+    loading();
     history.push('/login');
     message.success('Registered successfully!');
   } catch (err) {
+    loading();
     message.error(err.response.data + '!');
   }
 };
@@ -40,35 +43,37 @@ export const loginUser = (userData) => async (dispatch) => {
   }
 };
 
-export const userRequestToJoinGroup = (group_id) => async(dispatch) => {
+export const userRequestToJoinGroup = (group_id) => async (dispatch) => {
   try {
-    await axios.post('/api/users/group/request', {group_id});
+    await axios.post('/api/users/group/request', { group_id });
     await dispatch(getUsers());
     message.success('Requested to join group');
   } catch (err) {
     message.error(err.response.data + '!');
   }
-}
+};
 
-export const userAcceptRequestToJoinGroup = (other_user_id, group_id) => async(dispatch) => {
-  try {
-    await axios.post('/api/users/group/accept', {other_user_id, group_id});
-    await dispatch(getUsers());
-    message.success('Accepted request to join group');
-  } catch (err) {
-    message.error(err.response.data + '!');
-  }
-}
+export const userAcceptRequestToJoinGroup =
+  (other_user_id, group_id) => async (dispatch) => {
+    try {
+      await axios.post('/api/users/group/accept', { other_user_id, group_id });
+      await dispatch(getUsers());
+      message.success('Accepted request to join group');
+    } catch (err) {
+      message.error(err.response.data + '!');
+    }
+  };
 
-export const userRejectRequestToJoinGroup = (other_user_id, group_id) => async(dispatch) => {
-  try {
-    await axios.post('/api/users/group/reject', {other_user_id, group_id});
-    await dispatch(getUsers());
-    message.success('Rejected request to join group');
-  } catch (err) {
-    message.error(err.response.data + '!');
-  }
-}
+export const userRejectRequestToJoinGroup =
+  (other_user_id, group_id) => async (dispatch) => {
+    try {
+      await axios.post('/api/users/group/reject', { other_user_id, group_id });
+      await dispatch(getUsers());
+      message.success('Rejected request to join group');
+    } catch (err) {
+      message.error(err.response.data + '!');
+    }
+  };
 
 export const setCurrentUser = (user) => {
   return {
@@ -95,8 +100,8 @@ export const logoutUser = () => (dispatch) => {
 };
 
 export const removeUser = (userData, history) => async (dispatch) => {
+  const loading = message.loading('Removing user..', 0);
   try {
-    const loading = message.loading('Removing user..', 0);
     const deleteGroupResponse = await axios.delete('/api/users/group', {
       data: userData,
     });
@@ -112,6 +117,7 @@ export const removeUser = (userData, history) => async (dispatch) => {
       message.error('User could not be removed!');
     }
   } catch (err) {
+    loading();
     console.log(err);
   }
 };
