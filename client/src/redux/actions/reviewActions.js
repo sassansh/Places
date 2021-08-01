@@ -19,8 +19,8 @@ export const setReviews = (reviews) => {
 };
 
 export const addReview = (newReview, history) => async (dispatch) => {
+  const loading = message.loading('Adding rating..', 0);
   try {
-    const loading = message.loading('Adding rating..', 0);
     await axios.post('/api/reviews', newReview);
     const reviewsResponse = await axios.get('/api/reviews');
     const reviews = reviewsResponse.data;
@@ -29,15 +29,16 @@ export const addReview = (newReview, history) => async (dispatch) => {
     history.push('/placeview');
     message.success('Rating added!');
   } catch (err) {
+    loading();
     console.log(err);
   }
 };
 
 export const editReview = (newReview, history) => async (dispatch) => {
+  const loading = message.loading('Modifying rating..', 0);
   try {
     const review_id = newReview.review_id;
     const rating = newReview.rating;
-    const loading = message.loading('Modifying rating..', 0);
     await axios.put('/api/reviews', { review_id, rating });
     const reviewsResponse = await axios.get('/api/reviews');
     const reviews = reviewsResponse.data;
@@ -46,6 +47,7 @@ export const editReview = (newReview, history) => async (dispatch) => {
     history.push('/placeview');
     message.success('Rating modified!');
   } catch (err) {
+    loading();
     console.log(err);
   }
 };
