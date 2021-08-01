@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
+import { setCategories } from '../../../redux/actions/categoryActions';
 import { setCurrentCategory } from '../../../redux/actions/categoryActions';
 import { setCurrentGroup } from '../../../redux/actions/groupActions';
 import { setCurrentPlace } from '../../../redux/actions/placeActions';
@@ -45,6 +46,7 @@ function NavBar(props) {
       setTab('groupListView');
       dispatch(setCurrentGroup(''));
       dispatch(setCurrentCategory(''));
+      dispatch(setCategories([]));
       dispatch(setCurrentPlace(''));
     } else if (path === '/groupview') {
       setTab('groupView');

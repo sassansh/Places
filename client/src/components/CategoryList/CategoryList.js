@@ -10,15 +10,14 @@ import { useEffect } from 'react';
 
 function CategoryList() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCategories());
-    dispatch(getPlaces());
-  }, [dispatch]);
-
   let categories = useSelector((state) => state.categories.allCategories);
   const places = useSelector((state) => state.places.allPlaces);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+
+  useEffect(() => {
+    dispatch(getCategories(currentGroupID));
+    dispatch(getPlaces());
+  }, [dispatch, currentGroupID]);
 
   categories = categories.map((category) => ({
     ...category,
