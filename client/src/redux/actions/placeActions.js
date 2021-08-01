@@ -11,16 +11,9 @@ export const getPlaces = () => async (dispatch) => {
   }
 };
 
-export const setPlaces = (places) => {
-  return {
-    type: 'SET_PLACES',
-    payload: places,
-  };
-};
-
 export const addPlace = (newPlace, history) => async (dispatch) => {
+  const loading = message.loading('Creating place..', 0);
   try {
-    const loading = message.loading('Creating place..', 0);
     const newPlaceResponse = await axios.post('/api/places', newPlace);
     const newPlaceFull = await newPlaceResponse.data;
     loading();
@@ -29,8 +22,16 @@ export const addPlace = (newPlace, history) => async (dispatch) => {
     history.push('/placeview');
     message.success('New place created!');
   } catch (err) {
+    loading();
     console.log(err);
   }
+};
+
+export const setPlaces = (places) => {
+  return {
+    type: 'SET_PLACES',
+    payload: places,
+  };
 };
 
 export const setCurrentPlace = (placeID) => {
