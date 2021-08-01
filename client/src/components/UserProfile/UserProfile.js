@@ -14,10 +14,6 @@ import './UserProfile.css';
 
 function UserProfile() {
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getCategories());
-      }, [dispatch]);
-
     const { Title } = Typography;
     const user = useSelector((state) => state.users.user);
     const users = useSelector((state) => state.users.allUsers);
@@ -26,6 +22,14 @@ function UserProfile() {
     const places = useSelector((state) => state.places.allPlaces);
     const groups = useSelector((state => state.groups.allGroups));
     const categories = useSelector((state => state.categories.allCategories));
+    const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+    alert(currentGroupID);
+
+    useEffect(() => {
+        dispatch(getCategories(currentGroupID));
+      }, [dispatch, currentGroupID]);
+
+
 
     let numGroups = 0;
     let numPlaces = 0;
@@ -42,9 +46,16 @@ function UserProfile() {
     }
 
     function getRating(rating) {
+        let overallRating = 0;
+        if (rating.length === 1) {
+            overallRating = rating[0];
+        } else {
+            let total = rating.reduce((a, b) => a + b, 0);
+            overallRating = total / rating.length;
+        }
         return (
             <Rate
-                value={rating}
+                value={overallRating}
                 disabled={true}
             />
         );
