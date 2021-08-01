@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.get('/', authenticateToken, (req, res) => {
   const group_id = req.query.group_id;
-  console.log(group_id);
   Category.find({ group_id })
     .then((categories) => res.json(categories))
     .catch((err) => console.log(err));
