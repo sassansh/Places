@@ -1,4 +1,5 @@
 import Category from '../models/Category.js';
+import User from '../models/User.js';
 import authenticateToken from '../util/AuthToken.js';
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
@@ -7,9 +8,29 @@ const router = express.Router();
 
 router.get('/', authenticateToken, (req, res) => {
   const group_id = req.query.group_id;
-  Category.find({ group_id })
-    .then((categories) => res.json(categories))
-    .catch((err) => console.log(err));
+  const user_id = req.user.user_id;
+
+  if (group_id && group_id.length >= 1) {
+    Category.find(
+      { group_id },
+      '-_id category_id name name_singular emoji group_id custom_criteria'
+    )
+      .then((categories) => res.json(categories))
+      .catch((err) => console.log(err));
+  } else {
+    User.findOne({ user_id }).then((user) => {
+      let searchQuery = [];
+      for (const group of user.groups) {
+        searchQuery.push({ group_id: group });
+      }
+      Category.find(
+        { $or: searchQuery },
+        '-_id category_id name name_singular emoji group_id custom_criteria'
+      )
+        .then((categories) => res.json(categories))
+        .catch((err) => console.log(err));
+    });
+  }
 });
 
 router.post('/', authenticateToken, (req, res) => {

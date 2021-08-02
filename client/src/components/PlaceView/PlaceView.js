@@ -4,7 +4,6 @@ import { Col, Divider, Rate, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ReviewList from '../ReviewList/ReviewList';
-import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
@@ -13,7 +12,6 @@ function PlaceView() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlaces());
-    dispatch(getCategories());
     dispatch(getReviews());
   }, [dispatch]);
   const categories = useSelector((state) => state.categories.allCategories);
