@@ -38,14 +38,34 @@ function AddReview(props) {
   const [rateValue3, setRateValue3] = useState(0);
   const [rateValue4, setRateValue4] = useState(0);
 
-  // const customCriteria = category.custom_criteria;
-  const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
+  const customCriteria = category.custom_criteria;
+  // const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
       dispatch(getReviews());
       if (existingReview) {
-        setRateValue(existingReview.rating);
+          if (existingReview.rating.length == 2) {
+            setRateValue0(existingReview.rating[0]);
+            setRateValue1(existingReview.rating[1]);
+          } else if (existingReview.rating.length == 3) {
+            setRateValue0(existingReview.rating[0]);
+            setRateValue1(existingReview.rating[1]);
+            setRateValue2(existingReview.rating[2]);
+          } else if (existingReview.rating.length == 4) {
+            setRateValue0(existingReview.rating[0]);
+            setRateValue1(existingReview.rating[1]);
+            setRateValue2(existingReview.rating[2]);
+            setRateValue3(existingReview.rating[3]);
+        } else if (existingReview.rating.length == 5) {
+          setRateValue0(existingReview.rating[0]);
+          setRateValue1(existingReview.rating[1]);
+          setRateValue2(existingReview.rating[2]);
+          setRateValue3(existingReview.rating[3]);
+          setRateValue4(existingReview.rating[4]);                    
+        } else {
+          setRateValue(existingReview.rating);
+        }
       }
       reviewLoadedRef.current = true;
     }
@@ -91,15 +111,31 @@ function AddReview(props) {
   function handleSubmitReview(value) {
     let newReview = {};
     if (existingReview) {
+      let rating = [];
+      if (!customCriteria || customCriteria.length < 2) {
+        rating.push(rateValue)
+      } else {
+        for (let i = 0; i < customCriteria.length; i++) {
+          rating.push(eval("rateValue" + i));
+        }
+      }
       newReview = {
         ...existingReview,
-        rating: rateValue,
+        rating: rating,
       };
       dispatch(editReview(newReview, props.history));
     } else {
+      let rating = [];
+      if (!customCriteria || customCriteria.length < 2) {
+        rating.push(rateValue)
+      } else {
+        for (let i = 0; i < customCriteria.length; i++) {
+          rating.push(eval("rateValue" + i));
+        }
+      }
       newReview = {
         place_id: currentPlaceID,
-        rating: rateValue,
+        rating: rating,
       };
       dispatch(addReview(newReview, props.history));
     }

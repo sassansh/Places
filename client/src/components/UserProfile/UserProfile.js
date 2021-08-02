@@ -47,7 +47,7 @@ function UserProfile() {
 
     function getRating(rating) {
         let overallRating = 0;
-        if (rating.length === 1) {
+        if (rating.length < 2) {
             overallRating = rating[0];
         } else {
             let total = rating.reduce((a, b) => a + b, 0);
