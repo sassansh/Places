@@ -38,6 +38,11 @@ function AddReview(props) {
   const [rateValue3, setRateValue3] = useState(0);
   const [rateValue4, setRateValue4] = useState(0);
 
+  const place = places.find((element) => element.place_id === currentPlaceID);
+  const category = categories.find(
+    (element) => element.category_id === place.category_id
+  );
+
   const customCriteria = category.custom_criteria;
   // const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
 
@@ -45,19 +50,19 @@ function AddReview(props) {
     if (!reviewLoadedRef.current) {
       dispatch(getReviews());
       if (existingReview) {
-          if (existingReview.rating.length == 2) {
+          if (existingReview.rating.length === 2) {
             setRateValue0(existingReview.rating[0]);
             setRateValue1(existingReview.rating[1]);
-          } else if (existingReview.rating.length == 3) {
+          } else if (existingReview.rating.length === 3) {
             setRateValue0(existingReview.rating[0]);
             setRateValue1(existingReview.rating[1]);
             setRateValue2(existingReview.rating[2]);
-          } else if (existingReview.rating.length == 4) {
+          } else if (existingReview.rating.length === 4) {
             setRateValue0(existingReview.rating[0]);
             setRateValue1(existingReview.rating[1]);
             setRateValue2(existingReview.rating[2]);
             setRateValue3(existingReview.rating[3]);
-        } else if (existingReview.rating.length == 5) {
+        } else if (existingReview.rating.length === 5) {
           setRateValue0(existingReview.rating[0]);
           setRateValue1(existingReview.rating[1]);
           setRateValue2(existingReview.rating[2]);
@@ -78,11 +83,6 @@ function AddReview(props) {
   }, [customCriteria.length, rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
 
   const { Title } = Typography;
-
-  const place = places.find((element) => element.place_id === currentPlaceID);
-  const category = categories.find(
-    (element) => element.category_id === place.category_id
-  );
 
   function handleRateChangeCustom0(value) {
     setRateValue0(value);
@@ -115,8 +115,24 @@ function AddReview(props) {
       if (!customCriteria || customCriteria.length < 2) {
         rating.push(rateValue)
       } else {
-        for (let i = 0; i < customCriteria.length; i++) {
-          rating.push(eval("rateValue" + i));
+        if (customCriteria.length === 2) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+        } else if (customCriteria.length === 3) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+        } else if (customCriteria.length === 4) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+          rating.push(rateValue3);
+        } else {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+          rating.push(rateValue3);
+          rating.push(rateValue4);
         }
       }
       newReview = {
@@ -129,8 +145,24 @@ function AddReview(props) {
       if (!customCriteria || customCriteria.length < 2) {
         rating.push(rateValue)
       } else {
-        for (let i = 0; i < customCriteria.length; i++) {
-          rating.push(eval("rateValue" + i));
+        if (customCriteria.length === 2) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+        } else if (customCriteria.length === 3) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+        } else if (customCriteria.length === 4) {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+          rating.push(rateValue3);
+        } else {
+          rating.push(rateValue0);
+          rating.push(rateValue1);
+          rating.push(rateValue2);
+          rating.push(rateValue3);
+          rating.push(rateValue4);
         }
       }
       newReview = {
@@ -145,11 +177,13 @@ function AddReview(props) {
     let customRate;
     if (customCriteria.length < 2) {
       return (
-        <Rate
-          style={{ fontSize: '15px + 1vw' }}
-          onChange={handleRateChange}
-          value={rateValue}
-        />
+        <span className="overall">
+          <Rate
+            style={{ fontSize: '40px' }}
+            onChange={handleRateChange}
+            value={rateValue}
+          />
+        </span>
       );
     } else {
      if (customCriteria.length === 2) {

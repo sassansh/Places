@@ -8,25 +8,6 @@ import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 
 function UserProfile() {
-<<<<<<< HEAD
-    const dispatch = useDispatch();
-    const { Title } = Typography;
-    const user = useSelector((state) => state.users.user);
-    const users = useSelector((state) => state.users.allUsers);
-    const userData = users.find(item => item.user_id === user.user_id);
-    const reviews = useSelector((state) => state.reviews.allReviews);
-    const places = useSelector((state) => state.places.allPlaces);
-    const groups = useSelector((state => state.groups.allGroups));
-    const categories = useSelector((state => state.categories.allCategories));
-    const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-    alert(currentGroupID);
-
-    useEffect(() => {
-        dispatch(getCategories(currentGroupID));
-      }, [dispatch, currentGroupID]);
-
-
-=======
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -40,7 +21,6 @@ function UserProfile() {
   const places = useSelector((state) => state.places.allPlaces);
   const groups = useSelector((state) => state.groups.allGroups);
   const categories = useSelector((state) => state.categories.allCategories);
->>>>>>> main
 
   let numGroups = 0;
   let numPlaces = 0;
@@ -56,7 +36,6 @@ function UserProfile() {
     }
   }
 
-<<<<<<< HEAD
     function getRating(rating) {
         let overallRating = 0;
         if (rating.length < 2) {
@@ -72,11 +51,6 @@ function UserProfile() {
             />
         );
     }
-=======
-  function getRating(rating) {
-    return <Rate value={rating} disabled={true} />;
-  }
->>>>>>> main
 
   function getGroup(group_id) {
     let targetGroup = groups.find((group) => group.group_id === group_id);
@@ -113,12 +87,15 @@ function UserProfile() {
       let category_id = places.find(
         (place) => place.place_id === place_id
       ).category_id;
-      let categoryEmoji = categories.find(
+      let targetCategory = categories.find(
         (category) => category.category_id === category_id
-      ).emoji;
-      let categoryName = categories.find(
-        (category) => category.category_id === category_id
-      ).name_singular;
+      );
+      let categoryEmoji = "";
+      let categoryName = "";
+      if (targetCategory) {
+        categoryEmoji = targetCategory.emoji;
+        categoryName = targetCategory.name_singular;
+      }
       return ' ' + categoryEmoji + ' ' + categoryName + ' ';
     } catch (e) {
       console.error(e);
@@ -127,12 +104,12 @@ function UserProfile() {
 
   const myGroups = userData.groups;
   const myGroupsItems = myGroups.map((group_id) => (
-    <li className="group">{getGroup(group_id)}</li>
+    <li key={group_id} className="group">{getGroup(group_id)}</li>
   ));
 
   const myReviews = reviews.filter((review) => review.user_id === user.user_id);
   const myReviewsItems = myReviews.map((review) => (
-    <li className="review">
+    <li key={review.review_id} className="review">
       <Card size="small">
         <Row>
           <Col span={12}>
