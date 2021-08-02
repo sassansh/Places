@@ -44,7 +44,6 @@ function AddReview(props) {
   );
 
   const customCriteria = category.custom_criteria;
-  // const customCriteria = ['Fun', 'Softness', 'Noise Level', 'Cleanliness'];
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
