@@ -7,7 +7,6 @@ import {
   Divider,
   Form,
   Input,
-  InputNumber,
   Modal,
   Row,
   Switch,
@@ -36,7 +35,6 @@ function AddCategory(props) {
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
   const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size'];
-  const useWeights = false;
 
   function handleChange() {
     let emojiField = form.getFieldValue('emoji');
@@ -58,17 +56,20 @@ function AddCategory(props) {
     let emoji = form.getFieldValue('emoji');
     let criteria = form.getFieldValue('criteria');
     let use_custom_criteria = form.getFieldValue('use_custom_criteria');
+    let rawCriteria = [];
+    criteria.forEach((element) => rawCriteria.push(element.criterion));
 
     let newCategory = {
       name: name,
-      name_singluar: name_singular,
+      name_singular: name_singular,
       emoji: emoji,
-      custom_criteria: use_custom_criteria ? criteria : [],
+      group_id: currentGroup,
+      custom_criteria: use_custom_criteria ? rawCriteria : [],
     };
-    if (false) {
-      dispatch(addCategory(newCategory, currentGroup, props.history));
-    }
-    form.resetFields();
+
+    console.log(newCategory);
+
+    dispatch(addCategory(newCategory, props.history));
   }
   return (
     <Col className="container">
@@ -152,71 +153,31 @@ function AddCategory(props) {
               <Form.List name="criteria">
                 {(fields, { add, remove }) => (
                   <>
-                    {fields.map(({ key, name, fieldKey, ...restField }) =>
-                      useWeights ? (
-                        <Row gutter={[7, 7]} align="middle" key={key}>
-                          <Col span={2}>
-                            {name > 0 && (
-                              <MinusCircleOutlined
-                                onClick={() => {
-                                  setNumberOfCriteria(numberOfCriteria - 1);
-                                  remove(name);
-                                }}
-                                style={{ paddingTop: '18px' }}
-                              />
-                            )}
-                          </Col>
-                          <Col span={11}>
-                            <Form.Item
-                              {...restField}
-                              name={[name, 'criterion']}
-                              label="Criterion"
-                              fieldKey={[fieldKey, 'criterion']}
-                            >
-                              <Input />
-                            </Form.Item>
-                          </Col>
-                          <Col span={11}>
-                            <Form.Item
-                              {...restField}
-                              name={[name, 'weight']}
-                              label="Weight (1-10)"
-                              fieldKey={[fieldKey, 'weight']}
-                            >
-                              <InputNumber
-                                min={1}
-                                max={10}
-                                formatter={(value) => Math.round(value)}
-                              />
-                            </Form.Item>
-                          </Col>
-                        </Row>
-                      ) : (
-                        <Row gutter={[7, 7]} align="middle" key={key}>
-                          <Col span={2}>
-                            {name > 1 && (
-                              <MinusCircleOutlined
-                                onClick={() => {
-                                  setNumberOfCriteria(numberOfCriteria - 1);
-                                  remove(name);
-                                }}
-                                style={{ paddingTop: '18px' }}
-                              />
-                            )}
-                          </Col>
-                          <Col span={22}>
-                            <Form.Item
-                              {...restField}
-                              name={[name, 'criterion']}
-                              label="Criterion"
-                              fieldKey={[fieldKey, 'criterion']}
-                            >
-                              <Input placeholder={defaultCriteria[name % 6]} />
-                            </Form.Item>
-                          </Col>
-                        </Row>
-                      )
-                    )}
+                    {fields.map(({ key, name, fieldKey, ...restField }) => (
+                      <Row gutter={[7, 7]} align="middle" key={key}>
+                        <Col span={2}>
+                          {name > 1 && (
+                            <MinusCircleOutlined
+                              onClick={() => {
+                                setNumberOfCriteria(numberOfCriteria - 1);
+                                remove(name);
+                              }}
+                              style={{ paddingTop: '18px' }}
+                            />
+                          )}
+                        </Col>
+                        <Col span={22}>
+                          <Form.Item
+                            {...restField}
+                            name={[name, 'criterion']}
+                            label="Criterion"
+                            fieldKey={[fieldKey, 'criterion']}
+                          >
+                            <Input placeholder={defaultCriteria[name % 6]} />
+                          </Form.Item>
+                        </Col>
+                      </Row>
+                    ))}
                     {numberOfCriteria < 5 && (
                       <Form.Item>
                         <Button
@@ -225,7 +186,6 @@ function AddCategory(props) {
                             setNumberOfCriteria(numberOfCriteria + 1);
                             add({
                               criterion: defaultCriteria[numberOfCriteria % 5],
-                              weight: 5,
                             });
                           }}
                           block
