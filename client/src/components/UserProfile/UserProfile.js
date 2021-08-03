@@ -36,9 +36,21 @@ function UserProfile() {
     }
   }
 
-  function getRating(rating) {
-    return <Rate value={rating} disabled={true} />;
-  }
+    function getRating(rating) {
+        let overallRating = 0;
+        if (rating.length < 2) {
+            overallRating = rating[0];
+        } else {
+            let total = rating.reduce((a, b) => a + b, 0);
+            overallRating = total / rating.length;
+        }
+        return (
+            <Rate
+                value={overallRating}
+                disabled={true}
+            />
+        );
+    }
 
   function getGroup(group_id) {
     let targetGroup = groups.find((group) => group.group_id === group_id);
@@ -75,12 +87,15 @@ function UserProfile() {
       let category_id = places.find(
         (place) => place.place_id === place_id
       ).category_id;
-      let categoryEmoji = categories.find(
+      let targetCategory = categories.find(
         (category) => category.category_id === category_id
-      ).emoji;
-      let categoryName = categories.find(
-        (category) => category.category_id === category_id
-      ).name_singular;
+      );
+      let categoryEmoji = "";
+      let categoryName = "";
+      if (targetCategory) {
+        categoryEmoji = targetCategory.emoji;
+        categoryName = targetCategory.name_singular;
+      }
       return ' ' + categoryEmoji + ' ' + categoryName + ' ';
     } catch (e) {
       console.error(e);
@@ -89,12 +104,12 @@ function UserProfile() {
 
   const myGroups = userData.groups;
   const myGroupsItems = myGroups.map((group_id) => (
-    <li className="group">{getGroup(group_id)}</li>
+    <li key={group_id} className="group">{getGroup(group_id)}</li>
   ));
 
   const myReviews = reviews.filter((review) => review.user_id === user.user_id);
   const myReviewsItems = myReviews.map((review) => (
-    <li className="review">
+    <li key={review.review_id} className="review">
       <Card size="small">
         <Row>
           <Col span={12}>
