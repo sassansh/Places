@@ -108,7 +108,7 @@ export const removeUser = (userData, history) => async (dispatch) => {
     loading();
     const success = deleteGroupResponse.data.success;
     if (success) {
-      dispatch(getUsers());
+      await dispatch(getUsers());
       if (userData.user_id === userData.currentUserID) {
         history.push('/');
       }
