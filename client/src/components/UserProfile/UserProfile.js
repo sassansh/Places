@@ -4,6 +4,7 @@ import { Card, Col, Divider, Rate, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Avatar from 'antd/lib/avatar/avatar';
+import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 
@@ -36,21 +37,16 @@ function UserProfile() {
     }
   }
 
-    function getRating(rating) {
-        let overallRating = 0;
-        if (rating.length < 2) {
-            overallRating = rating[0];
-        } else {
-            let total = rating.reduce((a, b) => a + b, 0);
-            overallRating = total / rating.length;
-        }
-        return (
-            <Rate
-                value={overallRating}
-                disabled={true}
-            />
-        );
+  function getRating(rating) {
+    let overallRating = 0;
+    if (rating.length < 2) {
+      overallRating = rating[0];
+    } else {
+      let total = rating.reduce((a, b) => a + b, 0);
+      overallRating = total / rating.length;
     }
+    return <Rate value={overallRating} disabled={true} />;
+  }
 
   function getGroup(group_id) {
     let targetGroup = groups.find((group) => group.group_id === group_id);
@@ -90,8 +86,8 @@ function UserProfile() {
       let targetCategory = categories.find(
         (category) => category.category_id === category_id
       );
-      let categoryEmoji = "";
-      let categoryName = "";
+      let categoryEmoji = '';
+      let categoryName = '';
       if (targetCategory) {
         categoryEmoji = targetCategory.emoji;
         categoryName = targetCategory.name_singular;
@@ -104,7 +100,9 @@ function UserProfile() {
 
   const myGroups = userData.groups;
   const myGroupsItems = myGroups.map((group_id) => (
-    <li key={group_id} className="group">{getGroup(group_id)}</li>
+    <li key={group_id} className="group">
+      {getGroup(group_id)}
+    </li>
   ));
 
   const myReviews = reviews.filter((review) => review.user_id === user.user_id);
@@ -130,7 +128,9 @@ function UserProfile() {
     <div className="container">
       <Row justify="left">
         <Col>
-          <Title level={2}>User Profile</Title>
+          <Title level={2}>
+            <UserOutlined /> User Profile
+          </Title>
         </Col>
       </Row>
       <Divider

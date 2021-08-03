@@ -13,6 +13,16 @@ export const getUsers = () => async (dispatch) => {
   }
 };
 
+export const getFavourites = () => async (dispatch) => {
+  try {
+    const favouritesResponse = await axios.get('/api/users/favourites');
+    const favourites = favouritesResponse.data;
+    dispatch(setFavourites(favourites));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const registerUser = (userData, history) => async (dispatch) => {
   const loading = message.loading('Registering user..', 0);
   try {
@@ -89,6 +99,13 @@ export const setUsers = (users) => {
   };
 };
 
+export const setFavourites = (favourites) => {
+  return {
+    type: 'SET_FAVOURITES',
+    payload: favourites,
+  };
+};
+
 export const logoutUser = () => (dispatch) => {
   // Remove token from local storage
   localStorage.removeItem('jwtToken');
@@ -118,6 +135,35 @@ export const removeUser = (userData, history) => async (dispatch) => {
     }
   } catch (err) {
     loading();
+    console.log(err);
+  }
+};
+
+export const addFavouritePlace = (place_id) => async (dispatch) => {
+  const loading = message.loading('Adding favourite..', 0);
+  try {
+    await axios.post('/api/users/favourites', { place_id });
+    loading();
+    message.success('Favourite added!');
+    dispatch(getFavourites());
+  } catch (err) {
+    loading();
+    message.error('Could not favourite place!');
+    console.log(err);
+  }
+};
+
+export const deleteFavouritePlace = (place_id) => async (dispatch) => {
+  const loading = message.loading('Removing favourite..', 0);
+  try {
+    console.log(place_id);
+    await axios.delete('/api/users/favourites', { data: { place_id } });
+    loading();
+    message.success('Favourite removed!');
+    dispatch(getFavourites());
+  } catch (err) {
+    loading();
+    message.error('Could not remove favourite!');
     console.log(err);
   }
 };
