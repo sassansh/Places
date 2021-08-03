@@ -1,13 +1,13 @@
 import './FavouritesView.css';
 
 import { Card, Col, Divider, Row, Tooltip, Typography } from 'antd';
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import {
   deleteFavouritePlace,
   getFavourites,
 } from '../../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { HeartFilled } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 
@@ -70,8 +70,8 @@ function FavouritesView() {
     }
   }
 
-  const myReviewsItems = myFavourites.map((favourite) => (
-    <li key={favourite} className="review">
+  const myFavouriteItems = myFavourites.map((favourite) => (
+    <li key={favourite} className="favourite">
       <Card size="small">
         <Row>
           <Col span={12}>
@@ -96,7 +96,9 @@ function FavouritesView() {
     <div className="container">
       <Row justify="left">
         <Col>
-          <Title level={2}>Favourites</Title>
+          <Title level={2}>
+            <HeartOutlined /> Favourites
+          </Title>
         </Col>
       </Row>
       <Divider
@@ -107,7 +109,7 @@ function FavouritesView() {
       />
       <Row justify="center">
         <Col className="column3" lg={9} md={9} sm={24}>
-          <ul>{myReviewsItems}</ul>
+          <ul>{myFavouriteItems}</ul>
         </Col>
       </Row>
     </div>
