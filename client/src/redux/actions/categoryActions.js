@@ -15,25 +15,24 @@ export const getCategories = (group_id) => async (dispatch) => {
   }
 };
 
-export const addCategory =
-  (newCategory, group_id, history) => async (dispatch) => {
-    const loading = message.loading('Creating category..', 0);
-    try {
-      const newCategoryResponse = await axios.post('/api/categories', {
-        ...newCategory,
-        group_id,
-      });
-      const newCategoryFull = await newCategoryResponse.data;
-      loading();
-      await dispatch(getCategories());
-      await dispatch(setCurrentCategory(newCategoryFull.category_id));
-      history.push('/categoryview');
-      message.success('New category created!');
-    } catch (err) {
-      loading();
-      console.log(err);
-    }
-  };
+export const addCategory = (newCategory, history) => async (dispatch) => {
+  const loading = message.loading('Creating category..', 0);
+  try {
+    const newCategoryResponse = await axios.post(
+      '/api/categories',
+      newCategory
+    );
+    const newCategoryFull = await newCategoryResponse.data;
+    loading();
+    await dispatch(getCategories());
+    await dispatch(setCurrentCategory(newCategoryFull.category_id));
+    history.push('/categoryview');
+    message.success('New category created!');
+  } catch (err) {
+    loading();
+    console.log(err);
+  }
+};
 
 export const setCategories = (categories) => {
   return {
