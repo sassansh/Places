@@ -67,8 +67,6 @@ function AddCategory(props) {
       custom_criteria: use_custom_criteria ? rawCriteria : [],
     };
 
-    console.log(newCategory);
-
     dispatch(addCategory(newCategory, props.history));
   }
   return (
