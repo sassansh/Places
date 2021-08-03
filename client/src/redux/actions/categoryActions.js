@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { message } from 'antd';
 
-export const getCategories = () => async (dispatch) => {
+export const getCategories = (group_id) => async (dispatch) => {
   try {
-    const categoriesResponse = await axios.get('/api/categories');
+    const categoriesResponse = await axios.get('/api/categories', {
+      params: {
+        group_id: group_id,
+      },
+    });
     const categories = categoriesResponse.data;
     dispatch(setCategories(categories));
   } catch (err) {
@@ -12,9 +16,12 @@ export const getCategories = () => async (dispatch) => {
 };
 
 export const addCategory = (newCategory, history) => async (dispatch) => {
+  const loading = message.loading('Creating category..', 0);
   try {
-    const loading = message.loading('Creating category..', 0);
-    const newCategoryResponse = await axios.post('/api/categories', newCategory);
+    const newCategoryResponse = await axios.post(
+      '/api/categories',
+      newCategory
+    );
     const newCategoryFull = await newCategoryResponse.data;
     loading();
     await dispatch(getCategories());
@@ -22,6 +29,7 @@ export const addCategory = (newCategory, history) => async (dispatch) => {
     history.push('/categoryview');
     message.success('New category created!');
   } catch (err) {
+    loading();
     console.log(err);
   }
 };

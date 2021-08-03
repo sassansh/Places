@@ -4,6 +4,7 @@ import {
   BarsOutlined,
   BellOutlined,
   ContactsOutlined,
+  HeartOutlined,
   ShopOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
@@ -12,6 +13,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
+import { setCategories } from '../../../redux/actions/categoryActions';
 import { setCurrentCategory } from '../../../redux/actions/categoryActions';
 import { setCurrentGroup } from '../../../redux/actions/groupActions';
 import { setCurrentPlace } from '../../../redux/actions/placeActions';
@@ -45,6 +47,7 @@ function NavBar(props) {
       setTab('groupListView');
       dispatch(setCurrentGroup(''));
       dispatch(setCurrentCategory(''));
+      dispatch(setCategories([]));
       dispatch(setCurrentPlace(''));
     } else if (path === '/groupview') {
       setTab('groupView');
@@ -57,6 +60,8 @@ function NavBar(props) {
       setTab('placeView');
     } else if (path === '/requestview') {
       setTab('requestView');
+    } else if (path === '/favouritesview') {
+      setTab('favouritesView');
     } else {
       setTab('');
     }
@@ -84,6 +89,9 @@ function NavBar(props) {
       )}
       <Menu.Item key="requestView" icon={<BellOutlined />}>
         <Link to="/requestview">Requests</Link>
+      </Menu.Item>
+      <Menu.Item key="favouritesView" icon={<HeartOutlined />}>
+        <Link to="/favouritesview">Favourites</Link>
       </Menu.Item>
     </Menu>
   );

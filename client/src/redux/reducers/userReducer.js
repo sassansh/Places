@@ -4,6 +4,7 @@ const initialState = {
   allUsers: [],
   isAuthenticated: false,
   user: {},
+  favourite_places: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+      };
+    case 'SET_FAVOURITES':
+      return {
+        ...state,
+        favourite_places: action.payload,
       };
     default:
       return state;

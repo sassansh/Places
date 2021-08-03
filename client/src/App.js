@@ -16,6 +16,7 @@ import AddPlace from './components/AddPlace/AddPlace';
 import AddReview from './components/AddReview/AddReview';
 import CategoryView from './components/CategoryView/CategoryView'
 import CreateGroup from './components/CreateGroup/CreateGroup';
+import FavouritesView from './components/FavouritesView/FavouritesView';
 import GroupListView from './components/GroupListView/GroupListView';
 import GroupView from './components/GroupView/GroupView';
 import { Layout } from 'antd';
@@ -28,10 +29,10 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Register from './components/Register/Register';
 import RequestView from './components/RequestView/RequestView';
 import SideBar from './components/Navigation/SideBar/SideBar';
+import UserProfile from './components/UserProfile/UserProfile';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { useEffect } from 'react';
-import UserProfile from './components/UserProfile/UserProfile';
 
 const { Content, Footer } = Layout;
 
@@ -118,6 +119,11 @@ function App() {
                 exact
                 path="/managegroup"
                 component={ManageGroupWithRouter}
+              />
+              <PrivateRoute
+                exact
+                path="/favouritesview"
+                component={FavouritesView}
               />
             </Switch>
           </Content>

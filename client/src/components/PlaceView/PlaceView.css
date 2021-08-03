@@ -1,3 +1,27 @@
 .category-of-place {
   text-align: right;
 }
+
+.categoryName {
+  text-align: right;
+}
+
+.overallRating {
+  justify-content: left;
+}
+
+.placeviewaddress {
+  margin-bottom: 6px;
+  color: gray;
+  text-align: center;
+}
+
+@media (max-width: 575px) {
+  .overallRating {
+    justify-content: center;
+  }
+
+  .placeviewaddress {
+    justify-content: center;
+  }
+}

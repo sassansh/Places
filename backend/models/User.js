@@ -33,6 +33,10 @@ const UserSchema = new Schema({
     type: [String],
     required: true,
   },
+  favourite_places: {
+    type: [String],
+    required: true,
+  },
 });
 
 export default mongoose.model('User', UserSchema, 'users');

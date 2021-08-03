@@ -1,8 +1,14 @@
 import './PlaceView.css';
 
-import { Avatar, Col, Divider, Row, Typography, Table, Modal } from 'antd';
+import { Col, Divider, Rate, Row, Tooltip, Typography, Table, Modal } from 'antd';
 import { setCurrentPlace } from '../../redux/actions/placeActions';
 import { Link } from 'react-router-dom';
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
+import {
+  addFavouritePlace,
+  deleteFavouritePlace,
+  getFavourites,
+} from '../../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import ReviewList from '../ReviewList/ReviewList';
 import RatingDetail from "../RatingDetail/RatingDetail";
@@ -10,13 +16,18 @@ import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
+
+const { Title } = Typography;
+
 function PlaceView() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getPlaces());
-    dispatch(getCategories());
     dispatch(getReviews());
+    dispatch(getFavourites());
   }, [dispatch]);
+
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
@@ -25,6 +36,7 @@ function PlaceView() {
     (category) => category.category_id === currentCategoryID
   );
   const places = useSelector((state) => state.places.allPlaces);
+  const myFavourites = useSelector((state) => state.users.favourite_places);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const currentPlace = places.find(
     (place) => place.place_id === currentPlaceID
@@ -32,7 +44,7 @@ function PlaceView() {
   let reviewsData = useSelector((state) => state.reviews.allReviews).filter(
     (review) => review.place_id === currentPlaceID
   );
-  const { Title } = Typography;
+
   let averageScore =
     reviewsData
       .map((reviewData) => reviewData.rating)
@@ -193,41 +205,67 @@ const data = [
 ];
 
 
+  function addFavourite() {
+    dispatch(addFavouritePlace(currentPlaceID));
+  }
+
+  function removeFavourite() {
+    dispatch(deleteFavouritePlace(currentPlaceID));
+  }
+
   return (
     <div>
       <Row
         style={{
           marginLeft: '20px',
-          marginBottom: "10px"
+          marginBottom: '10px',
         }}
       >
         <Col span={24}>
-          <Row>
-            <Title level={2}>
-              {currentPlace.name}{" "}
-              {!isCustom &&
-                <Avatar
-                  style={{ color: '#ffffff', backgroundColor: '#512da8' }}
-                  shape="square"
-                  size={64}
-                >
-                  {averageScoreString}
-                </Avatar>
-              }
-            </Title>
+          <Row justify="center">
+            <Col lg={12} md={12} sm={12}>
+              <Title level={2}>
+                {currentPlace.name}{' '}
+                {myFavourites.includes(currentPlaceID) ? (
+                  <Tooltip title="Remove favourite">
+                    <HeartFilled
+                      onClick={removeFavourite}
+                      style={{ color: 'red' }}
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip title="Favourite place">
+                    <HeartOutlined
+                      onClick={addFavourite}
+                      style={{ color: 'red' }}
+                    />
+                  </Tooltip>
+                )}
+              </Title>
+            </Col>
+            <Col lg={0} md={0} sm={0} xs={24}></Col>
+            <Col lg={12} md={12} sm={12} className="categoryName">
+              <Title level={3}>
+                {currentCategory.name_singular + ' ' + currentCategory.emoji}
+              </Title>
+            </Col>
           </Row>
-          <Row>
-            <Title level={4}>
-              {currentCategory.name_singular + ' ' + currentCategory.emoji}
-            </Title>
+          <Row className="placeviewaddress">
+            <span>📍 {currentPlace.address}</span>
+          </Row>
+          <Row className="overallRating">
+            <span>
+              <Rate allowHalf defaultValue={averageScore} disabled={true} />
+              {averageScoreString} out of 5
+            </span>
           </Row>
         </Col>
       </Row>
       <Divider
-      style={{
-               marginTop: '0',
-               borderWidth: 5,
-             }}
+        style={{
+          marginTop: '0',
+          borderWidth: 5,
+        }}
       />
       <Row type="flex" justify="center" gutter={[36,36]} align="middle">
         <Col

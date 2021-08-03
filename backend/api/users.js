@@ -1,7 +1,11 @@
+import Category from '../models/Category.js';
 import Group from '../models/Group.js';
+import Place from '../models/Place.js';
+import Review from '../models/Review.js';
 import User from '../models/User.js';
 import authenticateToken from '../util/AuthToken.js';
 import bcrypt from 'bcrypt';
+import cloudinary from 'cloudinary';
 import dotenv from 'dotenv';
 import express from 'express';
 import jwt from 'jsonwebtoken';
@@ -10,11 +14,87 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 dotenv.config();
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 router.get('/', authenticateToken, (req, res) => {
   // Search the MongoDB
   User.find({}, '-_id user_id name avatarURL groups requestGroups')
     .then((users) => res.json(users))
     .catch((err) => console.log(err));
+});
+
+router.get('/favourites', authenticateToken, (req, res) => {
+  const user_id = req.user.user_id;
+
+  User.findOne({ user_id }, '-_id favourite_places')
+    .then((favourites) => {
+      res.json(favourites.favourite_places);
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post('/favourites', authenticateToken, (req, res) => {
+  const { place_id } = req.body;
+  const user_id = req.user.user_id;
+  console.log(place_id);
+
+  if (place_id === undefined) {
+    return res.status(400).json({ message: 'place_id not sent' });
+  }
+
+  Place.findOne({ place_id }).then((place) => {
+    // Check if place exists
+    if (!place) {
+      return res.status(400).send({ message: 'Place not found' });
+    }
+
+    // Check if already favourited
+    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
+      const favourited_places = favourites.favourite_places;
+      if (favourited_places.includes(place_id)) {
+        return res.status(400).send({ message: 'Place already favourited' });
+      }
+      User.updateOne(
+        { user_id: user_id },
+        { $push: { favourite_places: place_id } }
+      ).then(() => res.json({ message: 'Place has been favourited' }));
+    });
+  });
+});
+
+router.delete('/favourites', authenticateToken, (req, res) => {
+  const { place_id } = req.body;
+  const user_id = req.user.user_id;
+  console.log(req.body);
+
+  if (place_id === undefined) {
+    return res.status(400).json({ message: 'place_id not sent' });
+  }
+
+  Place.findOne({ place_id }).then((place) => {
+    // Check if place exists
+    if (!place) {
+      return res.status(400).json({ message: 'Place not found' });
+    }
+
+    // Check if already favourited
+    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
+      const favourited_places = favourites.favourite_places;
+      if (!favourited_places.includes(place_id)) {
+        return res.status(400).send({ message: 'Place is not favourited' });
+      }
+      User.updateOne(
+        { user_id: user_id },
+        { $pull: { favourite_places: place_id } }
+      ).then(() =>
+        res.json({ message: 'Place has been removed from favourites' })
+      );
+    });
+  });
 });
 
 router.post('/login', (req, res) => {
@@ -64,8 +144,8 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.post('/register', (req, res) => {
-  const { name, email, password, password2, avatarURL } = req.body;
+router.post('/register', async (req, res) => {
+  const { name, email, password, password2 } = req.body;
 
   if (name === '') {
     return res.status(400).send('Name field must be filled');
@@ -83,12 +163,19 @@ router.post('/register', (req, res) => {
     return res.status(400).send('Please confirm password');
   }
 
-  if (avatarURL === '') {
-    return res.status(400).send('Avatar URL field must be filled');
-  }
-
   if (password !== password2) {
     return res.status(400).send('Password fields do not match');
+  }
+
+  let avatarURL;
+  const profPicSubmitted = Object.keys(req.files).length > 0;
+
+  if (profPicSubmitted) {
+    const profilePicPath = Object.values(req.files)[0].path;
+    const cloudinaryResponse = await cloudinary.uploader.upload(profilePicPath);
+    avatarURL = cloudinaryResponse.secure_url;
+  } else {
+    avatarURL = 'https://bit.ly/3xjqd0k'; // generic profile picture
   }
 
   User.findOne({ email: email }).then((user) => {
@@ -105,6 +192,7 @@ router.post('/register', (req, res) => {
           avatarURL: avatarURL,
           groups: [],
           requestGroups: [],
+          favourite_places: [],
         });
 
         newUser
@@ -273,9 +361,25 @@ router.delete('/group', authenticateToken, (req, res) => {
     { $pullAll: { groups: [currentGroupID] } }
   )
     .then(() => {
+      Place.find({ group_id: currentGroupID }).then((places) => {
+        for (let i = 0; i < places.length; i++) {
+          Review.deleteOne({
+            place_id: places[i].place_id,
+            user_id: user_id,
+          }).catch((err) => {
+            console.log(err);
+          });
+        }
+      });
       User.find({ groups: currentGroupID }).then((data) => {
         if (data.length === 0) {
           Group.deleteOne({ group_id: currentGroupID }).catch((err) => {
+            console.log(err);
+          });
+          Category.deleteMany({ group_id: currentGroupID }).catch((err) => {
+            console.log(err);
+          });
+          Place.deleteMany({ group_id: currentGroupID }).catch((err) => {
             console.log(err);
           });
         }

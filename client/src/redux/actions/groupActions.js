@@ -13,8 +13,8 @@ export const getGroups = () => async (dispatch) => {
 };
 
 export const createGroup = (newGroup, history) => async (dispatch) => {
+  const loading = message.loading('Creating group..', 0);
   try {
-    const loading = message.loading('Creating group..', 0);
     const newGroupResponse = await axios.post('/api/groups', newGroup, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -28,6 +28,7 @@ export const createGroup = (newGroup, history) => async (dispatch) => {
     history.push('/groupview');
     message.success('New group created!');
   } catch (err) {
+    loading();
     console.log(err);
   }
 };
