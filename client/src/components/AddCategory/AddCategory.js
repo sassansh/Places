@@ -66,7 +66,7 @@ function AddCategory(props) {
       group_id: currentGroup,
       custom_criteria: use_custom_criteria ? rawCriteria : [],
     };
-    
+
     dispatch(addCategory(newCategory, props.history));
   }
   return (
