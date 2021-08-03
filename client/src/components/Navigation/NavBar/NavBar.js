@@ -60,6 +60,8 @@ function NavBar(props) {
       setTab('placeView');
     } else if (path === '/requestview') {
       setTab('requestView');
+    } else if (path === '/favouritesview') {
+      setTab('favouritesView');
     } else {
       setTab('');
     }
