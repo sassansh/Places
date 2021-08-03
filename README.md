@@ -103,9 +103,9 @@
 
 **Stretch Requirements**
 
-- [ ] Allow user to save favorite places
-- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 - [x] Allow users to be members of multiple groups and post different information to different groups
+- [x] Allow user to save and view favorite places
+- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 
 ## Task Breakdown 📝
 

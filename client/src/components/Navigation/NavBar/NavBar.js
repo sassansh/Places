@@ -4,6 +4,7 @@ import {
   BarsOutlined,
   BellOutlined,
   ContactsOutlined,
+  HeartOutlined,
   ShopOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
@@ -86,6 +87,9 @@ function NavBar(props) {
       )}
       <Menu.Item key="requestView" icon={<BellOutlined />}>
         <Link to="/requestview">Requests</Link>
+      </Menu.Item>
+      <Menu.Item key="favouritesView" icon={<HeartOutlined />}>
+        <Link to="/favouritesview">Favourites</Link>
       </Menu.Item>
     </Menu>
   );
