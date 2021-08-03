@@ -73,7 +73,7 @@ function AddCategory(props) {
     <Col className="container">
       <Row justify="center">
         <Col lg={12} md={12} sm={12}>
-          <Title level={2}>Add Cateogry</Title>
+          <Title level={2}>Add Category</Title>
         </Col>
         <Col lg={0} md={0} sm={0} xs={24}></Col>
         <Col lg={12} md={12} sm={12} className="currentCategory">
@@ -141,7 +141,7 @@ function AddCategory(props) {
               valuePropName="checked"
             >
               <Switch
-                defaultChecked={false}
+                value={isCustomCriteria}
                 onChange={(value) => {
                   setIsCustomCriteria(value);
                 }}
