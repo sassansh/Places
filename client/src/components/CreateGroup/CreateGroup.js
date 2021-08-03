@@ -1,10 +1,21 @@
 import './CreateGroup.css';
 
-import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  Select,
+  Typography,
+} from 'antd';
 
 import { createGroup } from '../../redux/actions/groupActions';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+
+const { Option } = Select;
 
 function CreateGroup(props) {
   const { Title } = Typography;
@@ -16,6 +27,7 @@ function CreateGroup(props) {
     description: '',
   });
   const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File');
+  const [defaultCategories, setDefaultCategories] = useState([]);
 
   function handleChange() {
     setFieldInput({
@@ -42,6 +54,10 @@ function CreateGroup(props) {
     }
   };
 
+  function handleCategories(value) {
+    setDefaultCategories(value);
+  }
+
   function addGroup() {
     let name = form.getFieldValue('name');
     let description = form.getFieldValue('description');
@@ -49,9 +65,9 @@ function CreateGroup(props) {
     newGroup.append('name', name);
     newGroup.append('description', description);
     newGroup.append('logo', logoData);
+    newGroup.append('defaultCategories', defaultCategories);
     if (name === undefined) return;
     dispatch(createGroup(newGroup, props.history));
-    form.resetFields();
   }
 
   return (
@@ -67,7 +83,7 @@ function CreateGroup(props) {
         }}
       />
       <Row justify="center">
-        <Col lg={8} md={10} sm={10}>
+        <Col xl={12} lg={16} md={16} sm={18} xs={24}>
           <Form
             className="form"
             form={form}
@@ -97,6 +113,27 @@ function CreateGroup(props) {
           <br />
           <br />
           <br />
+          <Form.Item
+            name="default-categories"
+            label="Categories"
+            rules={[
+              {
+                type: 'array',
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              placeholder="Please select categories to be created in your group"
+              onChange={handleCategories}
+            >
+              <Option value="beaches">🏖️ Beaches</Option>
+              <Option value="restaurants">🍔 Restaurants</Option>
+              <Option value="nightclubs">🎶 Nightclubs</Option>
+              <Option value="parks">🏞️ Parks</Option>
+              <Option value="breweries">🍻 Breweries</Option>
+            </Select>
+          </Form.Item>
         </Col>
       </Row>
       <Row justify="center">
