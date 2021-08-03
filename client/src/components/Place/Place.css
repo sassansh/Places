@@ -10,3 +10,9 @@
   margin: 10px;
   font-size: large;
 }
+
+.place-address {
+  margin-left: 43px;
+  font-size: medium;
+  color: gray;
+}

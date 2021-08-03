@@ -17,9 +17,10 @@
   <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">
-    Find the best places recommended by only your trusted friends.
+    Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
-    Group project for <a href="https://blogs.ubc.ca/cpsc436i2021s/"> CPSC 455</a> (Applied Industry Practices)
+    <br />
+    Academic group project for UBC <a href="https://blogs.ubc.ca/cpsc436i2021s/"> CPSC 455</a> (Applied Industry Practices)
     <br />
     <br />
   </p>
@@ -88,9 +89,9 @@
 **Standard Requirements**
 
 - [x] Modify an existing rating
-- [ ] Create new categories
-  - [ ] Choose custom rating criteria for the new category (by group)
-- [ ] Display ranked list of places based on selected criteria
+- [x] Create new categories
+  - [x] Choose custom rating criteria for the new category (by group)
+- [x] Display ranked list of places based on selected criteria
   - [x] Search bar & other filters to narrow down list of places
 - [x] Allow users to upload photos for their profile picture or of places
 - [x] Profile for each place containing images, address, details, reviews.
@@ -102,9 +103,9 @@
 
 **Stretch Requirements**
 
-- [ ] Allow user to save favorite places
-- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 - [x] Allow users to be members of multiple groups and post different information to different groups
+- [x] Allow user to save and view favorite places
+- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 
 ## Task Breakdown 📝
 
@@ -190,7 +191,7 @@ Team Name: Green 🌱
 
 Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
 
-Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/)  - [Personal Website](https://johnnyli.herokuapp.com/about)
+Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
 
 Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 

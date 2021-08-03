@@ -1,4 +1,16 @@
-.allFilters {
-  text-align: right;
-  margin-right: 18px;
+.checkboxGroup {
+  margin-left: 10px;
+}
+
+.divider {
+  height: 20px;
+  background-color: black;
+}
+
+.card {
+  margin: 16px;
+}
+
+.search {
+  margin-top: 5px;
 }
