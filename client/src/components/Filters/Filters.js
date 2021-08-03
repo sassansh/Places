@@ -2,6 +2,7 @@ import "./Filters.css";
 
 import { Col, Row, Input, Checkbox, Divider, Card } from "antd";
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const { Search } = Input;
 
@@ -21,7 +22,15 @@ function Filters({ setSearchQuery }) {
       setAllChecked(true);
     }
   };
-  const options = ["Fun", "Noise", "Sand Softness", "Water Quality", "Parking"];
+  const categories = useSelector((state) => state.categories.allCategories);
+  const currentCategoryID = useSelector(
+    (state) => state.categories.currentCategoryID
+  );
+  const currentCategory = categories.find(
+    (category) => category.category_id === currentCategoryID
+  );
+  const options = currentCategory.custom_criteria;
+  if (options.length !== 0) {
   return (
     <Col>
       <Card className="card">
@@ -61,6 +70,28 @@ function Filters({ setSearchQuery }) {
       </Card>
     </Col>
   );
+  } else {
+    return (
+      <Col>
+        <Row justify="center" align="middle">
+          <Col lg={17}>
+          </Col>
+          <Col lg={7}>
+            <Row justify="center">
+              <Search
+                className="search"
+                placeholder="Search"
+                onSearch={onSearch}
+                enterButton
+                allowClear
+                style={{ width: 285 }}
+              />
+            </Row>
+          </Col>
+        </Row>
+    </Col>
+    );
+  }
 }
 
 export default Filters;
