@@ -1,10 +1,12 @@
 import './RequestList.css';
-import { useEffect } from 'react';
+
+import { Card, Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Request from '../Request/Request';
-import { getUsers } from '../../redux/actions/userActions';
 import { getGroups } from '../../redux/actions/groupActions';
+import { getUsers } from '../../redux/actions/userActions';
+import { useEffect } from 'react';
 
 function RequestList() {
   const dispatch = useDispatch();
@@ -25,13 +27,11 @@ function RequestList() {
       users.forEach((user) => {
         user.requestGroups.forEach((requestGroup) => {
           if (group.group_id === requestGroup) {
-            processedRequestData = processedRequestData.concat(
-              {
-                user: user,
-                group: group,
-                key: user.user_id + group.group_id
-              }
-            );
+            processedRequestData = processedRequestData.concat({
+              user: user,
+              group: group,
+              key: user.user_id + group.group_id,
+            });
           }
         });
       });
@@ -39,12 +39,22 @@ function RequestList() {
   });
 
   let requestList = processedRequestData.map((request) => (
-    <Request user={request.user} group={request.group} key={request.key}/>
+    <Request user={request.user} group={request.group} key={request.key} />
   ));
 
   return (
     <div>
-      <ul>{requestList}</ul>
+      {requestList.length >= 1 ? (
+        <ul>{requestList}</ul>
+      ) : (
+        <Row justify="center">
+          <Col lg={10} md={12} sm={18} xs={24}>
+            <Card className="noRequests" size="medium">
+              You do not have any requests.
+            </Card>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 }

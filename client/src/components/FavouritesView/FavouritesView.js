@@ -107,11 +107,21 @@ function FavouritesView() {
           borderWidth: 5,
         }}
       />
-      <Row justify="center">
-        <Col className="column3" lg={9} md={9} sm={24}>
-          <ul>{myFavouriteItems}</ul>
-        </Col>
-      </Row>
+      {myFavourites.length >= 1 ? (
+        <Row justify="center">
+          <Col className="column3" lg={9} md={9} sm={24}>
+            <ul>{myFavouriteItems}</ul>
+          </Col>
+        </Row>
+      ) : (
+        <Row justify="center">
+          <Col lg={10} md={12} sm={18} xs={24}>
+            <Card className="noFavourites" size="medium">
+              You do not have any favourited places.
+            </Card>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 }
