@@ -68,7 +68,7 @@ function AddReview(props) {
           setRateValue3(existingReview.rating[3]);
           setRateValue4(existingReview.rating[4]);                    
         } else {
-          setRateValue(existingReview.rating);
+          setRateValue(existingReview.rating[0]);
         }
       }
       reviewLoadedRef.current = true;
@@ -76,9 +76,11 @@ function AddReview(props) {
   }, [dispatch, existingReview]);
 
   useEffect(() => {
-    let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
-    let avg = total / customCriteria.length;
-    setRateValue(avg);
+    if (customCriteria.length >= 2) {
+      let total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
+      let avg = total / customCriteria.length;
+      setRateValue(avg);
+    }
   }, [customCriteria.length, rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
 
   const { Title } = Typography;
