@@ -1,13 +1,13 @@
-import './Place.css'
+import './Place.css';
 
-import { Avatar, Card, Col, Rate, Row } from 'antd'
+import { Avatar, Card, Col, Rate, Row } from 'antd';
 
-import { Link } from 'react-router-dom'
-import { setCurrentPlace } from '../../redux/actions/placeActions'
-import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { setCurrentPlace } from '../../redux/actions/placeActions';
+import { useDispatch } from 'react-redux';
 
 function Place ({ placeData }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <Link
@@ -33,25 +33,27 @@ function Place ({ placeData }) {
             </Col>
             <Col lg={6} md={7} sm={9} xs={24}>
               <Row justify='end'>
-                {placeData.numReviews > 0 ? (
-                  <span className='place-rating'>
-                    <Rate disabled allowHalf value={placeData.avgRating} />
-                    <span className='num-of-reviews'>
-                      {placeData.numReviews}
+                {placeData.numReviews > 0
+                  ? (
+                    <span className='place-rating'>
+                      <Rate disabled allowHalf value={placeData.avgRating} />
+                      <span className='num-of-reviews'>
+                        {placeData.numReviews}
+                      </span>
                     </span>
-                  </span>
-                ) : (
-                  <span className='place-rating'>
-                    <span className='num-of-reviews'>No reviews yet</span>
-                  </span>
-                )}
+                    )
+                  : (
+                    <span className='place-rating'>
+                      <span className='num-of-reviews'>No reviews yet</span>
+                    </span>
+                    )}
               </Row>
             </Col>
           </Row>
         </Col>
       </Card>
     </Link>
-  )
+  );
 }
 
-export default Place
+export default Place;

@@ -1,29 +1,29 @@
-import './ReviewList.css'
+import './ReviewList.css';
 
-import { Button, Row, Col } from 'antd'
+import { Button, Row, Col } from 'antd';
 
-import { Link } from 'react-router-dom'
-import { PlusOutlined } from '@ant-design/icons'
-import Review from '../Review/Review'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import { PlusOutlined } from '@ant-design/icons';
+import Review from '../Review/Review';
+import { useSelector } from 'react-redux';
 
 function ReviewList (props) {
-  let reviewsData = props.reviewsData
-  const currentUser = useSelector((state) => state.users.user.user_id)
+  let reviewsData = props.reviewsData;
+  const currentUser = useSelector((state) => state.users.user.user_id);
 
   reviewsData = reviewsData
     .filter((review) => review.user_id === currentUser)
-    .concat(reviewsData.filter((review) => review.user_id !== currentUser))
+    .concat(reviewsData.filter((review) => review.user_id !== currentUser));
 
   const currentUserHasReview = !reviewsData.find(
     (review) => review.user_id === currentUser
-  )
+  );
 
   const reviews = reviewsData.map((reviewData) => (
     <Review key={reviewData.review_id} review={reviewData} />
-  ))
+  ));
 
-  const reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews'
+  const reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews';
   return (
     <Col span={24}>
       <Row>
@@ -40,7 +40,7 @@ function ReviewList (props) {
       </Row>
       <ul style={{ padding: '0px' }}>{reviews}</ul>
     </Col>
-  )
+  );
 }
 
-export default ReviewList
+export default ReviewList;

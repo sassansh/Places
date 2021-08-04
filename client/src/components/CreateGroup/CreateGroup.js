@@ -1,4 +1,4 @@
-import './CreateGroup.css'
+import './CreateGroup.css';
 
 import {
   Button,
@@ -9,65 +9,65 @@ import {
   Row,
   Select,
   Typography
-} from 'antd'
+} from 'antd';
 
-import { createGroup } from '../../redux/actions/groupActions'
-import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { createGroup } from '../../redux/actions/groupActions';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-const { Option } = Select
+const { Option } = Select;
 
 function CreateGroup (props) {
-  const { Title } = Typography
-  const [form] = Form.useForm()
-  const dispatch = useDispatch()
-  const [logoData, setLogoData] = useState('')
+  const { Title } = Typography;
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const [logoData, setLogoData] = useState('');
   const [fieldInput, setFieldInput] = useState({
     name: '',
     description: ''
-  })
-  const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File')
-  const [defaultCategories, setDefaultCategories] = useState([])
+  });
+  const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File');
+  const [defaultCategories, setDefaultCategories] = useState([]);
 
   function handleChange () {
     setFieldInput({
       name: form.getFieldValue('name'),
       description: form.getFieldValue('description')
-    })
+    });
   }
 
   const logoHandler = (e) => {
-    const imageSelected = e.target.files.length > 0
+    const imageSelected = e.target.files.length > 0;
     if (imageSelected) {
-      let fileName = e.target.files[0].name
+      let fileName = e.target.files[0].name;
       if (fileName.length > 20) {
         fileName =
           fileName.substring(0, 10) +
           '...' +
-          fileName.substring(fileName.length - 10)
+          fileName.substring(fileName.length - 10);
       }
-      setlogoButtonName('🖼️ ' + fileName)
-      setLogoData(e.target.files[0])
+      setlogoButtonName('🖼️ ' + fileName);
+      setLogoData(e.target.files[0]);
     } else {
-      setlogoButtonName('🖼️ Select File')
-      setLogoData('')
+      setlogoButtonName('🖼️ Select File');
+      setLogoData('');
     }
-  }
+  };
 
   function handleCategories (value) {
-    setDefaultCategories(value)
+    setDefaultCategories(value);
   }
 
   function addGroup () {
-    const name = form.getFieldValue('name')
-    const description = form.getFieldValue('description')
-    const newGroup = new FormData()
-    newGroup.append('name', name)
-    newGroup.append('description', description)
-    newGroup.append('logo', logoData)
-    newGroup.append('defaultCategories', defaultCategories)
-    if (name === undefined) return
-    dispatch(createGroup(newGroup, props.history))
+    const name = form.getFieldValue('name');
+    const description = form.getFieldValue('description');
+    const newGroup = new FormData();
+    newGroup.append('name', name);
+    newGroup.append('description', description);
+    newGroup.append('logo', logoData);
+    newGroup.append('defaultCategories', defaultCategories);
+    if (name === undefined) return;
+    dispatch(createGroup(newGroup, props.history));
   }
 
   return (
@@ -154,7 +154,7 @@ function CreateGroup (props) {
         </Col>
       </Row>
     </Col>
-  )
+  );
 }
 
-export default CreateGroup
+export default CreateGroup;

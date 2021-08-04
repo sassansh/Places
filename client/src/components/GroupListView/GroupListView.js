@@ -1,13 +1,13 @@
-import './GroupListView.css'
+import './GroupListView.css';
 
-import { Button, Col, Divider, Row, Typography } from 'antd'
+import { Button, Col, Divider, Row, Typography } from 'antd';
 
-import GroupList from '../GroupList/GroupList'
-import { Link } from 'react-router-dom'
-import { TeamOutlined } from '@ant-design/icons'
+import GroupList from '../GroupList/GroupList';
+import { Link } from 'react-router-dom';
+import { TeamOutlined } from '@ant-design/icons';
 
 function GroupListView () {
-  const { Title } = Typography
+  const { Title } = Typography;
   return (
     <Col className='container'>
       <Row justify='space-around'>
@@ -31,7 +31,7 @@ function GroupListView () {
       />
       <GroupList />
     </Col>
-  )
+  );
 }
 
-export default GroupListView
+export default GroupListView;

@@ -1,34 +1,34 @@
-import './Filters.css'
+import './Filters.css';
 
-import { Col, Row, Input, Checkbox, Divider, Card } from 'antd'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { Col, Row, Input, Checkbox, Divider, Card } from 'antd';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const { Search } = Input
+const { Search } = Input;
 
 function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
-  const [allChecked, setAllChecked] = useState(true)
-  const onSearch = (value) => setSearchQuery(value)
+  const [allChecked, setAllChecked] = useState(true);
+  const onSearch = (value) => setSearchQuery(value);
   const onChange = (value) => {
     if (value.length !== 0) {
-      setCheckedCriteria(value)
-      setAllChecked(false)
+      setCheckedCriteria(value);
+      setAllChecked(false);
     }
-  }
+  };
   const onChangeAll = (e) => {
     if (e.target.checked) {
-      setCheckedCriteria([])
-      setAllChecked(true)
+      setCheckedCriteria([]);
+      setAllChecked(true);
     }
-  }
-  const categories = useSelector((state) => state.categories.allCategories)
+  };
+  const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
-  )
+  );
   const currentCategory = categories.find(
     (category) => category.category_id === currentCategoryID
-  )
-  const options = currentCategory.custom_criteria
+  );
+  const options = currentCategory.custom_criteria;
   if (options.length !== 0) {
     return (
       <Col>
@@ -72,7 +72,7 @@ function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
           </Row>
         </Card>
       </Col>
-    )
+    );
   } else {
     return (
       <Col>
@@ -92,8 +92,8 @@ function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
           </Col>
         </Row>
       </Col>
-    )
+    );
   }
 }
 
-export default Filters
+export default Filters;

@@ -1,7 +1,7 @@
 const initialState = {
   allCategories: [],
   currentCategoryID: ''
-}
+};
 
 const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -9,15 +9,15 @@ const categoryReducer = (state = initialState, action) => {
       return {
         ...state,
         currentCategoryID: action.payload
-      }
+      };
     case 'SET_CATEGORIES':
       return {
         ...state,
         allCategories: action.payload
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default categoryReducer
+export default categoryReducer;

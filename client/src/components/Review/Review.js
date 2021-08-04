@@ -1,22 +1,22 @@
-import './Review.css'
+import './Review.css';
 
-import { Button, Card, Col, Rate, Row } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import { Button, Card, Col, Rate, Row } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { EditOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
-import { setCurrentPlace } from '../../redux/actions/placeActions'
+import { EditOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { setCurrentPlace } from '../../redux/actions/placeActions';
 
 function Review (props) {
-  const dispatch = useDispatch()
-  const review = props.review
-  const users = useSelector((state) => state.users.allUsers)
+  const dispatch = useDispatch();
+  const review = props.review;
+  const users = useSelector((state) => state.users.allUsers);
   const reviewer = users.find(
     (element) => element.user_id === review.user_id
-  ).name
+  ).name;
   const isCurrentUser =
-    review.user_id === useSelector((state) => state.users.user.user_id)
-  const currentPlaceID = useSelector((state) => state.places.currentPlaceID)
+    review.user_id === useSelector((state) => state.users.user.user_id);
+  const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
 
   return (
     <li>
@@ -34,7 +34,7 @@ function Review (props) {
             <Link
               to='/addReview'
               onClick={() => {
-                dispatch(setCurrentPlace(currentPlaceID))
+                dispatch(setCurrentPlace(currentPlaceID));
               }}
             >
               <Button type='primary' icon={<EditOutlined />} size='large'>
@@ -45,7 +45,7 @@ function Review (props) {
         )}
       </Card>
     </li>
-  )
+  );
 }
 
-export default Review
+export default Review;

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const placeSchema = new Schema({
   place_id: {
@@ -27,6 +27,6 @@ const placeSchema = new Schema({
     type: String,
     required: true
   }
-})
+});
 
-export default mongoose.model('Place', placeSchema, 'places')
+export default mongoose.model('Place', placeSchema, 'places');

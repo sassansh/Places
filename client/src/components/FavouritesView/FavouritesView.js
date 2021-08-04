@@ -1,40 +1,40 @@
-import './FavouritesView.css'
+import './FavouritesView.css';
 
-import { Card, Col, Divider, Row, Tooltip, Typography } from 'antd'
-import { HeartFilled, HeartOutlined } from '@ant-design/icons'
+import { Card, Col, Divider, Row, Tooltip, Typography } from 'antd';
+import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import {
   deleteFavouritePlace,
   getFavourites
-} from '../../redux/actions/userActions'
-import { useDispatch, useSelector } from 'react-redux'
+} from '../../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { getCategories } from '../../redux/actions/categoryActions'
-import { useEffect } from 'react'
+import { getCategories } from '../../redux/actions/categoryActions';
+import { useEffect } from 'react';
 
-const { Title } = Typography
+const { Title } = Typography;
 
 function FavouritesView () {
-  const myFavourites = useSelector((state) => state.users.favourite_places)
-  const places = useSelector((state) => state.places.allPlaces)
-  const groups = useSelector((state) => state.groups.allGroups)
-  const categories = useSelector((state) => state.categories.allCategories)
-  const dispatch = useDispatch()
+  const myFavourites = useSelector((state) => state.users.favourite_places);
+  const places = useSelector((state) => state.places.allPlaces);
+  const groups = useSelector((state) => state.groups.allGroups);
+  const categories = useSelector((state) => state.categories.allCategories);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCategories())
-    dispatch(getFavourites())
-  }, [dispatch])
+    dispatch(getCategories());
+    dispatch(getFavourites());
+  }, [dispatch]);
 
   function handleFavourite (place_id) {
-    dispatch(deleteFavouritePlace(place_id))
+    dispatch(deleteFavouritePlace(place_id));
   }
 
   function getPlace (place_id) {
     try {
-      const placeName = places.find((place) => place.place_id === place_id).name
-      return placeName
+      const placeName = places.find((place) => place.place_id === place_id).name;
+      return placeName;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
@@ -42,11 +42,11 @@ function FavouritesView () {
     try {
       const group_id = places.find(
         (place) => place.place_id === place_id
-      ).group_id
-      const groupName = groups.find((group) => group.group_id === group_id).name
-      return ' 👤 ' + groupName
+      ).group_id;
+      const groupName = groups.find((group) => group.group_id === group_id).name;
+      return ' 👤 ' + groupName;
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
@@ -54,19 +54,19 @@ function FavouritesView () {
     try {
       const category_id = places.find(
         (place) => place.place_id === place_id
-      ).category_id
+      ).category_id;
       const targetCategory = categories.find(
         (category) => category.category_id === category_id
-      )
-      let categoryEmoji = ''
-      let categoryName = ''
+      );
+      let categoryEmoji = '';
+      let categoryName = '';
       if (targetCategory) {
-        categoryEmoji = targetCategory.emoji
-        categoryName = targetCategory.name_singular
+        categoryEmoji = targetCategory.emoji;
+        categoryName = targetCategory.name_singular;
       }
-      return ' ' + categoryEmoji + ' ' + categoryName + ' '
+      return ' ' + categoryEmoji + ' ' + categoryName + ' ';
     } catch (e) {
-      console.error(e)
+      console.error(e);
     }
   }
 
@@ -91,7 +91,7 @@ function FavouritesView () {
         </span>
       </Card>
     </li>
-  ))
+  ));
   return (
     <div className='container'>
       <Row justify='left'>
@@ -107,23 +107,25 @@ function FavouritesView () {
           borderWidth: 5
         }}
       />
-      {myFavourites.length >= 1 ? (
-        <Row justify='center'>
-          <Col className='column3' lg={9} md={9} sm={24}>
-            <ul>{myFavouriteItems}</ul>
-          </Col>
-        </Row>
-      ) : (
-        <Row justify='center'>
-          <Col lg={10} md={12} sm={18} xs={24}>
-            <Card className='noFavourites' size='medium'>
-              You do not have any favourited places.
-            </Card>
-          </Col>
-        </Row>
-      )}
+      {myFavourites.length >= 1
+        ? (
+          <Row justify='center'>
+            <Col className='column3' lg={9} md={9} sm={24}>
+              <ul>{myFavouriteItems}</ul>
+            </Col>
+          </Row>
+          )
+        : (
+          <Row justify='center'>
+            <Col lg={10} md={12} sm={18} xs={24}>
+              <Card className='noFavourites' size='medium'>
+                You do not have any favourited places.
+              </Card>
+            </Col>
+          </Row>
+          )}
     </div>
-  )
+  );
 }
 
-export default FavouritesView
+export default FavouritesView;

@@ -1,11 +1,11 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 
-import categoryReducer from './reducers/categoryReducer'
-import groupReducer from './reducers/groupReducer'
-import placeReducer from './reducers/placeReducer'
-import reviewReducer from './reducers/reviewReducer'
-import thunk from 'redux-thunk'
-import userReducer from './reducers/userReducer'
+import categoryReducer from './reducers/categoryReducer';
+import groupReducer from './reducers/groupReducer';
+import placeReducer from './reducers/placeReducer';
+import reviewReducer from './reducers/reviewReducer';
+import thunk from 'redux-thunk';
+import userReducer from './reducers/userReducer';
 
 const allReducer = combineReducers({
   users: userReducer,
@@ -13,7 +13,7 @@ const allReducer = combineReducers({
   categories: categoryReducer,
   places: placeReducer,
   reviews: reviewReducer
-})
+});
 
 const store = createStore(
   allReducer,
@@ -24,6 +24,6 @@ const store = createStore(
           window.__REDUX_DEVTOOLS_EXTENSION__()
       : compose
   )
-)
+);
 
-export default store
+export default store;

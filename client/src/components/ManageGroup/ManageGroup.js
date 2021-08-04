@@ -1,12 +1,12 @@
-import './ManageGroup.css'
+import './ManageGroup.css';
 
-import { Col, Divider, Row, Typography } from 'antd'
+import { Col, Divider, Row, Typography } from 'antd';
 
-import MemberList from '../MemberList/MemberList'
-import { UserOutlined } from '@ant-design/icons'
+import MemberList from '../MemberList/MemberList';
+import { UserOutlined } from '@ant-design/icons';
 
 function ManageGroup (props) {
-  const { Title } = Typography
+  const { Title } = Typography;
   return (
     <div className='container'>
       <Row
@@ -28,7 +28,7 @@ function ManageGroup (props) {
       />
       <MemberList history={props.history} />
     </div>
-  )
+  );
 }
 
-export default ManageGroup
+export default ManageGroup;

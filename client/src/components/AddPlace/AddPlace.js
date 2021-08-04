@@ -1,68 +1,68 @@
-import './AddPlace.css'
+import './AddPlace.css';
 
-import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { addPlace } from '../../redux/actions/placeActions'
-import { useState } from 'react'
+import { addPlace } from '../../redux/actions/placeActions';
+import { useState } from 'react';
 
 function AddPlace (props) {
-  const { Title } = Typography
-  const [form] = Form.useForm()
-  const dispatch = useDispatch()
-  const categories = useSelector((state) => state.categories.allCategories)
+  const { Title } = Typography;
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
-  )
-  const currentGroupID = useSelector((state) => state.groups.currentGroupID)
+  );
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const [fieldInput, setFieldInput] = useState({
     name: ''
-  })
-  const [imageData, setimageData] = useState('')
-  const [imageButtonName, setimageButtonName] = useState('🖼️ Select File')
+  });
+  const [imageData, setimageData] = useState('');
+  const [imageButtonName, setimageButtonName] = useState('🖼️ Select File');
 
   const imageHandler = (e) => {
-    const imageSelected = e.target.files.length > 0
+    const imageSelected = e.target.files.length > 0;
     if (imageSelected) {
-      let fileName = e.target.files[0].name
+      let fileName = e.target.files[0].name;
       if (fileName.length > 20) {
         fileName =
           fileName.substring(0, 10) +
           '...' +
-          fileName.substring(fileName.length - 10)
+          fileName.substring(fileName.length - 10);
       }
-      setimageButtonName('🖼️ ' + fileName)
-      setimageData(e.target.files[0])
+      setimageButtonName('🖼️ ' + fileName);
+      setimageData(e.target.files[0]);
     } else {
-      setimageButtonName('🖼️ Select File')
-      setimageData('')
+      setimageButtonName('🖼️ Select File');
+      setimageData('');
     }
-  }
+  };
 
   const currentCategory = () => {
     return categories.find(
       (category) => category.category_id === currentCategoryID
-    )
-  }
+    );
+  };
 
   function handleChange () {
     setFieldInput({
       name: form.getFieldValue('name')
-    })
+    });
   }
 
   function handleAddPlace () {
-    const name = form.getFieldValue('name')
-    const address = form.getFieldValue('address')
-    if (name === undefined) return
-    const newPlace = new FormData()
-    newPlace.append('name', name)
-    newPlace.append('address', address)
-    newPlace.append('group_id', currentGroupID)
-    newPlace.append('category_id', currentCategoryID)
-    newPlace.append('placeImage', imageData)
-    dispatch(addPlace(newPlace, props.history))
-    form.resetFields()
+    const name = form.getFieldValue('name');
+    const address = form.getFieldValue('address');
+    if (name === undefined) return;
+    const newPlace = new FormData();
+    newPlace.append('name', name);
+    newPlace.append('address', address);
+    newPlace.append('group_id', currentGroupID);
+    newPlace.append('category_id', currentCategoryID);
+    newPlace.append('placeImage', imageData);
+    dispatch(addPlace(newPlace, props.history));
+    form.resetFields();
   }
   return (
     <Col className='container'>
@@ -133,7 +133,7 @@ function AddPlace (props) {
         </Col>
       </Row>
     </Col>
-  )
+  );
 }
 
-export default AddPlace
+export default AddPlace;

@@ -1,4 +1,4 @@
-import { Layout } from 'antd'
+import { Layout } from 'antd';
 
 const SideBar = ({ menu }) => {
   return (
@@ -16,6 +16,6 @@ const SideBar = ({ menu }) => {
     >
       {menu}
     </Layout.Sider>
-  )
-}
-export default SideBar
+  );
+};
+export default SideBar;

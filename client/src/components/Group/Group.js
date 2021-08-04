@@ -1,57 +1,57 @@
-import './Group.css'
+import './Group.css';
 
 import {
   ArrowRightOutlined,
   QuestionOutlined,
   StarFilled,
   UserOutlined
-} from '@ant-design/icons'
-import { Avatar, Button, Card, Col, Row, Tooltip } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+} from '@ant-design/icons';
+import { Avatar, Button, Card, Col, Row, Tooltip } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-import { Link } from 'react-router-dom'
-import { setCurrentGroup } from '../../redux/actions/groupActions'
-import { userRequestToJoinGroup } from '../../redux/actions/userActions'
+import { Link } from 'react-router-dom';
+import { setCurrentGroup } from '../../redux/actions/groupActions';
+import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
 function Group (props) {
-  const users = useSelector((state) => state.users.allUsers)
-  const reviews = useSelector((state) => state.reviews.allReviews)
-  const places = useSelector((state) => state.places.allPlaces)
-  const [numMembers, setNumMembers] = useState(0)
+  const users = useSelector((state) => state.users.allUsers);
+  const reviews = useSelector((state) => state.reviews.allReviews);
+  const places = useSelector((state) => state.places.allPlaces);
+  const [numMembers, setNumMembers] = useState(0);
 
-  const currentUserID = useSelector((state) => state.users.user.user_id)
-  const currentUser = users.find((user) => user.user_id === currentUserID)
+  const currentUserID = useSelector((state) => state.users.user.user_id);
+  const currentUser = users.find((user) => user.user_id === currentUserID);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    let memberCount = 0
+    let memberCount = 0;
     if (users) {
       users.forEach((user) => {
         if (user.groups.includes(props.group.group_id)) {
-          memberCount++
+          memberCount++;
         }
-      })
-      setNumMembers(memberCount)
+      });
+      setNumMembers(memberCount);
     }
-  }, [users, props.group.group_id, numMembers])
+  }, [users, props.group.group_id, numMembers]);
 
-  let numReviews = 0
+  let numReviews = 0;
   reviews.forEach((review) => {
-    const place_id = review.place_id
+    const place_id = review.place_id;
     places.forEach((place) => {
       if (
         place_id === place.place_id &&
         props.group.group_id === place.group_id
       ) {
-        numReviews++
+        numReviews++;
       }
-    })
-  })
+    });
+  });
 
   function handleRequestToJoin () {
-    dispatch(userRequestToJoinGroup(props.group.group_id))
+    dispatch(userRequestToJoinGroup(props.group.group_id));
   }
 
   function renderButton () {
@@ -61,7 +61,7 @@ function Group (props) {
           <Link
             to='/groupview'
             onClick={() => {
-              dispatch(setCurrentGroup(props.group.group_id))
+              dispatch(setCurrentGroup(props.group.group_id));
             }}
           >
             <Button
@@ -72,13 +72,13 @@ function Group (props) {
               Go to Group
             </Button>
           </Link>
-        )
+        );
       } else if (currentUser.requestGroups.includes(props.group.group_id)) {
         return (
           <Button type='primary' size='medium' disabled>
             Requested to Join
           </Button>
-        )
+        );
       } else {
         return (
           <Button
@@ -90,7 +90,7 @@ function Group (props) {
           >
             Request to Join
           </Button>
-        )
+        );
       }
     }
   }
@@ -131,7 +131,7 @@ function Group (props) {
         </Col>
       </Row>
     </Card>
-  )
+  );
 }
 
-export default Group
+export default Group;

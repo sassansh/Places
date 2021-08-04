@@ -1,6 +1,6 @@
 const initialState = {
   allReviews: []
-}
+};
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,10 +8,10 @@ const reviewReducer = (state = initialState, action) => {
       return {
         ...state,
         allReviews: action.payload
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reviewReducer
+export default reviewReducer;

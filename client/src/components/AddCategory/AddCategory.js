@@ -1,5 +1,5 @@
-import './AddCategory.css'
-import 'emoji-mart/css/emoji-mart.css'
+import './AddCategory.css';
+import 'emoji-mart/css/emoji-mart.css';
 
 import {
   Button,
@@ -11,53 +11,53 @@ import {
   Row,
   Switch,
   Typography
-} from 'antd'
+} from 'antd';
 import {
   MinusCircleOutlined,
   PlusOutlined,
   SmileOutlined
-} from '@ant-design/icons'
-import { useDispatch, useSelector } from 'react-redux'
+} from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 
-import GraphemeSplitter from 'grapheme-splitter'
-import { Picker } from 'emoji-mart'
-import { addCategory } from '../../redux/actions/categoryActions'
-import { useState } from 'react'
+import GraphemeSplitter from 'grapheme-splitter';
+import { Picker } from 'emoji-mart';
+import { addCategory } from '../../redux/actions/categoryActions';
+import { useState } from 'react';
 
 function AddCategory (props) {
-  const { Title } = Typography
-  const [form] = Form.useForm()
-  const dispatch = useDispatch()
-  const splitter = new GraphemeSplitter()
-  const currentGroup = useSelector((state) => state.groups.currentGroupID)
-  const [isCustomCriteria, setIsCustomCriteria] = useState(false)
-  const [numberOfCriteria, setNumberOfCriteria] = useState(2)
-  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false)
+  const { Title } = Typography;
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const splitter = new GraphemeSplitter();
+  const currentGroup = useSelector((state) => state.groups.currentGroupID);
+  const [isCustomCriteria, setIsCustomCriteria] = useState(false);
+  const [numberOfCriteria, setNumberOfCriteria] = useState(2);
+  const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
 
-  const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size']
+  const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size'];
 
   function handleChange () {
-    const emojiField = form.getFieldValue('emoji')
+    const emojiField = form.getFieldValue('emoji');
     if (emojiField) {
-      const graphemes = splitter.splitGraphemes(emojiField)
-      let lastEmoji = ''
+      const graphemes = splitter.splitGraphemes(emojiField);
+      let lastEmoji = '';
       graphemes.forEach((item) => {
         if (item.match(/\p{Emoji_Presentation}/gu)) {
-          lastEmoji = item
+          lastEmoji = item;
         }
-      })
-      form.setFieldsValue({ emoji: lastEmoji })
+      });
+      form.setFieldsValue({ emoji: lastEmoji });
     }
   }
 
   function handleAddCategory () {
-    const name = form.getFieldValue('name_plural')
-    const name_singular = form.getFieldValue('name_singular')
-    const emoji = form.getFieldValue('emoji')
-    const criteria = form.getFieldValue('criteria')
-    const use_custom_criteria = form.getFieldValue('use_custom_criteria')
-    const rawCriteria = []
-    criteria.forEach((element) => rawCriteria.push(element.criterion))
+    const name = form.getFieldValue('name_plural');
+    const name_singular = form.getFieldValue('name_singular');
+    const emoji = form.getFieldValue('emoji');
+    const criteria = form.getFieldValue('criteria');
+    const use_custom_criteria = form.getFieldValue('use_custom_criteria');
+    const rawCriteria = [];
+    criteria.forEach((element) => rawCriteria.push(element.criterion));
 
     const newCategory = {
       name: name,
@@ -65,9 +65,9 @@ function AddCategory (props) {
       emoji: emoji,
       group_id: currentGroup,
       custom_criteria: use_custom_criteria ? rawCriteria : []
-    }
+    };
 
-    dispatch(addCategory(newCategory, props.history))
+    dispatch(addCategory(newCategory, props.history));
   }
   return (
     <Col className='container'>
@@ -122,15 +122,15 @@ function AddCategory (props) {
                 footer={null}
                 onOk={() => {}}
                 onCancel={() => {
-                  setEmojiPickerVisible(false)
+                  setEmojiPickerVisible(false);
                 }}
               >
                 <Picker
                   title='Select emoji'
                   emoji='pin'
                   onSelect={(emoji) => {
-                    form.setFieldsValue({ emoji: emoji.native })
-                    setEmojiPickerVisible(false)
+                    form.setFieldsValue({ emoji: emoji.native });
+                    setEmojiPickerVisible(false);
                   }}
                 />
               </Modal>
@@ -143,7 +143,7 @@ function AddCategory (props) {
               <Switch
                 value={isCustomCriteria}
                 onChange={(value) => {
-                  setIsCustomCriteria(value)
+                  setIsCustomCriteria(value);
                 }}
               />
             </Form.Item>
@@ -157,8 +157,8 @@ function AddCategory (props) {
                           {name > 1 && (
                             <MinusCircleOutlined
                               onClick={() => {
-                                setNumberOfCriteria(numberOfCriteria - 1)
-                                remove(name)
+                                setNumberOfCriteria(numberOfCriteria - 1);
+                                remove(name);
                               }}
                               style={{ paddingTop: '18px' }}
                             />
@@ -181,10 +181,10 @@ function AddCategory (props) {
                         <Button
                           type='dashed'
                           onClick={() => {
-                            setNumberOfCriteria(numberOfCriteria + 1)
+                            setNumberOfCriteria(numberOfCriteria + 1);
                             add({
                               criterion: defaultCriteria[numberOfCriteria % 5]
-                            })
+                            });
                           }}
                           block
                           icon={<PlusOutlined />}
@@ -213,7 +213,7 @@ function AddCategory (props) {
         </Col>
       </Row>
     </Col>
-  )
+  );
 }
 
-export default AddCategory
+export default AddCategory;

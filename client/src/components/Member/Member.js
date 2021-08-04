@@ -1,22 +1,22 @@
-import './Member.css'
+import './Member.css';
 
-import { Avatar, Button, Card, Col, Popconfirm, Row } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import { Avatar, Button, Card, Col, Popconfirm, Row } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { UserDeleteOutlined } from '@ant-design/icons'
-import { removeUser } from '../../redux/actions/userActions'
+import { UserDeleteOutlined } from '@ant-design/icons';
+import { removeUser } from '../../redux/actions/userActions';
 
 function Member (props) {
-  const dispatch = useDispatch()
-  const currentGroupID = useSelector((state) => state.groups.currentGroupID)
-  const currentUserID = useSelector((state) => state.users.user.user_id)
-  const user_id = props.user.user_id
-  const username = user_id === currentUserID ? 'yourself' : props.user.name
+  const dispatch = useDispatch();
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+  const currentUserID = useSelector((state) => state.users.user.user_id);
+  const user_id = props.user.user_id;
+  const username = user_id === currentUserID ? 'yourself' : props.user.name;
 
   function removeUserFromGroup () {
     dispatch(
       removeUser({ currentUserID, user_id, currentGroupID }, props.history)
-    )
+    );
   }
   return (
     <Card style={{ margin: 16 }}>
@@ -61,7 +61,7 @@ function Member (props) {
         </Col>
       </Row>
     </Card>
-  )
+  );
 }
 
-export default Member
+export default Member;

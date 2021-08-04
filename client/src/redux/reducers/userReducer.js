@@ -1,11 +1,11 @@
-import isEmpty from 'is-empty'
+import isEmpty from 'is-empty';
 
 const initialState = {
   allUsers: [],
   isAuthenticated: false,
   user: {},
   favourite_places: []
-}
+};
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,20 +14,20 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
-      }
+      };
     case 'SET_USERS':
       return {
         ...state,
         allUsers: action.payload
-      }
+      };
     case 'SET_FAVOURITES':
       return {
         ...state,
         favourite_places: action.payload
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default userReducer
+export default userReducer;

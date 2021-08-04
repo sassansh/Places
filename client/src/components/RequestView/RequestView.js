@@ -1,12 +1,12 @@
-import './RequestView.css'
+import './RequestView.css';
 
-import { Col, Divider, Row, Typography } from 'antd'
+import { Col, Divider, Row, Typography } from 'antd';
 
-import { BellOutlined } from '@ant-design/icons'
-import RequestList from '../RequestList/RequestList'
+import { BellOutlined } from '@ant-design/icons';
+import RequestList from '../RequestList/RequestList';
 
 function RequestView () {
-  const { Title } = Typography
+  const { Title } = Typography;
   return (
     <div className='container'>
       <Row
@@ -28,7 +28,7 @@ function RequestView () {
       />
       <RequestList />
     </div>
-  )
+  );
 }
 
-export default RequestView
+export default RequestView;

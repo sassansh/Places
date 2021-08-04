@@ -1,25 +1,25 @@
-import './GroupView.css'
+import './GroupView.css';
 
-import { Avatar, Button, Col, Divider, Row, Typography } from 'antd'
-import { Link } from 'react-router-dom'
-import { UserOutlined, PlusOutlined } from '@ant-design/icons'
-import { useSelector } from 'react-redux'
-import CategoryList from '../CategoryList/CategoryList'
+import { Avatar, Button, Col, Divider, Row, Typography } from 'antd';
+import { Link } from 'react-router-dom';
+import { UserOutlined, PlusOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import CategoryList from '../CategoryList/CategoryList';
 
 function GroupView () {
-  const { Title } = Typography
-  const groups = useSelector((state) => state.groups.allGroups)
-  const users = useSelector((state) => state.users.allUsers)
-  const currentGroupID = useSelector((state) => state.groups.currentGroupID)
-  const currentGroup = groups.find((group) => group.group_id === currentGroupID)
-  const title = currentGroup.name
-  const avatarURL = currentGroup.avatarURL
-  let numMembers = 0
+  const { Title } = Typography;
+  const groups = useSelector((state) => state.groups.allGroups);
+  const users = useSelector((state) => state.users.allUsers);
+  const currentGroupID = useSelector((state) => state.groups.currentGroupID);
+  const currentGroup = groups.find((group) => group.group_id === currentGroupID);
+  const title = currentGroup.name;
+  const avatarURL = currentGroup.avatarURL;
+  let numMembers = 0;
   users.forEach((user) => {
     if (user.groups.includes(currentGroupID)) {
-      numMembers++
+      numMembers++;
     }
-  })
+  });
   return (
     <Col className='container'>
       <Row justify='center'>
@@ -60,7 +60,7 @@ function GroupView () {
       </Link>
       <CategoryList />
     </Col>
-  )
+  );
 }
 
-export default GroupView
+export default GroupView;

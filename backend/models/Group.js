@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
   group_id: {
@@ -17,6 +17,6 @@ const groupSchema = new Schema({
   avatarURL: {
     type: String
   }
-})
+});
 
-export default mongoose.model('Group', groupSchema, 'groups')
+export default mongoose.model('Group', groupSchema, 'groups');

@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const reviewSchema = new Schema({
   review_id: {
@@ -19,6 +19,6 @@ const reviewSchema = new Schema({
     type: [Number],
     required: true
   }
-})
+});
 
-export default mongoose.model('Review', reviewSchema, 'reviews')
+export default mongoose.model('Review', reviewSchema, 'reviews');
