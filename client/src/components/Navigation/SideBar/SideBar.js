@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import { Layout } from 'antd'
 
 const SideBar = ({ menu }) => {
   return (
@@ -7,15 +7,15 @@ const SideBar = ({ menu }) => {
         overflow: 'auto',
         height: '100vh',
         position: 'fixed',
-        left: 0,
+        left: 0
       }}
-      breakpoint={'lg'}
-      theme="dark"
+      breakpoint='lg'
+      theme='dark'
       collapsedWidth={0}
       trigger={null}
     >
       {menu}
     </Layout.Sider>
-  );
-};
-export default SideBar;
+  )
+}
+export default SideBar

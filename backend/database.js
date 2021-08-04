@@ -1,17 +1,17 @@
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
+import dotenv from 'dotenv'
+import mongoose from 'mongoose'
 
-dotenv.config();
+dotenv.config()
 
-const connection = process.env.PLACES_DB_URI;
+const connection = process.env.PLACES_DB_URI
 
-console.log(`Trying to connect to MongoDB Atlas (cloud)`);
+console.log('Trying to connect to MongoDB Atlas (cloud)')
 mongoose
   .connect(connection, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false,
+    useFindAndModify: false
   })
   .then(() => console.log('Database Connected Successfully'))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err))

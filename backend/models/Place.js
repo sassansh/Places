@@ -1,32 +1,32 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const placeSchema = new Schema({
   place_id: {
     type: String,
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   address: {
     type: String,
-    required: true,
+    required: true
   },
   group_id: {
     type: String,
-    required: true,
+    required: true
   },
   category_id: {
     type: String,
-    required: true,
+    required: true
   },
   ImageURL: {
     type: String,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 
-export default mongoose.model('Place', placeSchema, 'places');
+export default mongoose.model('Place', placeSchema, 'places')

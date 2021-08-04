@@ -1,13 +1,13 @@
-import './Place.css';
+import './Place.css'
 
-import { Avatar, Card, Col, Rate, Row } from 'antd';
+import { Avatar, Card, Col, Rate, Row } from 'antd'
 
-import { Link } from 'react-router-dom';
-import { setCurrentPlace } from '../../redux/actions/placeActions';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { setCurrentPlace } from '../../redux/actions/placeActions'
+import { useDispatch } from 'react-redux'
 
-function Place({ placeData }) {
-  const dispatch = useDispatch();
+function Place ({ placeData }) {
+  const dispatch = useDispatch()
 
   return (
     <Link
@@ -51,7 +51,7 @@ function Place({ placeData }) {
         </Col>
       </Card>
     </Link>
-  );
+  )
 }
 
-export default Place;
+export default Place

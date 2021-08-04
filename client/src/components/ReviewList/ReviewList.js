@@ -1,29 +1,29 @@
-import './ReviewList.css';
+import './ReviewList.css'
 
-import { Button, Row, Col } from 'antd';
+import { Button, Row, Col } from 'antd'
 
-import { Link } from 'react-router-dom';
-import { PlusOutlined } from '@ant-design/icons';
-import Review from '../Review/Review';
-import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { PlusOutlined } from '@ant-design/icons'
+import Review from '../Review/Review'
+import { useSelector } from 'react-redux'
 
-function ReviewList(props) {
-  let reviewsData = props.reviewsData;
-  let currentUser = useSelector((state) => state.users.user.user_id);
+function ReviewList (props) {
+  let reviewsData = props.reviewsData
+  const currentUser = useSelector((state) => state.users.user.user_id)
 
   reviewsData = reviewsData
     .filter((review) => review.user_id === currentUser)
-    .concat(reviewsData.filter((review) => review.user_id !== currentUser));
+    .concat(reviewsData.filter((review) => review.user_id !== currentUser))
 
-  let currentUserHasReview = !reviewsData.find(
+  const currentUserHasReview = !reviewsData.find(
     (review) => review.user_id === currentUser
-  );
+  )
 
-  let reviews = reviewsData.map((reviewData) => (
+  const reviews = reviewsData.map((reviewData) => (
     <Review key={reviewData.review_id} review={reviewData} />
-  ));
+  ))
 
-  let reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews';
+  const reviewTitleText = reviewsData.length === 1 ? ' Review' : ' Reviews'
   return (
     <Col span={24}>
       <Row>
@@ -31,16 +31,16 @@ function ReviewList(props) {
       </Row>
       <Row>
         {currentUserHasReview && (
-          <Link to="/addReview" className="add-review-button">
-            <Button type="primary" icon={<PlusOutlined />} size="large">
+          <Link to='/addReview' className='add-review-button'>
+            <Button type='primary' icon={<PlusOutlined />} size='large'>
               Add Review
             </Button>
           </Link>
         )}
       </Row>
-      <ul style={{padding: "0px"}}>{reviews}</ul>
+      <ul style={{ padding: '0px' }}>{reviews}</ul>
     </Col>
-  );
+  )
 }
 
-export default ReviewList;
+export default ReviewList

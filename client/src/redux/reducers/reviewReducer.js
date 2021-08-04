@@ -1,17 +1,17 @@
 const initialState = {
-  allReviews: [],
-};
+  allReviews: []
+}
 
 const reviewReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_REVIEWS':
       return {
         ...state,
-        allReviews: action.payload,
-      };
+        allReviews: action.payload
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reviewReducer;
+export default reviewReducer
