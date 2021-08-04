@@ -1,5 +1,3 @@
-import './NavBar.css';
-
 import {
   BarsOutlined,
   BellOutlined,

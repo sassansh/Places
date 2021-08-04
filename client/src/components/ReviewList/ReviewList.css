@@ -1,9 +1,9 @@
 h1 {
-  padding: 0px 0px 0px 10px;
-  border-bottom: 0px;
+  padding: 0 0 0 10px;
+  border-bottom: 0;
   font-size: 20px;
 }
 
 .add-review-button {
-  margin: 0px 0px 15px 60px;
+  margin: 0 0 15px 60px;
 }

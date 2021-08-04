@@ -1,5 +1,3 @@
-import './SideBar.css';
-
 import { Layout } from 'antd';
 
 const SideBar = ({ menu }) => {

@@ -1,65 +1,64 @@
 .column1 {
-    text-align: left;
-    padding: 20px 20px 20px 0px;
-    min-width: 250px;
+  text-align: left;
+  padding: 20px 20px 20px 0;
+  min-width: 250px;
 }
 
 .column2 {
-    text-align: left;
-    padding: 20px 20px 20px 0px;
-    min-width: 380px;
+  text-align: left;
+  padding: 20px 20px 20px 0;
+  min-width: 380px;
 }
 
 .column3 {
-    text-align: left;
-    padding: 20px 20px 20px 0px;
-    min-width: 380px;
+  text-align: left;
+  padding: 20px 20px 20px 0;
+  min-width: 380px;
 }
 
 .heading {
-    font-size: calc(14px + 0.4vw);
-    font-weight: bold;
-    padding: 0px 0px 20px 40px;
+  font-size: calc(14px + 0.4vw);
+  font-weight: bold;
+  padding: 0 0 20px 40px;
 }
 
 .groups {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .place {
-    text-align: left;
-    padding-left: 15px;
-    font-size: calc(12px + 0.4vw);
+  text-align: left;
+  padding-left: 15px;
+  font-size: calc(12px + 0.4vw);
 }
 
 .group {
-    font-size: calc(12px + 0.4vw);
+  font-size: calc(12px + 0.4vw);
 }
 
 .profilePic {
-    width: calc(250px + 1vw);
+  width: calc(250px + 1vw);
 }
 
 .rating {
-    text-align: right;
+  text-align: right;
 }
 
 .profile {
-    text-align: center;
-    font-size: calc(17px + 0.8vw);
+  text-align: center;
+  font-size: calc(17px + 0.8vw);
 }
 
 .detailsHeading {
-    font-size: calc(15px + 0.5vw);
-    color: #4d4d4d;
+  font-size: calc(15px + 0.5vw);
+  color: #4d4d4d;
 }
 
 .details {
-    font-size: calc(12px + 0.3vw);
+  font-size: calc(12px + 0.3vw);
 }
 
 .meta {
-    font-size: calc(10px + 0.3vw);
-    color: #4d4d4d;
+  font-size: calc(10px + 0.3vw);
+  color: #4d4d4d;
 }
-

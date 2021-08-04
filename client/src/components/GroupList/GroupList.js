@@ -1,5 +1,3 @@
-import './GroupList.css';
-
 import { Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
