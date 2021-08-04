@@ -11,42 +11,38 @@ function Place({ placeData }) {
 
   return (
     <Link
-      to="/placeview"
+      to='/placeview'
       onClick={() => dispatch(setCurrentPlace(placeData.place_id))}
     >
       <Card style={{ margin: 16 }}>
         <Col>
-          <Row justify="space-around">
+          <Row justify='space-around'>
             <Col lg={18} md={17} sm={15} xs={24}>
               <Row>
-                <span className="place">
+                <span className='place'>
                   <Avatar
                     style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}
                   >
                     {placeData.rank}
                   </Avatar>
-                  <span className="place-name">{placeData.name}</span>
+                  <span className='place-name'>{placeData.name}</span>
                   <br />
-                  <span className="place-address">{placeData.address}</span>
+                  <span className='place-address'>{placeData.address}</span>
                 </span>
               </Row>
             </Col>
             <Col lg={6} md={7} sm={9} xs={24}>
-              <Row justify="end">
+              <Row justify='end'>
                 {placeData.numReviews > 0 ? (
-                  <span className="place-rating">
-                    <Rate
-                      disabled
-                      allowHalf
-                      defaultValue={placeData.avgRating}
-                    />
-                    <span className="num-of-reviews">
+                  <span className='place-rating'>
+                    <Rate disabled allowHalf value={placeData.avgRating} />
+                    <span className='num-of-reviews'>
                       {placeData.numReviews}
                     </span>
                   </span>
                 ) : (
-                  <span className="place-rating">
-                    <span className="num-of-reviews">No reviews yet</span>
+                  <span className='place-rating'>
+                    <span className='num-of-reviews'>No reviews yet</span>
                   </span>
                 )}
               </Row>

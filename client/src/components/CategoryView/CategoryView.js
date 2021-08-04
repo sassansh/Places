@@ -13,6 +13,7 @@ import { useState } from 'react';
 function CategoryView() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
+  const [checkedCriteria, setCheckedCriteria] = useState([]);
   const { Title } = Typography;
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
@@ -29,22 +30,22 @@ function CategoryView() {
     currentCategory === undefined ? '' : currentCategory.name_singular;
 
   return currentCategory === undefined ? (
-    <Redirect to="/groupview" />
+    <Redirect to='/groupview' />
   ) : (
-    <Col className="container">
-      <Row justify="center">
+    <Col className='container'>
+      <Row justify='center'>
         <Col lg={12} md={12} sm={12}>
           <Title level={2}>{categoryType}</Title>
         </Col>
         <Col lg={0} md={0} sm={0} xs={24}></Col>
-        <Col lg={12} md={12} sm={12} className="addPlaceButton">
+        <Col lg={12} md={12} sm={12} className='addPlaceButton'>
           <Link
-            to="/addPlace"
+            to='/addPlace'
             onClick={() => {
               dispatch(setCurrentCategory(currentCategoryID));
             }}
           >
-            <Button type="primary" icon={<PlusOutlined />} size="large">
+            <Button type='primary' icon={<PlusOutlined />} size='large'>
               Add {btnCategory}
             </Button>
           </Link>
@@ -55,8 +56,16 @@ function CategoryView() {
           borderWidth: 5,
         }}
       />
-      <Filters setSearchQuery={setSearchQuery} />
-      <PlaceList searchQuery={searchQuery} />
+      <Filters
+        setSearchQuery={setSearchQuery}
+        checkedCriteria={checkedCriteria}
+        setCheckedCriteria={setCheckedCriteria}
+      />
+      <PlaceList
+        searchQuery={searchQuery}
+        checkedCriteria={checkedCriteria}
+        customCriteria={currentCategory.custom_criteria}
+      />
     </Col>
   );
 }
