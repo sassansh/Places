@@ -7,6 +7,7 @@ import {
   getReviews
 } from '../../redux/actions/reviewActions';
 import { useDispatch, useSelector } from 'react-redux';
+import RoundedRate from '../RoundedRate/RoundedRate';
 import { useEffect, useRef, useState } from 'react';
 
 function AddReview(props) {
@@ -336,7 +337,7 @@ function AddReview(props) {
           <Row justify='start'>
             <Col>
               <span className='overall'>
-                <Rate style={{ fontSize: '40px' }} value={rateValue} disabled />
+                <RoundedRate style={{ fontSize: '40px' }} value={rateValue} disabled />
               </span>
               <ul>{customRate}</ul>
             </Col>

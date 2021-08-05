@@ -1,6 +1,7 @@
 import './RatingCriterion.css';
 
-import { Col, Rate, Row } from 'antd';
+import { Col, Row } from 'antd';
+import RoundedRate from '../RoundedRate/RoundedRate';
 
 function RatingCriterion(props) {
   return (
@@ -9,7 +10,7 @@ function RatingCriterion(props) {
         {props.name + ': '}
       </Col>
       <Col span={12} className='crit-rating'>
-        <Rate value={props.score} allowHalf disabled={true} />
+        <RoundedRate value={props.score} allowHalf disabled={true} />
       </Col>
     </Row>
   );

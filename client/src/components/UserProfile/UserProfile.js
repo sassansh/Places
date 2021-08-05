@@ -1,12 +1,13 @@
 import './UserProfile.css';
 
-import { Card, Col, Divider, Rate, Row, Typography } from 'antd';
+import { Card, Col, Divider, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Avatar from 'antd/lib/avatar/avatar';
 import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
+import RoundedRate from '../RoundedRate/RoundedRate';
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function UserProfile() {
       const total = rating.reduce((a, b) => a + b, 0);
       overallRating = total / rating.length;
     }
-    return <Rate value={overallRating} disabled />;
+    return <RoundedRate value={overallRating} disabled />;
   }
 
   function getGroup(group_id) {
