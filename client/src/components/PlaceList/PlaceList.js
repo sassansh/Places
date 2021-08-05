@@ -1,5 +1,3 @@
-import './PlaceList.css';
-
 import { Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +6,7 @@ import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
 
-function PlaceList({ searchQuery, checkedCriteria, customCriteria }) {
+function PlaceList ({ searchQuery, checkedCriteria, customCriteria }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +44,7 @@ function PlaceList({ searchQuery, checkedCriteria, customCriteria }) {
             review.rating
               .filter((eachElem, index) => arrayIndex.indexOf(index) !== -1)
               .reduce((p, c) => p + c, 0) / arrayIndex.length
-        ),
+        )
     }));
     currentPlaces.forEach((place) => {
       place.avgRating =
@@ -65,7 +63,7 @@ function PlaceList({ searchQuery, checkedCriteria, customCriteria }) {
               review.rating.reduce((p, c) => p + c, 0) / review.rating.length
           )
           .reduce((p, c) => p + c, 0) /
-        reviews.filter((review) => review.place_id === place.place_id).length,
+        reviews.filter((review) => review.place_id === place.place_id).length
     }));
   }
   currentPlaces = currentPlaces.sort(
@@ -80,17 +78,17 @@ function PlaceList({ searchQuery, checkedCriteria, customCriteria }) {
   );
   currentPlaces = currentPlaces.map((place) => ({
     ...place,
-    rank: ratingsSorted.indexOf(place.avgRating) + 1,
+    rank: ratingsSorted.indexOf(place.avgRating) + 1
   }));
 
   currentPlaces = currentPlaces.map((place) => ({
     ...place,
-    rank: place.rank === 0 ? '?' : place.rank,
+    rank: place.rank === 0 ? '?' : place.rank
   }));
   if (searchQuery) {
     // Search algorithim inspired by: https://bit.ly/3q4q7aN
-    let searchArray = searchQuery.trim().split(' ');
-    let re = new RegExp(searchArray.join('|'), 'i');
+    const searchArray = searchQuery.trim().split(' ');
+    const re = new RegExp(searchArray.join('|'), 'i');
     currentPlaces = currentPlaces.filter(
       (place) => re.test(place.address) || re.test(place.name)
     );

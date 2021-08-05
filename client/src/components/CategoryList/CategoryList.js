@@ -8,7 +8,7 @@ import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { useEffect } from 'react';
 
-function CategoryList() {
+function CategoryList () {
   const dispatch = useDispatch();
   let categories = useSelector((state) => state.categories.allCategories);
   const places = useSelector((state) => state.places.allPlaces);
@@ -25,10 +25,10 @@ function CategoryList() {
       (place) =>
         place.category_id === category.category_id &&
         place.group_id === currentGroupID
-    ).length,
+    ).length
   }));
 
-  let categoryItems = categories.map((category) => (
+  const categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />
   ));
 

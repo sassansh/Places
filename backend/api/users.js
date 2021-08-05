@@ -17,7 +17,7 @@ dotenv.config();
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 router.get('/', authenticateToken, (req, res) => {
@@ -121,19 +121,19 @@ router.post('/login', (req, res) => {
         const payload = {
           user_id: user.user_id,
           name: user.name,
-          email: user.email,
+          email: user.email
         };
         // Sign token
         jwt.sign(
           payload,
           process.env.JWT_SECRET,
           {
-            expiresIn: 31556926, // 1 year in seconds
+            expiresIn: 31556926 // 1 year in seconds
           },
           (err, token) => {
             res.json({
               success: true,
-              token: 'Bearer ' + token,
+              token: 'Bearer ' + token
             });
           }
         );
@@ -192,7 +192,7 @@ router.post('/register', async (req, res) => {
           avatarURL: avatarURL,
           groups: [],
           requestGroups: [],
-          favourite_places: [],
+          favourite_places: []
         });
 
         newUser
@@ -201,7 +201,7 @@ router.post('/register', async (req, res) => {
           .catch((err) =>
             res.status(400).json({
               error: err,
-              message: 'Error creating user',
+              message: 'Error creating user'
             })
           );
       });
@@ -231,7 +231,7 @@ router.post('/group/request', authenticateToken, (req, res) => {
 
       // Add group ID to user's requestGroups
       User.updateOne({ user_id }, { $push: { requestGroups: group_id } })
-        .then((user) => res.json({ success: true }))
+        .then(() => res.json({ success: true }))
         .catch((err) => console.log(err));
     });
   });
@@ -282,12 +282,12 @@ router.post('/group/accept', authenticateToken, (req, res) => {
         { $pullAll: { requestGroups: [group_id] } }
       )
         .then(() => {
-          //Add group ID to user's groups
+          // Add group ID to user's groups
           User.updateOne(
             { user_id: other_user_id },
             { $push: { groups: group_id } }
           )
-            .then((user) => res.json({ success: true }))
+            .then(() => res.json({ success: true }))
             .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
@@ -365,7 +365,7 @@ router.delete('/group', authenticateToken, (req, res) => {
         for (let i = 0; i < places.length; i++) {
           Review.deleteOne({
             place_id: places[i].place_id,
-            user_id: user_id,
+            user_id: user_id
           }).catch((err) => {
             console.log(err);
           });

@@ -1,6 +1,6 @@
 const initialState = {
   allPlaces: [],
-  currentPlaceID: '',
+  currentPlaceID: ''
 };
 
 const placeReducer = (state = initialState, action) => {
@@ -8,12 +8,12 @@ const placeReducer = (state = initialState, action) => {
     case 'SET_PLACES':
       return {
         ...state,
-        allPlaces: action.payload,
+        allPlaces: action.payload
       };
     case 'SET_CURRENT_PLACE':
       return {
         ...state,
-        currentPlaceID: action.payload,
+        currentPlaceID: action.payload
       };
     default:
       return state;

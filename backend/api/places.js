@@ -11,7 +11,7 @@ dotenv.config();
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 router.get('/', authenticateToken, (req, res) => {
@@ -32,7 +32,7 @@ router.post('/', authenticateToken, async (req, res) => {
     address: address,
     group_id: group_id,
     category_id: category_id,
-    ImageURL: imageURL,
+    ImageURL: imageURL
   });
 
   newPlace
@@ -41,7 +41,7 @@ router.post('/', authenticateToken, async (req, res) => {
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: 'Error creating place',
+        message: 'Error creating place'
       })
     );
 });

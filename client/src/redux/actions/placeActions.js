@@ -30,13 +30,13 @@ export const addPlace = (newPlace, history) => async (dispatch) => {
 export const setPlaces = (places) => {
   return {
     type: 'SET_PLACES',
-    payload: places,
+    payload: places
   };
 };
 
 export const setCurrentPlace = (placeID) => {
   return {
     type: 'SET_CURRENT_PLACE',
-    payload: placeID,
+    payload: placeID
   };
 };

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPlace } from '../../redux/actions/placeActions';
 import { useState } from 'react';
 
-function AddPlace(props) {
+function AddPlace (props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function AddPlace(props) {
   );
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const [fieldInput, setFieldInput] = useState({
-    name: '',
+    name: ''
   });
   const [imageData, setimageData] = useState('');
   const [imageButtonName, setimageButtonName] = useState('🖼️ Select File');
@@ -45,15 +45,15 @@ function AddPlace(props) {
     );
   };
 
-  function handleChange() {
+  function handleChange () {
     setFieldInput({
-      name: form.getFieldValue('name'),
+      name: form.getFieldValue('name')
     });
   }
 
-  function handleAddPlace() {
-    let name = form.getFieldValue('name');
-    let address = form.getFieldValue('address');
+  function handleAddPlace () {
+    const name = form.getFieldValue('name');
+    const address = form.getFieldValue('address');
     if (name === undefined) return;
     const newPlace = new FormData();
     newPlace.append('name', name);
@@ -65,13 +65,13 @@ function AddPlace(props) {
     form.resetFields();
   }
   return (
-    <Col className="container">
-      <Row justify="center">
+    <Col className='container'>
+      <Row justify='center'>
         <Col lg={12} md={12} sm={12}>
           <Title level={2}>Add {currentCategory().name_singular}</Title>
         </Col>
-        <Col lg={0} md={0} sm={0} xs={24}></Col>
-        <Col lg={12} md={12} sm={12} className="currentCategory">
+        <Col lg={0} md={0} sm={0} xs={24} />
+        <Col lg={12} md={12} sm={12} className='currentCategory'>
           <h2>
             {currentCategory().emoji} {currentCategory().name}
           </h2>
@@ -79,34 +79,34 @@ function AddPlace(props) {
       </Row>
       <Divider
         style={{
-          borderWidth: 5,
+          borderWidth: 5
         }}
       />
-      <Row justify="center">
+      <Row justify='center'>
         <Col lg={8} md={10} sm={10}>
           <Form
-            className="form"
+            className='form'
             form={form}
-            layout="vertical"
-            size="large"
+            layout='vertical'
+            size='large'
             onChange={handleChange}
           >
-            <Form.Item name="name" label="Name">
-              <Input placeholder="Name" />
+            <Form.Item name='name' label='Name'>
+              <Input placeholder='Name' />
             </Form.Item>
-            <Form.Item name="address" label="Address">
-              <Input placeholder="Address" />
+            <Form.Item name='address' label='Address'>
+              <Input placeholder='Address' />
             </Form.Item>
             Image
             <br />
             <br />
             <input
-              className="imageuploadinput"
-              type="file"
-              id="profilepic"
+              className='imageuploadinput'
+              type='file'
+              id='profilepic'
               onChange={imageHandler}
             />
-            <label className="imageuploadlabel" htmlFor="profilepic">
+            <label className='imageuploadlabel' htmlFor='profilepic'>
               {imageButtonName}
             </label>
             <br />
@@ -115,13 +115,13 @@ function AddPlace(props) {
           </Form>
         </Col>
       </Row>
-      <Row justify="center">
+      <Row justify='center'>
         <Col>
           <Button
             onClick={handleAddPlace}
-            className="button"
-            type="primary"
-            size="large"
+            className='button'
+            type='primary'
+            size='large'
             disabled={
               fieldInput.name === '' ||
               fieldInput.address === '' ||

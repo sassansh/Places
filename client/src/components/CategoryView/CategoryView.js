@@ -10,7 +10,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { setCurrentCategory } from '../../redux/actions/categoryActions';
 import { useState } from 'react';
 
-function CategoryView() {
+function CategoryView () {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [checkedCriteria, setCheckedCriteria] = useState([]);
@@ -19,55 +19,57 @@ function CategoryView() {
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
   );
-  let currentCategory = categories.find(
+  const currentCategory = categories.find(
     (category) => category.category_id === currentCategoryID
   );
-  let categoryType =
+  const categoryType =
     currentCategory === undefined
       ? ''
       : currentCategory.name + ' ' + currentCategory.emoji;
-  let btnCategory =
+  const btnCategory =
     currentCategory === undefined ? '' : currentCategory.name_singular;
 
-  return currentCategory === undefined ? (
-    <Redirect to='/groupview' />
-  ) : (
-    <Col className='container'>
-      <Row justify='center'>
-        <Col lg={12} md={12} sm={12}>
-          <Title level={2}>{categoryType}</Title>
-        </Col>
-        <Col lg={0} md={0} sm={0} xs={24}></Col>
-        <Col lg={12} md={12} sm={12} className='addPlaceButton'>
-          <Link
-            to='/addPlace'
-            onClick={() => {
-              dispatch(setCurrentCategory(currentCategoryID));
-            }}
-          >
-            <Button type='primary' icon={<PlusOutlined />} size='large'>
-              Add {btnCategory}
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-      <Divider
-        style={{
-          borderWidth: 5,
-        }}
-      />
-      <Filters
-        setSearchQuery={setSearchQuery}
-        checkedCriteria={checkedCriteria}
-        setCheckedCriteria={setCheckedCriteria}
-      />
-      <PlaceList
-        searchQuery={searchQuery}
-        checkedCriteria={checkedCriteria}
-        customCriteria={currentCategory.custom_criteria}
-      />
-    </Col>
-  );
+  return currentCategory === undefined
+    ? (
+      <Redirect to='/groupview' />
+      )
+    : (
+      <Col className='container'>
+        <Row justify='center'>
+          <Col lg={12} md={12} sm={12}>
+            <Title level={2}>{categoryType}</Title>
+          </Col>
+          <Col lg={0} md={0} sm={0} xs={24} />
+          <Col lg={12} md={12} sm={12} className='addPlaceButton'>
+            <Link
+              to='/addPlace'
+              onClick={() => {
+                dispatch(setCurrentCategory(currentCategoryID));
+              }}
+            >
+              <Button type='primary' icon={<PlusOutlined />} size='large'>
+                Add {btnCategory}
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+        <Divider
+          style={{
+            borderWidth: 5
+          }}
+        />
+        <Filters
+          setSearchQuery={setSearchQuery}
+          checkedCriteria={checkedCriteria}
+          setCheckedCriteria={setCheckedCriteria}
+        />
+        <PlaceList
+          searchQuery={searchQuery}
+          checkedCriteria={checkedCriteria}
+          customCriteria={currentCategory.custom_criteria}
+        />
+      </Col>
+      );
 }
 
 export default CategoryView;

@@ -6,7 +6,7 @@ import {
   Route,
   HashRouter as Router,
   Switch,
-  withRouter,
+  withRouter
 } from 'react-router-dom';
 import { logoutUser, setCurrentUser } from './redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,7 +36,7 @@ import { useEffect } from 'react';
 
 const { Content, Footer } = Layout;
 
-function App() {
+function App () {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
@@ -60,64 +60,65 @@ function App() {
       const currentTime = Date.now() / 1000; // to get in milliseconds
       if (user.exp < currentTime) {
         // Logout user
+        // eslint-disable-next-line
         dispatch(logoutUser());
         // Redirect to login
-        <Redirect to={{ pathname: '/login' }} />;
+          <Redirect to={{ pathname: '/login' }} />;
       }
     }
   }, [dispatch]);
 
   return (
-    <Router basename="/">
+    <Router basename='/'>
       {isAuthenticated && <MobileNavBar menu={<NavBarWithRouter />} />}
       <Layout style={{ marginTop: '62px' }}>
         {isAuthenticated && <SideBar menu={<NavBarWithRouter />} />}
         <Layout
-          className="site-layout"
+          className='site-layout'
           style={!isAuthenticated ? { marginLeft: '0px' } : {}}
         >
           <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={RegisterWithRouter} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={RegisterWithRouter} />
             <Switch>
-              <PrivateRoute exact path="/" component={GroupListView} />
-              <PrivateRoute exact path="/groupview" component={GroupView} />
+              <PrivateRoute exact path='/' component={GroupListView} />
+              <PrivateRoute exact path='/groupview' component={GroupView} />
               <PrivateRoute
                 exact
-                path="/creategroup"
+                path='/creategroup'
                 component={CreateGroupWithRouter}
               />
               <PrivateRoute
                 exact
-                path="/addcategory"
+                path='/addcategory'
                 component={AddCategoryWithRouter}
               />
               <PrivateRoute
                 exact
-                path="/categoryview"
+                path='/categoryview'
                 component={CategoryView}
               />
               <PrivateRoute
                 exact
-                path="/addplace"
+                path='/addplace'
                 component={AddPlaceWithRouter}
               />
-              <PrivateRoute exact path="/placeview" component={PlaceView} />
+              <PrivateRoute exact path='/placeview' component={PlaceView} />
               <PrivateRoute
                 exact
-                path="/addreview"
+                path='/addreview'
                 component={AddReviewWithRouter}
               />
-              <PrivateRoute exact path="/requestview" component={RequestView} />
-              <PrivateRoute exact path="/userprofile" component={UserProfile} />
+              <PrivateRoute exact path='/requestview' component={RequestView} />
+              <PrivateRoute exact path='/userprofile' component={UserProfile} />
               <PrivateRoute
                 exact
-                path="/managegroup"
+                path='/managegroup'
                 component={ManageGroupWithRouter}
               />
               <PrivateRoute
                 exact
-                path="/favouritesview"
+                path='/favouritesview'
                 component={FavouritesView}
               />
             </Switch>

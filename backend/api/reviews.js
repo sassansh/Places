@@ -18,19 +18,19 @@ router.post('/', authenticateToken, (req, res) => {
     review_id: uuidv4(),
     user_id: user_id,
     place_id: place_id,
-    rating: rating,
+    rating: rating
   });
   newReview
     .save()
     .then(() =>
       res.json({
-        message: 'Created review successfully',
+        message: 'Created review successfully'
       })
     )
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: 'Error creating review',
+        message: 'Error creating review'
       })
     );
 });
@@ -40,13 +40,13 @@ router.put('/', authenticateToken, (req, res) => {
   Review.updateOne({ review_id: review_id }, { rating: rating })
     .then(() =>
       res.json({
-        message: 'Edited review successfully',
+        message: 'Edited review successfully'
       })
     )
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: 'Error editing review',
+        message: 'Error editing review'
       })
     );
 });

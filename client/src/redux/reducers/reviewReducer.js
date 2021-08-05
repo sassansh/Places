@@ -1,5 +1,5 @@
 const initialState = {
-  allReviews: [],
+  allReviews: []
 };
 
 const reviewReducer = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const reviewReducer = (state = initialState, action) => {
     case 'SET_REVIEWS':
       return {
         ...state,
-        allReviews: action.payload,
+        allReviews: action.payload
       };
     default:
       return state;

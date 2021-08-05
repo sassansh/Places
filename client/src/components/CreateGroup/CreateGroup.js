@@ -8,7 +8,7 @@ import {
   Input,
   Row,
   Select,
-  Typography,
+  Typography
 } from 'antd';
 
 import { createGroup } from '../../redux/actions/groupActions';
@@ -17,22 +17,22 @@ import { useState } from 'react';
 
 const { Option } = Select;
 
-function CreateGroup(props) {
+function CreateGroup (props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [logoData, setLogoData] = useState('');
   const [fieldInput, setFieldInput] = useState({
     name: '',
-    description: '',
+    description: ''
   });
   const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File');
   const [defaultCategories, setDefaultCategories] = useState([]);
 
-  function handleChange() {
+  function handleChange () {
     setFieldInput({
       name: form.getFieldValue('name'),
-      description: form.getFieldValue('description'),
+      description: form.getFieldValue('description')
     });
   }
 
@@ -54,13 +54,13 @@ function CreateGroup(props) {
     }
   };
 
-  function handleCategories(value) {
+  function handleCategories (value) {
     setDefaultCategories(value);
   }
 
-  function addGroup() {
-    let name = form.getFieldValue('name');
-    let description = form.getFieldValue('description');
+  function addGroup () {
+    const name = form.getFieldValue('name');
+    const description = form.getFieldValue('description');
     const newGroup = new FormData();
     newGroup.append('name', name);
     newGroup.append('description', description);
@@ -71,78 +71,78 @@ function CreateGroup(props) {
   }
 
   return (
-    <Col className="container">
-      <Row justify="center">
+    <Col className='container'>
+      <Row justify='center'>
         <Col lg={24} md={24}>
           <Title level={2}>Create Group</Title>
         </Col>
       </Row>
       <Divider
         style={{
-          borderWidth: 5,
+          borderWidth: 5
         }}
       />
-      <Row justify="center">
+      <Row justify='center'>
         <Col xl={12} lg={16} md={16} sm={18} xs={24}>
           <Form
-            className="form"
+            className='form'
             form={form}
-            layout="vertical"
-            size="large"
+            layout='vertical'
+            size='large'
             onChange={handleChange}
           >
-            <Form.Item name="name" label="Name">
-              <Input placeholder="Name" />
+            <Form.Item name='name' label='Name'>
+              <Input placeholder='Name' />
             </Form.Item>
-            <Form.Item name="description" label="Description">
-              <Input placeholder="Description" />
+            <Form.Item name='description' label='Description'>
+              <Input placeholder='Description' />
             </Form.Item>
           </Form>
           Logo
           <br />
           <br />
           <input
-            className="logouploadinput"
-            type="file"
-            id="logoupload"
+            className='logouploadinput'
+            type='file'
+            id='logoupload'
             onChange={logoHandler}
           />
-          <label className="logouploadlabel" htmlFor="logoupload">
+          <label className='logouploadlabel' htmlFor='logoupload'>
             {logoButtonName}
           </label>
           <br />
           <br />
           <br />
           <Form.Item
-            name="default-categories"
-            label="Categories"
+            name='default-categories'
+            label='Categories'
             rules={[
               {
-                type: 'array',
-              },
+                type: 'array'
+              }
             ]}
           >
             <Select
-              mode="multiple"
-              placeholder="Please select categories to be created in your group"
+              mode='multiple'
+              placeholder='Please select categories to be created in your group'
               onChange={handleCategories}
             >
-              <Option value="beaches">🏖️ Beaches</Option>
-              <Option value="restaurants">🍔 Restaurants</Option>
-              <Option value="nightclubs">🎶 Nightclubs</Option>
-              <Option value="parks">🏞️ Parks</Option>
-              <Option value="breweries">🍻 Breweries</Option>
+              <Option value='beaches'>🏖️ Beaches</Option>
+              <Option value='restaurants'>🍔 Restaurants</Option>
+              <Option value='nightclubs'>🎶 Nightclubs</Option>
+              <Option value='parks'>🏞️ Parks</Option>
+              <Option value='breweries'>🍻 Breweries</Option>
             </Select>
           </Form.Item>
         </Col>
       </Row>
-      <Row justify="center">
+      <Row justify='center'>
         <Col>
           <Button
             onClick={addGroup}
-            className="button"
-            type="primary"
-            size="large"
+            className='button'
+            type='primary'
+            size='large'
             disabled={
               fieldInput.name === '' ||
               fieldInput.description === '' ||

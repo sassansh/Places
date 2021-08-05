@@ -5,18 +5,18 @@ const Schema = mongoose.Schema;
 const groupSchema = new Schema({
   group_id: {
     type: String,
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   description: {
-    type: String,
+    type: String
   },
   avatarURL: {
-    type: String,
-  },
+    type: String
+  }
 });
 
 export default mongoose.model('Group', groupSchema, 'groups');

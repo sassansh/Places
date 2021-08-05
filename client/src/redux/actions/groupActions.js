@@ -17,8 +17,8 @@ export const createGroup = (newGroup, history) => async (dispatch) => {
   try {
     const newGroupResponse = await axios.post('/api/groups', newGroup, {
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+        'Content-Type': 'multipart/form-data'
+      }
     });
     loading();
     const groups = newGroupResponse.data;
@@ -36,13 +36,13 @@ export const createGroup = (newGroup, history) => async (dispatch) => {
 export const setCurrentGroup = (groupID) => {
   return {
     type: 'SET_CURRENT_GROUP',
-    payload: groupID,
+    payload: groupID
   };
 };
 
 export const setGroups = (groups) => {
   return {
     type: 'SET_GROUPS',
-    payload: groups,
+    payload: groups
   };
 };

@@ -9,11 +9,13 @@
   width: 100%;
   z-index: 1;
 }
+
 @media (min-width: 992px) {
   .menu {
     display: none;
   }
 }
+
 .logo {
   height: 32px;
   margin-left: 0.8rem;

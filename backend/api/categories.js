@@ -19,7 +19,7 @@ router.get('/', authenticateToken, (req, res) => {
       .catch((err) => console.log(err));
   } else {
     User.findOne({ user_id }).then((user) => {
-      let searchQuery = [];
+      const searchQuery = [];
       for (const group of user.groups) {
         searchQuery.push({ group_id: group });
       }
@@ -41,19 +41,19 @@ router.post('/', authenticateToken, (req, res) => {
     name_singular: name_singular,
     emoji: emoji,
     custom_criteria: custom_criteria,
-    group_id: group_id,
+    group_id: group_id
   });
   newCategory
     .save()
     .then(() =>
       res.json({
-        message: 'Created category successfully',
+        message: 'Created category successfully'
       })
     )
     .catch((err) =>
       res.status(400).json({
         error: err,
-        message: 'Error creating category',
+        message: 'Error creating category'
       })
     );
 });

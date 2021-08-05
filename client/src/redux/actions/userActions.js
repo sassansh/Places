@@ -23,7 +23,7 @@ export const getFavourites = () => async (dispatch) => {
   }
 };
 
-export const registerUser = (userData, history) => async (dispatch) => {
+export const registerUser = (userData, history) => async () => {
   const loading = message.loading('Registering user..', 0);
   try {
     await axios.post('/api/users/register', userData);
@@ -88,21 +88,21 @@ export const userRejectRequestToJoinGroup =
 export const setCurrentUser = (user) => {
   return {
     type: 'SET_CURRENT_USER',
-    payload: user,
+    payload: user
   };
 };
 
 export const setUsers = (users) => {
   return {
     type: 'SET_USERS',
-    payload: users,
+    payload: users
   };
 };
 
 export const setFavourites = (favourites) => {
   return {
     type: 'SET_FAVOURITES',
-    payload: favourites,
+    payload: favourites
   };
 };
 
@@ -120,7 +120,7 @@ export const removeUser = (userData, history) => async (dispatch) => {
   const loading = message.loading('Removing user..', 0);
   try {
     const deleteGroupResponse = await axios.delete('/api/users/group', {
-      data: userData,
+      data: userData
     });
     loading();
     const success = deleteGroupResponse.data.success;

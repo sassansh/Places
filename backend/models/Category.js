@@ -5,28 +5,28 @@ const Schema = mongoose.Schema;
 const categorySchema = new Schema({
   category_id: {
     type: String,
-    required: true,
+    required: true
   },
   group_id: {
     type: String,
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   name_singular: {
     type: String,
-    required: true,
+    required: true
   },
   emoji: {
     type: String,
-    required: true,
+    required: true
   },
   custom_criteria: {
     type: [String],
-    required: true,
-  },
+    required: true
+  }
 });
 
 export default mongoose.model('Category', categorySchema, 'categories');

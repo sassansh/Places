@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const { Search } = Input;
 
-function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
+function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
   const [allChecked, setAllChecked] = useState(true);
   const onSearch = (value) => setSearchQuery(value);
   const onChange = (value) => {
@@ -47,7 +47,7 @@ function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
                   >
                     All
                   </Checkbox>
-                  <Divider className='divider' type='vertical'></Divider>
+                  <Divider className='divider' type='vertical' />
                   <Checkbox.Group
                     className='checkboxGroup'
                     options={options}
@@ -77,7 +77,7 @@ function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
     return (
       <Col>
         <Row justify='center' align='middle'>
-          <Col lg={17}></Col>
+          <Col lg={17} />
           <Col lg={7}>
             <Row justify='center'>
               <Search

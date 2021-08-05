@@ -1,5 +1,3 @@
-import './GroupList.css';
-
 import { Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +8,7 @@ import { getReviews } from '../../redux/actions/reviewActions';
 import { getUsers } from '../../redux/actions/userActions';
 import { useEffect } from 'react';
 
-function GroupList() {
+function GroupList () {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,8 +19,8 @@ function GroupList() {
   }, [dispatch]);
 
   const groups = useSelector((state) => state.groups.allGroups);
-  let groupsData = groups;
-  let grouplist = groupsData.map((groupData) => (
+  const groupsData = groups;
+  const grouplist = groupsData.map((groupData) => (
     <Group group={groupData} key={groupData.group_id} />
   ));
 

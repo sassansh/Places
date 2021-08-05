@@ -14,7 +14,7 @@ const router = express.Router();
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 router.get('/', authenticateToken, (req, res) => {
@@ -26,7 +26,7 @@ router.get('/', authenticateToken, (req, res) => {
 router.post('/', authenticateToken, async (req, res) => {
   const { name, description, defaultCategories } = req.body;
   const user_id = req.user.user_id;
-  let group_id = uuidv4();
+  const group_id = uuidv4();
 
   let avatarURL;
   const groupLogoSubmitted = Object.keys(req.files).length > 0;
@@ -37,7 +37,7 @@ router.post('/', authenticateToken, async (req, res) => {
     avatarURL = cloudinaryResponse.secure_url;
   } else {
     res.status(400).json({
-      message: 'Group logo missing!',
+      message: 'Group logo missing!'
     });
   }
 
@@ -45,7 +45,7 @@ router.post('/', authenticateToken, async (req, res) => {
     group_id: group_id,
     name: name,
     description: description,
-    avatarURL: avatarURL,
+    avatarURL: avatarURL
   });
   if (defaultCategories.includes('beaches')) {
     const beachesCategory = new Category({
@@ -54,7 +54,7 @@ router.post('/', authenticateToken, async (req, res) => {
       name_singular: 'Beach',
       emoji: '🏖️',
       custom_criteria: [],
-      group_id: group_id,
+      group_id: group_id
     });
     await beachesCategory.save();
   }
@@ -65,7 +65,7 @@ router.post('/', authenticateToken, async (req, res) => {
       name_singular: 'Restaurant',
       emoji: '🍔',
       custom_criteria: [],
-      group_id: group_id,
+      group_id: group_id
     });
     await restaurantsCategory.save();
   }
@@ -76,7 +76,7 @@ router.post('/', authenticateToken, async (req, res) => {
       name_singular: 'Nightclub',
       emoji: '🎶',
       custom_criteria: [],
-      group_id: group_id,
+      group_id: group_id
     });
     await nightclubsCategory.save();
   }
@@ -87,7 +87,7 @@ router.post('/', authenticateToken, async (req, res) => {
       name_singular: 'Park',
       emoji: '🏞️',
       custom_criteria: [],
-      group_id: group_id,
+      group_id: group_id
     });
     await parksCategory.save();
   }
@@ -98,13 +98,13 @@ router.post('/', authenticateToken, async (req, res) => {
       name_singular: 'Brewery',
       emoji: '🍻',
       custom_criteria: [],
-      group_id: group_id,
+      group_id: group_id
     });
     await breweriesCategory.save();
   }
   await Promise.all([
     newGroup.save().then(() => Group.find()),
-    User.updateOne({ user_id: user_id }, { $push: { groups: group_id } }),
+    User.updateOne({ user_id: user_id }, { $push: { groups: group_id } })
   ])
     .then((data) => {
       res.json(data[0]);

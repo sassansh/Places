@@ -8,7 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 
-function UserProfile() {
+function UserProfile () {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -26,10 +26,10 @@ function UserProfile() {
   let numGroups = 0;
   let numPlaces = 0;
 
-  function getPlace(place_id) {
+  function getPlace (place_id) {
     try {
       numPlaces++;
-      let placeName = places.find((place) => place.place_id === place_id).name;
+      const placeName = places.find((place) => place.place_id === place_id).name;
       return placeName;
     } catch (e) {
       numPlaces--;
@@ -37,24 +37,24 @@ function UserProfile() {
     }
   }
 
-  function getRating(rating) {
+  function getRating (rating) {
     let overallRating = 0;
     if (rating.length < 2) {
       overallRating = rating[0];
     } else {
-      let total = rating.reduce((a, b) => a + b, 0);
+      const total = rating.reduce((a, b) => a + b, 0);
       overallRating = total / rating.length;
     }
-    return <Rate value={overallRating} disabled={true} />;
+    return <Rate value={overallRating} disabled />;
   }
 
-  function getGroup(group_id) {
-    let targetGroup = groups.find((group) => group.group_id === group_id);
+  function getGroup (group_id) {
+    const targetGroup = groups.find((group) => group.group_id === group_id);
     try {
       numGroups++;
       return (
-        <Card size="small">
-          <span className="group">
+        <Card size='small'>
+          <span className='group'>
             <Avatar size={64} src={targetGroup.avatarURL} />
             &emsp;{targetGroup.name}
           </span>
@@ -66,24 +66,24 @@ function UserProfile() {
     }
   }
 
-  function getGroupName(place_id) {
+  function getGroupName (place_id) {
     try {
-      let group_id = places.find(
+      const group_id = places.find(
         (place) => place.place_id === place_id
       ).group_id;
-      let groupName = groups.find((group) => group.group_id === group_id).name;
+      const groupName = groups.find((group) => group.group_id === group_id).name;
       return ' 👤 ' + groupName;
     } catch (e) {
       console.error(e);
     }
   }
 
-  function getCategoryName(place_id) {
+  function getCategoryName (place_id) {
     try {
-      let category_id = places.find(
+      const category_id = places.find(
         (place) => place.place_id === place_id
       ).category_id;
-      let targetCategory = categories.find(
+      const targetCategory = categories.find(
         (category) => category.category_id === category_id
       );
       let categoryEmoji = '';
@@ -100,24 +100,24 @@ function UserProfile() {
 
   const myGroups = userData.groups;
   const myGroupsItems = myGroups.map((group_id) => (
-    <li key={group_id} className="group">
+    <li key={group_id} className='group'>
       {getGroup(group_id)}
     </li>
   ));
 
   const myReviews = reviews.filter((review) => review.user_id === user.user_id);
   const myReviewsItems = myReviews.map((review) => (
-    <li key={review.review_id} className="review">
-      <Card size="small">
+    <li key={review.review_id} className='review'>
+      <Card size='small'>
         <Row>
           <Col span={12}>
-            <span className="place">{getPlace(review.place_id)}</span>
+            <span className='place'>{getPlace(review.place_id)}</span>
           </Col>
-          <Col className="rating" span={12}>
+          <Col className='rating' span={12}>
             {getRating(review.rating)}
           </Col>
         </Row>
-        <span className="meta">
+        <span className='meta'>
           {getCategoryName(review.place_id) + getGroupName(review.place_id)}
         </span>
       </Card>
@@ -125,8 +125,8 @@ function UserProfile() {
   ));
 
   return (
-    <div className="container">
-      <Row justify="left">
+    <div className='container'>
+      <Row justify='left'>
         <Col>
           <Title level={2}>
             <UserOutlined /> User Profile
@@ -136,36 +136,36 @@ function UserProfile() {
       <Divider
         style={{
           marginTop: '0',
-          borderWidth: 5,
+          borderWidth: 5
         }}
       />
-      <Row justify="center">
-        <Col className="column1" lg={6} md={6} sm={24}>
-          <div className="profile">
+      <Row justify='center'>
+        <Col className='column1' lg={6} md={6} sm={24}>
+          <div className='profile'>
             <img
-              className="profilePic"
+              className='profilePic'
               src={userData.avatarURL}
-              alt="profileImg"
+              alt='profileImg'
             />
-            <div className="name">{userData.name}</div>
+            <div className='name'>{userData.name}</div>
           </div>
           <br />
-          <div className="detailsHeading">Details</div>
+          <div className='detailsHeading'>Details</div>
           <Divider
             style={{
               marginTop: '0',
-              borderWidth: 4,
+              borderWidth: 4
             }}
           />
-          <div className="details">Member of {numGroups} Groups</div>
-          <div className="details">Reviewed {numPlaces} Places</div>
+          <div className='details'>Member of {numGroups} Groups</div>
+          <div className='details'>Reviewed {numPlaces} Places</div>
         </Col>
-        <Col className="column2" lg={9} md={9} sm={24}>
-          <div className="heading">My Groups</div>
-          <ul className="group">{myGroupsItems}</ul>
+        <Col className='column2' lg={9} md={9} sm={24}>
+          <div className='heading'>My Groups</div>
+          <ul className='group'>{myGroupsItems}</ul>
         </Col>
-        <Col className="column3" lg={9} md={9} sm={24}>
-          <div className="heading">My Reviews</div>
+        <Col className='column3' lg={9} md={9} sm={24}>
+          <div className='heading'>My Reviews</div>
           <ul>{myReviewsItems}</ul>
         </Col>
       </Row>

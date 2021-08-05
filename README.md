@@ -13,7 +13,7 @@
   <h3 align="center">Places</h3>
   <h4 align="center"><a href="https://places-cpsc455.herokuapp.com/">View Demo</a></h4>
   
- 
+   
   <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">

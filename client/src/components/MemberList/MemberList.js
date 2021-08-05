@@ -1,12 +1,11 @@
-import "./MemberList.css";
+import { Col, Row } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Col, Row } from "antd";
-import Member from "../Member/Member";
-import { getUsers } from "../../redux/actions/userActions";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import Member from '../Member/Member';
+import { getUsers } from '../../redux/actions/userActions';
+import { useEffect } from 'react';
 
-function MemberList(props) {
+function MemberList (props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +18,7 @@ function MemberList(props) {
     user.groups.includes(currentGroupID)
   );
 
-  let memberList = currentGroupMembers.map((member) => (
+  const memberList = currentGroupMembers.map((member) => (
     <Member
       key={member.user_id}
       user={member}

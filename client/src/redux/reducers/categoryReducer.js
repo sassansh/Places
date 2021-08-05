@@ -1,6 +1,6 @@
 const initialState = {
   allCategories: [],
-  currentCategoryID: '',
+  currentCategoryID: ''
 };
 
 const categoryReducer = (state = initialState, action) => {
@@ -8,12 +8,12 @@ const categoryReducer = (state = initialState, action) => {
     case 'SET_CURRENT_CATEGORY':
       return {
         ...state,
-        currentCategoryID: action.payload,
+        currentCategoryID: action.payload
       };
     case 'SET_CATEGORIES':
       return {
         ...state,
-        allCategories: action.payload,
+        allCategories: action.payload
       };
     default:
       return state;

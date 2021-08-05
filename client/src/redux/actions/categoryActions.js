@@ -5,8 +5,8 @@ export const getCategories = (group_id) => async (dispatch) => {
   try {
     const categoriesResponse = await axios.get('/api/categories', {
       params: {
-        group_id: group_id,
-      },
+        group_id: group_id
+      }
     });
     const categories = categoriesResponse.data;
     dispatch(setCategories(categories));
@@ -37,13 +37,13 @@ export const addCategory = (newCategory, history) => async (dispatch) => {
 export const setCategories = (categories) => {
   return {
     type: 'SET_CATEGORIES',
-    payload: categories,
+    payload: categories
   };
 };
 
 export const setCurrentCategory = (categoryID) => {
   return {
     type: 'SET_CURRENT_CATEGORY',
-    payload: categoryID,
+    payload: categoryID
   };
 };
