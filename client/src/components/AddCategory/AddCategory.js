@@ -53,7 +53,7 @@ function AddCategory(props) {
   function handleAddCategory() {
     const name = form.getFieldValue('name_plural');
     const name_singular = form.getFieldValue('name_singular');
-    const emoji = form.getFieldValue('emoji');
+    const emoji = form.getFieldValue("emoji");
     const criteria = form.getFieldValue('criteria');
     const use_custom_criteria = form.getFieldValue('use_custom_criteria');
     const rawCriteria = [];
