@@ -231,7 +231,7 @@ router.post('/group/request', authenticateToken, (req, res) => {
 
       // Add group ID to user's requestGroups
       User.updateOne({ user_id }, { $push: { requestGroups: group_id } })
-        .then((user) => res.json({ success: true }))
+        .then(() => res.json({ success: true }))
         .catch((err) => console.log(err));
     });
   });
@@ -287,7 +287,7 @@ router.post('/group/accept', authenticateToken, (req, res) => {
             { user_id: other_user_id },
             { $push: { groups: group_id } }
           )
-            .then((user) => res.json({ success: true }))
+            .then(() => res.json({ success: true }))
             .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
