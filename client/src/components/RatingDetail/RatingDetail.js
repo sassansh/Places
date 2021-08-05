@@ -10,9 +10,6 @@ function RatingDetail(props) {
         .reduce((p, c) => p + c, 0) / props.reviewsData.length
   );
 
-  console.log(props.reviewsData);
-  console.log(criteriaData);
-
   const criteria = props.criteria.map((criterion, index) => (
     <div key={criterion}>
       <RatingCriterion name={criterion} score={criteriaData[index]} />
