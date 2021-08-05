@@ -31,7 +31,7 @@ function AddReview(props) {
 
   const customCriteria = category.custom_criteria;
 
-  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map((_, i) => 0));
+  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map(() => 0));
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
@@ -83,13 +83,13 @@ function AddReview(props) {
                   style={{ fontSize: '25px' }}
                   onChange={(value) => {
                       
-                    setRateValues([...rateValues.slice(0, index), value, ...rateValues.slice(index+1)])
+                    setRateValues([...rateValues.slice(0, index), value, ...rateValues.slice(index+1)]);
                     console.log(rateValues);
                   }}
                   value={rateValues[index]}
                 />
               </li>
-            )
+            );
         });
         return (
             <div>
