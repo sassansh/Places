@@ -109,7 +109,7 @@ function AddReview (props) {
     setRateValue(value);
   }
 
-  function handleSubmitReview (value) {
+  function handleSubmitReview () {
     let newReview = {};
     if (existingReview) {
       const rating = [];
@@ -189,7 +189,7 @@ function AddReview (props) {
     } else {
       if (customCriteria.length === 2) {
         customRate = [
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria1'>
             <span className='criteriaName'>{customCriteria[0] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -198,7 +198,7 @@ function AddReview (props) {
               value={rateValue0}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria2'>
             <span className='criteriaName'>{customCriteria[1] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -210,7 +210,7 @@ function AddReview (props) {
         ];
       } else if (customCriteria.length === 3) {
         customRate = [
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria1'>
             <span className='criteriaName'>{customCriteria[0] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -219,7 +219,7 @@ function AddReview (props) {
               value={rateValue0}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria2'>
             <span className='criteriaName'>{customCriteria[1] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -228,7 +228,7 @@ function AddReview (props) {
               value={rateValue1}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria3'>
             <span className='criteriaName'>{customCriteria[2] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -240,7 +240,7 @@ function AddReview (props) {
         ];
       } else if (customCriteria.length === 4) {
         customRate = [
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria1'>
             <span className='criteriaName'>{customCriteria[0] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -249,7 +249,7 @@ function AddReview (props) {
               value={rateValue0}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria2'>
             <span className='criteriaName'>{customCriteria[1] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -258,7 +258,7 @@ function AddReview (props) {
               value={rateValue1}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria3'>
             <span className='criteriaName'>{customCriteria[2] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -267,7 +267,7 @@ function AddReview (props) {
               value={rateValue2}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria4'>
             <span className='criteriaName'>{customCriteria[3] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -279,7 +279,7 @@ function AddReview (props) {
         ];
       } else {
         customRate = [
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria1'>
             <span className='criteriaName'>{customCriteria[0] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -288,7 +288,7 @@ function AddReview (props) {
               value={rateValue0}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria2'>
             <span className='criteriaName'>{customCriteria[1] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -297,7 +297,7 @@ function AddReview (props) {
               value={rateValue1}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria3'>
             <span className='criteriaName'>{customCriteria[2] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -306,7 +306,7 @@ function AddReview (props) {
               value={rateValue2}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria4'>
             <span className='criteriaName'>{customCriteria[3] + ':'}</span>
             <span>&ensp;</span>
             <Rate
@@ -315,7 +315,7 @@ function AddReview (props) {
               value={rateValue3}
             />
           </li>,
-          <li className='criteriaList'>
+          <li className='criteriaList' key='criteria5'>
             <span className='criteriaName'>{customCriteria[4] + ':'}</span>
             <span>&ensp;</span>
             <Rate

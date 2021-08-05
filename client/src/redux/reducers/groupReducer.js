@@ -5,13 +5,6 @@ const initialState = {
 
 const groupReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'CREATE_GROUP':
-      const newGroups = [...state.allGroups];
-      newGroups.push(action.payload);
-      return {
-        ...state,
-        allGroups: newGroups
-      };
     case 'SET_GROUPS':
       return {
         ...state,

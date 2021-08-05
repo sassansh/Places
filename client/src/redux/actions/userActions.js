@@ -23,7 +23,7 @@ export const getFavourites = () => async (dispatch) => {
   }
 };
 
-export const registerUser = (userData, history) => async (dispatch) => {
+export const registerUser = (userData, history) => async () => {
   const loading = message.loading('Registering user..', 0);
   try {
     await axios.post('/api/users/register', userData);
