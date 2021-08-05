@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { setCurrentGroup } from '../../redux/actions/groupActions';
 import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
-function Group (props) {
+function Group(props) {
   const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
@@ -50,11 +50,11 @@ function Group (props) {
     });
   });
 
-  function handleRequestToJoin () {
+  function handleRequestToJoin() {
     dispatch(userRequestToJoinGroup(props.group.group_id));
   }
 
-  function renderButton () {
+  function renderButton() {
     if (currentUser) {
       if (currentUser.groups.includes(props.group.group_id)) {
         return (

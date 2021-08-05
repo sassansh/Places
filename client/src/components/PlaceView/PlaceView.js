@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 
 const { Title } = Typography;
 
-function PlaceView () {
+function PlaceView() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -50,11 +50,11 @@ function PlaceView () {
     ? Number(averageScore.toFixed(2)).toString()
     : '?';
 
-  function addFavourite () {
+  function addFavourite() {
     dispatch(addFavouritePlace(currentPlaceID));
   }
 
-  function removeFavourite () {
+  function removeFavourite() {
     dispatch(deleteFavouritePlace(currentPlaceID));
   }
 
@@ -71,23 +71,21 @@ function PlaceView () {
             <Col lg={12} md={12} sm={12}>
               <Title level={2}>
                 {currentPlace.name}{' '}
-                {myFavourites.includes(currentPlaceID)
-                  ? (
-                    <Tooltip title='Remove favourite'>
-                      <HeartFilled
-                        onClick={removeFavourite}
-                        style={{ color: 'red' }}
-                      />
-                    </Tooltip>
-                    )
-                  : (
-                    <Tooltip title='Favourite place'>
-                      <HeartOutlined
-                        onClick={addFavourite}
-                        style={{ color: 'red' }}
-                      />
-                    </Tooltip>
-                    )}
+                {myFavourites.includes(currentPlaceID) ? (
+                  <Tooltip title='Remove favourite'>
+                    <HeartFilled
+                      onClick={removeFavourite}
+                      style={{ color: 'red' }}
+                    />
+                  </Tooltip>
+                ) : (
+                  <Tooltip title='Favourite place'>
+                    <HeartOutlined
+                      onClick={addFavourite}
+                      style={{ color: 'red' }}
+                    />
+                  </Tooltip>
+                )}
               </Title>
             </Col>
             <Col lg={0} md={0} sm={0} xs={24} />

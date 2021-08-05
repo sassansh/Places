@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPlace } from '../../redux/actions/placeActions';
 import { useState } from 'react';
 
-function AddPlace (props) {
+function AddPlace(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -45,13 +45,13 @@ function AddPlace (props) {
     );
   };
 
-  function handleChange () {
+  function handleChange() {
     setFieldInput({
       name: form.getFieldValue('name')
     });
   }
 
-  function handleAddPlace () {
+  function handleAddPlace() {
     const name = form.getFieldValue('name');
     const address = form.getFieldValue('address');
     if (name === undefined) return;

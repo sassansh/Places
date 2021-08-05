@@ -36,7 +36,7 @@ import { useEffect } from 'react';
 
 const { Content, Footer } = Layout;
 
-function App () {
+function App() {
   const NavBarWithRouter = withRouter(NavBar);
   const RegisterWithRouter = withRouter(Register);
   const CreateGroupWithRouter = withRouter(CreateGroup);
@@ -63,7 +63,7 @@ function App () {
         // eslint-disable-next-line
         dispatch(logoutUser());
         // Redirect to login
-          <Redirect to={{ pathname: '/login' }} />;
+        <Redirect to={{ pathname: '/login' }} />;
       }
     }
   }, [dispatch]);

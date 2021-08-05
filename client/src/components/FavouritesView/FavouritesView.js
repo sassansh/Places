@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 
 const { Title } = Typography;
 
-function FavouritesView () {
+function FavouritesView() {
   const myFavourites = useSelector((state) => state.users.favourite_places);
   const places = useSelector((state) => state.places.allPlaces);
   const groups = useSelector((state) => state.groups.allGroups);
@@ -25,32 +25,36 @@ function FavouritesView () {
     dispatch(getFavourites());
   }, [dispatch]);
 
-  function handleFavourite (place_id) {
+  function handleFavourite(place_id) {
     dispatch(deleteFavouritePlace(place_id));
   }
 
-  function getPlace (place_id) {
+  function getPlace(place_id) {
     try {
-      const placeName = places.find((place) => place.place_id === place_id).name;
+      const placeName = places.find(
+        (place) => place.place_id === place_id
+      ).name;
       return placeName;
     } catch (e) {
       console.error(e);
     }
   }
 
-  function getGroupName (place_id) {
+  function getGroupName(place_id) {
     try {
       const group_id = places.find(
         (place) => place.place_id === place_id
       ).group_id;
-      const groupName = groups.find((group) => group.group_id === group_id).name;
+      const groupName = groups.find(
+        (group) => group.group_id === group_id
+      ).name;
       return ' 👤 ' + groupName;
     } catch (e) {
       console.error(e);
     }
   }
 
-  function getCategoryName (place_id) {
+  function getCategoryName(place_id) {
     try {
       const category_id = places.find(
         (place) => place.place_id === place_id
@@ -107,23 +111,21 @@ function FavouritesView () {
           borderWidth: 5
         }}
       />
-      {myFavourites.length >= 1
-        ? (
-          <Row justify='center'>
-            <Col className='column3' lg={9} md={9} sm={24}>
-              <ul>{myFavouriteItems}</ul>
-            </Col>
-          </Row>
-          )
-        : (
-          <Row justify='center'>
-            <Col lg={10} md={12} sm={18} xs={24}>
-              <Card className='noFavourites' size='medium'>
-                You do not have any favourited places.
-              </Card>
-            </Col>
-          </Row>
-          )}
+      {myFavourites.length >= 1 ? (
+        <Row justify='center'>
+          <Col className='column3' lg={9} md={9} sm={24}>
+            <ul>{myFavouriteItems}</ul>
+          </Col>
+        </Row>
+      ) : (
+        <Row justify='center'>
+          <Col lg={10} md={12} sm={18} xs={24}>
+            <Card className='noFavourites' size='medium'>
+              You do not have any favourited places.
+            </Card>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 }

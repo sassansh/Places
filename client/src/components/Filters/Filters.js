@@ -1,12 +1,13 @@
 import './Filters.css';
 
-import { Col, Row, Input, Checkbox, Divider, Card } from 'antd';
-import { useState } from 'react';
+import { Card, Checkbox, Col, Divider, Input, Row } from 'antd';
+
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const { Search } = Input;
 
-function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
+function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
   const [allChecked, setAllChecked] = useState(true);
   const onSearch = (value) => setSearchQuery(value);
   const onChange = (value) => {

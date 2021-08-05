@@ -1,13 +1,13 @@
 import './ReviewList.css';
 
-import { Button, Row, Col } from 'antd';
+import { Button, Col, Row } from 'antd';
 
 import { Link } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';
 import Review from '../Review/Review';
 import { useSelector } from 'react-redux';
 
-function ReviewList (props) {
+function ReviewList(props) {
   let reviewsData = props.reviewsData;
   const currentUser = useSelector((state) => state.users.user.user_id);
 

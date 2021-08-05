@@ -6,7 +6,7 @@ import GroupList from '../GroupList/GroupList';
 import { Link } from 'react-router-dom';
 import { TeamOutlined } from '@ant-design/icons';
 
-function GroupListView () {
+function GroupListView() {
   const { Title } = Typography;
   return (
     <Col className='container'>

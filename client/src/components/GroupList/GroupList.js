@@ -8,7 +8,7 @@ import { getReviews } from '../../redux/actions/reviewActions';
 import { getUsers } from '../../redux/actions/userActions';
 import { useEffect } from 'react';
 
-function GroupList () {
+function GroupList() {
   const dispatch = useDispatch();
 
   useEffect(() => {

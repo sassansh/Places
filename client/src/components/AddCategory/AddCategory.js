@@ -24,7 +24,7 @@ import { Picker } from 'emoji-mart';
 import { addCategory } from '../../redux/actions/categoryActions';
 import { useState } from 'react';
 
-function AddCategory (props) {
+function AddCategory(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ function AddCategory (props) {
 
   const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size'];
 
-  function handleChange () {
+  function handleChange() {
     const emojiField = form.getFieldValue('emoji');
     if (emojiField) {
       const graphemes = splitter.splitGraphemes(emojiField);
@@ -50,7 +50,7 @@ function AddCategory (props) {
     }
   }
 
-  function handleAddCategory () {
+  function handleAddCategory() {
     const name = form.getFieldValue('name_plural');
     const name_singular = form.getFieldValue('name_singular');
     const emoji = form.getFieldValue('emoji');

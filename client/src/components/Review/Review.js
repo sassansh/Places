@@ -7,7 +7,7 @@ import { EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { setCurrentPlace } from '../../redux/actions/placeActions';
 
-function Review (props) {
+function Review(props) {
   const dispatch = useDispatch();
   const review = props.review;
   const users = useSelector((state) => state.users.allUsers);

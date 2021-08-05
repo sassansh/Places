@@ -1,14 +1,6 @@
 import './AddReview.css';
 
-import {
-  Avatar,
-  Button,
-  Col,
-  Divider,
-  Rate,
-  Row,
-  Typography
-} from 'antd';
+import { Avatar, Button, Col, Divider, Rate, Row, Typography } from 'antd';
 import {
   addReview,
   editReview,
@@ -17,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
-function AddReview (props) {
+function AddReview(props) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews);
   const currentUserID = useSelector((state) => state.users.user.user_id);
@@ -77,39 +69,52 @@ function AddReview (props) {
 
   useEffect(() => {
     if (customCriteria.length >= 2) {
-      const total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
+      const total = [
+        rateValue0,
+        rateValue1,
+        rateValue2,
+        rateValue3,
+        rateValue4
+      ].reduce((a, b) => a + b, 0);
       const avg = total / customCriteria.length;
       setRateValue(avg);
     }
-  }, [customCriteria.length, rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
+  }, [
+    customCriteria.length,
+    rateValue0,
+    rateValue1,
+    rateValue2,
+    rateValue3,
+    rateValue4
+  ]);
 
   const { Title } = Typography;
 
-  function handleRateChangeCustom0 (value) {
+  function handleRateChangeCustom0(value) {
     setRateValue0(value);
   }
 
-  function handleRateChangeCustom1 (value) {
+  function handleRateChangeCustom1(value) {
     setRateValue1(value);
   }
 
-  function handleRateChangeCustom2 (value) {
+  function handleRateChangeCustom2(value) {
     setRateValue2(value);
   }
 
-  function handleRateChangeCustom3 (value) {
+  function handleRateChangeCustom3(value) {
     setRateValue3(value);
   }
 
-  function handleRateChangeCustom4 (value) {
+  function handleRateChangeCustom4(value) {
     setRateValue4(value);
   }
 
-  function handleRateChange (value) {
+  function handleRateChange(value) {
     setRateValue(value);
   }
 
-  function handleSubmitReview () {
+  function handleSubmitReview() {
     let newReview = {};
     if (existingReview) {
       const rating = [];
@@ -174,7 +179,7 @@ function AddReview (props) {
     }
   }
 
-  function getRate () {
+  function getRate() {
     let customRate;
     if (customCriteria.length < 2) {
       return (
@@ -331,11 +336,7 @@ function AddReview (props) {
           <Row justify='start'>
             <Col>
               <span className='overall'>
-                <Rate
-                  style={{ fontSize: '40px' }}
-                  value={rateValue}
-                  disabled
-                />
+                <Rate style={{ fontSize: '40px' }} value={rateValue} disabled />
               </span>
               <ul>{customRate}</ul>
             </Col>
@@ -364,11 +365,7 @@ function AddReview (props) {
       <Row justify='center'>
         <div className='column1'>
           <Col span={5}>
-            <img
-              src={place.ImageURL}
-              className='placeImg'
-              alt='place'
-            />
+            <img src={place.ImageURL} className='placeImg' alt='place' />
           </Col>
         </div>
         <Col className='column2' span={5}>

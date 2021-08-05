@@ -5,7 +5,7 @@ import { Col, Divider, Row, Typography } from 'antd';
 import { BellOutlined } from '@ant-design/icons';
 import RequestList from '../RequestList/RequestList';
 
-function RequestView () {
+function RequestView() {
   const { Title } = Typography;
   return (
     <div className='container'>
