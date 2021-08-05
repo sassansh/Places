@@ -17,7 +17,8 @@ function Review(props) {
   const isCurrentUser =
     review.user_id === useSelector((state) => state.users.user.user_id);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
-  const ratingAverage = review.rating.reduce((p, c) => p + c, 0) / review.rating.length;
+  const ratingAverage =
+    review.rating.reduce((p, c) => p + c, 0) / review.rating.length;
 
   return (
     <li>

@@ -9,8 +9,8 @@ import {
 } from '../../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import ReviewList from '../ReviewList/ReviewList';
 import RatingDetail from '../RatingDetail/RatingDetail';
+import ReviewList from '../ReviewList/ReviewList';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
@@ -46,21 +46,18 @@ function PlaceView() {
   const isCustom = currentCategory.custom_criteria.length > 0;
 
   const averageScore =
-    isCustom && currentCategory?
-      reviewsData
-        .map((reviewData) => reviewData.rating.reduce((p,c) => p + c, 0))
-        .reduce((p, c) => p + c, 0) / (reviewsData.length * currentCategory.custom_criteria.length)
-    :
-      reviewsData
-        .map((reviewData) => reviewData.rating[0])
-        .reduce((p, c) => p + c, 0) / reviewsData.length
-
+    isCustom && currentCategory
+      ? reviewsData
+          .map((reviewData) => reviewData.rating.reduce((p, c) => p + c, 0))
+          .reduce((p, c) => p + c, 0) /
+        (reviewsData.length * currentCategory.custom_criteria.length)
+      : reviewsData
+          .map((reviewData) => reviewData.rating[0])
+          .reduce((p, c) => p + c, 0) / reviewsData.length;
 
   const averageScoreString = averageScore
     ? Number(averageScore.toFixed(2)).toString()
     : '?';
-
-
 
   function addFavourite() {
     dispatch(addFavouritePlace(currentPlaceID));
@@ -139,20 +136,20 @@ function PlaceView() {
         </Col>
         <Col lg={0} xxl={2} />
         <Col xxl={8} lg={12} md={24} xs={24}>
-          {isCustom?
-            <RatingDetail criteria={currentCategory.custom_criteria} reviewsData={reviewsData} />
-          :
+          {isCustom ? (
+            <RatingDetail
+              criteria={currentCategory.custom_criteria}
+              reviewsData={reviewsData}
+            />
+          ) : (
             <ReviewList reviewsData={reviewsData} />
-          }
-
+          )}
         </Col>
       </Row>
       <Row className='custom-rating-list' justify='center'>
-      <Col xxl={14} xl={14} md={24} sm={24} xs={24}>
-      {isCustom &&
-        <ReviewList reviewsData={reviewsData} />
-      }
-      </Col>
+        <Col xxl={14} xl={14} md={24} sm={24} xs={24}>
+          {isCustom && <ReviewList reviewsData={reviewsData} />}
+        </Col>
       </Row>
     </div>
   );
