@@ -1,0 +1,9 @@
+.crit-name {
+  font-size: large;
+  margin: 5px 0 0 0;
+  padding-left: 12px;
+}
+
+.crit-rating {
+  text-align: left;
+}

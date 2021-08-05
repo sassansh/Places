@@ -20,6 +20,10 @@
   text-align: center;
 }
 
+.custom-rating-list {
+  margin-top: 16px;
+}
+
 @media (max-width: 575px) {
   .overallRating {
     justify-content: center;
