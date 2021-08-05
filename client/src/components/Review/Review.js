@@ -17,6 +17,7 @@ function Review(props) {
   const isCurrentUser =
     review.user_id === useSelector((state) => state.users.user.user_id);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
+  const ratingAverage = review.rating.reduce((p, c) => p + c, 0) / review.rating.length;
 
   return (
     <li>
@@ -26,7 +27,7 @@ function Review(props) {
             {reviewer}
           </Col>
           <Col span={12} className='rating'>
-            <Rate allowHalf defaultValue={review.rating} disabled />
+            <Rate allowHalf defaultValue={ratingAverage} disabled />
           </Col>
         </Row>
         {isCurrentUser && (
