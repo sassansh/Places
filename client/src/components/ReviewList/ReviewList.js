@@ -1,6 +1,6 @@
 import './ReviewList.css';
 
-import { Button, Row, Col } from 'antd';
+import { Button, Col, Row } from 'antd';
 
 import { Link } from 'react-router-dom';
 import { PlusOutlined } from '@ant-design/icons';

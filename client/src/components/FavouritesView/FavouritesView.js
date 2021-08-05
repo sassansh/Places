@@ -31,7 +31,9 @@ function FavouritesView () {
 
   function getPlace (place_id) {
     try {
-      const placeName = places.find((place) => place.place_id === place_id).name;
+      const placeName = places.find(
+        (place) => place.place_id === place_id
+      ).name;
       return placeName;
     } catch (e) {
       console.error(e);
@@ -43,7 +45,9 @@ function FavouritesView () {
       const group_id = places.find(
         (place) => place.place_id === place_id
       ).group_id;
-      const groupName = groups.find((group) => group.group_id === group_id).name;
+      const groupName = groups.find(
+        (group) => group.group_id === group_id
+      ).name;
       return ' 👤 ' + groupName;
     } catch (e) {
       console.error(e);

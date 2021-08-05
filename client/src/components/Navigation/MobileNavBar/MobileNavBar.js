@@ -1,11 +1,10 @@
 import './MobileNavBar.css';
 
 import { Button, Drawer, Dropdown, Menu } from 'antd';
-import { LogoutOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
+import { LogoutOutlined, MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-
 import logo from '../../../assets/logo.png';
 import { logoutUser } from '../../../redux/actions/userActions';
 import { useState } from 'react';

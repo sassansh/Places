@@ -1,8 +1,9 @@
 import './Filters.css';
 
-import { Col, Row, Input, Checkbox, Divider, Card } from 'antd';
-import { useState } from 'react';
+import { Card, Checkbox, Col, Divider, Input, Row } from 'antd';
+
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const { Search } = Input;
 

@@ -6,13 +6,15 @@ import {
   ShopOutlined,
   TeamOutlined
 } from '@ant-design/icons';
+import {
+  setCategories,
+  setCurrentCategory
+} from '../../../redux/actions/categoryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
-import { setCategories, setCurrentCategory } from '../../../redux/actions/categoryActions';
-
 import { setCurrentGroup } from '../../../redux/actions/groupActions';
 import { setCurrentPlace } from '../../../redux/actions/placeActions';
 
@@ -23,7 +25,9 @@ function NavBar (props) {
 
   const groups = useSelector((state) => state.groups.allGroups);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-  const currentGroup = groups.find((group) => group.group_id === currentGroupID);
+  const currentGroup = groups.find(
+    (group) => group.group_id === currentGroupID
+  );
 
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
@@ -35,7 +39,9 @@ function NavBar (props) {
 
   const places = useSelector((state) => state.places.allPlaces);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
-  const currentPlace = places.find((place) => place.place_id === currentPlaceID);
+  const currentPlace = places.find(
+    (place) => place.place_id === currentPlaceID
+  );
 
   function updateTab (e) {
     setTab(e.key);

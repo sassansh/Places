@@ -1,14 +1,6 @@
 import './AddReview.css';
 
-import {
-  Avatar,
-  Button,
-  Col,
-  Divider,
-  Rate,
-  Row,
-  Typography
-} from 'antd';
+import { Avatar, Button, Col, Divider, Rate, Row, Typography } from 'antd';
 import {
   addReview,
   editReview,
@@ -77,11 +69,24 @@ function AddReview (props) {
 
   useEffect(() => {
     if (customCriteria.length >= 2) {
-      const total = [rateValue0, rateValue1, rateValue2, rateValue3, rateValue4].reduce((a, b) => a + b, 0);
+      const total = [
+        rateValue0,
+        rateValue1,
+        rateValue2,
+        rateValue3,
+        rateValue4
+      ].reduce((a, b) => a + b, 0);
       const avg = total / customCriteria.length;
       setRateValue(avg);
     }
-  }, [customCriteria.length, rateValue0, rateValue1, rateValue2, rateValue3, rateValue4]);
+  }, [
+    customCriteria.length,
+    rateValue0,
+    rateValue1,
+    rateValue2,
+    rateValue3,
+    rateValue4
+  ]);
 
   const { Title } = Typography;
 
@@ -331,11 +336,7 @@ function AddReview (props) {
           <Row justify='start'>
             <Col>
               <span className='overall'>
-                <Rate
-                  style={{ fontSize: '40px' }}
-                  value={rateValue}
-                  disabled
-                />
+                <Rate style={{ fontSize: '40px' }} value={rateValue} disabled />
               </span>
               <ul>{customRate}</ul>
             </Col>
@@ -364,11 +365,7 @@ function AddReview (props) {
       <Row justify='center'>
         <div className='column1'>
           <Col span={5}>
-            <img
-              src={place.ImageURL}
-              className='placeImg'
-              alt='place'
-            />
+            <img src={place.ImageURL} className='placeImg' alt='place' />
           </Col>
         </div>
         <Col className='column2' span={5}>

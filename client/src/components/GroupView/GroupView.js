@@ -1,17 +1,20 @@
 import './GroupView.css';
 
 import { Avatar, Button, Col, Divider, Row, Typography } from 'antd';
-import { Link } from 'react-router-dom';
-import { UserOutlined, PlusOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
+import { PlusOutlined, UserOutlined } from '@ant-design/icons';
+
 import CategoryList from '../CategoryList/CategoryList';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function GroupView () {
   const { Title } = Typography;
   const groups = useSelector((state) => state.groups.allGroups);
   const users = useSelector((state) => state.users.allUsers);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-  const currentGroup = groups.find((group) => group.group_id === currentGroupID);
+  const currentGroup = groups.find(
+    (group) => group.group_id === currentGroupID
+  );
   const title = currentGroup.name;
   const avatarURL = currentGroup.avatarURL;
   let numMembers = 0;
@@ -50,10 +53,7 @@ function GroupView () {
           borderWidth: 5
         }}
       />
-      <Link
-        to='/addCategory'
-        className='addCategoryLink'
-      >
+      <Link to='/addCategory' className='addCategoryLink'>
         <Button type='primary' icon={<PlusOutlined />} size='large'>
           Add Category
         </Button>

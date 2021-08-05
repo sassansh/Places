@@ -63,7 +63,7 @@ function App () {
         // eslint-disable-next-line
         dispatch(logoutUser());
         // Redirect to login
-          <Redirect to={{ pathname: '/login' }} />;
+        <Redirect to={{ pathname: '/login' }} />;
       }
     }
   }, [dispatch]);

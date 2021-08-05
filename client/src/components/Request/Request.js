@@ -2,19 +2,26 @@ import './Request.css';
 
 import { Avatar, Button, Card, Col, Row } from 'antd';
 import { CheckOutlined, StopOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import {
+  userAcceptRequestToJoinGroup,
+  userRejectRequestToJoinGroup
+} from '../../redux/actions/userActions';
 
-import { userAcceptRequestToJoinGroup, userRejectRequestToJoinGroup } from '../../redux/actions/userActions';
+import { useDispatch } from 'react-redux';
 
 function Request (props) {
   const dispatch = useDispatch();
 
-  function handleAccept () {
-    dispatch(userAcceptRequestToJoinGroup(props.user.user_id, props.group.group_id));
+  function handleAccept() {
+    dispatch(
+      userAcceptRequestToJoinGroup(props.user.user_id, props.group.group_id)
+    );
   }
 
   function handleReject () {
-    dispatch(userRejectRequestToJoinGroup(props.user.user_id, props.group.group_id));
+    dispatch(
+      userRejectRequestToJoinGroup(props.user.user_id, props.group.group_id)
+    );
   }
   return (
     <Card style={{ margin: 16 }}>
