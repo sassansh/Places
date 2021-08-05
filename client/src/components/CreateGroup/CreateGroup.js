@@ -17,7 +17,7 @@ import { useState } from 'react';
 
 const { Option } = Select;
 
-function CreateGroup (props) {
+function CreateGroup(props) {
   const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ function CreateGroup (props) {
   const [logoButtonName, setlogoButtonName] = useState('🖼️ Select File');
   const [defaultCategories, setDefaultCategories] = useState([]);
 
-  function handleChange () {
+  function handleChange() {
     setFieldInput({
       name: form.getFieldValue('name'),
       description: form.getFieldValue('description')
@@ -54,11 +54,11 @@ function CreateGroup (props) {
     }
   };
 
-  function handleCategories (value) {
+  function handleCategories(value) {
     setDefaultCategories(value);
   }
 
-  function addGroup () {
+  function addGroup() {
     const name = form.getFieldValue('name');
     const description = form.getFieldValue('description');
     const newGroup = new FormData();

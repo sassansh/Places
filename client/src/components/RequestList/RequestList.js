@@ -8,7 +8,7 @@ import { getGroups } from '../../redux/actions/groupActions';
 import { getUsers } from '../../redux/actions/userActions';
 import { useEffect } from 'react';
 
-function RequestList () {
+function RequestList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,19 +44,17 @@ function RequestList () {
 
   return (
     <div>
-      {requestList.length >= 1
-        ? (
-          <ul>{requestList}</ul>
-          )
-        : (
-          <Row justify='center'>
-            <Col lg={10} md={12} sm={18} xs={24}>
-              <Card className='noRequests' size='medium'>
-                You do not have any requests.
-              </Card>
-            </Col>
-          </Row>
-          )}
+      {requestList.length >= 1 ? (
+        <ul>{requestList}</ul>
+      ) : (
+        <Row justify='center'>
+          <Col lg={10} md={12} sm={18} xs={24}>
+            <Card className='noRequests' size='medium'>
+              You do not have any requests.
+            </Card>
+          </Col>
+        </Row>
+      )}
     </div>
   );
 }

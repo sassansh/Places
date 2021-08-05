@@ -18,7 +18,7 @@ import { Menu } from 'antd';
 import { setCurrentGroup } from '../../../redux/actions/groupActions';
 import { setCurrentPlace } from '../../../redux/actions/placeActions';
 
-function NavBar (props) {
+function NavBar(props) {
   const path = props.location.pathname;
   const [tab, setTab] = useState('');
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ function NavBar (props) {
     (place) => place.place_id === currentPlaceID
   );
 
-  function updateTab (e) {
+  function updateTab(e) {
     setTab(e.key);
   }
   useEffect(() => {

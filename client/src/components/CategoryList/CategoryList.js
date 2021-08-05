@@ -8,7 +8,7 @@ import { getCategories } from '../../redux/actions/categoryActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { useEffect } from 'react';
 
-function CategoryList () {
+function CategoryList() {
   const dispatch = useDispatch();
   let categories = useSelector((state) => state.categories.allCategories);
   const places = useSelector((state) => state.places.allPlaces);

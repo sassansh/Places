@@ -6,14 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserDeleteOutlined } from '@ant-design/icons';
 import { removeUser } from '../../redux/actions/userActions';
 
-function Member (props) {
+function Member(props) {
   const dispatch = useDispatch();
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const currentUserID = useSelector((state) => state.users.user.user_id);
   const user_id = props.user.user_id;
   const username = user_id === currentUserID ? 'yourself' : props.user.name;
 
-  function removeUserFromGroup () {
+  function removeUserFromGroup() {
     dispatch(
       removeUser({ currentUserID, user_id, currentGroupID }, props.history)
     );

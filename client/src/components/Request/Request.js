@@ -9,7 +9,7 @@ import {
 
 import { useDispatch } from 'react-redux';
 
-function Request (props) {
+function Request(props) {
   const dispatch = useDispatch();
 
   function handleAccept() {
@@ -18,7 +18,7 @@ function Request (props) {
     );
   }
 
-  function handleReject () {
+  function handleReject() {
     dispatch(
       userRejectRequestToJoinGroup(props.user.user_id, props.group.group_id)
     );

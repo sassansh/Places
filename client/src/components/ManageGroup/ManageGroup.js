@@ -5,7 +5,7 @@ import { Col, Divider, Row, Typography } from 'antd';
 import MemberList from '../MemberList/MemberList';
 import { UserOutlined } from '@ant-design/icons';
 
-function ManageGroup (props) {
+function ManageGroup(props) {
   const { Title } = Typography;
   return (
     <div className='container'>

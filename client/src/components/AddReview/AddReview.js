@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
-function AddReview (props) {
+function AddReview(props) {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.allReviews);
   const currentUserID = useSelector((state) => state.users.user.user_id);
@@ -90,31 +90,31 @@ function AddReview (props) {
 
   const { Title } = Typography;
 
-  function handleRateChangeCustom0 (value) {
+  function handleRateChangeCustom0(value) {
     setRateValue0(value);
   }
 
-  function handleRateChangeCustom1 (value) {
+  function handleRateChangeCustom1(value) {
     setRateValue1(value);
   }
 
-  function handleRateChangeCustom2 (value) {
+  function handleRateChangeCustom2(value) {
     setRateValue2(value);
   }
 
-  function handleRateChangeCustom3 (value) {
+  function handleRateChangeCustom3(value) {
     setRateValue3(value);
   }
 
-  function handleRateChangeCustom4 (value) {
+  function handleRateChangeCustom4(value) {
     setRateValue4(value);
   }
 
-  function handleRateChange (value) {
+  function handleRateChange(value) {
     setRateValue(value);
   }
 
-  function handleSubmitReview () {
+  function handleSubmitReview() {
     let newReview = {};
     if (existingReview) {
       const rating = [];
@@ -179,7 +179,7 @@ function AddReview (props) {
     }
   }
 
-  function getRate () {
+  function getRate() {
     let customRate;
     if (customCriteria.length < 2) {
       return (

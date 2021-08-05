@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const { Search } = Input;
 
-function Filters ({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
+function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
   const [allChecked, setAllChecked] = useState(true);
   const onSearch = (value) => setSearchQuery(value);
   const onChange = (value) => {

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { setCurrentCategory } from '../../redux/actions/categoryActions';
 import { useDispatch } from 'react-redux';
 
-function Category ({ category }) {
+function Category({ category }) {
   const dispatch = useDispatch();
 
   return (

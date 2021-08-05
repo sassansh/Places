@@ -6,7 +6,7 @@ import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
 
-function PlaceList ({ searchQuery, checkedCriteria, customCriteria }) {
+function PlaceList({ searchQuery, checkedCriteria, customCriteria }) {
   const dispatch = useDispatch();
 
   useEffect(() => {

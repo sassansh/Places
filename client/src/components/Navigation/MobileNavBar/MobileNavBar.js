@@ -19,7 +19,7 @@ const MobileNavBar = ({ menu }) => {
 
   const dispatch = useDispatch();
 
-  function handleLogout () {
+  function handleLogout() {
     dispatch(logoutUser());
   }
 

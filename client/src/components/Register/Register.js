@@ -7,7 +7,7 @@ import logo from '../../assets/logo.png';
 import { registerUser } from '../../redux/actions/userActions';
 import { useState } from 'react';
 
-function Register (props) {
+function Register(props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +19,7 @@ function Register (props) {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
-  function handleRegister () {
+  function handleRegister() {
     const newUser = new FormData();
     newUser.append('name', name);
     newUser.append('email', email);
@@ -47,56 +47,54 @@ function Register (props) {
     }
   };
 
-  return isAuthenticated
-    ? (
-      <Redirect to={{ pathname: '/' }} />
-      )
-    : (
-      <div className='register-page'>
-        <img alt='logo' src={logo} width='100px' />
-        <h2>Places</h2>
-        <div className='register-container'>
-          <form className='register-form'>
-            <input
-              type='text'
-              value={name}
-              onInput={(e) => setName(e.target.value)}
-              placeholder='Name'
-            />
-            <input
-              type='text'
-              value={email}
-              onInput={(e) => setEmail(e.target.value)}
-              placeholder='Email'
-            />
-            <input
-              type='password'
-              value={password}
-              onInput={(e) => setPassword(e.target.value)}
-              placeholder='Password'
-            />
-            <input
-              type='password'
-              value={password2}
-              onInput={(e) => setPassword2(e.target.value)}
-              placeholder='Confirm Password'
-            />
-            <br />
-            <input type='file' id='profilepic' onChange={profilePicHandler} />
-            <label htmlFor='profilepic'>{profPicButtonName}</label>
-            <br />
-            <br />
-            <br />
-            <button type='button' onClick={handleRegister}>
-              Register
-            </button>
-            <p className='message'>
-              Registered already? <Link to='/login'>Login here</Link>
-            </p>
-          </form>
-        </div>
+  return isAuthenticated ? (
+    <Redirect to={{ pathname: '/' }} />
+  ) : (
+    <div className='register-page'>
+      <img alt='logo' src={logo} width='100px' />
+      <h2>Places</h2>
+      <div className='register-container'>
+        <form className='register-form'>
+          <input
+            type='text'
+            value={name}
+            onInput={(e) => setName(e.target.value)}
+            placeholder='Name'
+          />
+          <input
+            type='text'
+            value={email}
+            onInput={(e) => setEmail(e.target.value)}
+            placeholder='Email'
+          />
+          <input
+            type='password'
+            value={password}
+            onInput={(e) => setPassword(e.target.value)}
+            placeholder='Password'
+          />
+          <input
+            type='password'
+            value={password2}
+            onInput={(e) => setPassword2(e.target.value)}
+            placeholder='Confirm Password'
+          />
+          <br />
+          <input type='file' id='profilepic' onChange={profilePicHandler} />
+          <label htmlFor='profilepic'>{profPicButtonName}</label>
+          <br />
+          <br />
+          <br />
+          <button type='button' onClick={handleRegister}>
+            Register
+          </button>
+          <p className='message'>
+            Registered already? <Link to='/login'>Login here</Link>
+          </p>
+        </form>
       </div>
-      );
+    </div>
+  );
 }
 
 export default Register;

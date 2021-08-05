@@ -8,7 +8,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 
-function UserProfile () {
+function UserProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
@@ -26,7 +26,7 @@ function UserProfile () {
   let numGroups = 0;
   let numPlaces = 0;
 
-  function getPlace (place_id) {
+  function getPlace(place_id) {
     try {
       numPlaces++;
       const placeName = places.find(
@@ -39,7 +39,7 @@ function UserProfile () {
     }
   }
 
-  function getRating (rating) {
+  function getRating(rating) {
     let overallRating = 0;
     if (rating.length < 2) {
       overallRating = rating[0];
@@ -50,7 +50,7 @@ function UserProfile () {
     return <Rate value={overallRating} disabled />;
   }
 
-  function getGroup (group_id) {
+  function getGroup(group_id) {
     const targetGroup = groups.find((group) => group.group_id === group_id);
     try {
       numGroups++;
@@ -68,7 +68,7 @@ function UserProfile () {
     }
   }
 
-  function getGroupName (place_id) {
+  function getGroupName(place_id) {
     try {
       const group_id = places.find(
         (place) => place.place_id === place_id
@@ -82,7 +82,7 @@ function UserProfile () {
     }
   }
 
-  function getCategoryName (place_id) {
+  function getCategoryName(place_id) {
     try {
       const category_id = places.find(
         (place) => place.place_id === place_id

@@ -7,7 +7,7 @@ import CategoryList from '../CategoryList/CategoryList';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function GroupView () {
+function GroupView() {
   const { Title } = Typography;
   const groups = useSelector((state) => state.groups.allGroups);
   const users = useSelector((state) => state.users.allUsers);

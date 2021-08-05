@@ -5,7 +5,7 @@ import Member from '../Member/Member';
 import { getUsers } from '../../redux/actions/userActions';
 import { useEffect } from 'react';
 
-function MemberList (props) {
+function MemberList(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
