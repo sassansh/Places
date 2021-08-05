@@ -7,21 +7,21 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 router.get('/', authenticateToken, (req, res) => {
-  const groupID = req.query.group_id;
-  const userID = req.user.user_id;
+  const group_id = req.query.group_id;
+  const user_id = req.user.user_id;
 
-  if (groupID && groupID.length >= 1) {
+  if (group_id && group_id.length >= 1) {
     Category.find(
-      { group_id: groupID },
+      { group_id },
       '-_id category_id name name_singular emoji group_id custom_criteria'
     )
       .then((categories) => res.json(categories))
       .catch((err) => console.log(err));
   } else {
-    User.findOne({ user_id: userID }).then((user) => {
+    User.findOne({ user_id }).then((user) => {
       const searchQuery = [];
       for (const group of user.groups) {
-        searchQuery.push({ groupID: group });
+        searchQuery.push({ group_id: group });
       }
       Category.find(
         { $or: searchQuery },
@@ -34,19 +34,14 @@ router.get('/', authenticateToken, (req, res) => {
 });
 
 router.post('/', authenticateToken, (req, res) => {
-  const name = req.body.name;
-  const nameSingular = req.body.name_singular;
-  const emoji = req.body.emoji;
-  const customCriteria = req.body.custom_criteria;
-  const groupID = req.body.group_id;
-
+  const { name, name_singular, emoji, custom_criteria, group_id } = req.body;
   const newCategory = new Category({
     category_id: uuidv4(),
     name: name,
-    name_singular: nameSingular,
+    name_singular: name_singular,
     emoji: emoji,
-    custom_criteria: customCriteria,
-    group_id: groupID
+    custom_criteria: custom_criteria,
+    group_id: group_id
   });
   newCategory
     .save()
