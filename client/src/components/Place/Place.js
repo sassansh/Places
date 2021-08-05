@@ -1,9 +1,10 @@
 import './Place.css';
 
-import { Avatar, Card, Col, Rate, Row } from 'antd';
+import { Avatar, Card, Col, Row } from 'antd';
 
 import { Link } from 'react-router-dom';
 import { setCurrentPlace } from '../../redux/actions/placeActions';
+import RoundedRate from '../RoundedRate/RoundedRate';
 import { useDispatch } from 'react-redux';
 
 function Place({ placeData }) {
@@ -35,7 +36,7 @@ function Place({ placeData }) {
               <Row justify='end'>
                 {placeData.numReviews > 0 ? (
                   <span className='place-rating'>
-                    <Rate disabled allowHalf value={placeData.avgRating} />
+                    <RoundedRate disabled allowHalf value={placeData.avgRating} />
                     <span className='num-of-reviews'>
                       {placeData.numReviews}
                     </span>

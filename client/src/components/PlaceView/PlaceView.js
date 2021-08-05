@@ -1,6 +1,6 @@
 import './PlaceView.css';
 
-import { Col, Divider, Rate, Row, Tooltip, Typography } from 'antd';
+import { Col, Divider, Row, Tooltip, Typography } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import {
   addFavouritePlace,
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import RatingDetail from '../RatingDetail/RatingDetail';
 import ReviewList from '../ReviewList/ReviewList';
+import RoundedRate from '../RoundedRate/RoundedRate';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
@@ -109,7 +110,7 @@ function PlaceView() {
           </Row>
           <Row className='overallRating'>
             <span>
-              <Rate allowHalf defaultValue={averageScore} disabled />
+              <RoundedRate allowHalf value={averageScore} disabled style={{ marginRight: '10px' }}/>
               {averageScoreString} out of 5
             </span>
           </Row>

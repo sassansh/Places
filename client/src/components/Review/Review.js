@@ -1,10 +1,11 @@
 import './Review.css';
 
-import { Button, Card, Col, Rate, Row } from 'antd';
+import { Button, Card, Col, Row } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { EditOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import RoundedRate from '../RoundedRate/RoundedRate';
 import { setCurrentPlace } from '../../redux/actions/placeActions';
 
 function Review(props) {
@@ -28,7 +29,7 @@ function Review(props) {
             {reviewer}
           </Col>
           <Col span={12} className='rating'>
-            <Rate allowHalf defaultValue={ratingAverage} disabled />
+            <RoundedRate value={ratingAverage} disabled />
           </Col>
         </Row>
         {isCurrentUser && (
