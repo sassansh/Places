@@ -24,13 +24,6 @@ function AddReview(props) {
       review.user_id === currentUserID && review.place_id === currentPlaceID
   );
 
-  const [rateValue, setRateValue] = useState(0);
-  const [rateValue0, setRateValue0] = useState(0);
-  const [rateValue1, setRateValue1] = useState(0);
-  const [rateValue2, setRateValue2] = useState(0);
-  const [rateValue3, setRateValue3] = useState(0);
-  const [rateValue4, setRateValue4] = useState(0);
-
   const place = places.find((element) => element.place_id === currentPlaceID);
   const category = categories.find(
     (element) => element.category_id === place.category_id
@@ -38,314 +31,81 @@ function AddReview(props) {
 
   const customCriteria = category.custom_criteria;
 
+  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map(() => 0));
+
   useEffect(() => {
     if (!reviewLoadedRef.current) {
-      dispatch(getReviews());
-      if (existingReview) {
-        if (existingReview.rating.length === 2) {
-          setRateValue0(existingReview.rating[0]);
-          setRateValue1(existingReview.rating[1]);
-        } else if (existingReview.rating.length === 3) {
-          setRateValue0(existingReview.rating[0]);
-          setRateValue1(existingReview.rating[1]);
-          setRateValue2(existingReview.rating[2]);
-        } else if (existingReview.rating.length === 4) {
-          setRateValue0(existingReview.rating[0]);
-          setRateValue1(existingReview.rating[1]);
-          setRateValue2(existingReview.rating[2]);
-          setRateValue3(existingReview.rating[3]);
-        } else if (existingReview.rating.length === 5) {
-          setRateValue0(existingReview.rating[0]);
-          setRateValue1(existingReview.rating[1]);
-          setRateValue2(existingReview.rating[2]);
-          setRateValue3(existingReview.rating[3]);
-          setRateValue4(existingReview.rating[4]);
-        } else {
-          setRateValue(existingReview.rating[0]);
+        dispatch(getReviews());
+        if (existingReview) {
+            setRateValues(existingReview.rating);
         }
-      }
-      reviewLoadedRef.current = true;
+        reviewLoadedRef.current = true;
     }
   }, [dispatch, existingReview]);
 
-  useEffect(() => {
-    if (customCriteria.length >= 2) {
-      const total = [
-        rateValue0,
-        rateValue1,
-        rateValue2,
-        rateValue3,
-        rateValue4
-      ].reduce((a, b) => a + b, 0);
-      const avg = total / customCriteria.length;
-      setRateValue(avg);
-    }
-  }, [
-    customCriteria.length,
-    rateValue0,
-    rateValue1,
-    rateValue2,
-    rateValue3,
-    rateValue4
-  ]);
-
   const { Title } = Typography;
-
-  function handleRateChangeCustom0(value) {
-    setRateValue0(value);
-  }
-
-  function handleRateChangeCustom1(value) {
-    setRateValue1(value);
-  }
-
-  function handleRateChangeCustom2(value) {
-    setRateValue2(value);
-  }
-
-  function handleRateChangeCustom3(value) {
-    setRateValue3(value);
-  }
-
-  function handleRateChangeCustom4(value) {
-    setRateValue4(value);
-  }
-
-  function handleRateChange(value) {
-    setRateValue(value);
-  }
 
   function handleSubmitReview() {
     let newReview = {};
     if (existingReview) {
-      const rating = [];
-      if (!customCriteria || customCriteria.length < 2) {
-        rating.push(rateValue);
-      } else {
-        if (customCriteria.length === 2) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-        } else if (customCriteria.length === 3) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-        } else if (customCriteria.length === 4) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-          rating.push(rateValue3);
-        } else {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-          rating.push(rateValue3);
-          rating.push(rateValue4);
-        }
-      }
       newReview = {
         ...existingReview,
-        rating: rating
+        rating: rateValues
       };
       dispatch(editReview(newReview, props.history));
     } else {
-      const rating = [];
-      if (!customCriteria || customCriteria.length < 2) {
-        rating.push(rateValue);
-      } else {
-        if (customCriteria.length === 2) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-        } else if (customCriteria.length === 3) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-        } else if (customCriteria.length === 4) {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-          rating.push(rateValue3);
-        } else {
-          rating.push(rateValue0);
-          rating.push(rateValue1);
-          rating.push(rateValue2);
-          rating.push(rateValue3);
-          rating.push(rateValue4);
-        }
-      }
       newReview = {
         place_id: currentPlaceID,
-        rating: rating
+        rating: rateValues
       };
       dispatch(addReview(newReview, props.history));
     }
   }
 
   function getRate() {
-    let customRate;
     if (customCriteria.length < 2) {
-      return (
-        <span className='overall'>
-          <Rate
-            style={{ fontSize: '40px' }}
-            onChange={handleRateChange}
-            value={rateValue}
-          />
-        </span>
-      );
-    } else {
-      if (customCriteria.length === 2) {
-        customRate = [
-          <li className='criteriaList' key='criteria1'>
-            <span className='criteriaName'>{customCriteria[0] + ':'}</span>
-            <span>&ensp;</span>
+        return (
+          <span className='overall'>
             <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom0}
-              value={rateValue0}
+              style={{ fontSize: '40px' }}
+              onChange={(value) => setRateValues([value])}
+              value={rateValues[0]}
             />
-          </li>,
-          <li className='criteriaList' key='criteria2'>
-            <span className='criteriaName'>{customCriteria[1] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom1}
-              value={rateValue1}
-            />
-          </li>
-        ];
-      } else if (customCriteria.length === 3) {
-        customRate = [
-          <li className='criteriaList' key='criteria1'>
-            <span className='criteriaName'>{customCriteria[0] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom0}
-              value={rateValue0}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria2'>
-            <span className='criteriaName'>{customCriteria[1] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom1}
-              value={rateValue1}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria3'>
-            <span className='criteriaName'>{customCriteria[2] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom2}
-              value={rateValue2}
-            />
-          </li>
-        ];
-      } else if (customCriteria.length === 4) {
-        customRate = [
-          <li className='criteriaList' key='criteria1'>
-            <span className='criteriaName'>{customCriteria[0] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom0}
-              value={rateValue0}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria2'>
-            <span className='criteriaName'>{customCriteria[1] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom1}
-              value={rateValue1}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria3'>
-            <span className='criteriaName'>{customCriteria[2] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom2}
-              value={rateValue2}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria4'>
-            <span className='criteriaName'>{customCriteria[3] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom3}
-              value={rateValue3}
-            />
-          </li>
-        ];
+          </span>
+        );
       } else {
-        customRate = [
-          <li className='criteriaList' key='criteria1'>
-            <span className='criteriaName'>{customCriteria[0] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom0}
-              value={rateValue0}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria2'>
-            <span className='criteriaName'>{customCriteria[1] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom1}
-              value={rateValue1}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria3'>
-            <span className='criteriaName'>{customCriteria[2] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom2}
-              value={rateValue2}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria4'>
-            <span className='criteriaName'>{customCriteria[3] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom3}
-              value={rateValue3}
-            />
-          </li>,
-          <li className='criteriaList' key='criteria5'>
-            <span className='criteriaName'>{customCriteria[4] + ':'}</span>
-            <span>&ensp;</span>
-            <Rate
-              style={{ fontSize: '25px' }}
-              onChange={handleRateChangeCustom4}
-              value={rateValue4}
-            />
-          </li>
-        ];
+        let customRate = customCriteria.map((criterion, index) => {
+            return (
+                <li className='criteriaList' key={'criterion' + index}>
+                <span className='criteriaName'>{customCriteria[index] + ':'}</span>
+                <span>&ensp;</span>
+                <Rate
+                  style={{ fontSize: '25px' }}
+                  onChange={(value) => {
+                      
+                    setRateValues([...rateValues.slice(0, index), value, ...rateValues.slice(index+1)]);
+                    console.log(rateValues);
+                  }}
+                  value={rateValues[index]}
+                />
+              </li>
+            );
+        });
+        return (
+            <div>
+              <Row justify='start'>
+                <Col>
+                  <span className='overall'>
+                    <RoundedRate style={{ fontSize: '40px' }} value={rateValues.reduce((p, c) => p + c, 0) / customCriteria.length} disabled />
+                  </span>
+                  <ul>{customRate}</ul>
+                </Col>
+              </Row>
+            </div>
+          );
       }
-      return (
-        <div>
-          <Row justify='start'>
-            <Col>
-              <span className='overall'>
-                <RoundedRate style={{ fontSize: '40px' }} value={rateValue} disabled />
-              </span>
-              <ul>{customRate}</ul>
-            </Col>
-          </Row>
-        </div>
-      );
-    }
   }
+
   getRate();
 
   return (
