@@ -70,6 +70,7 @@ function AddReview(props) {
               style={{ fontSize: '40px' }}
               onChange={(value) => setRateValues([value])}
               value={rateValues[0]}
+              allowHalf
             />
           </span>
         );
@@ -82,11 +83,11 @@ function AddReview(props) {
                 <Rate
                   style={{ fontSize: '25px' }}
                   onChange={(value) => {
-                      
                     setRateValues([...rateValues.slice(0, index), value, ...rateValues.slice(index+1)]);
                     console.log(rateValues);
                   }}
                   value={rateValues[index]}
+                  allowHalf
                 />
               </li>
             );
@@ -96,7 +97,7 @@ function AddReview(props) {
               <Row justify='start'>
                 <Col>
                   <span className='overall'>
-                    <RoundedRate style={{ fontSize: '40px' }} value={rateValues.reduce((p, c) => p + c, 0) / customCriteria.length} disabled />
+                    <RoundedRate style={{ fontSize: '40px' }} value={rateValues.reduce((p, c) => p + c, 0) / customCriteria.length} disabled allowHalf />
                   </span>
                   <ul>{customRate}</ul>
                 </Col>
