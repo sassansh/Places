@@ -175,7 +175,8 @@ router.post('/register', async (req, res) => {
     const cloudinaryResponse = await cloudinary.uploader.upload(profilePicPath);
     avatarURL = cloudinaryResponse.secure_url;
   } else {
-    avatarURL = 'https://bit.ly/3xjqd0k'; // generic profile picture
+    avatarURL =
+      'https://res.cloudinary.com/dariaxbty/image/upload/v1628292561/default_user_rsbump.jpg'; // generic profile picture
   }
 
   User.findOne({ email: email }).then((user) => {
