@@ -7,8 +7,11 @@ import {
   getReviews
 } from '../../redux/actions/reviewActions';
 import { useDispatch, useSelector } from 'react-redux';
-import RoundedRate from '../RoundedRate/RoundedRate';
 import { useEffect, useRef, useState } from 'react';
+
+import RoundedRate from '../RoundedRate/RoundedRate';
+
+const { Title } = Typography;
 
 function AddReview(props) {
   const dispatch = useDispatch();
@@ -31,19 +34,19 @@ function AddReview(props) {
 
   const customCriteria = category.custom_criteria;
 
-  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map(() => 0));
+  const [rateValues, setRateValues] = useState(
+    [...Array(customCriteria.length)].map(() => 0)
+  );
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
-        dispatch(getReviews());
-        if (existingReview) {
-            setRateValues(existingReview.rating);
-        }
-        reviewLoadedRef.current = true;
+      dispatch(getReviews());
+      if (existingReview) {
+        setRateValues(existingReview.rating);
+      }
+      reviewLoadedRef.current = true;
     }
   }, [dispatch, existingReview]);
-
-  const { Title } = Typography;
 
   function handleSubmitReview() {
     let newReview = {};
@@ -64,46 +67,51 @@ function AddReview(props) {
 
   function getRate() {
     if (customCriteria.length < 2) {
+      return (
+        <span>
+          <Rate
+            style={{ fontSize: '40px' }}
+            onChange={(value) => setRateValues([value])}
+            value={rateValues[0]}
+          />
+        </span>
+      );
+    } else {
+      let customRate = customCriteria.map((criterion, index) => {
         return (
-          <span className='overall'>
+          <li key={'criterion' + index}>
+            <span>{customCriteria[index] + ':'}</span>
+            <span>&ensp;</span>
             <Rate
+              style={{ fontSize: '25px' }}
+              onChange={(value) => {
+                setRateValues([
+                  ...rateValues.slice(0, index),
+                  value,
+                  ...rateValues.slice(index + 1)
+                ]);
+                console.log(rateValues);
+              }}
+              value={rateValues[index]}
+            />
+          </li>
+        );
+      });
+      return (
+        <div>
+          <span>
+            <RoundedRate
               style={{ fontSize: '40px' }}
-              onChange={(value) => setRateValues([value])}
-              value={rateValues[0]}
+              value={
+                rateValues.reduce((p, c) => p + c, 0) / customCriteria.length
+              }
+              disabled
             />
           </span>
-        );
-      } else {
-        let customRate = customCriteria.map((criterion, index) => {
-            return (
-                <li className='criteriaList' key={'criterion' + index}>
-                <span className='criteriaName'>{customCriteria[index] + ':'}</span>
-                <span>&ensp;</span>
-                <Rate
-                  style={{ fontSize: '25px' }}
-                  onChange={(value) => {
-                      
-                    setRateValues([...rateValues.slice(0, index), value, ...rateValues.slice(index+1)]);
-                    console.log(rateValues);
-                  }}
-                  value={rateValues[index]}
-                />
-              </li>
-            );
-        });
-        return (
-            <div>
-              <Row justify='start'>
-                <Col>
-                  <span className='overall'>
-                    <RoundedRate style={{ fontSize: '40px' }} value={rateValues.reduce((p, c) => p + c, 0) / customCriteria.length} disabled />
-                  </span>
-                  <ul>{customRate}</ul>
-                </Col>
-              </Row>
-            </div>
-          );
-      }
+          <ul>{customRate}</ul>
+        </div>
+      );
+    }
   }
 
   getRate();
@@ -123,14 +131,9 @@ function AddReview(props) {
           borderWidth: 5
         }}
       />
-      <Row justify='center'>
-        <div className='column1'>
-          <Col span={5}>
-            <img src={place.ImageURL} className='placeImg' alt='place' />
-          </Col>
-        </div>
-        <Col className='column2' span={5}>
-          <div className='placeNameRate'>
+      <Row className='addReviewName'>
+        <Col>
+          <div>
             <b>{place.name}</b>
             <br />
             <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
@@ -139,23 +142,28 @@ function AddReview(props) {
             {category.name_singular}
           </div>
         </Col>
-        <Col span={1} />
-        <Col className='column3' span={8}>
-          <br />
-          <span className='ratingText'>Overall Rating</span>
-          <br />
+      </Row>
+      <Row type='flex' justify='center' gutter={[24, 24]} align='center'>
+        <Col xxl={8} lg={10} md={12} xs={24}>
+          <img
+            src={place.ImageURL}
+            style={{
+              marginTop: '20px',
+              objectFit: 'cover',
+              height: '300px',
+              width: '100%'
+            }}
+            alt='place'
+          />
+        </Col>
+        <Col xxl={12} lg={10} md={12} sm={13} align='center'>
+          <Title level={4}>Overall Rating</Title>
           {getRate()}
-          <br />
-          <span className='submit'>
-            <Button
-              className='button'
-              type='primary'
-              onClick={handleSubmitReview}
-              size='large'
-            >
+          <div>
+            <Button type='primary' onClick={handleSubmitReview} size='large'>
               Submit
             </Button>
-          </span>
+          </div>
         </Col>
       </Row>
     </div>
