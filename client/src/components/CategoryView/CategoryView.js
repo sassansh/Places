@@ -10,11 +10,12 @@ import { PlusOutlined } from '@ant-design/icons';
 import { setCurrentCategory } from '../../redux/actions/categoryActions';
 import { useState } from 'react';
 
+const { Title } = Typography;
+
 function CategoryView() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState('');
   const [checkedCriteria, setCheckedCriteria] = useState([]);
-  const { Title } = Typography;
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID

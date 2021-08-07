@@ -14,11 +14,6 @@ function CategoryList() {
   const places = useSelector((state) => state.places.allPlaces);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
 
-  useEffect(() => {
-    dispatch(getCategories(currentGroupID));
-    dispatch(getPlaces());
-  }, [dispatch, currentGroupID]);
-
   categories = categories.map((category) => ({
     ...category,
     numPlaces: places.filter(
@@ -31,6 +26,11 @@ function CategoryList() {
   const categoryItems = categories.map((category) => (
     <Category key={category.category_id} category={category} />
   ));
+
+  useEffect(() => {
+    dispatch(getCategories(currentGroupID));
+    dispatch(getPlaces());
+  }, [dispatch, currentGroupID]);
 
   return (
     <Row>
