@@ -156,7 +156,6 @@ export const addFavouritePlace = (place_id) => async (dispatch) => {
 export const deleteFavouritePlace = (place_id) => async (dispatch) => {
   const loading = message.loading('Removing favourite..', 0);
   try {
-    console.log(place_id);
     await axios.delete('/api/users/favourites', { data: { place_id } });
     loading();
     message.success('Favourite removed!');
