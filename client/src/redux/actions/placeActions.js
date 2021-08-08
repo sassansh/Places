@@ -16,9 +16,9 @@ export const addPlace = (newPlace, history) => async (dispatch) => {
   try {
     const newPlaceResponse = await axios.post('/api/places', newPlace);
     const newPlaceFull = await newPlaceResponse.data;
-    loading();
     await dispatch(getPlaces());
     await dispatch(setCurrentPlace(newPlaceFull.place_id));
+    loading();
     history.push('/placeview');
     message.success('New place created!');
   } catch (err) {

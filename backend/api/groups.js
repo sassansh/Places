@@ -18,7 +18,7 @@ cloudinary.config({
 });
 
 router.get('/', authenticateToken, (req, res) => {
-  Group.find()
+  Group.find({}, '-_id group_id name description avatarURL')
     .then((groups) => res.json(groups))
     .catch((err) => console.log(err));
 });

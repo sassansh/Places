@@ -143,9 +143,9 @@ export const addFavouritePlace = (place_id) => async (dispatch) => {
   const loading = message.loading('Adding favourite..', 0);
   try {
     await axios.post('/api/users/favourites', { place_id });
+    await dispatch(getFavourites());
     loading();
     message.success('Favourite added!');
-    dispatch(getFavourites());
   } catch (err) {
     loading();
     message.error('Could not favourite place!');
@@ -158,9 +158,9 @@ export const deleteFavouritePlace = (place_id) => async (dispatch) => {
   try {
     console.log(place_id);
     await axios.delete('/api/users/favourites', { data: { place_id } });
+    await dispatch(getFavourites());
     loading();
     message.success('Favourite removed!');
-    dispatch(getFavourites());
   } catch (err) {
     loading();
     message.error('Could not remove favourite!');
