@@ -11,22 +11,13 @@
   </a>
 
   <h3 align="center">Places</h3>
-  <h4 align="center"><a href="https://places-cpsc455.herokuapp.com/">View Demo</a></h4>
-  
-   
-  <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
-    <br />
-    <br />
-    Academic group project for UBC <a href="https://blogs.ubc.ca/cpsc436i2021s/"> CPSC 455</a> (Applied Industry Practices)
-    <br />
-    <br />
+   <br />
+    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>
   </p>
 </p>
-
-[![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/)
 
 ## Table of Contents
 
@@ -41,6 +32,10 @@
 - [License 📔](#license-)
 
 ## Project Description 🏝
+
+<img src="/images/app-capture.gif" alt="live-app" width="300"/>
+
+<!-- [![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/) -->
 
 **Who is it for?**
 
