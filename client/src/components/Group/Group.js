@@ -15,15 +15,13 @@ import { setCurrentGroup } from '../../redux/actions/groupActions';
 import { userRequestToJoinGroup } from '../../redux/actions/userActions';
 
 function Group(props) {
+  const dispatch = useDispatch();
+  const [numMembers, setNumMembers] = useState(0);
   const users = useSelector((state) => state.users.allUsers);
   const reviews = useSelector((state) => state.reviews.allReviews);
   const places = useSelector((state) => state.places.allPlaces);
-  const [numMembers, setNumMembers] = useState(0);
-
   const currentUserID = useSelector((state) => state.users.user.user_id);
   const currentUser = users.find((user) => user.user_id === currentUserID);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     let memberCount = 0;

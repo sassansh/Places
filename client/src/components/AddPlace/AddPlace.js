@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPlace } from '../../redux/actions/placeActions';
 import { useState } from 'react';
 
+const { Title } = Typography;
+
 function AddPlace(props) {
-  const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.allCategories);
@@ -64,6 +65,7 @@ function AddPlace(props) {
     dispatch(addPlace(newPlace, props.history));
     form.resetFields();
   }
+  
   return (
     <Col className='container'>
       <Row justify='center'>
