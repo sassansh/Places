@@ -90,7 +90,6 @@ function AddReview(props) {
                   value,
                   ...rateValues.slice(index + 1)
                 ]);
-                console.log(rateValues);
               }}
               value={rateValues[index]}
             />
