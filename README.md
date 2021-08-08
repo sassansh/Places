@@ -33,9 +33,7 @@
 
 ## Project Description 🏝
 
-<div style="text-align:center">
-<img src="/images/app-capture.gif" alt="live-app" width="300"/>
-</div>
+<img src="/images/app-capture.gif" alt="live-app" width="300" align="center"/>
 
 <!-- [![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/) -->
 
