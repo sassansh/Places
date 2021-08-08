@@ -40,7 +40,6 @@ router.get('/favourites', authenticateToken, (req, res) => {
 router.post('/favourites', authenticateToken, (req, res) => {
   const { place_id } = req.body;
   const user_id = req.user.user_id;
-  console.log(place_id);
 
   if (place_id === undefined) {
     return res.status(400).json({ message: 'place_id not sent' });
@@ -69,7 +68,6 @@ router.post('/favourites', authenticateToken, (req, res) => {
 router.delete('/favourites', authenticateToken, (req, res) => {
   const { place_id } = req.body;
   const user_id = req.user.user_id;
-  console.log(req.body);
 
   if (place_id === undefined) {
     return res.status(400).json({ message: 'place_id not sent' });
@@ -109,7 +107,7 @@ router.post('/login', (req, res) => {
   }
 
   // Find user by email
-  User.findOne({ email }).then((user) => {
+  User.findOne({ email: email.toLowerCase() }).then((user) => {
     // Check if user exists
     if (!user) {
       return res.status(400).send('Email not found');
@@ -179,7 +177,7 @@ router.post('/register', async (req, res) => {
       'https://res.cloudinary.com/dariaxbty/image/upload/v1628292561/default_user_rsbump.jpg'; // generic profile picture
   }
 
-  User.findOne({ email: email }).then((user) => {
+  User.findOne({ email: email.toLowerCase() }).then((user) => {
     if (user) {
       return res.status(400).send('Email already exists');
     } else {
@@ -188,7 +186,7 @@ router.post('/register', async (req, res) => {
         const newUser = new User({
           user_id: uuidv4(),
           name: name,
-          email: email,
+          email: email.toLowerCase(),
           password: hash,
           avatarURL: avatarURL,
           groups: [],
