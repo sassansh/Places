@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Sleep for 7 minutes
-        run: sleep 7m
+      - name: Sleep for 12 minutes
+        run: sleep 12m
         shell: bash
       - name: Deploy Production
         uses: akhileshns/heroku-deploy@v3.12.12
