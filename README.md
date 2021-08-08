@@ -11,34 +11,111 @@
   </a>
 
   <h3 align="center">Places</h3>
-  <h4 align="center"><a href="https://places-cpsc455.herokuapp.com/">View Demo</a></h4>
-  
-   
-  <h4 align="center">Team Name: Green 🌱</h4>
 
   <p align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
+    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
-    Academic group project for UBC <a href="https://blogs.ubc.ca/cpsc436i2021s/"> CPSC 455</a> (Applied Industry Practices)
     <br />
-    <br />
+    <img src="/images/app-capture.gif" alt="live-app" width="600"/>
   </p>
 </p>
 
-[![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/)
-
 ## Table of Contents
 
-- [Project Description 🏝](#project-description-)
 - [Task Requirements 💼](#task-requirements-)
+- [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
+- [Above and Beyond Functionality 🌟](#above-and-beyond-functionality-)
+- [Next Steps 🔮](#next-steps-)
+- [Team Contributions ‎😃](#team-contributions-)
+- [Project Description 🏝](#project-description-)
 - [Task Breakdown 📝](#task-breakdown-)
 - [Prototypes 🎨](#prototypes-)
-- [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
-- [The Team ‎😃](#the-team-)
 - [License 📔](#license-)
+
+## Task Requirements 💼
+
+**Minimal Requirements**
+
+- [x] Register new account or log in to existing account
+- [x] Create a group
+- [x] Request and join an existing group / accept or reject requests to join
+- [x] Each user can rate (scale 1-5) a place, rating attached to their group
+- [x] View places by category and order by average rating
+
+**Standard Requirements**
+
+- [x] Modify an existing rating
+- [x] Create new categories
+  - [x] Choose custom rating criteria for the new category (by group)
+- [x] Display ranked list of places based on selected criteria
+  - [x] Search bar & other filters to narrow down list of places
+- [x] Allow users to upload photos for their profile picture or of places
+- [x] Profile for each place containing images, address, details, reviews.
+- [x] User profiles displaying:
+  - [x] Name, picture, list of reviewed places, name of group they are in
+- [x] Moderator ability for group members:
+  - [x] Accept other member requests into group
+  - [x] Delete members from group
+
+**Stretch Requirements**
+
+- [x] Allow users to be members of multiple groups and post different information to different groups
+- [x] Allow user to save and view favorite places
+- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
+
+## Technology Stack 🛠️
+
+**HTML,CSS, JS**
+
+- Description Here
+
+**React**
+
+- Description Here
+
+**Node & Express**
+
+- Description Here
+
+**NoSQL with MongoDB**
+
+- Description Here
+
+**Release Engineering**
+
+- Description Here
+
+## Above and Beyond Functionality 🌟
+
+Description Here
+
+## Next Steps 🔮
+
+Description Here
+
+## Team Contributions ‎😃
+
+Team Name: Green 🌱
+
+Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
+
+- Contribtions here
+
+Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
+
+- Contribtions here
+
+Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
+
+- Contribtions here
+
+Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
+
+- Contribtions here
 
 ## Project Description 🏝
 
@@ -76,37 +153,6 @@
 - Allow users to add profile pictures and images of the places
 - Allow users to add new categories for places
 
-## Task Requirements 💼
-
-**Minimal Requirements**
-
-- [x] Register new account or log in to existing account
-- [x] Create a group
-- [x] Request and join an existing group / accept or reject requests to join
-- [x] Each user can rate (scale 1-5) a place, rating attached to their group
-- [x] View places by category and order by average rating
-
-**Standard Requirements**
-
-- [x] Modify an existing rating
-- [x] Create new categories
-  - [x] Choose custom rating criteria for the new category (by group)
-- [x] Display ranked list of places based on selected criteria
-  - [x] Search bar & other filters to narrow down list of places
-- [x] Allow users to upload photos for their profile picture or of places
-- [x] Profile for each place containing images, address, details, reviews.
-- [x] User profiles displaying:
-  - [x] Name, picture, list of reviewed places, name of group they are in
-- [x] Moderator ability for group members:
-  - [x] Accept other member requests into group
-  - [x] Delete members from group
-
-**Stretch Requirements**
-
-- [x] Allow users to be members of multiple groups and post different information to different groups
-- [x] Allow user to save and view favorite places
-- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
-
 ## Task Breakdown 📝
 
 - [x] Register new account or log in to existing account
@@ -136,16 +182,6 @@ Reviews in a group (after clicking a joined group)
 
 Adding a review to a place (after clicking add review on a place)
 ![Add Review][add_review]
-
-## Technology Stack 🛠️
-
-[MongoDB](https://www.mongodb.com/)
-
-[ExpressJs](https://expressjs.com/)
-
-[ReactJs](https://reactjs.org/)
-
-[NodeJs](https://nodejs.org/en/)
 
 ## Prerequisites 🍪
 
@@ -184,18 +220,6 @@ You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpk
    ```https
      https://places-cpsc455.herokuapp.com/
    ```
-
-## The Team ‎😃
-
-Team Name: Green 🌱
-
-Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
-
-Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
-
-Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
-
-Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
 ## License 📔
 
