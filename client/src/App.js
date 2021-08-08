@@ -47,8 +47,6 @@ function App() {
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
   const dispatch = useDispatch();
 
-  // Private route inspired by: https://stackoverflow.com/questions/47476186/when-user-is-not-logged-in-redirect-to-login-reactjs
-
   useEffect(() => {
     if (localStorage.jwtToken) {
       // Set auth token header auth

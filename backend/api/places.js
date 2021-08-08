@@ -15,7 +15,7 @@ cloudinary.config({
 });
 
 router.get('/', authenticateToken, (req, res) => {
-  Place.find()
+  Place.find({}, '-_id place_id name address group_id category_id ImageURL')
     .then((places) => res.json(places))
     .catch((err) => console.log(err));
 });
