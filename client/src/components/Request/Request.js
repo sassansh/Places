@@ -25,15 +25,15 @@ function Request(props) {
   }
   return (
     <Card style={{ margin: 16 }}>
-      <Row justify='end' align='middle' gutter={[16, 16]} wrap>
+      <Row justify='start' align='middle' gutter={[16, 16]} wrap>
         <Col lg={8} md={12} sm={24}>
-          <Row gutter={[16, 16]} align='middle' justify='end' wrap={false}>
-            <Col lg={{ flex: 'auto' }} md={{ flex: 'auto' }}>
-              <div className='request-user-name'>{props.user.name}</div>
-              <div className='wants-to-join'>{' wants to join '}</div>
-            </Col>
+          <Row gutter={[16, 16]} align='middle' justify='start' wrap={false}>
             <Col lg={{ flex: '70px' }} md={{ flex: '70px' }}>
               <Avatar src={props.user.avatarURL} size={64} />
+            </Col>
+            <Col flex='auto'>
+              <div className='request-user-name'>{props.user.name}</div>
+              <div className='wants-to-join'>{' wants to join '}</div>
             </Col>
           </Row>
         </Col>
@@ -42,12 +42,12 @@ function Request(props) {
             <Col lg={{ flex: '70px' }} md={{ flex: '70px' }}>
               <Avatar src={props.group.avatarURL} size={64} />
             </Col>
-            <Col lg={{ flex: 'auto' }} md={{ flex: 'auto' }} justify='start'>
+            <Col flex='auto' justify='start'>
               <div className='request-group-name'>{props.group.name}</div>
             </Col>
           </Row>
         </Col>
-        <Col lg={8} md={24} sm={24}>
+        <Col lg={8} md={24} sm={24} xs={24}>
           <Row align='middle' justify='center' gutter={[16, 16]} wrap={false}>
             <Col>
               <Button
