@@ -15,7 +15,7 @@
   <p align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
-    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>\
+    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
     <br />
     <img src="/images/app-capture.gif" alt="live-app" width="600"/>
