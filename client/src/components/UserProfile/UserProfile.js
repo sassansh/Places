@@ -8,11 +8,17 @@ import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
 import RoundedRate from '../RoundedRate/RoundedRate';
+import { getReviews } from '../../redux/actions/reviewActions';
+import { getPlaces } from '../../redux/actions/placeActions';
+import { getGroups } from '../../redux/actions/groupActions';
 
 function UserProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getPlaces());
+    dispatch(getGroups());
+    dispatch(getReviews());
   }, [dispatch]);
 
   const { Title } = Typography;
