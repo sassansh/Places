@@ -8,7 +8,6 @@ import RoundedRate from '../RoundedRate/RoundedRate';
 import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
-import RoundedRate from '../RoundedRate/RoundedRate';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { getPlaces } from '../../redux/actions/placeActions';
 import { getGroups } from '../../redux/actions/groupActions';
@@ -22,9 +21,8 @@ function UserProfile() {
     dispatch(getReviews());
   }, [dispatch]);
 
-const { Title } = Typography;
+  const { Title } = Typography;
 
-function UserProfile() {
   const user = useSelector((state) => state.users.user);
   const users = useSelector((state) => state.users.allUsers);
   const userData = users.find((item) => item.user_id === user.user_id);
@@ -32,12 +30,6 @@ function UserProfile() {
   const places = useSelector((state) => state.places.allPlaces);
   const groups = useSelector((state) => state.groups.allGroups);
   const categories = useSelector((state) => state.categories.allCategories);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
 
   let numGroups = 0;
   let numPlaces = 0;
