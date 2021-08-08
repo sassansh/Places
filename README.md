@@ -14,14 +14,16 @@
 
   <p align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
-   <br />
-    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>
+    <br />
+    <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>\
+    <br />
+    <br />
+    <img src="/images/app-capture.gif" alt="live-app" width="600"/>
   </p>
 </p>
 
 ## Table of Contents
 
-- [Project Description 🏝](#project-description-)
 - [Task Requirements 💼](#task-requirements-)
 - [Task Breakdown 📝](#task-breakdown-)
 - [Prototypes 🎨](#prototypes-)
@@ -29,49 +31,8 @@
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
 - [The Team ‎😃](#the-team-)
+- [Project Description 🏝](#project-description-)
 - [License 📔](#license-)
-
-## Project Description 🏝
-
-<p align="center">
-<img src="/images/app-capture.gif" alt="live-app" width="600"/>
-</p>
-
-<!-- [![Site preview](/images/app-capture.gif)](https://places-cpsc455.herokuapp.com/) -->
-
-**Who is it for?**
-
-- People in cities (mostly) with lots of choices of amenities (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
-
-**What will it do?**
-
-- Allow people to enter ratings/reviews for places
-- Help people find the best place out of many options through reliable, trusted recommendations
-- Help people recommend the places they like to their friends, and keep this knowledge without forgetting
-
-**What type of data will it store?**
-
-- Registered users and groups
-- Members of groups
-- Lists of places
-- Sets of criteria a group considers important
-- Individuals’ ratings of individual places in specific categories, using specific criteria
-
-**What will users be able to do with this data?**
-
-- Join an existing group or create a new one
-- Add a rating for a place
-- Look at ranked lists of places in given categories
-- Search for a place based on needed requirements (park in Vancouver with playground, bar in Burnaby open at 11pm)
-- Decide where to go
-
-**What is some additional functionality you can add/remove based on time constraints?**
-
-- Ability to publish a group’s ratings to the public
-  - Option to publish only aggregate data or ranking
-- Create custom rating criteria/templates for each category of place
-- Allow users to add profile pictures and images of the places
-- Allow users to add new categories for places
 
 ## Task Requirements 💼
 
@@ -193,6 +154,42 @@ Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.link
 Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 
 Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
+
+## Project Description 🏝
+
+**Who is it for?**
+
+- People in cities (mostly) with lots of choices of amenities (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
+
+**What will it do?**
+
+- Allow people to enter ratings/reviews for places
+- Help people find the best place out of many options through reliable, trusted recommendations
+- Help people recommend the places they like to their friends, and keep this knowledge without forgetting
+
+**What type of data will it store?**
+
+- Registered users and groups
+- Members of groups
+- Lists of places
+- Sets of criteria a group considers important
+- Individuals’ ratings of individual places in specific categories, using specific criteria
+
+**What will users be able to do with this data?**
+
+- Join an existing group or create a new one
+- Add a rating for a place
+- Look at ranked lists of places in given categories
+- Search for a place based on needed requirements (park in Vancouver with playground, bar in Burnaby open at 11pm)
+- Decide where to go
+
+**What is some additional functionality you can add/remove based on time constraints?**
+
+- Ability to publish a group’s ratings to the public
+  - Option to publish only aggregate data or ranking
+- Create custom rating criteria/templates for each category of place
+- Allow users to add profile pictures and images of the places
+- Allow users to add new categories for places
 
 ## License 📔
 
