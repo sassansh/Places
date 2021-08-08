@@ -20,20 +20,16 @@ function AddReview(props) {
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
   const places = useSelector((state) => state.places.allPlaces);
   const categories = useSelector((state) => state.categories.allCategories);
-
   const reviewLoadedRef = useRef(false);
   const existingReview = reviews.find(
     (review) =>
       review.user_id === currentUserID && review.place_id === currentPlaceID
   );
-
   const place = places.find((element) => element.place_id === currentPlaceID);
   const category = categories.find(
     (element) => element.category_id === place.category_id
   );
-
   const customCriteria = category.custom_criteria;
-
   const [rateValues, setRateValues] = useState(
     [...Array(customCriteria.length)].map(() => 0)
   );
@@ -90,7 +86,6 @@ function AddReview(props) {
                   value,
                   ...rateValues.slice(index + 1)
                 ]);
-                console.log(rateValues);
               }}
               value={rateValues[index]}
             />

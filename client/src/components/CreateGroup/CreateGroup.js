@@ -16,9 +16,9 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 const { Option } = Select;
+const { Title } = Typography;
 
 function CreateGroup(props) {
-  const { Title } = Typography;
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [logoData, setLogoData] = useState('');
