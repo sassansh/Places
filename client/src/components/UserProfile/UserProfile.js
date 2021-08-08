@@ -4,6 +4,7 @@ import { Card, Col, Divider, Row, Typography } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Avatar from 'antd/lib/avatar/avatar';
+import RoundedRate from '../RoundedRate/RoundedRate';
 import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
 import { useEffect } from 'react';
@@ -21,7 +22,9 @@ function UserProfile() {
     dispatch(getReviews());
   }, [dispatch]);
 
-  const { Title } = Typography;
+const { Title } = Typography;
+
+function UserProfile() {
   const user = useSelector((state) => state.users.user);
   const users = useSelector((state) => state.users.allUsers);
   const userData = users.find((item) => item.user_id === user.user_id);
@@ -29,6 +32,12 @@ function UserProfile() {
   const places = useSelector((state) => state.places.allPlaces);
   const groups = useSelector((state) => state.groups.allGroups);
   const categories = useSelector((state) => state.categories.allCategories);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   let numGroups = 0;
   let numPlaces = 0;
@@ -59,19 +68,21 @@ function UserProfile() {
 
   function getGroup(group_id) {
     const targetGroup = groups.find((group) => group.group_id === group_id);
-    try {
-      numGroups++;
-      return (
-        <Card size='small'>
-          <span className='group'>
-            <Avatar size={64} src={targetGroup.avatarURL} />
-            &emsp;{targetGroup.name}
-          </span>
-        </Card>
-      );
-    } catch (e) {
-      numGroups--;
-      console.error(e);
+    if (targetGroup) {
+      try {
+        numGroups++;
+        return (
+          <Card size='small'>
+            <span className='group'>
+              <Avatar size={64} src={targetGroup.avatarURL} />
+              &emsp;{targetGroup.name}
+            </span>
+          </Card>
+        );
+      } catch (e) {
+        numGroups--;
+        console.error(e);
+      }
     }
   }
 

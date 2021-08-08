@@ -37,6 +37,7 @@ export const registerUser = (userData, history) => async () => {
 };
 
 export const loginUser = (userData) => async (dispatch) => {
+  const loading = message.loading('Logging in..', 0);
   try {
     const loginResponse = await axios.post('/api/users/login', userData);
     const { token } = loginResponse.data;
@@ -47,40 +48,51 @@ export const loginUser = (userData) => async (dispatch) => {
     const user = jwt_decode(token);
     // Set current user
     dispatch(setCurrentUser(user));
+    loading();
     message.success('Logged in! Welcome ' + user.name + '!');
   } catch (err) {
+    loading();
     message.error(err.response.data + '!');
   }
 };
 
 export const userRequestToJoinGroup = (group_id) => async (dispatch) => {
+  const loading = message.loading('Requesting to join group..', 0);
   try {
     await axios.post('/api/users/group/request', { group_id });
     await dispatch(getUsers());
+    loading();
     message.success('Requested to join group');
   } catch (err) {
+    loading();
     message.error(err.response.data + '!');
   }
 };
 
 export const userAcceptRequestToJoinGroup =
   (other_user_id, group_id) => async (dispatch) => {
+    const loading = message.loading('Accepting request..', 0);
     try {
       await axios.post('/api/users/group/accept', { other_user_id, group_id });
       await dispatch(getUsers());
+      loading();
       message.success('Accepted request to join group');
     } catch (err) {
+      loading();
       message.error(err.response.data + '!');
     }
   };
 
 export const userRejectRequestToJoinGroup =
   (other_user_id, group_id) => async (dispatch) => {
+    const loading = message.loading('Rejecting request..', 0);
     try {
       await axios.post('/api/users/group/reject', { other_user_id, group_id });
       await dispatch(getUsers());
+      loading();
       message.success('Rejected request to join group');
     } catch (err) {
+      loading();
       message.error(err.response.data + '!');
     }
   };
@@ -143,9 +155,9 @@ export const addFavouritePlace = (place_id) => async (dispatch) => {
   const loading = message.loading('Adding favourite..', 0);
   try {
     await axios.post('/api/users/favourites', { place_id });
+    await dispatch(getFavourites());
     loading();
     message.success('Favourite added!');
-    dispatch(getFavourites());
   } catch (err) {
     loading();
     message.error('Could not favourite place!');
@@ -156,11 +168,10 @@ export const addFavouritePlace = (place_id) => async (dispatch) => {
 export const deleteFavouritePlace = (place_id) => async (dispatch) => {
   const loading = message.loading('Removing favourite..', 0);
   try {
-    console.log(place_id);
     await axios.delete('/api/users/favourites', { data: { place_id } });
+    await dispatch(getFavourites());
     loading();
     message.success('Favourite removed!');
-    dispatch(getFavourites());
   } catch (err) {
     loading();
     message.error('Could not remove favourite!');

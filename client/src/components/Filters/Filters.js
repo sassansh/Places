@@ -9,19 +9,6 @@ const { Search } = Input;
 
 function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
   const [allChecked, setAllChecked] = useState(true);
-  const onSearch = (value) => setSearchQuery(value);
-  const onChange = (value) => {
-    if (value.length !== 0) {
-      setCheckedCriteria(value);
-      setAllChecked(false);
-    }
-  };
-  const onChangeAll = (e) => {
-    if (e.target.checked) {
-      setCheckedCriteria([]);
-      setAllChecked(true);
-    }
-  };
   const categories = useSelector((state) => state.categories.allCategories);
   const currentCategoryID = useSelector(
     (state) => state.categories.currentCategoryID
@@ -30,6 +17,23 @@ function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
     (category) => category.category_id === currentCategoryID
   );
   const options = currentCategory.custom_criteria;
+  
+  const onSearch = (value) => setSearchQuery(value);
+  
+  const onChange = (value) => {
+    if (value.length !== 0) {
+      setCheckedCriteria(value);
+      setAllChecked(false);
+    }
+  };
+  
+  const onChangeAll = (e) => {
+    if (e.target.checked) {
+      setCheckedCriteria([]);
+      setAllChecked(true);
+    }
+  };
+  
   if (options.length !== 0) {
     return (
       <Col>

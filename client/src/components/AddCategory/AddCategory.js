@@ -24,16 +24,16 @@ import { Picker } from 'emoji-mart';
 import { addCategory } from '../../redux/actions/categoryActions';
 import { useState } from 'react';
 
+const { Title } = Typography;
+
 function AddCategory(props) {
-  const { Title } = Typography;
   const [form] = Form.useForm();
-  const dispatch = useDispatch();
   const splitter = new GraphemeSplitter();
+  const dispatch = useDispatch();
   const currentGroup = useSelector((state) => state.groups.currentGroupID);
   const [isCustomCriteria, setIsCustomCriteria] = useState(false);
   const [numberOfCriteria, setNumberOfCriteria] = useState(2);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
-
   const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size'];
 
   function handleChange() {
@@ -69,6 +69,7 @@ function AddCategory(props) {
 
     dispatch(addCategory(newCategory, props.history));
   }
+  
   return (
     <Col className='container'>
       <Row justify='center'>

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 router.get('/', authenticateToken, (req, res) => {
-  Review.find()
+  Review.find({}, '-_id review_id user_id place_id rating')
     .then((reviews) => res.json(reviews))
     .catch((err) => console.log(err));
 });
