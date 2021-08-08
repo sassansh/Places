@@ -25,13 +25,15 @@
 ## Table of Contents
 
 - [Task Requirements 💼](#task-requirements-)
+- [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
+- [Above and Beyond Functionality 🌟](#above-and-beyond-functionality-)
+- [Next Steps 🔮](#next-steps-)
+- [Team Contributions ‎😃](#team-contributions-)
+- [Project Description 🏝](#project-description-)
 - [Task Breakdown 📝](#task-breakdown-)
 - [Prototypes 🎨](#prototypes-)
-- [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
-- [The Team ‎😃](#the-team-)
-- [Project Description 🏝](#project-description-)
 - [License 📔](#license-)
 
 ## Task Requirements 💼
@@ -65,6 +67,92 @@
 - [x] Allow user to save and view favorite places
 - [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 
+## Technology Stack 🛠️
+
+**HTML,CSS, JS**
+
+- Description Here
+
+**React**
+
+- Description Here
+
+**Node & Express**
+
+- Description Here
+
+**NoSQL with MongoDB**
+
+- Description Here
+
+**Release Engineering**
+
+- Description Here
+
+## Above and Beyond Functionality 🌟
+
+Description Here
+
+## Next Steps 🔮
+
+Description Here
+
+## Team Contributions ‎😃
+
+Team Name: Green 🌱
+
+Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
+
+- Contribtions here
+
+Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
+
+- Contribtions here
+
+Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
+
+- Contribtions here
+
+Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
+
+- Contribtions here
+
+## Project Description 🏝
+
+**Who is it for?**
+
+- People in cities (mostly) with lots of choices of amenities (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
+
+**What will it do?**
+
+- Allow people to enter ratings/reviews for places
+- Help people find the best place out of many options through reliable, trusted recommendations
+- Help people recommend the places they like to their friends, and keep this knowledge without forgetting
+
+**What type of data will it store?**
+
+- Registered users and groups
+- Members of groups
+- Lists of places
+- Sets of criteria a group considers important
+- Individuals’ ratings of individual places in specific categories, using specific criteria
+
+**What will users be able to do with this data?**
+
+- Join an existing group or create a new one
+- Add a rating for a place
+- Look at ranked lists of places in given categories
+- Search for a place based on needed requirements (park in Vancouver with playground, bar in Burnaby open at 11pm)
+- Decide where to go
+
+**What is some additional functionality you can add/remove based on time constraints?**
+
+- Ability to publish a group’s ratings to the public
+  - Option to publish only aggregate data or ranking
+- Create custom rating criteria/templates for each category of place
+- Allow users to add profile pictures and images of the places
+- Allow users to add new categories for places
+
 ## Task Breakdown 📝
 
 - [x] Register new account or log in to existing account
@@ -94,16 +182,6 @@ Reviews in a group (after clicking a joined group)
 
 Adding a review to a place (after clicking add review on a place)
 ![Add Review][add_review]
-
-## Technology Stack 🛠️
-
-[MongoDB](https://www.mongodb.com/)
-
-[ExpressJs](https://expressjs.com/)
-
-[ReactJs](https://reactjs.org/)
-
-[NodeJs](https://nodejs.org/en/)
 
 ## Prerequisites 🍪
 
@@ -142,54 +220,6 @@ You should have [Node.js](https://nodejs.org/en/), [Yarn](https://classic.yarnpk
    ```https
      https://places-cpsc455.herokuapp.com/
    ```
-
-## The Team ‎😃
-
-Team Name: Green 🌱
-
-Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
-
-Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
-
-Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
-
-Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
-
-## Project Description 🏝
-
-**Who is it for?**
-
-- People in cities (mostly) with lots of choices of amenities (restaurants/bars/breweries/parks) who want to talk with trusted groups about what places they like best
-
-**What will it do?**
-
-- Allow people to enter ratings/reviews for places
-- Help people find the best place out of many options through reliable, trusted recommendations
-- Help people recommend the places they like to their friends, and keep this knowledge without forgetting
-
-**What type of data will it store?**
-
-- Registered users and groups
-- Members of groups
-- Lists of places
-- Sets of criteria a group considers important
-- Individuals’ ratings of individual places in specific categories, using specific criteria
-
-**What will users be able to do with this data?**
-
-- Join an existing group or create a new one
-- Add a rating for a place
-- Look at ranked lists of places in given categories
-- Search for a place based on needed requirements (park in Vancouver with playground, bar in Burnaby open at 11pm)
-- Decide where to go
-
-**What is some additional functionality you can add/remove based on time constraints?**
-
-- Ability to publish a group’s ratings to the public
-  - Option to publish only aggregate data or ranking
-- Create custom rating criteria/templates for each category of place
-- Allow users to add profile pictures and images of the places
-- Allow users to add new categories for places
 
 ## License 📔
 
