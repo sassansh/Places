@@ -57,10 +57,9 @@ router.post('/favourites', authenticateToken, (req, res) => {
       if (favourited_places.includes(place_id)) {
         return res.status(400).send({ message: 'Place already favourited' });
       }
-      User.updateOne(
-        { user_id: user_id },
-        { $push: { favourite_places: place_id } }
-      ).then(() => res.json({ message: 'Place has been favourited' }));
+      User.updateOne({ user_id: user_id }, { $push: { favourite_places: place_id } }).then(() =>
+        res.json({ message: 'Place has been favourited' })
+      );
     });
   });
 });
@@ -85,10 +84,7 @@ router.delete('/favourites', authenticateToken, (req, res) => {
       if (!favourited_places.includes(place_id)) {
         return res.status(400).send({ message: 'Place is not favourited' });
       }
-      User.updateOne(
-        { user_id: user_id },
-        { $pull: { favourite_places: place_id } }
-      ).then(() =>
+      User.updateOne({ user_id: user_id }, { $pull: { favourite_places: place_id } }).then(() =>
         res.json({ message: 'Place has been removed from favourites' })
       );
     });
@@ -257,9 +253,7 @@ router.post('/group/accept', authenticateToken, (req, res) => {
     if (!user.groups.includes(group_id)) {
       return res
         .status(400)
-        .send(
-          'Not authorized to accept users into a group you are not a member of'
-        );
+        .send('Not authorized to accept users into a group you are not a member of');
     }
   });
 
@@ -276,24 +270,16 @@ router.post('/group/accept', authenticateToken, (req, res) => {
 
     if (user.requestGroups.includes(group_id)) {
       // Remove group ID from other user's requestGroup
-      User.updateOne(
-        { user_id: other_user_id },
-        { $pullAll: { requestGroups: [group_id] } }
-      )
+      User.updateOne({ user_id: other_user_id }, { $pullAll: { requestGroups: [group_id] } })
         .then(() => {
           // Add group ID to user's groups
-          User.updateOne(
-            { user_id: other_user_id },
-            { $push: { groups: group_id } }
-          )
+          User.updateOne({ user_id: other_user_id }, { $push: { groups: group_id } })
             .then(() => res.json({ success: true }))
             .catch((err) => console.log(err));
         })
         .catch((err) => console.log(err));
     } else {
-      return res
-        .status(400)
-        .send('Other user has not requested to join this group');
+      return res.status(400).send('Other user has not requested to join this group');
     }
   });
 });
@@ -319,9 +305,7 @@ router.post('/group/reject', authenticateToken, (req, res) => {
     if (!user.groups.includes(group_id)) {
       return res
         .status(400)
-        .send(
-          'Not authorized to accept users into a group you are not a member of'
-        );
+        .send('Not authorized to accept users into a group you are not a member of');
     }
   });
 
@@ -338,16 +322,11 @@ router.post('/group/reject', authenticateToken, (req, res) => {
 
     if (user.requestGroups.includes(group_id)) {
       // Remove group ID from other user's requestGroup
-      User.updateOne(
-        { user_id: other_user_id },
-        { $pullAll: { requestGroups: [group_id] } }
-      )
+      User.updateOne({ user_id: other_user_id }, { $pullAll: { requestGroups: [group_id] } })
         .then(() => res.json({ success: true }))
         .catch((err) => console.log(err));
     } else {
-      return res
-        .status(400)
-        .send('Other user has not requested to join this group');
+      return res.status(400).send('Other user has not requested to join this group');
     }
   });
 });
@@ -355,10 +334,7 @@ router.post('/group/reject', authenticateToken, (req, res) => {
 router.delete('/group', authenticateToken, (req, res) => {
   const { user_id, currentGroupID } = req.body;
 
-  User.updateOne(
-    { user_id: user_id },
-    { $pullAll: { groups: [currentGroupID] } }
-  )
+  User.updateOne({ user_id: user_id }, { $pullAll: { groups: [currentGroupID] } })
     .then(() => {
       Place.find({ group_id: currentGroupID }).then((places) => {
         for (let i = 0; i < places.length; i++) {

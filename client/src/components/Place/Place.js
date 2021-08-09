@@ -11,19 +11,14 @@ function Place({ placeData }) {
   const dispatch = useDispatch();
 
   return (
-    <Link
-      to='/placeview'
-      onClick={() => dispatch(setCurrentPlace(placeData.place_id))}
-    >
+    <Link to='/placeview' onClick={() => dispatch(setCurrentPlace(placeData.place_id))}>
       <Card style={{ margin: 16 }}>
         <Col>
           <Row justify='space-around'>
             <Col lg={18} md={17} sm={15} xs={24}>
               <Row>
                 <span className='place'>
-                  <Avatar
-                    style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}
-                  >
+                  <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
                     {placeData.rank}
                   </Avatar>
                   <span className='place-name'>{placeData.name}</span>
@@ -37,9 +32,7 @@ function Place({ placeData }) {
                 {placeData.numReviews > 0 ? (
                   <span className='place-rating'>
                     <RoundedRate disabled allowHalf value={placeData.avgRating} />
-                    <span className='num-of-reviews'>
-                      {placeData.numReviews}
-                    </span>
+                    <span className='num-of-reviews'>{placeData.numReviews}</span>
                   </span>
                 ) : (
                   <span className='place-rating'>

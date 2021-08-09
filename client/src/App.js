@@ -1,13 +1,7 @@
 import './App.less';
 import 'antd/dist/antd.less';
 
-import {
-  Redirect,
-  Route,
-  HashRouter as Router,
-  Switch,
-  withRouter
-} from 'react-router-dom';
+import { Redirect, Route, HashRouter as Router, Switch, withRouter } from 'react-router-dom';
 import { logoutUser, setCurrentUser } from './redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -71,59 +65,26 @@ function App() {
       {isAuthenticated && <MobileNavBar menu={<NavBarWithRouter />} />}
       <Layout style={{ marginTop: '62px' }}>
         {isAuthenticated && <SideBar menu={<NavBarWithRouter />} />}
-        <Layout
-          className='site-layout'
-          style={!isAuthenticated ? { marginLeft: '0px' } : {}}
-        >
+        <Layout className='site-layout' style={!isAuthenticated ? { marginLeft: '0px' } : {}}>
           <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={RegisterWithRouter} />
             <Switch>
               <PrivateRoute exact path='/' component={GroupListView} />
               <PrivateRoute exact path='/groupview' component={GroupView} />
-              <PrivateRoute
-                exact
-                path='/creategroup'
-                component={CreateGroupWithRouter}
-              />
-              <PrivateRoute
-                exact
-                path='/addcategory'
-                component={AddCategoryWithRouter}
-              />
-              <PrivateRoute
-                exact
-                path='/categoryview'
-                component={CategoryView}
-              />
-              <PrivateRoute
-                exact
-                path='/addplace'
-                component={AddPlaceWithRouter}
-              />
+              <PrivateRoute exact path='/creategroup' component={CreateGroupWithRouter} />
+              <PrivateRoute exact path='/addcategory' component={AddCategoryWithRouter} />
+              <PrivateRoute exact path='/categoryview' component={CategoryView} />
+              <PrivateRoute exact path='/addplace' component={AddPlaceWithRouter} />
               <PrivateRoute exact path='/placeview' component={PlaceView} />
-              <PrivateRoute
-                exact
-                path='/addreview'
-                component={AddReviewWithRouter}
-              />
+              <PrivateRoute exact path='/addreview' component={AddReviewWithRouter} />
               <PrivateRoute exact path='/requestview' component={RequestView} />
               <PrivateRoute exact path='/userprofile' component={UserProfile} />
-              <PrivateRoute
-                exact
-                path='/managegroup'
-                component={ManageGroupWithRouter}
-              />
-              <PrivateRoute
-                exact
-                path='/favouritesview'
-                component={FavouritesView}
-              />
+              <PrivateRoute exact path='/managegroup' component={ManageGroupWithRouter} />
+              <PrivateRoute exact path='/favouritesview' component={FavouritesView} />
             </Switch>
           </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Places App ©2021 Created by Team Green 🌱
-          </Footer>
+          <Footer style={{ textAlign: 'center' }}>Places App ©2021 Created by Team Green 🌱</Footer>
         </Layout>
       </Layout>
     </Router>

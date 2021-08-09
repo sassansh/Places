@@ -15,9 +15,7 @@ function ReviewList(props) {
     .filter((review) => review.user_id === currentUser)
     .concat(reviewsData.filter((review) => review.user_id !== currentUser));
 
-  const currentUserHasReview = !reviewsData.find(
-    (review) => review.user_id === currentUser
-  );
+  const currentUserHasReview = !reviewsData.find((review) => review.user_id === currentUser);
 
   const reviews = reviewsData.map((reviewData) => (
     <Review key={reviewData.review_id} review={reviewData} />

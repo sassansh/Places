@@ -1,11 +1,6 @@
 import './Group.css';
 
-import {
-  ArrowRightOutlined,
-  QuestionOutlined,
-  StarFilled,
-  UserOutlined
-} from '@ant-design/icons';
+import { ArrowRightOutlined, QuestionOutlined, StarFilled, UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Card, Col, Row, Tooltip } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -39,10 +34,7 @@ function Group(props) {
   reviews.forEach((review) => {
     const place_id = review.place_id;
     places.forEach((place) => {
-      if (
-        place_id === place.place_id &&
-        props.group.group_id === place.group_id
-      ) {
+      if (place_id === place.place_id && props.group.group_id === place.group_id) {
         numReviews++;
       }
     });
@@ -62,11 +54,7 @@ function Group(props) {
               dispatch(setCurrentGroup(props.group.group_id));
             }}
           >
-            <Button
-              type='primary'
-              icon={<ArrowRightOutlined size='large' />}
-              size='medium'
-            >
+            <Button type='primary' icon={<ArrowRightOutlined size='large' />} size='medium'>
               Go to Group
             </Button>
           </Link>

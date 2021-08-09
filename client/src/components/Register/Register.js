@@ -13,9 +13,7 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [profPicData, setprofPicData] = useState('');
-  const [profPicButtonName, setprofPicButtonName] = useState(
-    '👤 Add Profile Picture (Optional)'
-  );
+  const [profPicButtonName, setprofPicButtonName] = useState('👤 Add Profile Picture (Optional)');
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.users.isAuthenticated);
 
@@ -34,10 +32,7 @@ function Register(props) {
     if (imageSelected) {
       let fileName = e.target.files[0].name;
       if (fileName.length > 20) {
-        fileName =
-          fileName.substring(0, 10) +
-          '...' +
-          fileName.substring(fileName.length - 10);
+        fileName = fileName.substring(0, 10) + '...' + fileName.substring(fileName.length - 10);
       }
       setprofPicButtonName('👤 ' + fileName);
       setprofPicData(e.target.files[0]);

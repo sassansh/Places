@@ -17,18 +17,11 @@ function CategoryView() {
   const [searchQuery, setSearchQuery] = useState('');
   const [checkedCriteria, setCheckedCriteria] = useState([]);
   const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
-  const currentCategory = categories.find(
-    (category) => category.category_id === currentCategoryID
-  );
+  const currentCategoryID = useSelector((state) => state.categories.currentCategoryID);
+  const currentCategory = categories.find((category) => category.category_id === currentCategoryID);
   const categoryType =
-    currentCategory === undefined
-      ? ''
-      : currentCategory.name + ' ' + currentCategory.emoji;
-  const btnCategory =
-    currentCategory === undefined ? '' : currentCategory.name_singular;
+    currentCategory === undefined ? '' : currentCategory.name + ' ' + currentCategory.emoji;
+  const btnCategory = currentCategory === undefined ? '' : currentCategory.name_singular;
 
   return currentCategory === undefined ? (
     <Redirect to='/groupview' />

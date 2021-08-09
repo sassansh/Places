@@ -69,33 +69,31 @@ export const userRequestToJoinGroup = (group_id) => async (dispatch) => {
   }
 };
 
-export const userAcceptRequestToJoinGroup =
-  (other_user_id, group_id) => async (dispatch) => {
-    const loading = message.loading('Accepting request..', 0);
-    try {
-      await axios.post('/api/users/group/accept', { other_user_id, group_id });
-      await dispatch(getUsers());
-      loading();
-      message.success('Accepted request to join group');
-    } catch (err) {
-      loading();
-      message.error(err.response.data + '!');
-    }
-  };
+export const userAcceptRequestToJoinGroup = (other_user_id, group_id) => async (dispatch) => {
+  const loading = message.loading('Accepting request..', 0);
+  try {
+    await axios.post('/api/users/group/accept', { other_user_id, group_id });
+    await dispatch(getUsers());
+    loading();
+    message.success('Accepted request to join group');
+  } catch (err) {
+    loading();
+    message.error(err.response.data + '!');
+  }
+};
 
-export const userRejectRequestToJoinGroup =
-  (other_user_id, group_id) => async (dispatch) => {
-    const loading = message.loading('Rejecting request..', 0);
-    try {
-      await axios.post('/api/users/group/reject', { other_user_id, group_id });
-      await dispatch(getUsers());
-      loading();
-      message.success('Rejected request to join group');
-    } catch (err) {
-      loading();
-      message.error(err.response.data + '!');
-    }
-  };
+export const userRejectRequestToJoinGroup = (other_user_id, group_id) => async (dispatch) => {
+  const loading = message.loading('Rejecting request..', 0);
+  try {
+    await axios.post('/api/users/group/reject', { other_user_id, group_id });
+    await dispatch(getUsers());
+    loading();
+    message.success('Rejected request to join group');
+  } catch (err) {
+    loading();
+    message.error(err.response.data + '!');
+  }
+};
 
 export const setCurrentUser = (user) => {
   return {

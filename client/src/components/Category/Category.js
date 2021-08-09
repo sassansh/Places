@@ -18,9 +18,7 @@ function Category({ category }) {
     >
       <Card style={{ margin: 16 }}>
         <span className='category'>
-          <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-            {category.emoji}
-          </Avatar>
+          <Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{category.emoji}</Avatar>
           <span className='category-name'>{category.name}</span>
         </span>
 

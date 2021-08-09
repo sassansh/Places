@@ -14,9 +14,7 @@ function Member(props) {
   const username = user_id === currentUserID ? 'yourself' : props.user.name;
 
   function removeUserFromGroup() {
-    dispatch(
-      removeUser({ currentUserID, user_id, currentGroupID }, props.history)
-    );
+    dispatch(removeUser({ currentUserID, user_id, currentGroupID }, props.history));
   }
   return (
     <Card style={{ margin: 16 }}>
@@ -39,9 +37,7 @@ function Member(props) {
             <Col>
               <Row justify='center'>
                 <Popconfirm
-                  title={
-                    'Do you really want to remove ' + username + ' from group?'
-                  }
+                  title={'Do you really want to remove ' + username + ' from group?'}
                   okText='Yes'
                   cancelText='No'
                   onConfirm={removeUserFromGroup}

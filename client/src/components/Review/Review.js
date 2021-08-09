@@ -12,14 +12,10 @@ function Review(props) {
   const dispatch = useDispatch();
   const review = props.review;
   const users = useSelector((state) => state.users.allUsers);
-  const reviewer = users.find(
-    (element) => element.user_id === review.user_id
-  ).name;
-  const isCurrentUser =
-    review.user_id === useSelector((state) => state.users.user.user_id);
+  const reviewer = users.find((element) => element.user_id === review.user_id).name;
+  const isCurrentUser = review.user_id === useSelector((state) => state.users.user.user_id);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
-  const ratingAverage =
-    review.rating.reduce((p, c) => p + c, 0) / review.rating.length;
+  const ratingAverage = review.rating.reduce((p, c) => p + c, 0) / review.rating.length;
 
   return (
     <li>

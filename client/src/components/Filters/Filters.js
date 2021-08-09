@@ -10,30 +10,26 @@ const { Search } = Input;
 function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
   const [allChecked, setAllChecked] = useState(true);
   const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
-  const currentCategory = categories.find(
-    (category) => category.category_id === currentCategoryID
-  );
+  const currentCategoryID = useSelector((state) => state.categories.currentCategoryID);
+  const currentCategory = categories.find((category) => category.category_id === currentCategoryID);
   const options = currentCategory.custom_criteria;
-  
+
   const onSearch = (value) => setSearchQuery(value);
-  
+
   const onChange = (value) => {
     if (value.length !== 0) {
       setCheckedCriteria(value);
       setAllChecked(false);
     }
   };
-  
+
   const onChangeAll = (e) => {
     if (e.target.checked) {
       setCheckedCriteria([]);
       setAllChecked(true);
     }
   };
-  
+
   if (options.length !== 0) {
     return (
       <Col>
@@ -45,11 +41,7 @@ function Filters({ setSearchQuery, checkedCriteria, setCheckedCriteria }) {
                   <b>Rank Using:</b>
                 </Col>
                 <Col lg={20} md={24}>
-                  <Checkbox
-                    className='checkboxGroup'
-                    onChange={onChangeAll}
-                    checked={allChecked}
-                  >
+                  <Checkbox className='checkboxGroup' onChange={onChangeAll} checked={allChecked}>
                     All
                   </Checkbox>
                   <Divider className='divider' type='vertical' />

@@ -1,6 +1,7 @@
 import './RatingCriterion.css';
 
 import { Col, Row } from 'antd';
+
 import RoundedRate from '../RoundedRate/RoundedRate';
 
 function RatingCriterion(props) {

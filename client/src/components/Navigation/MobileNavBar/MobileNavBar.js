@@ -64,11 +64,7 @@ const MobileNavBar = ({ menu }) => {
       <Dropdown overlay={profileMenu} trigger={['click']}>
         <span className='profilepic'>
           {currentUser && (
-            <img
-              src={currentUser.avatarURL}
-              className='profilepic'
-              alt='profile pic'
-            />
+            <img src={currentUser.avatarURL} className='profilepic' alt='profile pic' />
           )}
         </span>
       </Dropdown>

@@ -5,9 +5,8 @@ import RatingCriterion from '../RatingCriterion/RatingCriterion';
 function RatingDetail(props) {
   const criteriaData = props.criteria.map(
     (criterion, index) =>
-      props.reviewsData
-        .map((review) => review.rating[index])
-        .reduce((p, c) => p + c, 0) / props.reviewsData.length
+      props.reviewsData.map((review) => review.rating[index]).reduce((p, c) => p + c, 0) /
+      props.reviewsData.length
   );
 
   const criteria = props.criteria.map((criterion, index) => (

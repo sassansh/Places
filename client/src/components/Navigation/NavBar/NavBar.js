@@ -6,10 +6,7 @@ import {
   ShopOutlined,
   TeamOutlined
 } from '@ant-design/icons';
-import {
-  setCategories,
-  setCurrentCategory
-} from '../../../redux/actions/categoryActions';
+import { setCategories, setCurrentCategory } from '../../../redux/actions/categoryActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -25,23 +22,15 @@ function NavBar(props) {
 
   const groups = useSelector((state) => state.groups.allGroups);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-  const currentGroup = groups.find(
-    (group) => group.group_id === currentGroupID
-  );
+  const currentGroup = groups.find((group) => group.group_id === currentGroupID);
 
   const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
-  const currentCategory = categories.find(
-    (category) => category.category_id === currentCategoryID
-  );
+  const currentCategoryID = useSelector((state) => state.categories.currentCategoryID);
+  const currentCategory = categories.find((category) => category.category_id === currentCategoryID);
 
   const places = useSelector((state) => state.places.allPlaces);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
-  const currentPlace = places.find(
-    (place) => place.place_id === currentPlaceID
-  );
+  const currentPlace = places.find((place) => place.place_id === currentPlaceID);
 
   function updateTab(e) {
     setTab(e.key);
