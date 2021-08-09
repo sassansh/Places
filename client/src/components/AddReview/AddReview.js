@@ -1,11 +1,7 @@
 import './AddReview.css';
 
 import { Avatar, Button, Col, Divider, Rate, Row, Typography } from 'antd';
-import {
-  addReview,
-  editReview,
-  getReviews
-} from '../../redux/actions/reviewActions';
+import { addReview, editReview, getReviews } from '../../redux/actions/reviewActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
@@ -22,17 +18,12 @@ function AddReview(props) {
   const categories = useSelector((state) => state.categories.allCategories);
   const reviewLoadedRef = useRef(false);
   const existingReview = reviews.find(
-    (review) =>
-      review.user_id === currentUserID && review.place_id === currentPlaceID
+    (review) => review.user_id === currentUserID && review.place_id === currentPlaceID
   );
   const place = places.find((element) => element.place_id === currentPlaceID);
-  const category = categories.find(
-    (element) => element.category_id === place.category_id
-  );
+  const category = categories.find((element) => element.category_id === place.category_id);
   const customCriteria = category.custom_criteria;
-  const [rateValues, setRateValues] = useState(
-    [...Array(customCriteria.length)].map(() => 0)
-  );
+  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map(() => 0));
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
@@ -97,9 +88,7 @@ function AddReview(props) {
           <span>
             <RoundedRate
               style={{ fontSize: '40px' }}
-              value={
-                rateValues.reduce((p, c) => p + c, 0) / customCriteria.length
-              }
+              value={rateValues.reduce((p, c) => p + c, 0) / customCriteria.length}
               disabled
             />
           </span>
@@ -115,9 +104,7 @@ function AddReview(props) {
     <div className='container'>
       <Row justify='left'>
         <Col>
-          <Title level={2}>
-            {existingReview ? 'Edit Review' : 'Add Review'}
-          </Title>
+          <Title level={2}>{existingReview ? 'Edit Review' : 'Add Review'}</Title>
         </Col>
       </Row>
       <Divider

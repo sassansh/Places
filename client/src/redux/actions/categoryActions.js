@@ -18,10 +18,7 @@ export const getCategories = (group_id) => async (dispatch) => {
 export const addCategory = (newCategory, history) => async (dispatch) => {
   const loading = message.loading('Creating category..', 0);
   try {
-    const newCategoryResponse = await axios.post(
-      '/api/categories',
-      newCategory
-    );
+    const newCategoryResponse = await axios.post('/api/categories', newCategory);
     const newCategoryFull = await newCategoryResponse.data;
     loading();
     await dispatch(getCategories());

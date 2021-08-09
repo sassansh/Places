@@ -1,15 +1,6 @@
 import './CreateGroup.css';
 
-import {
-  Button,
-  Col,
-  Divider,
-  Form,
-  Input,
-  Row,
-  Select,
-  Typography
-} from 'antd';
+import { Button, Col, Divider, Form, Input, Row, Select, Typography } from 'antd';
 
 import { createGroup } from '../../redux/actions/groupActions';
 import { useDispatch } from 'react-redux';
@@ -41,10 +32,7 @@ function CreateGroup(props) {
     if (imageSelected) {
       let fileName = e.target.files[0].name;
       if (fileName.length > 20) {
-        fileName =
-          fileName.substring(0, 10) +
-          '...' +
-          fileName.substring(fileName.length - 10);
+        fileName = fileName.substring(0, 10) + '...' + fileName.substring(fileName.length - 10);
       }
       setlogoButtonName('🖼️ ' + fileName);
       setLogoData(e.target.files[0]);
@@ -84,13 +72,7 @@ function CreateGroup(props) {
       />
       <Row justify='center'>
         <Col xl={12} lg={16} md={16} sm={18} xs={24}>
-          <Form
-            className='form'
-            form={form}
-            layout='vertical'
-            size='large'
-            onChange={handleChange}
-          >
+          <Form className='form' form={form} layout='vertical' size='large' onChange={handleChange}>
             <Form.Item name='name' label='Name'>
               <Input placeholder='Name' />
             </Form.Item>
@@ -101,12 +83,7 @@ function CreateGroup(props) {
           Logo
           <br />
           <br />
-          <input
-            className='logouploadinput'
-            type='file'
-            id='logoupload'
-            onChange={logoHandler}
-          />
+          <input className='logouploadinput' type='file' id='logoupload' onChange={logoHandler} />
           <label className='logouploadlabel' htmlFor='logoupload'>
             {logoButtonName}
           </label>
@@ -143,11 +120,7 @@ function CreateGroup(props) {
             className='button'
             type='primary'
             size='large'
-            disabled={
-              fieldInput.name === '' ||
-              fieldInput.description === '' ||
-              logoData === ''
-            }
+            disabled={fieldInput.name === '' || fieldInput.description === '' || logoData === ''}
           >
             Submit
           </Button>

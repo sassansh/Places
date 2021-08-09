@@ -12,9 +12,7 @@ function GroupView() {
   const groups = useSelector((state) => state.groups.allGroups);
   const users = useSelector((state) => state.users.allUsers);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-  const currentGroup = groups.find(
-    (group) => group.group_id === currentGroupID
-  );
+  const currentGroup = groups.find((group) => group.group_id === currentGroupID);
   const title = currentGroup.name;
   const avatarURL = currentGroup.avatarURL;
   let numMembers = 0;

@@ -12,9 +12,7 @@ function AddPlace(props) {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
+  const currentCategoryID = useSelector((state) => state.categories.currentCategoryID);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
   const [fieldInput, setFieldInput] = useState({
     name: ''
@@ -27,10 +25,7 @@ function AddPlace(props) {
     if (imageSelected) {
       let fileName = e.target.files[0].name;
       if (fileName.length > 20) {
-        fileName =
-          fileName.substring(0, 10) +
-          '...' +
-          fileName.substring(fileName.length - 10);
+        fileName = fileName.substring(0, 10) + '...' + fileName.substring(fileName.length - 10);
       }
       setimageButtonName('🖼️ ' + fileName);
       setimageData(e.target.files[0]);
@@ -41,9 +36,7 @@ function AddPlace(props) {
   };
 
   const currentCategory = () => {
-    return categories.find(
-      (category) => category.category_id === currentCategoryID
-    );
+    return categories.find((category) => category.category_id === currentCategoryID);
   };
 
   function handleChange() {
@@ -63,9 +56,8 @@ function AddPlace(props) {
     newPlace.append('category_id', currentCategoryID);
     newPlace.append('placeImage', imageData);
     dispatch(addPlace(newPlace, props.history));
-    form.resetFields();
   }
-  
+
   return (
     <Col className='container'>
       <Row justify='center'>
@@ -86,13 +78,7 @@ function AddPlace(props) {
       />
       <Row justify='center'>
         <Col lg={8} md={10} sm={10}>
-          <Form
-            className='form'
-            form={form}
-            layout='vertical'
-            size='large'
-            onChange={handleChange}
-          >
+          <Form className='form' form={form} layout='vertical' size='large' onChange={handleChange}>
             <Form.Item name='name' label='Name'>
               <Input placeholder='Name' />
             </Form.Item>
@@ -124,11 +110,7 @@ function AddPlace(props) {
             className='button'
             type='primary'
             size='large'
-            disabled={
-              fieldInput.name === '' ||
-              fieldInput.address === '' ||
-              imageData === ''
-            }
+            disabled={fieldInput.name === '' || fieldInput.address === '' || imageData === ''}
           >
             Submit
           </Button>

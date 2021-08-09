@@ -2,10 +2,7 @@ import './FavouritesView.css';
 
 import { Card, Col, Divider, Row, Tooltip, Typography } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
-import {
-  deleteFavouritePlace,
-  getFavourites
-} from '../../redux/actions/userActions';
+import { deleteFavouritePlace, getFavourites } from '../../redux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getCategories } from '../../redux/actions/categoryActions';
@@ -31,9 +28,7 @@ function FavouritesView() {
 
   function getPlace(place_id) {
     try {
-      const placeName = places.find(
-        (place) => place.place_id === place_id
-      ).name;
+      const placeName = places.find((place) => place.place_id === place_id).name;
       return placeName;
     } catch (e) {
       console.error(e);
@@ -42,12 +37,8 @@ function FavouritesView() {
 
   function getGroupName(place_id) {
     try {
-      const group_id = places.find(
-        (place) => place.place_id === place_id
-      ).group_id;
-      const groupName = groups.find(
-        (group) => group.group_id === group_id
-      ).name;
+      const group_id = places.find((place) => place.place_id === place_id).group_id;
+      const groupName = groups.find((group) => group.group_id === group_id).name;
       return ' 👤 ' + groupName;
     } catch (e) {
       console.error(e);
@@ -56,12 +47,8 @@ function FavouritesView() {
 
   function getCategoryName(place_id) {
     try {
-      const category_id = places.find(
-        (place) => place.place_id === place_id
-      ).category_id;
-      const targetCategory = categories.find(
-        (category) => category.category_id === category_id
-      );
+      const category_id = places.find((place) => place.place_id === place_id).category_id;
+      const targetCategory = categories.find((category) => category.category_id === category_id);
       let categoryEmoji = '';
       let categoryName = '';
       if (targetCategory) {
@@ -90,9 +77,7 @@ function FavouritesView() {
             </Tooltip>
           </Col>
         </Row>
-        <span className='meta'>
-          {getCategoryName(favourite) + getGroupName(favourite)}
-        </span>
+        <span className='meta'>{getCategoryName(favourite) + getGroupName(favourite)}</span>
       </Card>
     </li>
   ));

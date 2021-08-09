@@ -7,10 +7,10 @@ import Avatar from 'antd/lib/avatar/avatar';
 import RoundedRate from '../RoundedRate/RoundedRate';
 import { UserOutlined } from '@ant-design/icons';
 import { getCategories } from '../../redux/actions/categoryActions';
-import { useEffect } from 'react';
-import { getReviews } from '../../redux/actions/reviewActions';
-import { getPlaces } from '../../redux/actions/placeActions';
 import { getGroups } from '../../redux/actions/groupActions';
+import { getPlaces } from '../../redux/actions/placeActions';
+import { getReviews } from '../../redux/actions/reviewActions';
+import { useEffect } from 'react';
 
 function UserProfile() {
   const dispatch = useDispatch();
@@ -37,9 +37,7 @@ function UserProfile() {
   function getPlace(place_id) {
     try {
       numPlaces++;
-      const placeName = places.find(
-        (place) => place.place_id === place_id
-      ).name;
+      const placeName = places.find((place) => place.place_id === place_id).name;
       return placeName;
     } catch (e) {
       numPlaces--;
@@ -80,12 +78,8 @@ function UserProfile() {
 
   function getGroupName(place_id) {
     try {
-      const group_id = places.find(
-        (place) => place.place_id === place_id
-      ).group_id;
-      const groupName = groups.find(
-        (group) => group.group_id === group_id
-      ).name;
+      const group_id = places.find((place) => place.place_id === place_id).group_id;
+      const groupName = groups.find((group) => group.group_id === group_id).name;
       return ' 👤 ' + groupName;
     } catch (e) {
       console.error(e);
@@ -94,12 +88,8 @@ function UserProfile() {
 
   function getCategoryName(place_id) {
     try {
-      const category_id = places.find(
-        (place) => place.place_id === place_id
-      ).category_id;
-      const targetCategory = categories.find(
-        (category) => category.category_id === category_id
-      );
+      const category_id = places.find((place) => place.place_id === place_id).category_id;
+      const targetCategory = categories.find((category) => category.category_id === category_id);
       let categoryEmoji = '';
       let categoryName = '';
       if (targetCategory) {
@@ -156,11 +146,7 @@ function UserProfile() {
       <Row justify='center'>
         <Col className='column1' lg={6} md={6} sm={24}>
           <div className='profile'>
-            <img
-              className='profilePic'
-              src={userData.avatarURL}
-              alt='profileImg'
-            />
+            <img className='profilePic' src={userData.avatarURL} alt='profileImg' />
             <div className='name'>{userData.name}</div>
           </div>
           <br />

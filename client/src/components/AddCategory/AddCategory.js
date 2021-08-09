@@ -1,22 +1,8 @@
 import './AddCategory.css';
 import 'emoji-mart/css/emoji-mart.css';
 
-import {
-  Button,
-  Col,
-  Divider,
-  Form,
-  Input,
-  Modal,
-  Row,
-  Switch,
-  Typography
-} from 'antd';
-import {
-  MinusCircleOutlined,
-  PlusOutlined,
-  SmileOutlined
-} from '@ant-design/icons';
+import { Button, Col, Divider, Form, Input, Modal, Row, Switch, Typography } from 'antd';
+import { MinusCircleOutlined, PlusOutlined, SmileOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 
 import GraphemeSplitter from 'grapheme-splitter';
@@ -69,7 +55,7 @@ function AddCategory(props) {
 
     dispatch(addCategory(newCategory, props.history));
   }
-  
+
   return (
     <Col className='container'>
       <Row justify='center'>
@@ -95,10 +81,7 @@ function AddCategory(props) {
             size='large'
             onChange={handleChange}
             initialValues={{
-              criteria: [
-                { criterion: defaultCriteria[0] },
-                { criterion: defaultCriteria[1] }
-              ]
+              criteria: [{ criterion: defaultCriteria[0] }, { criterion: defaultCriteria[1] }]
             }}
           >
             <Form.Item name='name_singular' label='Name for one place'>
@@ -111,11 +94,7 @@ function AddCategory(props) {
               <Form.Item name='emoji'>
                 <Input
                   size='large'
-                  suffix={
-                    <SmileOutlined
-                      onClick={() => setEmojiPickerVisible(true)}
-                    />
-                  }
+                  suffix={<SmileOutlined onClick={() => setEmojiPickerVisible(true)} />}
                 />
               </Form.Item>
               <Modal
@@ -203,12 +182,7 @@ function AddCategory(props) {
       </Row>
       <Row justify='center'>
         <Col>
-          <Button
-            onClick={handleAddCategory}
-            className='button'
-            type='primary'
-            size='large'
-          >
+          <Button onClick={handleAddCategory} className='button' type='primary' size='large'>
             Submit
           </Button>
         </Col>

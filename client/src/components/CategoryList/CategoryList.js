@@ -17,9 +17,7 @@ function CategoryList() {
   categories = categories.map((category) => ({
     ...category,
     numPlaces: places.filter(
-      (place) =>
-        place.category_id === category.category_id &&
-        place.group_id === currentGroupID
+      (place) => place.category_id === category.category_id && place.group_id === currentGroupID
     ).length
   }));
 

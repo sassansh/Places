@@ -28,18 +28,12 @@ function PlaceView() {
   }, [dispatch]);
 
   const categories = useSelector((state) => state.categories.allCategories);
-  const currentCategoryID = useSelector(
-    (state) => state.categories.currentCategoryID
-  );
-  const currentCategory = categories.find(
-    (category) => category.category_id === currentCategoryID
-  );
+  const currentCategoryID = useSelector((state) => state.categories.currentCategoryID);
+  const currentCategory = categories.find((category) => category.category_id === currentCategoryID);
   const places = useSelector((state) => state.places.allPlaces);
   const myFavourites = useSelector((state) => state.users.favourite_places);
   const currentPlaceID = useSelector((state) => state.places.currentPlaceID);
-  const currentPlace = places.find(
-    (place) => place.place_id === currentPlaceID
-  );
+  const currentPlace = places.find((place) => place.place_id === currentPlaceID);
   const reviewsData = useSelector((state) => state.reviews.allReviews).filter(
     (review) => review.place_id === currentPlaceID
   );
@@ -52,13 +46,10 @@ function PlaceView() {
           .map((reviewData) => reviewData.rating.reduce((p, c) => p + c, 0))
           .reduce((p, c) => p + c, 0) /
         (reviewsData.length * currentCategory.custom_criteria.length)
-      : reviewsData
-          .map((reviewData) => reviewData.rating[0])
-          .reduce((p, c) => p + c, 0) / reviewsData.length;
+      : reviewsData.map((reviewData) => reviewData.rating[0]).reduce((p, c) => p + c, 0) /
+        reviewsData.length;
 
-  const averageScoreString = averageScore
-    ? Number(averageScore.toFixed(2)).toString()
-    : '?';
+  const averageScoreString = averageScore ? Number(averageScore.toFixed(2)).toString() : '?';
 
   function addFavourite() {
     dispatch(addFavouritePlace(currentPlaceID));
@@ -83,26 +74,18 @@ function PlaceView() {
                 {currentPlace.name}{' '}
                 {myFavourites.includes(currentPlaceID) ? (
                   <Tooltip title='Remove favourite'>
-                    <HeartFilled
-                      onClick={removeFavourite}
-                      style={{ color: 'red' }}
-                    />
+                    <HeartFilled onClick={removeFavourite} style={{ color: 'red' }} />
                   </Tooltip>
                 ) : (
                   <Tooltip title='Favourite place'>
-                    <HeartOutlined
-                      onClick={addFavourite}
-                      style={{ color: 'red' }}
-                    />
+                    <HeartOutlined onClick={addFavourite} style={{ color: 'red' }} />
                   </Tooltip>
                 )}
               </Title>
             </Col>
             <Col lg={0} md={0} sm={0} xs={24} />
             <Col lg={12} md={12} sm={12} className='categoryName'>
-              <Title level={3}>
-                {currentCategory.name_singular + ' ' + currentCategory.emoji}
-              </Title>
+              <Title level={3}>{currentCategory.name_singular + ' ' + currentCategory.emoji}</Title>
             </Col>
           </Row>
           <Row className='placeviewaddress'>
@@ -110,7 +93,12 @@ function PlaceView() {
           </Row>
           <Row className='overallRating'>
             <span>
-              <RoundedRate allowHalf value={averageScore} disabled style={{ marginRight: '10px' }}/>
+              <RoundedRate
+                allowHalf
+                value={averageScore}
+                disabled
+                style={{ marginRight: '10px' }}
+              />
               {averageScoreString} out of 5
             </span>
           </Row>
@@ -138,10 +126,7 @@ function PlaceView() {
         <Col lg={0} xxl={2} />
         <Col xxl={8} lg={12} md={24} xs={24}>
           {isCustom ? (
-            <RatingDetail
-              criteria={currentCategory.custom_criteria}
-              reviewsData={reviewsData}
-            />
+            <RatingDetail criteria={currentCategory.custom_criteria} reviewsData={reviewsData} />
           ) : (
             <ReviewList reviewsData={reviewsData} />
           )}

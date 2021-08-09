@@ -14,17 +14,10 @@ function MemberList(props) {
 
   const users = useSelector((state) => state.users.allUsers);
   const currentGroupID = useSelector((state) => state.groups.currentGroupID);
-  const currentGroupMembers = users.filter((user) =>
-    user.groups.includes(currentGroupID)
-  );
+  const currentGroupMembers = users.filter((user) => user.groups.includes(currentGroupID));
 
   const memberList = currentGroupMembers.map((member) => (
-    <Member
-      key={member.user_id}
-      user={member}
-      group={member.group}
-      history={props.history}
-    />
+    <Member key={member.user_id} user={member} group={member.group} history={props.history} />
   ));
 
   return (
