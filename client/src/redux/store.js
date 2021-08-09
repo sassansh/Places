@@ -1,6 +1,7 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 import categoryReducer from './reducers/categoryReducer';
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import groupReducer from './reducers/groupReducer';
 import placeReducer from './reducers/placeReducer';
 import reviewReducer from './reducers/reviewReducer';
@@ -15,14 +16,6 @@ const allReducer = combineReducers({
   reviews: reviewReducer
 });
 
-const store = createStore(
-  allReducer,
-  compose(
-    applyMiddleware(thunk),
-    window.navigator.userAgent.includes('Chrome')
-      ? window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-      : compose
-  )
-);
+const store = createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;
