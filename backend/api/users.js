@@ -27,70 +27,6 @@ router.get('/', authenticateToken, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get('/favourites', authenticateToken, (req, res) => {
-  const user_id = req.user.user_id;
-
-  User.findOne({ user_id }, '-_id favourite_places')
-    .then((favourites) => {
-      res.json(favourites.favourite_places);
-    })
-    .catch((err) => console.log(err));
-});
-
-router.post('/favourites', authenticateToken, (req, res) => {
-  const { place_id } = req.body;
-  const user_id = req.user.user_id;
-
-  if (place_id === undefined) {
-    return res.status(400).json({ message: 'place_id not sent' });
-  }
-
-  Place.findOne({ place_id }).then((place) => {
-    // Check if place exists
-    if (!place) {
-      return res.status(400).send({ message: 'Place not found' });
-    }
-
-    // Check if already favourited
-    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
-      const favourited_places = favourites.favourite_places;
-      if (favourited_places.includes(place_id)) {
-        return res.status(400).send({ message: 'Place already favourited' });
-      }
-      User.updateOne({ user_id: user_id }, { $push: { favourite_places: place_id } }).then(() =>
-        res.json({ message: 'Place has been favourited' })
-      );
-    });
-  });
-});
-
-router.delete('/favourites', authenticateToken, (req, res) => {
-  const { place_id } = req.body;
-  const user_id = req.user.user_id;
-
-  if (place_id === undefined) {
-    return res.status(400).json({ message: 'place_id not sent' });
-  }
-
-  Place.findOne({ place_id }).then((place) => {
-    // Check if place exists
-    if (!place) {
-      return res.status(400).json({ message: 'Place not found' });
-    }
-
-    // Check if already favourited
-    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
-      const favourited_places = favourites.favourite_places;
-      if (!favourited_places.includes(place_id)) {
-        return res.status(400).send({ message: 'Place is not favourited' });
-      }
-      User.updateOne({ user_id: user_id }, { $pull: { favourite_places: place_id } }).then(() =>
-        res.json({ message: 'Place has been removed from favourites' })
-      );
-    });
-  });
-});
-
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -362,6 +298,70 @@ router.delete('/group', authenticateToken, (req, res) => {
     })
     .then(() => res.json({ success: true }))
     .catch((err) => console.log(err));
+});
+
+router.get('/favourites', authenticateToken, (req, res) => {
+  const user_id = req.user.user_id;
+
+  User.findOne({ user_id }, '-_id favourite_places')
+    .then((favourites) => {
+      res.json(favourites.favourite_places);
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post('/favourites', authenticateToken, (req, res) => {
+  const { place_id } = req.body;
+  const user_id = req.user.user_id;
+
+  if (place_id === undefined) {
+    return res.status(400).json({ message: 'place_id not sent' });
+  }
+
+  Place.findOne({ place_id }).then((place) => {
+    // Check if place exists
+    if (!place) {
+      return res.status(400).send({ message: 'Place not found' });
+    }
+
+    // Check if already favourited
+    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
+      const favourited_places = favourites.favourite_places;
+      if (favourited_places.includes(place_id)) {
+        return res.status(400).send({ message: 'Place already favourited' });
+      }
+      User.updateOne({ user_id: user_id }, { $push: { favourite_places: place_id } }).then(() =>
+        res.json({ message: 'Place has been favourited' })
+      );
+    });
+  });
+});
+
+router.delete('/favourites', authenticateToken, (req, res) => {
+  const { place_id } = req.body;
+  const user_id = req.user.user_id;
+
+  if (place_id === undefined) {
+    return res.status(400).json({ message: 'place_id not sent' });
+  }
+
+  Place.findOne({ place_id }).then((place) => {
+    // Check if place exists
+    if (!place) {
+      return res.status(400).json({ message: 'Place not found' });
+    }
+
+    // Check if already favourited
+    User.findOne({ user_id }, '-_id favourite_places').then((favourites) => {
+      const favourited_places = favourites.favourite_places;
+      if (!favourited_places.includes(place_id)) {
+        return res.status(400).send({ message: 'Place is not favourited' });
+      }
+      User.updateOne({ user_id: user_id }, { $pull: { favourite_places: place_id } }).then(() =>
+        res.json({ message: 'Place has been removed from favourites' })
+      );
+    });
+  });
 });
 
 export default router;
