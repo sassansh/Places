@@ -1,6 +1,6 @@
 import './MobileNavBar.css';
 
-import { Button, Drawer, Dropdown, Menu, Avatar } from 'antd';
+import { Avatar, Button, Drawer, Dropdown, Menu } from 'antd';
 import { LogoutOutlined, MenuOutlined, UserOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -62,11 +62,7 @@ const MobileNavBar = ({ menu }) => {
         Places
       </span>
       <Dropdown overlay={profileMenu} trigger={['click']}>
-        <span className='profilepic'>
-          {currentUser && (
-            <Avatar src={currentUser.avatarURL} />
-          )}
-        </span>
+        <span className='profilepic'>{currentUser && <Avatar src={currentUser.avatarURL} />}</span>
       </Dropdown>
     </nav>
   );
