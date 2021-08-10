@@ -89,7 +89,7 @@ React, as a modern, fast and easy-to-learn JavaScript library, enabled us to jum
 
 ### Node & Express
 
-For our application with a client-server architecture, the backend server (implemented using Node & Express) was designed to meet the needs for our business logic that we didn't want exposed to our frontend application and allowed us to establish secure connections to our third party data sources such as our databases (e.g. MongoDB) and External APIs (e.g. Cloudinary for image upload functionality) without exposing secrets, API tokens or our authentication layer to the client. Compared to other backends, Node strengthened our application by being fast, efficient, javascript based (increased productivity with same language for frontend and end), and provided many easily imported free tools/packages. Express made it super easy for us to create a really simple RESTful API that performs our applications CRUD operations to create, read, update, and delete database resources.
+Our backend server implemented using Node & Express allowed us to hide the critical “business logic” from the front end users while allowing us to establish secure connections to our third party data sources such as our MongoDB database and External APIs (e.g. Cloudinary for image upload functionality). Compared to other backends, Node strengthened our application by being fast, javascript based (same as our frontend), and provided many free packages. Express made it super easy for us to create a really simple RESTful API that performs our applications CRUD operations.
 
 ### NoSQL with MongoDB
 
