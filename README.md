@@ -26,7 +26,14 @@
 
 - [Task Requirements 💼](#task-requirements-)
   - [Minimal Requirements](#minimal-requirements)
+  - [Standard Requirements](#standard-requirements)
+  - [Stretch Requirements](#stretch-requirements)
 - [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
+  - [HTML, CSS, JS](#html--css--js)
+  - [React](#react)
+  - [Node & Express](#node--express)
+  - [NoSQL with MongoDB](#nosql-with-mongodb)
+  - [Release Engineering](#release-engineering)
 - [Above and Beyond Functionality 🌟](#above-and-beyond-functionality-)
 - [Next Steps 🔮](#next-steps-)
 - [Team Contributions ‎😃](#team-contributions-)
@@ -41,52 +48,52 @@
 
 ### Minimal Requirements
 
-- [x] Register new account or log in to existing account
-- [x] Create a group
-- [x] Request and join an existing group / accept or reject requests to join
-- [x] Each user can rate (scale 1-5) a place, rating attached to their group
-- [x] View places by category and order by average rating
+- ✅ Register new account or log in to existing account
+- ✅ Create a group
+- ✅ Request and join an existing group / accept or reject requests to join
+- ✅ Each user can rate (scale 1-5) a place, rating attached to their group
+- ✅ View places by category and order by average rating
 
-**Standard Requirements**
+### Standard Requirements
 
-- [x] Modify an existing rating
-- [x] Create new categories
-  - [x] Choose custom rating criteria for the new category (by group)
-- [x] Display ranked list of places based on selected criteria
-  - [x] Search bar & other filters to narrow down list of places
-- [x] Allow users to upload photos for their profile picture or of places
-- [x] Profile for each place containing images, address, details, reviews.
-- [x] User profiles displaying:
-  - [x] Name, picture, list of reviewed places, name of group they are in
-- [x] Moderator ability for group members:
-  - [x] Accept other member requests into group
-  - [x] Delete members from group
+- ✅ Modify an existing rating
+- ✅ Create new categories
+  - ✅ Choose custom rating criteria for the new category (by group)
+- ✅ Display ranked list of places based on selected criteria
+  - ✅ Search bar & other filters to narrow down list of places
+- ✅ Allow users to upload photos for their profile picture or of places
+- ✅ Profile for each place containing images, address, details, reviews.
+- ✅ User profiles displaying:
+  - ✅ Name, picture, list of reviewed places, name of group they are in
+- ✅ Moderator ability for group members:
+  - ✅ Accept other member requests into group
+  - ✅ Delete members from group
 
-**Stretch Requirements**
+### Stretch Requirements
 
-- [x] Allow users to be members of multiple groups and post different information to different groups
-- [x] Allow user to save and view favorite places
-- [ ] Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
+- ✅ Allow users to be members of multiple groups and post different information to different groups
+- ✅ Allow user to save and view favorite places
+- ❌ Engaging dashboard with newly reviewed places, highest-rated places, and new members that have joined the group
 
 ## Technology Stack 🛠️
 
-**HTML,CSS, JS**
+### HTML, CSS, JS
 
 - Description Here
 
-**React**
+### React
 
 - Description Here
 
-**Node & Express**
+### Node & Express
 
 - Description Here
 
-**NoSQL with MongoDB**
+### NoSQL with MongoDB
 
 - Description Here
 
-**Release Engineering**
+### Release Engineering
 
 - Description Here
 
@@ -156,20 +163,20 @@ Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www
 
 ## Task Breakdown 📝
 
-- [x] Register new account or log in to existing account
+- ✅ Register new account or log in to existing account
 
-  - [x] Login UI with email/user name and password inputs and login button
-  - [x] Button to Register and form for creating new account
-    - [x] User Name, Email, Password
-  - [x] Database structure for storing email and password for each user
-  - [x] Simple authentication backend & remember user on the same device
+  - ✅ Login UI with email/user name and password inputs and login button
+  - ✅ Button to Register and form for creating new account
+    - ✅ User Name, Email, Password
+  - ✅ Database structure for storing email and password for each user
+  - ✅ Simple authentication backend & remember user on the same device
 
-- [x] User should be able to leave ratings
-  - [x] Display list of existing places to choose from
-    - [x] Or option to create new place with name and address
-  - [x] User can choose a numerical rating (1-5)
-  - [x] Submit to add rating of place, for user’s group, attributed to user
-  - [x] Database structure to associate rating of place to a group and user.
+- ✅ User should be able to leave ratings
+  - ✅ Display list of existing places to choose from
+    - ✅ Or option to create new place with name and address
+  - ✅ User can choose a numerical rating (1-5)
+  - ✅ Submit to add rating of place, for user’s group, attributed to user
+  - ✅ Database structure to associate rating of place to a group and user.
 
 ## Prototypes 🎨
 
