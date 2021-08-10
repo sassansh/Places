@@ -132,25 +132,25 @@ Now, to the front-end user everything seemed functioning and we could have left 
 
 Team Name: Green 🌱
 
-Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
+### Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
 
 - Created the components to view a place or group, to create a group, to manage a group (moderator ability), to update reviews and rankings of places based on the selected criteria.
 - I also added the necessary backend API and database schemas for the above mentioned frontend components.
 - I also helped with making our app mobile friendly.
 
-Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
+### Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
 
--I created some of the core components of the application, including the components that enable users to add or edit reviews and components that allow the user to view their profile information.
+- I created some of the core components of the application, including the components that enable users to add or edit reviews and components that allow the user to view their profile information.
 
 - I also created all the corresponding backend API routes and mongoDB schemas for the above mentioned frontend components.
 
-Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
+### Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 
 - I designed the overall concept for what the app would do, how its data would be organized, and the flow of what would be displayed across various views.
 - I created many components and pages including dynamically sorting and ranking places in PlaceView, a dynamic custom category form for AddCategory with support for Unicode-compliant emoji grapheme splitting, and fully responsive layouts for PlaceList, GroupList, RequestList and PlaceView
 - I refactored frontend code across the application to use declarative/array function-based data filtering and processing, and designed intuitive user flows such as being taken to a new place after it is created
 
-Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
+### Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
 - On the frontend, my main contributions were building the redux system, navigation bar, login, register, addplace, search bar, notification banner system, and favourites.
 - On the backend side, I mainly worked on the users endpoint by building a secure login/register (salting/hashing/json web tokens), favorites, and group requests endpoints while implementing image upload functionality in various endpoints (users, groups, places).
