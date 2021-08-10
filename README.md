@@ -134,6 +134,7 @@ Now, to the front-end user everything seemed functioning and we could have left 
 <p align="center">
   <img src="/images/secure_auth.png" alt="secure-authentication" width="450"/>
 </p>
+
 ## Next Steps 🔮
 
 - We completed all of our standard and stretch goals for the project except one - a dashboard showing recent activity; this could be implemented by storing creation dates or times for various data objects and displaying a few of the most recent ones on a list-based page.
