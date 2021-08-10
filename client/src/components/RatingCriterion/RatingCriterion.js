@@ -11,7 +11,7 @@ function RatingCriterion(props) {
         {props.name + ': '}
       </Col>
       <Col span={12} className='crit-rating'>
-        <RoundedRate value={props.score} allowHalf disabled={true} />
+        <RoundedRate value={props.score} allowHalf disabled />
       </Col>
     </Row>
   );
