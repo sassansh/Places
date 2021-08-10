@@ -12,7 +12,7 @@
 
   <h3 align="center">Places</h3>
 
-  <p align="center">
+  <p name="app-description" align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
     <a href="https://places-cpsc455.herokuapp.com/"><strong>View Demo »</strong></a>
@@ -24,12 +24,13 @@
 
 ## Table of Contents
 
+- [App Description ℹ️](#app-description)
 - [Task Requirements 💼](#task-requirements-)
   - [Minimal Requirements](#minimal-requirements)
   - [Standard Requirements](#standard-requirements)
   - [Stretch Requirements](#stretch-requirements)
 - [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
-  - [HTML, CSS, JS](#html--css--js)
+  - [HTML, CSS, JS](#html-css-js)
   - [React](#react)
   - [Node & Express](#node--express)
   - [NoSQL with MongoDB](#nosql-with-mongodb)
