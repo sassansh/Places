@@ -89,7 +89,7 @@ React, as a modern, fast and easy-to-learn JavaScript library, enabled us to jum
 
 ### Node & Express
 
-Our backend server implemented using Node & Express allowed us to hide the critical “business logic” from the front end users while allowing us to establish secure connections to our third party data sources such as our MongoDB database and External APIs (e.g. Cloudinary for image upload functionality). Compared to other backends, Node strengthened our application by being fast, javascript based (same as our frontend), and provided many free packages. Express made it super easy for us to create a really simple RESTful API that performs our applications CRUD operations.
+Our backend server implemented using Node & Express allowed us to hide the critical “business logic” from the front end users while allowing us to establish secure connections to our third party data sources such as our MongoDB database and External APIs (e.g. Cloudinary for image upload functionality). Compared to other backends, Node strengthened our application by being fast, javascript based (same as our frontend), and provided many free packages. Express made it super easy for us to create a really simple RESTful API that performs our applications C.R.U.D. operations on our user, group, category, place and review data.
 
 ### NoSQL with MongoDB
 
@@ -108,6 +108,10 @@ In the later stages of design we realized this application would be particularly
 We had used [Ant Design](https://ant.design/)’s framework on our frontend to build our components which utilizes a responsive design similar to Bootstrap where you can assign dimensions for different screen sizes: xs, sm, md, lg, xl, xxl. Therefore, we used these properties to make all of our components and views mobile friendly. Chrome’s developer tools were also of great use to emulate different mobile screens and debug CSS issues during this process.
 
 We used this multi-platform ethos for other design decisions too: no essential information is ever shown as tooltips, which are difficult to access on mobile; and the AddCategory component, where a user can select a custom emoji, contains a popup emoji picker for desktop users who don’t have an emoji keyboard at the ready.
+
+<p align="center">
+  <img src="/images/responsive.gif" alt="live-app" width="600"/>
+</p>
 
 ### Image Uploading using External API 🖼
 
