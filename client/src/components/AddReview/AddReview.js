@@ -64,7 +64,7 @@ function AddReview(props) {
         </span>
       );
     } else {
-      let customRate = customCriteria.map((criterion, index) => {
+      const customRate = customCriteria.map((criterion, index) => {
         return (
           <li key={'criterion' + index}>
             <span>{customCriteria[index] + ':'}</span>
