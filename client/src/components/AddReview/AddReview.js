@@ -54,7 +54,7 @@ function AddReview(props) {
     }
   }
 
-  const canSubmit = () => {
+  const disableSubmit = () => {
     for (const x of rateValues) {
       if (x < 1) return true;
     }
@@ -151,7 +151,12 @@ function AddReview(props) {
           <Title level={4}>Overall Rating</Title>
           {getRate()}
           <div>
-            <Button type='primary' onClick={handleSubmitReview} size='large' disabled={canSubmit()}>
+            <Button
+              type='primary'
+              onClick={handleSubmitReview}
+              size='large'
+              disabled={disableSubmit()}
+            >
               Submit
             </Button>
           </div>
