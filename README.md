@@ -25,6 +25,7 @@
 ## Table of Contents
 
 - [Task Requirements 💼](#task-requirements-)
+  - [Minimal Requirements](#minimal-requirements)
 - [Technology Stack 🛠️](#technology-stack-%EF%B8%8F)
 - [Above and Beyond Functionality 🌟](#above-and-beyond-functionality-)
 - [Next Steps 🔮](#next-steps-)
@@ -38,7 +39,7 @@
 
 ## Task Requirements 💼
 
-**Minimal Requirements**
+### Minimal Requirements
 
 - [x] Register new account or log in to existing account
 - [x] Create a group
