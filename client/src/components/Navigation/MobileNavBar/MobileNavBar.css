@@ -27,3 +27,12 @@
 .logo img {
   margin-right: 5px;
 }
+
+.profilepic {
+  height: 36px;
+  color: #f0f2f5;
+  position: absolute;
+  right: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
