@@ -80,31 +80,53 @@
 
 ### HTML, CSS, JS
 
-- Description Here
+While React and design frameworks like Ant Design allow us to not directly work with HTML and CSS, having an in-depth understanding of HTML and CSS allows us to work easily with JSX (a JavaScript-based language used in React to easily write HTML and JavaScript together) to build our components. On top of using Ant Design’s built in styles for our components, we further customized our components through custom written CSS (dedicated .css file for each component) for better styling and responsiveness on various screen sizes. Lastly, JavaScript was fundamental to our entire application as the main language to build our React frontend components all the way to our Node backend for building our API’s while allowing it all to run fast and efficiently compared to its counterparts like Python and Java.
 
 ### React
 
-- Description Here
+React, as a modern, fast and easy-to-learn JavaScript library, enabled us to jump in quickly and create all of our application’s reusable UI components, with which we used to organize our application into a tree structure. We took advantage of React Hooks to handle our application’s state and lifecycle logic. Redux helped particularly because much of our application’s data is inter-related and stored without duplication
 
 ### Node & Express
 
-- Description Here
+For our application with a client-server architecture, the backend server (implemented using Node & Express) was designed to meet the needs for our business logic that we didn't want exposed to our frontend application and allowed us to establish secure connections to our third party data sources such as our databases (e.g. MongoDB) and External APIs (e.g. Cloudinary for image upload functionality) without exposing secrets, API tokens or our authentication layer to the client. Compared to other backends, Node strengthened our application by being fast, efficient, javascript based (increased productivity with same language for frontend and end), and provided many easily imported free tools/packages. Express made it super easy for us to create a really simple RESTful API that performs our applications CRUD operations to create, read, update, and delete database resources.
 
 ### NoSQL with MongoDB
 
-- Description Here
+Entities such as users, places, categories and reviews are stored as MongoDB collections, with each item its own document. While we are using a non-relational database, we have kept the data stored in each collection as lean as possible to reduce redundancy -- if something is already recorded in another collection, we don’t duplicate it elsewhere, which also makes consistency problems less likely. Our Express-based back end uses Mongoose to validate data being added to each collection conforms to the expected schema, and to ease communication with the database itself.
 
 ### Release Engineering
 
-- Description Here
+To structure and manage our code, a simple monorepo structure was adopted on GitHub where the team could take advantage of version control for code history & sharing, pull requests for code review, and GitHub actions for automated deploying, linting and testing. Later, CI/CD was implemented using GitHub Actions (triggered by pushes/pull requests on the main branch) and Heroku to build, deploy and host our application. These release engineering efforts along with our cloud hosted MonogDB on Atlas, allowed us to decrease the amount of work for us developers to focus our attention on closing requirements, implementing new features and fixing bugs.
 
 ## Above and Beyond Functionality 🌟
 
-Description Here
+### Fully Responsive 📱
+
+In the later stages of design we realized this application would be particularly useful for users to actually add and check places while they’re out and about, and as a result we refactored all views in the application as necessary to be as functional on mobile as they are on desktop.
+
+We had used [Ant Design](https://ant.design/)’s framework on our frontend to build our components which utilizes a responsive design similar to Bootstrap where you can assign dimensions for different screen sizes: xs, sm, md, lg, xl, xxl. Therefore, we used these properties to make all of our components and views mobile friendly. Chrome’s developer tools were also of great use to emulate different mobile screens and debug CSS issues during this process.
+
+We used this multi-platform ethos for other design decisions too: no essential information is ever shown as tooltips, which are difficult to access on mobile; and the AddCategory component, where a user can select a custom emoji, contains a popup emoji picker for desktop users who don’t have an emoji keyboard at the ready.
+
+### Image Uploading using External API 🖼
+
+Our application relies heavily on images to create an engaging user interface and experience. Therefore, from early on we knew we wanted a way for our users to add their own custom images to our application. However, image data is sized very differently from other data stored in our MongoDB database, so it was not feasible to store it alongside regular data objects. To get around this, we initially had the user input an image URL which meant normally they had to google for images and copy the image’s url address from there or upload their images to another service and grab the link then come back to our application, completely ruining the user experience and flow of our application.
+
+We recognized the poor experience this was creating for us and our users (our friends tested our app), hence set out to implement an upload your own image functionality. Through research and comparing many ways of implementing this feature, the most cost effective (free) and least technically challenging method was chosen. By restructuring our frontend and backend slightly, we were able to include the user’s chosen image file in the form data request to our backend where we integrated with an external API ([Cloudinary](https://cloudinary.com/documentation/image_upload_api_reference)) to forward them the image and they host the image and respond back with an Image URL that can be easily stored in our MongoDB as text then later fetched and the image displayed on our interface. This created a seamless experience for our end users to easily upload profile pictures, customize their group logos and add pictures of the places they visit.
+
+### Authentication System 🔐
+
+The unique feature that sets our application apart from its big brothers like Yelp and Google Maps is its private groups. In order to keep these groups and its content private, we had to take authentication to the next level. Authentication in our application would be used to identify the user, give them access to specific groups, remember who they are on the client side, and give them access to our backend API.
+
+Initially, we had a very weak form of authentication (if you could call it that) where we were storing the users password in plain text in our database, using local storage to simply store a user id to remember them across sessions and our API was completely open and you could pretend to be whoever you wanted and access all of our data by making requests without any authorization.
+
+Now, to the front-end user everything seemed functioning and we could have left it at that, but we knew fundamentally something critical to our application was “broken”. After sifting through many articles on different ways of authentication, we first got rid of all the plain text passwords and implemented industry standards of salting/hashing passwords using [bcrpyt](https://www.npmjs.com/package/bcrypt). To prevent the users from easily modifying their local storage to pretend to be another user, we implemented [JSON Web Tokens](https://www.npmjs.com/package/jsonwebtoken). These tokens are signed by our backend after successful login and any tampering with them renders them useless. Then we also locked down all of our private API endpoints to require an Authorization Header in the form of a JWT Bearer Token preventing all non-authorized users from fetching any user, place or review data. The backend also uses the auth header token to identify the user making the request to prevent anyone from leaving reviews as another user or letting people into groups they are not a part of and more.
 
 ## Next Steps 🔮
 
-Description Here
+- We completed all of our standard and stretch goals for the project except one - a dashboard showing recent activity; this could be implemented by storing creation dates or times for various data objects and displaying a few of the most recent ones on a list-based page.
+- We also discussed adding location functionality to users could view places as pins on a map or find a place close to their current location, which would help users find places they see on the app in real life
+- We also considered adding single sign on so users could log in with existing accounts from other services, which would streamline the registration and login processes
 
 ## Team Contributions ‎😃
 
@@ -112,19 +134,27 @@ Team Name: Green 🌱
 
 Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
 
-- Contribtions here
+- Created the components to view a place or group, to create a group, to manage a group (moderator ability), to update reviews and rankings of places based on the selected criteria.
+- I also added the necessary backend API and database schemas for the above mentioned frontend components.
+- I also helped with making our app mobile friendly.
 
 Johnny Li - [GitHub](https://github.com/johnnybcs) - [LinkedIn](https://www.linkedin.com/in/johnny-li-ubc/) - [Personal Website](https://johnnyli.herokuapp.com/about)
 
-- Contribtions here
+-I created some of the core components of the application, including the components that enable users to add or edit reviews and components that allow the user to view their profile information.
+
+- I also created all the corresponding backend API routes and mongoDB schemas for the above mentioned frontend components.
 
 Laura Rodgers - [GitHub](https://github.com/laurarodgers) - [LinkedIn](https://www.linkedin.com/in/rodgerslaura/)
 
-- Contribtions here
+- I designed the overall concept for what the app would do, how its data would be organized, and the flow of what would be displayed across various views.
+- I created many components and pages including dynamically sorting and ranking places in PlaceView, a dynamic custom category form for AddCategory with support for Unicode-compliant emoji grapheme splitting, and fully responsive layouts for PlaceList, GroupList, RequestList and PlaceView
+- I refactored frontend code across the application to use declarative/array function-based data filtering and processing, and designed intuitive user flows such as being taken to a new place after it is created
 
 Sassan Shokoohi - [GitHub](https://github.com/sassansh) - [LinkedIn](https://www.linkedin.com/in/sassanshokoohi/) - [Personal Website](https://sassanshokoohi.ca)
 
-- Contribtions here
+- On the frontend, my main contributions were building the redux system, navigation bar, login, register, addplace, search bar, notification banner system, and favourites.
+- On the backend side, I mainly worked on the users endpoint by building a secure login/register (salting/hashing/json web tokens), favorites, and group requests endpoints while implementing image upload functionality in various endpoints (users, groups, places).
+- I also took a bit of a project management role to keep track of tasks being worked on/completed (on google docs) and paved the way for my team to get things done quickly by structuring our repo, sketching prototypes, and implementing automatic deployments, testing and linting.
 
 ## Project Description 🏝
 
