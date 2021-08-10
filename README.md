@@ -130,7 +130,7 @@ Now, to the front-end user everything seemed functioning and we could have left 
 
 ## Team Contributions ‎😃
 
-Team Name: Green 🌱
+### Team Name: Green 🌱
 
 ### Amir Jafarvand - [GitHub](https://github.com/amirjfr) - [LinkedIn](https://www.linkedin.com/in/amir-jafarvand/) - [Personal Website](http://www.amirjafarvand.com/)
 
