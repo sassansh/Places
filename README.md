@@ -110,7 +110,7 @@ We had used [Ant Design](https://ant.design/)’s framework on our frontend to b
 We used this multi-platform ethos for other design decisions too: no essential information is ever shown as tooltips, which are difficult to access on mobile; and the AddCategory component, where a user can select a custom emoji, contains a popup emoji picker for desktop users who don’t have an emoji keyboard at the ready.
 
 <p align="center">
-  <img src="/images/responsive.gif" alt="live-app" width="600"/>
+  <img src="/images/responsive.gif" alt="responsive" width="600"/>
 </p>
 
 ### Image Uploading using External API 🖼
@@ -118,6 +118,10 @@ We used this multi-platform ethos for other design decisions too: no essential i
 Our application relies heavily on images to create an engaging user interface and experience. Therefore, from early on we knew we wanted a way for our users to add their own custom images to our application. However, image data is sized very differently from other data stored in our MongoDB database, so it was not feasible to store it alongside regular data objects. To get around this, we initially had the user input an image URL which meant normally they had to google for images and copy the image’s url address from there or upload their images to another service and grab the link then come back to our application, completely ruining the user experience and flow of our application.
 
 We recognized the poor experience this was creating for us and our users (our friends tested our app), hence set out to implement an upload your own image functionality. Through research and comparing many ways of implementing this feature, the most cost effective (free) and least technically challenging method was chosen. By restructuring our frontend and backend slightly, we were able to include the user’s chosen image file in the form data request to our backend where we integrated with an external API ([Cloudinary](https://cloudinary.com/documentation/image_upload_api_reference)) to forward them the image and they host the image and respond back with an Image URL that can be easily stored in our MongoDB as text then later fetched and the image displayed on our interface. This created a seamless experience for our end users to easily upload profile pictures, customize their group logos and add pictures of the places they visit.
+
+<p align="center">
+  <img src="/images/upload_image.gif" alt="upload-image" width="600"/>
+</p>
 
 ### Authentication System 🔐
 
@@ -127,6 +131,9 @@ Initially, we had a very weak form of authentication (if you could call it that)
 
 Now, to the front-end user everything seemed functioning and we could have left it at that, but we knew fundamentally something critical to our application was “broken”. After sifting through many articles on different ways of authentication, we first got rid of all the plain text passwords and implemented industry standards of salting/hashing passwords using [bcrpyt](https://www.npmjs.com/package/bcrypt). To prevent the users from easily modifying their local storage to pretend to be another user, we implemented [JSON Web Tokens](https://www.npmjs.com/package/jsonwebtoken). These tokens are signed by our backend after successful login and any tampering with them renders them useless. Then we also locked down all of our private API endpoints to require an Authorization Header in the form of a JWT Bearer Token preventing all non-authorized users from fetching any user, place or review data. The backend also uses the auth header token to identify the user making the request to prevent anyone from leaving reviews as another user or letting people into groups they are not a part of and more.
 
+<p align="center">
+  <img src="/images/secure_auth.png" alt="secure-authentication" width="600"/>
+</p>
 ## Next Steps 🔮
 
 - We completed all of our standard and stretch goals for the project except one - a dashboard showing recent activity; this could be implemented by storing creation dates or times for various data objects and displaying a few of the most recent ones on a list-based page.
