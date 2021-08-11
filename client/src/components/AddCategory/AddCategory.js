@@ -26,10 +26,9 @@ function AddCategory(props) {
 
   function handleChange() {
     const emojiField = form.getFieldValue('emoji');
-    let lastEmoji = '';
     if (emojiField) {
       const graphemes = splitter.splitGraphemes(emojiField);
-
+      let lastEmoji = '';
       graphemes.forEach((item) => {
         if (item.match(/\p{Emoji_Presentation}/gu)) {
           lastEmoji = item;
