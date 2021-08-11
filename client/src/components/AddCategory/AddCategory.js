@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import GraphemeSplitter from 'grapheme-splitter';
 import { Picker } from 'emoji-mart';
 import { addCategory } from '../../redux/actions/categoryActions';
+import isEmpty from 'is-empty';
 import { useState } from 'react';
 
 const { Title } = Typography;
@@ -20,19 +21,30 @@ function AddCategory(props) {
   const [isCustomCriteria, setIsCustomCriteria] = useState(false);
   const [numberOfCriteria, setNumberOfCriteria] = useState(2);
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
+  const [disableSubmit, setDisableSubmit] = useState(true);
   const defaultCriteria = ['Coolness', 'Quality', 'Flavour', 'Comfort', 'Size'];
 
   function handleChange() {
     const emojiField = form.getFieldValue('emoji');
+    let lastEmoji = '';
     if (emojiField) {
       const graphemes = splitter.splitGraphemes(emojiField);
-      let lastEmoji = '';
+
       graphemes.forEach((item) => {
         if (item.match(/\p{Emoji_Presentation}/gu)) {
           lastEmoji = item;
         }
       });
       form.setFieldsValue({ emoji: lastEmoji });
+    }
+    if (
+      isEmpty(form.getFieldValue('name_plural')) ||
+      isEmpty(form.getFieldValue('name_singular')) ||
+      isEmpty(form.getFieldValue('emoji'))
+    ) {
+      setDisableSubmit(true);
+    } else {
+      setDisableSubmit(false);
     }
   }
 
@@ -111,6 +123,7 @@ function AddCategory(props) {
                   onSelect={(emoji) => {
                     form.setFieldsValue({ emoji: emoji.native });
                     setEmojiPickerVisible(false);
+                    handleChange();
                   }}
                 />
               </Modal>
@@ -182,7 +195,13 @@ function AddCategory(props) {
       </Row>
       <Row justify='center'>
         <Col>
-          <Button onClick={handleAddCategory} className='button' type='primary' size='large'>
+          <Button
+            onClick={handleAddCategory}
+            className='button'
+            type='primary'
+            size='large'
+            disabled={disableSubmit}
+          >
             Submit
           </Button>
         </Col>
