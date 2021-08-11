@@ -84,12 +84,12 @@ function Group(props) {
   return (
     <Card style={{ margin: 16 }} onClick={props.onClick}>
       <Row justify='space-around' align='middle'>
-        <Col lg={4} md={4} sm={24} xs={24} className='group'>
+        <Col lg={3} md={3} sm={24} xs={24} className='group'>
           <Row justify='center'>
             <Avatar src={props.group.avatarURL} size={64} />
           </Row>
         </Col>
-        <Col lg={12} md={12} sm={24} xs={24}>
+        <Col lg={11} md={10} sm={24} xs={24}>
           <Row justify='center' className='group-name'>
             {props.group.name}
           </Row>
@@ -97,10 +97,10 @@ function Group(props) {
             {props.group.description}
           </Row>
         </Col>
-        <Col lg={8} md={8} sm={24} xs={24}>
+        <Col lg={10} md={11} sm={24} xs={24}>
           <Row justify='center' align='middle'>
             <Col className='join-button'>{renderButton()}</Col>
-            <Col className='reviews-members' flex='100px'>
+            <Col className='reviews-members'>
               <Tooltip title={numReviews + ' reviews'}>
                 <StarFilled size='large' />
                 &nbsp;

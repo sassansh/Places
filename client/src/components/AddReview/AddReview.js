@@ -23,7 +23,9 @@ function AddReview(props) {
   const place = places.find((element) => element.place_id === currentPlaceID);
   const category = categories.find((element) => element.category_id === place.category_id);
   const customCriteria = category.custom_criteria;
-  const [rateValues, setRateValues] = useState([...Array(customCriteria.length)].map(() => 0));
+  const [rateValues, setRateValues] = useState(
+    [...Array(Math.max(customCriteria.length, 1))].map(() => 0)
+  );
 
   useEffect(() => {
     if (!reviewLoadedRef.current) {
@@ -52,6 +54,13 @@ function AddReview(props) {
     }
   }
 
+  const disableSubmit = () => {
+    for (const x of rateValues) {
+      if (x < 1) return true;
+    }
+    return false;
+  };
+
   function getRate() {
     if (customCriteria.length < 2) {
       return (
@@ -60,6 +69,7 @@ function AddReview(props) {
             style={{ fontSize: '40px' }}
             onChange={(value) => setRateValues([value])}
             value={rateValues[0]}
+            allowClear={false}
           />
         </span>
       );
@@ -79,6 +89,7 @@ function AddReview(props) {
                 ]);
               }}
               value={rateValues[index]}
+              allowClear={false}
             />
           </li>
         );
@@ -97,8 +108,6 @@ function AddReview(props) {
       );
     }
   }
-
-  getRate();
 
   return (
     <div className='container'>
@@ -142,7 +151,12 @@ function AddReview(props) {
           <Title level={4}>Overall Rating</Title>
           {getRate()}
           <div>
-            <Button type='primary' onClick={handleSubmitReview} size='large'>
+            <Button
+              type='primary'
+              onClick={handleSubmitReview}
+              size='large'
+              disabled={disableSubmit()}
+            >
               Submit
             </Button>
           </div>
