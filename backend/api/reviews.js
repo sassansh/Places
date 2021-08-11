@@ -14,6 +14,15 @@ router.get('/', authenticateToken, (req, res) => {
 router.post('/', authenticateToken, (req, res) => {
   const { place_id, rating } = req.body;
   const user_id = req.user.user_id;
+
+  for (const x of rating) {
+    if (x < 1) {
+      res.status(400).json({
+        message: 'No rating should be less than 1.'
+      });
+    }
+  }
+
   const newReview = new Review({
     review_id: uuidv4(),
     user_id: user_id,
@@ -37,6 +46,15 @@ router.post('/', authenticateToken, (req, res) => {
 
 router.put('/', authenticateToken, (req, res) => {
   const { review_id, rating } = req.body;
+
+  for (const x of rating) {
+    if (x < 1) {
+      res.status(400).json({
+        message: 'No rating should be less than 1.'
+      });
+    }
+  }
+
   Review.updateOne({ review_id: review_id }, { rating: rating })
     .then(() =>
       res.json({
