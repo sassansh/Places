@@ -1,14 +1,15 @@
 import './UserProfile.css';
 
 import { Card, Col, Divider, Row, Typography } from 'antd';
+import { getCategories, setCurrentCategory } from '../../redux/actions/categoryActions';
+import { getGroups, setCurrentGroup } from '../../redux/actions/groupActions';
+import { getPlaces, setCurrentPlace } from '../../redux/actions/placeActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Avatar from 'antd/lib/avatar/avatar';
+import { Link } from 'react-router-dom';
 import RoundedRate from '../RoundedRate/RoundedRate';
 import { UserOutlined } from '@ant-design/icons';
-import { getCategories } from '../../redux/actions/categoryActions';
-import { getGroups } from '../../redux/actions/groupActions';
-import { getPlaces } from '../../redux/actions/placeActions';
 import { getReviews } from '../../redux/actions/reviewActions';
 import { useEffect } from 'react';
 
@@ -62,12 +63,19 @@ function UserProfile() {
       try {
         numGroups++;
         return (
-          <Card size='small'>
-            <span className='group'>
-              <Avatar size={64} src={targetGroup.avatarURL} />
-              &emsp;{targetGroup.name}
-            </span>
-          </Card>
+          <Link
+            to='/groupview'
+            onClick={() => {
+              dispatch(setCurrentGroup(targetGroup.group_id));
+            }}
+          >
+            <Card size='small'>
+              <span className='group'>
+                <Avatar size={64} src={targetGroup.avatarURL} />
+                &emsp;{targetGroup.name}
+              </span>
+            </Card>
+          </Link>
         );
       } catch (e) {
         numGroups--;
@@ -81,6 +89,15 @@ function UserProfile() {
       const group_id = places.find((place) => place.place_id === place_id).group_id;
       const groupName = groups.find((group) => group.group_id === group_id).name;
       return ' 👤 ' + groupName;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function getGroupID(place_id) {
+    try {
+      const group_id = places.find((place) => place.place_id === place_id).group_id;
+      return group_id;
     } catch (e) {
       console.error(e);
     }
@@ -102,6 +119,15 @@ function UserProfile() {
     }
   }
 
+  function getCategoryID(place_id) {
+    try {
+      const category_id = places.find((place) => place.place_id === place_id).category_id;
+      return category_id;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   const myGroups = userData.groups;
   const myGroupsItems = myGroups.map((group_id) => (
     <li key={group_id} className='group'>
@@ -112,19 +138,28 @@ function UserProfile() {
   const myReviews = reviews.filter((review) => review.user_id === user.user_id);
   const myReviewsItems = myReviews.map((review) => (
     <li key={review.review_id} className='review'>
-      <Card size='small'>
-        <Row>
-          <Col span={12}>
-            <span className='place'>{getPlace(review.place_id)}</span>
-          </Col>
-          <Col className='rating' span={12}>
-            {getRating(review.rating)}
-          </Col>
-        </Row>
-        <span className='meta'>
-          {getCategoryName(review.place_id) + getGroupName(review.place_id)}
-        </span>
-      </Card>
+      <Link
+        to='/placeview'
+        onClick={() => {
+          dispatch(setCurrentGroup(getGroupID(review.place_id)));
+          dispatch(setCurrentPlace(review.place_id));
+          dispatch(setCurrentCategory(getCategoryID(review.place_id)));
+        }}
+      >
+        <Card size='small'>
+          <Row>
+            <Col span={12}>
+              <span className='place'>{getPlace(review.place_id)}</span>
+            </Col>
+            <Col className='rating' span={12}>
+              {getRating(review.rating)}
+            </Col>
+          </Row>
+          <span className='meta'>
+            {getCategoryName(review.place_id) + getGroupName(review.place_id)}
+          </span>
+        </Card>
+      </Link>
     </li>
   ));
 
