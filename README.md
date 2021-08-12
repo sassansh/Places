@@ -12,8 +12,8 @@
 
   <h3 align="center">Places</h3>
 
-  <p name="app-description" align="center">
-    Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
+  <p align="center">
+  Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
     <br />
     <a href="https://places-cpsc455.herokuapp.com/"><strong>🌎 View Demo »</strong></a>
@@ -25,7 +25,7 @@
 
 ## Table of Contents
 
-- [App Description ℹ️](#app-description)
+- [App Description ℹ️](#app-description-)
 - [Task Requirements 💼](#task-requirements-)
   - [Minimal Requirements](#minimal-requirements)
   - [Standard Requirements](#standard-requirements)
@@ -45,6 +45,10 @@
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
 - [License 📔](#license-)
+
+## App Description ℹ️
+
+Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
 
 ## Task Requirements 💼
 
