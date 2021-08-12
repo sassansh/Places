@@ -25,7 +25,7 @@
 
 ## Table of Contents
 
-- [App Description ℹ️](#app-description-)
+- [App Description ℹ️](#app-description-ℹ%EF%B8%8F)
 - [Task Requirements 💼](#task-requirements-)
   - [Minimal Requirements](#minimal-requirements)
   - [Standard Requirements](#standard-requirements)
