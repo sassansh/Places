@@ -3,9 +3,12 @@ import './FavouritesView.css';
 import { Card, Col, Divider, Row, Tooltip, Typography } from 'antd';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { deleteFavouritePlace, getFavourites } from '../../redux/actions/userActions';
+import { getCategories, setCurrentCategory } from '../../redux/actions/categoryActions';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getCategories } from '../../redux/actions/categoryActions';
+import { Link } from 'react-router-dom';
+import { setCurrentGroup } from '../../redux/actions/groupActions';
+import { setCurrentPlace } from '../../redux/actions/placeActions';
 import { useEffect } from 'react';
 
 const { Title } = Typography;
@@ -45,6 +48,15 @@ function FavouritesView() {
     }
   }
 
+  function getGroupID(place_id) {
+    try {
+      const group_id = places.find((place) => place.place_id === place_id).group_id;
+      return group_id;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   function getCategoryName(place_id) {
     try {
       const category_id = places.find((place) => place.place_id === place_id).category_id;
@@ -61,24 +73,48 @@ function FavouritesView() {
     }
   }
 
+  function getCategoryID(place_id) {
+    try {
+      const category_id = places.find((place) => place.place_id === place_id).category_id;
+      return category_id;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   const myFavouriteItems = myFavourites.map((favourite) => (
     <li key={favourite} className='favourite'>
-      <Card size='small'>
-        <Row>
-          <Col span={12}>
-            <span className='place'>{getPlace(favourite)}</span>
-          </Col>
-          <Col className='rating' span={12}>
-            <Tooltip title='Remove favourite'>
-              <HeartFilled
-                onClick={() => handleFavourite(favourite)}
-                style={{ color: 'red', fontSize: '150%' }}
-              />
-            </Tooltip>
-          </Col>
-        </Row>
-        <span className='meta'>{getCategoryName(favourite) + getGroupName(favourite)}</span>
-      </Card>
+      <Link
+        to='/placeview'
+        onClick={() => {
+          dispatch(setCurrentGroup(getGroupID(favourite)));
+          dispatch(setCurrentPlace(favourite));
+          dispatch(setCurrentCategory(getCategoryID(favourite)));
+        }}
+      >
+        <Card size='small'>
+          <Row>
+            <Col span={12}>
+              <span className='place'>{getPlace(favourite)}</span>
+            </Col>
+            <Col className='rating' span={12}>
+              <Tooltip title='Remove favourite'>
+                <HeartFilled
+                  onClick={(e) => {
+                    handleFavourite(favourite);
+                    // Since button to un-favourite overlays the place card, this prevents
+                    // the card below from being clicked and taking user to that place
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  style={{ color: 'red', fontSize: '150%' }}
+                />
+              </Tooltip>
+            </Col>
+          </Row>
+          <span className='meta'>{getCategoryName(favourite) + getGroupName(favourite)}</span>
+        </Card>
+      </Link>
     </li>
   ));
   return (
