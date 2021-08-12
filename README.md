@@ -89,15 +89,15 @@ The logic of our application was built in JavaScript from top to bottom, from it
 
 ### React
 
-We used React to create modular UI components and render dynamic views that changed according to user input. We took advantage of React Hooks to handle state and live-cycle logic for each component when needed. We used a Redux store to maintain data such as reviews, places and categories on the front end to ensure consistency and accessibility throughout complex components.
+We used React to create modular UI components and render dynamic views that changed according to user input. We took advantage of React Hooks to handle state and life-cycle logic for each component. We used a Redux store to maintain data such as reviews, places and categories on the front end to ensure consistency and accessibility throughout complex components.
 
 ### Node & Express
 
-Our back-end server, implemented using Node and Express, let us hide critical business logic from users while allowing us to establish secure connections to external data sources such as our MongoDB database and the Cloudinary third-party API for image upload functionality. Node is popular and well-supported, it allowed us to use Javascript throughout the application, and it provides many useful packages. Express was a straightforward framework with which we created a RESTful API to perform our application's C.R.U.D. operations on our user, group, category, place and review data.
+Our back end server, implemented using Node and Express, let us hide critical business logic from users while allowing us to establish secure connections to external data sources such as our MongoDB database and the Cloudinary third-party API for image upload functionality. Node is popular and well-supported, it allowed us to use Javascript throughout the application, and it provides many useful packages. Express was a straightforward framework with which we created a RESTful API to perform our application's C.R.U.D. operations on user, group, category, place and review data.
 
 ### NoSQL with MongoDB
 
-Entities such as users, places, categories and reviews are stored as MongoDB collections, with each item its own document. While we are using a non-relational database, we kept the data stored in each collection as lean as possible to reduce redundancy — if something is already recorded in another collection, we don’t duplicate it elsewhere. Our Express-based back end uses Mongoose to validate data being added to each collection conforms to the expected schema, and to ease communication with the database itself.
+Entities such as users, places, categories and reviews are stored as MongoDB collections, with each item its own document. While we are using a non-relational database, we kept the data stored in each collection as lean as possible to reduce redundancy — if something is already recorded in another collection, we don’t duplicate it elsewhere. Our Express-based back end uses Mongoose to ensure data being added to each collection conforms to the expected schema, and to ease communication with the database itself.
 
 ### Release Engineering
 
