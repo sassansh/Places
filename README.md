@@ -12,7 +12,7 @@
 
   <h3 align="center">Places</h3>
 
-  <p name="app-description" align="center">
+  <p align="center">
     Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
     <br />
     <br />
@@ -25,7 +25,7 @@
 
 ## Table of Contents
 
-- [App Description ℹ️](#app-description)
+- [App Description ℹ️](#app-description-ℹ%EF%B8%8F)
 - [Task Requirements 💼](#task-requirements-)
   - [Minimal Requirements](#minimal-requirements)
   - [Standard Requirements](#standard-requirements)
@@ -45,6 +45,10 @@
 - [Prerequisites 🍪](#prerequisites-)
 - [Setup And Deployment 🔧](#setup-and-deployment-)
 - [License 📔](#license-)
+
+## App Description ℹ️
+
+Places lets you rate and rank your favourite places to eat, drink, hang out and more. By joining trusted groups of friends or family and choosing your own criteria for ratings, you can get reliable recommendations about where to go based on what’s most important to you.
 
 ## Task Requirements 💼
 
